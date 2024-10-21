@@ -1,0 +1,23 @@
+.time_scroll_select{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+.time_scroll_select span{
+    font-weight: bold;
+}
+.time_scroll_select_buttons {
+    display: flex;
+    flex-wrap: wrap; /* 버튼들이 한 줄에 맞지 않을 경우 다음 줄로 이동 */
+    gap: 10px; /* 버튼 간의 간격 설정 */
+}
+.time_scroll_select button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+.time_scroll_select_buttons button{
+    width: 100px;
+}

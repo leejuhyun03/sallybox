@@ -1,0 +1,119 @@
+.theater_top_wrap{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 18px 0 50px 22px;
+}
+
+.theater_title{
+    display: flex;
+    align-items: center;
+}
+
+.theater_title h3 {
+    font-family: 'Noto Sans Korean', sans-serif;
+    font-size: 34px;
+    margin-right: 15px;
+}
+
+.btn_like_theater{
+    display: flex;
+    align-items: center;
+    border: 1px solid #dddddd;
+    padding: 3px 7px;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.btn_like_theater span {
+    font-size: 20px;
+    margin-right: 8px; /* 아이콘과 텍스트 사이에 여백 추가 */
+    margin-top: 6px;
+}
+
+.theater_top_bottom_wrap{
+    display: flex;
+    align-items: center;
+}
+
+.info_wrap{
+    width: 460px;
+}
+
+.theater_info{
+    display: flex;
+    font-family: 'Noto Serif Korean';   
+    align-items: center; 
+    justify-content: flex-start;
+}
+
+.theater_info dt{
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.theater_info dd{
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+.theater_info dd + dd {
+    margin-left: 50px; /* 두 번째 dd 요소에만 왼쪽 마진 추가 */
+}
+.theater_info a {
+    text-decoration: none; /* 링크 밑줄 제거 (선택 사항) */
+}
+
+.rcm_wrap{
+    display: flex;
+    width: 447px;
+    height: 150px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 20px 30px 20px 40px;
+    background-color: #E7E7E7;
+}
+
+.rcm_txt_wrap{
+    width: 250px;
+    background-color: #E7E7E7;
+    margin-right: 20px;
+}
+
+.rcm_movie{
+    background-color: #666;
+    width: 120px;
+    margin-left: 20px;
+}
+
+.rcm_txt{
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.rcm_btn_wrap{
+    display: flex;    
+    justify-content: center;
+}
+
+.btn_heart{
+    border: transparent;
+    background-color: transparent;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+
+.btn_link{
+    color: black;
+    margin-top: 3px;
+}
+
