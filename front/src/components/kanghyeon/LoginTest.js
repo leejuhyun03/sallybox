@@ -92,7 +92,7 @@ function LoginTest() {
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={() => setIsEmailFindModalOpen(true)}>이메일 찾기</button>
-      <button><Link to={'/sendSms'} style={{textDecoration: 'none', color: 'black'}}>비밀번호 찾기</Link></button>
+      <button><Link to={'/sallybox/login'} style={{textDecoration: 'none', color: 'black'}}>비밀번호 찾기</Link></button>
         {/* <EmailFindForm 
             isOpen={isEmailFindModalOpen} 
             onClose={() => setIsEmailFindModalOpen(false)} 

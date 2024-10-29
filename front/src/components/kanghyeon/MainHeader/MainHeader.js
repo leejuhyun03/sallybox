@@ -9,8 +9,6 @@ let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
   let [visible3, setVisible3] = useState(false)
   let [visible38, setVisible38] = useState(false)
-  let [visible4, setVisible4] = useState(false)
-  let [visible5, setVisible5] = useState(false)
   
   const [isShow, setIsShow] = useState(false)
 
@@ -75,45 +73,25 @@ let [visible1, setVisible1] = useState(false)
       setVisible38(false)
     }
 
-  let onTrue4 = () => {
-    // !true = false, !false - > true
-    setVisible4(true)
-  }
-
-  let onFalse4 = () => {
-    // !true = false, !false - > true
-    setVisible4(false)
-  }
-
-  let onTrue5 = () => {
-    // !true = false, !false - > true
-    setVisible5(true)
-  }
-
-  let onFalse5 = () => {
-    // !true = false, !false - > true
-    setVisible5(false)
-  }
-
     return (
             <div id='header_section' className='header'>
-            <Link to={'/'}><h1 className="logos">Sallybox</h1></Link>
+            <Link to={'/sallybox/login'}><h1 className="logos">Sallybox</h1></Link>
                 <div className='gnbs'>
                 <ul className="g_menu2">
                 <li><a href='#'>멤버십</a></li>
                 <li><a href='#'>고객센터</a></li>
                 <li><a href='#'>단체관람/대관문의</a></li>
                 {
-                    isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
-                                    : <li><Link to={'/sign-in'}>로그인</Link></li>
+                    isAuthenticated ? <li><a href='/sallybox/login' onClick={handleLogout}>로그아웃</a></li>
+                                    : <li><Link to={'/sallybox/login'}>로그인</Link></li>
                 }
                 
                 {/* <li><Link to={'/sign-in'}>로그아웃</Link></li> */}
                 </ul>
                 <ul className="g_menu3">
                 {
-                isAuthenticated ? <li><Link className='btn_my' to={'/'}>마이</Link></li>
-                                : <li><Link className='btn_my' to={'/sign-up'}>회원가입</Link></li>
+                isAuthenticated ? <li><Link className='btn_my' to={'/sallybox/login'}>마이</Link></li>
+                                : <li><Link className='btn_my' to={'/sallybox/login'}>회원가입</Link></li>
                 }
                 <li><a href="#" className="btn_reserve">바로 예매</a></li>
                 <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>

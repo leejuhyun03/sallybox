@@ -185,11 +185,11 @@ const HeaderModal = ({onClose, isAuthenticated, handleLogout}) => {
                                 : 
                                 <>
                                     <div className="area_btn_login">
-                                        <Link to={'/sign-in'} className="btn_col3 ty4 w_full" tabIndex="0" style={{borderRadius: '7px'}}>로그인</Link>
+                                        <Link to={'/sallybox/login'} className="btn_col3 ty4 w_full" tabIndex="0" style={{borderRadius: '7px'}}>로그인</Link>
                                     </div>
                                     <div className="nomember_box">
                                         <p className="tip">로그인 하시고<br/>다양한 혜택을 확인하세요.</p>
-                                        <Link to={'/sign-up'} className="btn_col3 ty4 rnd" title="회원가입 페이지 이동" tabIndex="0" style={{borderRadius: '20px'}}>회원가입</Link>
+                                        <Link to={'/sallybox/login'} className="btn_col3 ty4 rnd" title="회원가입 페이지 이동" tabIndex="0" style={{borderRadius: '20px'}}>회원가입</Link>
                                     </div>
                                 </>
                                 }

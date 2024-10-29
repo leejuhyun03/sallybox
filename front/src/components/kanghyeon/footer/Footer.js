@@ -9,7 +9,7 @@ const Footer = () => {
             <div id='footer_section' className='footer'>
                 <div className="inner">
                     <span className="f_logo">
-                        <Link to={'/'}><img src={sallylogo} alt="LOTTE CINEMA"/></Link>
+                        <Link to={'/sallybox/login'}><img src={sallylogo} alt="LOTTE CINEMA"/></Link>
                     </span>
                     <ul className="f_menu type1" style={{padding: '0'}}>
                         <li><a style={{textDecoration: '#none'}} href="#none" title="회사소개" target="_self">회사소개</a></li>
