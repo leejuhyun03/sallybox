@@ -6,14 +6,14 @@ import java.sql.Date;
 
 @Getter
 @Setter
-public class ScheduleDTO {
+public class ScheduleDTO { //영화 스케쥴 데이터 전송 객체
     
-    private int scheduleId;
-    private int cinemaId;
-    private int theaterId;
-    private int movieId;
-    private Date startTime;
-    private Date endTime;
-    private Date created;
+    private int scheduleId; //일정 고유 식별자
+    private int cinemaId; //영화관 외래 키
+    private int theaterId; //상영관 외래 키
+    private int movieId; //영화 외래 키
+    private Date startTime; //일정 시작 시간
+    private Date endTime; //일정 종료 시간
+    private Date created; //일정 생성 날짜
     
 }
