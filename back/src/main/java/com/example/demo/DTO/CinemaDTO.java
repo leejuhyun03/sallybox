@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class CinemaDTO {
     
-    private int cinema_id;
-    private String name;
-    private String location;
-    private int theater;
-    private int seats;
-    private char parking;
+    private int cinema_id; //영화관 고유 식별자
+    private String name; //영화관 이름
+    private String location; //영화관 위치
+    private int theater; //영화관에 있는 상영관 수
+    private int seats; //영화관의 총 좌석 수
+    private char parking; //주차 가능 여부
     
 }
