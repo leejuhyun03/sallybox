@@ -10,7 +10,7 @@ import Footer from './components/kanghyeon/footer/Footer'
 function App() {
   return (
     <div>
-      <MainHeader/>
+      <MainHeader />
       <BookingProvider>
         <Router>
           <Routes>
