@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body, input, button, select, textarea {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+}
+
+body, textarea {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.footer .inner {
+    position: relative;
+    width: 980px;
+    margin: 0 auto;
+}
+
+.footer .f_logo {
+    display: block;
+    margin-bottom: 20px;
+}
+
+img {
+    border: none;
+    vertical-align: top;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.footer .f_menu {
+    margin-bottom: 15px;
+}
+
+.footer .f_menu:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.footer .f_menu li:first-child {
+    padding-left: 0;
+}
+
+.footer .f_menu li {
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    padding-left: 10px;
+}
+
+
+.footer .f_menu li:first-child:before {
+    display: none;
+}
+
+.footer .f_menu li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    height: 10px;
+    border-left: 1px solid #707070;
+}
+
+.footer .f_menu.type1 li a {
+    color: #4d4d4d;
+}
+
+.footer .f_menu li a {
+    display: block;
+    font-size: 12px;
+}
+a, a:link, a:visited, a:active, a:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer .bx_address {
+    line-height: 1.5;
+    font-size: 12px;
+    color: #4D4D4D;
+}
+
+.footer .bx_address address {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer .bx_address address {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer .bx_address address {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer .bx_address address {
+    display: inline;
+    margin-right: 10px;
+}
+.roboto {
+    font-family: "Roboto";
+}
+
+.pl5 {
+    padding-left: 5px !important;
+}
+
+.footer .bx_address span.bar {
+    position: relative;
+    padding-left: 10px;
+}
+
+.footer .bx_address.type1 span.bar:before {
+    opacity: .6;
+}
+
+.footer .bx_address span.bar:before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 4px;
+    height: 10px;
+    border-left: 1px solid #707070;
+}
+
+.footer .bx_address .txt_underline {
+    text-decoration: none;
+    
+}
+
+a.txt_underline {
+    text-decoration: none;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer .copyright {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #4D4D4D;
+}
