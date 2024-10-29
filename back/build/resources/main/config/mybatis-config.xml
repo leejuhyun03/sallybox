@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 <configuration>
 
 	<mappers>
-		<mapper resource="mapper/ScheduleMapper.xml"/>	
+		<mapper resource="mapper/SqlMapper.xml"/>	
 	</mappers>
 
 </configuration>

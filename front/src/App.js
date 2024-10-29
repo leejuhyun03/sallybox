@@ -3,11 +3,14 @@ import Reservation from "./components/seats/Reservation";
 import Theater from "./components/theater/Theater";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Ticketing from "./components/ticketing/Ticketing";
-import LoginTest from "./components/강현/LoginTest"
+import LoginTest from './components/kanghyeon/LoginTest'
+import MainHeader from './components/kanghyeon/MainHeader/MainHeader'
+import Footer from './components/kanghyeon/footer/Footer'
 
 function App() {
   return (
     <div>
+      <MainHeader/>
       <BookingProvider>
         <Router>
           <Routes>
@@ -18,6 +21,7 @@ function App() {
           </Routes>
         </Router>
       </BookingProvider>
+      <Footer/>
     </div>
   );
 }

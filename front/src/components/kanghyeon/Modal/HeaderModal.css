@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@800&display=swap');
+.Modal{}
+
+.Modal .bg {
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    left: 0; 
+    top: 0; 
+    background-color: #000; 
+    opacity: 0.7;
+}
+
+.Modal .popup {
+    position: fixed;
+    z-index: 100;
+    top: 115px;
+    left: 50%;
+    width: 980px;
+    margin-left: -490px;
+    padding: 28px 0 0;
+    background-color: #FFF;
+}
+
+.gnb .g_menu3 > li {
+    margin-left: 25px;
+}
+
+.gnb > ul > li {
+    float: left;
+}
+
+.ty3 .gnb .g_menu3 li .btn_menu_all {
+    background-image: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all_wht.png);
+}
+.gnb .g_menu3 > li .btn_menu_all {
+    width: 17px;
+    margin-top: -2px;
+    border: none;
+    text-indent: -9999em;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all.png) no-repeat center center;
+}
+
+.ty3 .gnb > ul > li > a, .header.ty3 .gnb > ul > li > button {
+    color: #FFF;
+}
+
+.gnb .g_menu3 > li > a, .header .gnb .g_menu3 > li > button {
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+button {
+    border: 1px solid #DDD;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.menu_all_wrap .group_close button {
+    width: 43px;
+    height: 43px;
+    border: none;
+    text-indent: -9999em;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/close_33_wht.png) no-repeat center center;
+}
+
+.menu_all_wrap .group_close {
+    position: absolute;
+    right: -63px;
+    top: 0;
+}
+
+.hidden {
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.menu_all_wrap .group_menu_all {
+    float: left;
+    width: 620px;
+    padding: 0 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+}
+
+legend, caption, hr {
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.menu_all_wrap .group_menu_all table tbody th {
+    padding: 0 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.menu_all_wrap .group_menu_all table tbody th span {
+    display: inline-block;
+    border-bottom: 1px solid #707070;
+    font-size: 14px;
+}
+
+.menu_all_wrap .group_menu_all table tbody td {
+    padding: 0 5px 30px;
+    font-size: 11px;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.menu_all_wrap .group_menu_all table tbody td ul {
+    margin-top: 8px;
+    text-align: left;
+}
+
+.menu_all_wrap .group_menu_all table tbody td ul > li {
+    margin: 5px 0;
+    
+}
+
+.menu_all_wrap .group_my {
+    float: left;
+    width: 256px;
+    padding: 0 30px 5px;
+    border-left: 1px solid rgba(112, 112, 112, .1);
+}
+
+.menu_all_wrap .group_my .mypage_box {
+    float: none;
+    width: 100%;
+    min-height: inherit;
+}
+
+.mypage_box {
+    position: relative;
+    float: left;
+    width: 597px;
+    min-height: 355px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_info {
+    padding: 0;
+    min-height: 46px;
+}
+
+.my_info {
+    position: relative;
+    padding: 25px 30px 0 30px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_info .area_btn_login {
+    text-align: center;
+}
+
+.btn_col3 {
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    color: #000000 !important;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+.w_full {
+    width: 100%;
+}
+
+.menu_all_wrap .group_my .mypage_box .nomember_box {
+    line-height: 1.4;
+    margin: 25px 0;
+    padding: 5px 0 20px;
+}
+.nomember_box {
+    position: relative;
+    margin: 80px 30px 32px;
+    padding: 55px 0 43px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+}
+
+.nomember_box .tip {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.nomember_box .btn_col3 {
+    margin-top: 35px;
+}
+
+.btn_col3 {
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    color: #000000 !important;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.menu_all_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.header .gnb > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_info .grade_area {
+    margin: 0 0 0 0;
+}
+.my_info .grade_area {
+    margin-bottom: 15px;
+}
+
+.txt_rank_common {
+    background-color: #AFAFAF;
+}
+
+[class*="txt_rank"] {
+    display: inline-block;
+    padding: 0 10px;
+    min-width: 48px;
+    height: 22px;
+    color: #fff;
+    line-height: 22px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Roboto';
+    border-radius: 25px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.ml5 {
+    margin-left: 5px !important;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_info .name {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+.my_info .name {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point {
+    margin: 25px 0 35px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl dt:first-child {
+    margin-left: 0;
+    padding-left: 0;
+}
+.menu_all_wrap .group_my .mypage_box .my_point dl dt {
+    position: relative;
+    float: left;
+    line-height: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl img {
+    margin-bottom: 3px;
+    vertical-align: bottom;
+}
+img {
+    border: none;
+    vertical-align: top;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl dd {
+    float: left;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl dd strong {
+    line-height: 16px;
+    font-size: 16px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl dt {
+    position: relative;
+    float: left;
+    line-height: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl dd {
+    float: left;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl dt:before {
+    content: "";
+    opacity: .6;
+    position: absolute;
+    left: 0;
+    top: 1px;
+    height: 15px;
+    border-left: 1px solid #DDD;
+}
+
+.menu_all_wrap .group_my .mypage_box .my_point dl:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.menu_all_wrap .group_my .my_theater {
+    float: none;
+    width: 100%;
+    padding: 0;
+}
+.my_theater {
+    float: right;
+    position: relative;
+    margin-right: 33px;
+    padding: 24px 0 20px;
+    width: 315px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.menu_all_wrap .group_my .my_theater > .tit {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.my_theater > .tit {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.menu_all_wrap .group_my .my_theater .btn_setup {
+    right: 0;
+    top: 2px;
+}
+.my_theater .btn_setup {
+    position: absolute;
+    right: 0;
+    top: 26px;
+}
+.btn_setup {
+    width: 16px;
+    height: 16px;
+    background-image: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/setup.png);
+}
+
+.btn_del, .btn_del2, .btn_share, .btn_setup, .btn_download1, .btn_download2, .btn_heart, .btn_heart_rnd, .btn_search {
+    display: inline-block;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-indent: -9999em;
+    vertical-align: middle;
+    border: 0 none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.my_theater .theater_box {
+    margin-bottom: 20px;
+    padding-left: 0px;
+}
+
+.menu_all_wrap .group_my .my_theater .theater_box li {
+    width: 78px;
+}
+.theater_box li ~ li {
+    margin-left: 7px;
+}
+.theater_box li {
+    width: 100px;
+    height: 60px;
+    text-align: center;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    float: left;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: table;
+}
+
+.menu_all_wrap .group_my .my_theater .theater_box li strong {
+    font-size: 12px;
+}
+.theater_box li strong {
+    display: table-cell;
+    color: #000;
+    line-height: 1.2;
+    font-size: 13px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.menu_all_wrap .group_my .my_theater .theater_box li.add a {
+    padding-top: 38px;
+}
+.theater_box li.add a {
+    display: block;
+    padding-top: 38px;
+    height: 100%;
+    color: #666;
+    font-size: 11px;
+    font-family: 'Roboto';
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/plus_11.png) no-repeat center 17px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.theater_box:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.menu_all_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.btn_col1.ty4, .btn_col2.ty4, .btn_col3.ty4, .btn_col4.ty4, .btn_col5.ty4, .btn_col6.ty4, .btn_col7.ty4, .btn_col8.ty4, .btn_col9.ty4, .btn_col10.ty4 {
+    height: 33px;
+    line-height: 31px;
+    padding: 0 14px;
+}
