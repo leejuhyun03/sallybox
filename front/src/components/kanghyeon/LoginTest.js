@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import EmailFindForm from './EmailFindForm';
-import EmailFindResult from './EmailFindResult';
-import EmailFindAllForm from './EmailFindAllForm';
+// import EmailFindForm from './EmailFindForm';
+// import EmailFindResult from './EmailFindResult';
+// import EmailFindAllForm from './EmailFindAllForm';
 
 function LoginTest() {
   const [email, setEmail] = useState('');
@@ -93,7 +93,7 @@ function LoginTest() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={() => setIsEmailFindModalOpen(true)}>이메일 찾기</button>
       <button><Link to={'/sendSms'} style={{textDecoration: 'none', color: 'black'}}>비밀번호 찾기</Link></button>
-        <EmailFindForm 
+        {/* <EmailFindForm 
             isOpen={isEmailFindModalOpen} 
             onClose={() => setIsEmailFindModalOpen(false)} 
             onFindEmail={handleFindEmail} 
@@ -109,7 +109,7 @@ function LoginTest() {
             isOpen={isEmailAllFindModalOpen} 
             onClose={() => setIsEmailAllFindModalOpen(false)} 
             onFindEmail={handleFindAllEmail} // 가공된 이메일 전달
-        />
+        /> */}
     </div>
   );
 }
