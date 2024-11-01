@@ -12,5 +12,5 @@ public class TheaterDTO {
     private int screen_no;
     private String theater_type;
     private int seats;
-    
+    private Integer link_id;
 }

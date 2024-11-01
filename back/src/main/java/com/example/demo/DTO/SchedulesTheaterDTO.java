@@ -16,10 +16,13 @@ public class SchedulesTheaterDTO {
     private Timestamp end_time;
     private Date created;
 
-    private String movie_title;
-    private String age_rating;
+    private String title;
+    private String certification;
+    private String poster_path;
 
     private String theater_type; //theater 의 info
     private Integer screen_no;
+
+    private String name;
 
 }
