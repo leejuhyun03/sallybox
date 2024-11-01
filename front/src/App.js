@@ -5,12 +5,12 @@ import Theater from "./components/theater/Theater";
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Ticketing from "./components/ticketing/Ticketing";
 
-import MainHeader from './components/header/MainHeader';
+// import MainHeader from './components/header/MainHeader';
 import MainSallybox from './components/main/MainSallybox';
 import SignIn from './components/SignIn/index';
 import FindPassword from './components/findpassword/index';
 import ResetPassword from './components/findpassword/RestPassword';
-import Footer from './components/footer/Footer';
+// import Footer from './components/footer/Footer';
 import Payment from "./components/payment/Payment";
 
 function App() {
@@ -28,12 +28,12 @@ function AppRoutes() {
 
   return (
     <div>
-      {location.pathname !== '/sallybox' 
+      {/* {location.pathname !== '/sallybox' 
         && location.pathname !== '/sallybox/sign-in' 
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
         && location.pathname !== '/sallybox/resetPassword'
-        && <MainHeader />}
+        && <MainHeader />} */}
 
       <Routes>
         <Route path='/sallybox'>
@@ -48,11 +48,11 @@ function AppRoutes() {
         </Route>
       </Routes>
 
-      {location.pathname !== '/sallybox/sign-in' 
+      {/* {location.pathname !== '/sallybox/sign-in' 
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
         && location.pathname !== '/sallybox/resetPassword'
-        && <Footer />}
+        && <Footer />} */}
     </div>
   );
 }
