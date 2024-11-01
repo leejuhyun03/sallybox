@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body, input, button, select, textarea {
-    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
-    font-size: 12px;
-    color: #000;
-}
 
 .main_movie_list .item .top_info .poster_info img {
     width: 100%;
@@ -66,11 +61,6 @@ body, input, button, select, textarea {
     font-size: 12px;
     padding-left: 16px;
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/time2.png) no-repeat 0 1px;
-}
-
-h1, h2, h3, h4, h5, h6, address, caption, em, th {
-    font-style: normal;
-    font-weight: normal;
 }
 
 .owl-stage:after {
@@ -293,6 +283,7 @@ h1, h2, h3, h4, h5, h6, address, caption, em, th {
 .sub_info1 > span:first-child:before {
     display: none;
 }
+
 .sub_info1 > span:before {
     border-left: #B2B2B2;
     content: '';

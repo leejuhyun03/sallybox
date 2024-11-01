@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body, input, button, select, textarea {
-    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
-    font-size: 12px;
-    color: #000;
-}
-
-body, textarea {
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-}
-
 .footer {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -23,16 +12,9 @@ body, textarea {
     margin: 0 auto;
 }
 
-.footer .f_logo {
+.footer .f_logo > a > img {
     display: block;
-    margin-bottom: 20px;
-}
-
-img {
-    border: none;
-    vertical-align: top;
-    overflow-clip-margin: content-box;
-    overflow: clip;
+    margin-bottom: 20px;    
     width: 150px;
     height: 36px;
 }
@@ -79,11 +61,6 @@ img {
 .footer .f_menu li a {
     display: block;
     font-size: 12px;
-}
-a, a:link, a:visited, a:active, a:hover {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .footer .bx_address {
@@ -140,22 +117,6 @@ a, a:link, a:visited, a:active, a:hover {
 .footer .bx_address .txt_underline {
     text-decoration: none;
     
-}
-
-a.txt_underline {
-    text-decoration: none;
-}
-
-a, a:link, a:visited, a:active, a:hover {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: none;
 }
 
 .footer .copyright {

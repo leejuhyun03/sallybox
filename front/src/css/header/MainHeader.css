@@ -1,41 +1,23 @@
-body, input, button, select, textarea {
-    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
-    font-size: 12px;
-    color: #000;
-}
-
-body, textarea {
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-}
-
-.header {
+.headers {
     position: relative;
     height: 114px;
     border-bottom: 1px solid #EEE;
     background-color: #fff;
 }
 
-.header .logos {
+.headers .logos {
     position: absolute;
     z-index: 1;
     left: 50%;
     width: 200px;
     height: 60px;
     background-position: 50% 50%;
-    background-size: 100%;
     margin-left: -109px;
     text-indent: -9999em;
     background: url('../../image/logo_red.png') no-repeat center center;
 }
 
-.header .logo a {
-    display: block;
-    width: 219px;
-    height: 37px;
-}
-
-.header .gnbs {
+.headers .gnbs {
     position: relative;
     width: 980px;
     height: 70px;
@@ -43,55 +25,55 @@ body, textarea {
     border-bottom: 1px solid #B2B2B2;
 }
 
-.header .gnbs .g_menu2 {
+.headers .gnbs .g_menu2 {
     float: right;
 }
 
-.header .gnbs > ul {
+.headers .gnbs > ul {
     margin-top: 40px;
 }
 
-.header .gnbs .g_menu2 > li {
+.headers .gnbs .g_menu2 > li {
     margin-left: 14px;
 }
 
-.header .gnbs > ul > li {
+.headers .gnbs > ul > li {
     float: left;
 }
 
-.header .gnbs > ul > li > a {
+.headers .gnbs > ul > li > a {
     display: block;
     font-size: 12px;
     color: #656565;
 }
 
-.header .gnbs .g_menu3 {
+.headers .gnbs .g_menu3 {
     position: absolute;
     right: 0;
     top: 88px;
     margin-top: 0;
 }
 
-.header .gnbs .g_menu3 > li {
+.headers .gnbs .g_menu3 > li {
     margin-left: 25px;
 }
 
-.header .gnbs > ul > li {
+.headers .gnbs > ul > li {
     float: left;
 }
 
-.header .gnbs .g_menu3 > li .btn_my {
+.headers .gnbs .g_menu3 > li .btn_my {
     padding-left: 15px;
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_my.png
     ) no-repeat 0 center;
 }
-.header .gnbs .g_menu3 > li > a, .header .gnbs .g_menu3 > li > button {
+.headers .gnbs .g_menu3 > li > a, .headers .gnbs .g_menu3 > li > button {
     height: 14px;
     line-height: 14px;
     font-size: 11px;
 }
 
-.header .gnbs .g_menu3 > li .btn_reserve {
+.headers .gnbs .g_menu3 > li .btn_reserve {
     margin-top: 0;
     padding-left: 18px;
     border: none;
@@ -99,7 +81,7 @@ body, textarea {
     ) no-repeat 0 2px;
 }
 
-.header .gnbs .g_menu3 > li .btn_menu_all {
+.headers .gnbs .g_menu3 > li .btn_menu_all {
     width: 17px;
     margin-top: -2px;
     border: none;
@@ -107,12 +89,74 @@ body, textarea {
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all.png) no-repeat center center;
 }
 
-.header .gnbs:after {
+.headers .gnbs:after {
     content: "";
     display: block;
     clear: both;
 }
 
-.navbar > ul > li > a {
+.navbars > ul > li > a {
+    color: black;
+}
+
+.navbars {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 114px;
+    height: 38px;
+    text-align: center;
+}
+
+.navbars > ul > li > a {
+    opacity: .5;
+    color: black;
+    float: left;
+}
+
+.navbars > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 5px;
+    float: left;
+    margin: 0 8px;
+}
+
+.navbars > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.navbar1 {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 38px;
+    text-align: center;
+    background-color: #000;
+}
+
+.navbar1 > ul {
+    opacity: 0;
+    display: inline-block;
+    width: 980px;
+    margin: 10px 0;
+}
+
+.navbar1 > ul > li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.navbar1 > ul > li > a {
+    display: block;
+    opacity: .6;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 5px;
     color: black;
 }

@@ -8,6 +8,14 @@
       transform: scale(2.5); /* 원하는 최대 크기 */
     }
   }
+
+div {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
   
 .growing {
     animation: grow 1.5s forwards; /* 2초 동안 애니메이션 */
@@ -33,7 +41,7 @@
 .header .logo {
     position: absolute;
     z-index: 1;
-    top: 20px;
+    top: 7px;
     left: 50%;
     margin-left: -109px;
     text-indent: -9999em;
@@ -48,32 +56,11 @@
     text-decoration: none;
 }
 
-a, a:link, a:visited, a:active, a:hover {
+a, a:link, a:visited, a:active, a:hover { /*주의사항 1*/
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
-
-h1, h2, h3, h4, h5, h6, address, caption, em, th {
-    font-style: normal;
-    font-weight: normal;
-}
-
-h1, h2, h3, h4, h5, h6, fieldset, ul, ol, dl, dt, dd, p, figure {
-    margin: 0;
-    padding: 0;
-}
-
-/* h1 {
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-    unicode-bidi: isolate;
-} */
 
 .header.ty3 .gnb {
     border-bottom-color: rgba(255, 255, 255, .3);
@@ -85,16 +72,6 @@ h1, h2, h3, h4, h5, h6, fieldset, ul, ol, dl, dt, dd, p, figure {
     height: 70px;
     margin: 0 auto;
     border-bottom: 1px solid #B2B2B2;
-}
-
-div {
-    display: block;
-    unicode-bidi: isolate;
-    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
-    font-size: 12px;
-    color: #000;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
 }
 
 .header .gnb:after {
@@ -150,13 +127,6 @@ ul, ol {
     
 }
 
-a, a:link, a:visited, a:active, a:hover {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
 .header .gnb .g_menu3 {
     position: absolute;
     right: 0;
@@ -187,9 +157,9 @@ a, a:link, a:visited, a:active, a:hover {
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve_wht.png) no-repeat 0 2px;
 }
  
-#nav {
+#nav { /*#: id / .: className*/
     width: 980px;
-    margin: 3px auto 0;
+    margin: -10px auto 0;
     text-align: center;
 }
 
@@ -289,7 +259,7 @@ a, a:link, a:visited, a:active, a:hover {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 1) 100%);
 }
 
-nav > ul > li > div {
+#nav > ul > li > div {
     display: none;
     position: absolute;
     z-index: 2;
@@ -298,7 +268,7 @@ nav > ul > li > div {
     top: 114px;
     height: 38px;
     text-align: center;
-    background-color: #F8F8F8;
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .hover { 

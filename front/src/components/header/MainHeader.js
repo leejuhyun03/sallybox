@@ -95,8 +95,8 @@ let [visible1, setVisible1] = useState(false)
   }
 
     return (
-            <div id='header_section' className='header'>
-            <Link to={'/sallybox'}><h1 className="logos">Sallybox</h1></Link>
+            <div id='header_section' className='headers'>
+            <Link to={'/'}><h1 className="logos" style={{backgroundSize: '130px 36px'}}>Sallybox</h1></Link>
                 <div className='gnbs'>
                 <ul className="g_menu2">
                 <li><a href='#'>멤버십</a></li>
@@ -104,15 +104,13 @@ let [visible1, setVisible1] = useState(false)
                 <li><a href='#'>단체관람/대관문의</a></li>
                 {
                     isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
-                                    : <li><Link to={'/sign-in'}>로그인</Link></li>
+                                    : <li><Link to={'/sallybox'}>로그인</Link></li>
                 }
-                
-                {/* <li><Link to={'/sign-in'}>로그아웃</Link></li> */}
                 </ul>
                 <ul className="g_menu3">
                 {
                 isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
-                                : <li><Link className='btn_my' to={'/sallybox/sign-in'}>로그인</Link></li>
+                                : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
                 }
                 <li><a href="#" className="btn_reserve">바로 예매</a></li>
                 </ul>
@@ -124,7 +122,7 @@ let [visible1, setVisible1] = useState(false)
                     <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1} style={{color: 'black'}}>예매</a>
                     { // visible이 true이면 이라는 뜻
                     visible1 &&
-                    <div className='navbar' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
+                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
                          onMouseOver={onTrue1} onMouseLeave={onFalse1}>
                     <ul style={{display: 'inline-block', listStyle: 'none', margin: '0', padding: '0', opacity: '1'}}>
                         <li style={{float: 'left'}}>
@@ -144,7 +142,7 @@ let [visible1, setVisible1] = useState(false)
                     <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2} style={{color: 'black'}}>영화</a>
                     { // visible이 true이면 이라는 뜻
                     visible2 &&
-                    <div className='navbar' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
+                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
                          onMouseOver={onTrue2} onMouseLeave={onFalse2}>
                     <ul  style={{display: 'inline-block', listStyle: 'none', margin: '0', padding: '0', opacity: '1'}}>
                         <li style={{float: 'left'}}>
@@ -167,7 +165,7 @@ let [visible1, setVisible1] = useState(false)
                     <a href='#' className='hover' onMouseOver={onTrue3} onMouseLeave={onFalse3} style={{color: 'black'}}>영화관</a>
                     { // visible이 true이면 이라는 뜻
                     visible3 &&
-                    <div className='navbar' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
+                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
                          onMouseOver={onTrue3} onMouseLeave={onFalse3}>
                     <ul style={{display: 'inline-block', listStyle: 'none', margin: '0', padding: '0', opacity: '1'}}>
                         <li style={{float: 'left'}}>
