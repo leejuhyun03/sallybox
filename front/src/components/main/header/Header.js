@@ -20,7 +20,7 @@ import data4 from '../../../image/swimage/TwilightOfTheWarriors_1920774.jpg'
 import { Link } from 'react-router-dom';
 import HeaderModal from './Modal/HeaderModal';
 import { jwtDecode } from 'jwt-decode';
-import NavbarTest2 from './Navbar/NavbarTest2';
+// import NavbarTest2 from './Navbar/NavbarTest2';
 
 const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated }) => {
 
@@ -106,7 +106,7 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
 
   return (
   <>
-  <NavbarTest2 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+  {/*<NavbarTest2 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>*/}
   <div id='header_section' className='header ty3'>
       <Link to={'/sallybox'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
@@ -211,19 +211,70 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
                     <div className='navbar1' style={{display: 'block'}} onMouseOver={onTrue38} onMouseLeave={onFalse38}>
                       <ul style={{opacity: '1'}} onMouseOver={onTrue38} onMouseLeave={onFalse38}>
                         <li >
-                          <a href="#" title="영화관_강원_강릉">강릉</a>
+                          <a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
                         </li>
                         <li >
-                          <a href="#" title="영화관_강원_남원주">남원주</a>
+                          <a href="http://localhost:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a>
                         </li>
                         <li >
-                          <a href="#" title="영화관_강원_동해">동해</a>
+                          <a href="http://localhost:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a>
                         </li>
                         <li >
-                          <a href="#" title="영화관_강원_원주무실">원주무실</a>
+                          <a href="http://localhost:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a>
                         </li>
                         <li >
-                          <a href="#" title="영화관_강원_춘천">춘천</a>
+                          <a href="http://localhost:3000/sallybox/cinema/5" title="김포공항">김포공항</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/6" title="노원">노원</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/7" title="도곡">도곡</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/8" title="독산">독산</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/10" title="수락산">수락산</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/11" title="수유">수유</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/13" title="신도림">신도림</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/14" title="신림">신림</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/16" title="영등포">영등포</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/17" title="월드타워">월드타워</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/18" title="은평">은평</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/19" title="중랑">중랑</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/20" title="청량리">청량리</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/21" title="합정">합정</a>
+                        </li>
+                        <li >
+                          <a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
                         </li>
                       </ul>
                     </div>
