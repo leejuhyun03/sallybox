@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.demo.mapper.SqlMapper">
 
-    <select id="getCinemaInfo" parameterType="int" resultType="com.example.demo.DTO.CinemaDTO">
+    <select id="getCinemaInfo" parameterType="int" resultType="com.example.demo.DTO.JH.CinemaDTO">
 
         SELECT c.*,m.title,m.poster_path 
         FROM cinema c, movies m
@@ -18,7 +18,7 @@
         select * FROM schedule WHERE cinemaId = #{cinemaId}
     </select> -->
 
-    <select id="getSchedulesTheater" parameterType="int" resultType="com.example.demo.DTO.SchedulesTheaterDTO">
+    <select id="getSchedulesTheater" parameterType="int" resultType="com.example.demo.DTO.JH.SchedulesTheaterDTO">
         select  s.schedule_id,s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
            m.title AS title, m.certification AS certification,m.poster_path AS poster_path,
            t.theater_type AS theater_type, t.screen_no AS screen_no
@@ -29,7 +29,7 @@
         ORDER BY s.start_time 
     </select>
 
-    <select id="getSeatsbyTheaterId" parameterType="map" resultType="com.example.demo.DTO.SeatsDTO">
+    <select id="getSeatsbyTheaterId" parameterType="map" resultType="com.example.demo.DTO.JH.SeatsDTO">
         select s.*, 
             case when b.seat_id is not null then 'yes' else 'no' end as status
             FROM seats s
@@ -37,5 +37,20 @@
             JOIN theater t ON s.link_id = t.link_id
             WHERE t.theater_id = #{theater_id}
     </select>
+
+    <!-- 강현 -->
+    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->
+      SELECT user_id AS userid, email, password, name, nickname FROM users WHERE email = #{email}
+    </select>
+
+    <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
+      SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name}
+    </select>
+
+     <update id="updatePassword" parameterType="map">
+        UPDATE users
+        SET password = #{password}
+        WHERE email = #{email}
+    </update>
 
 </mapper>
