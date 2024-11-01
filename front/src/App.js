@@ -3,6 +3,7 @@ import Reservation from "./components/seats/Reservation";
 import Theater from "./components/theater/Theater";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Ticketing from "./components/ticketing/Ticketing";
+import Payment from "./components/payment/Payment";
 // import LoginTest from "./components/kanghyeon/LoginTest"
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Route path="/sallybox/cinema/:cinema_id" element={<Theater />} />
             <Route path="/sallybox/reserv/ticketing" element={<Ticketing/>}/>
             <Route path="/sallybox/reserv/seats" element={<Reservation />}/>
+            <Route path="/sallybox/payment" element={<Payment/>}/>
             {/* <Route path="/sallybox/login" element={<LoginTest />}/> */}
           </Routes>
         </Router>

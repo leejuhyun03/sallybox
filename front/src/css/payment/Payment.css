@@ -1,0 +1,12 @@
+.reserve_info_wrap{
+    background-color: antiquewhite;
+    width: 300px;
+}
+.pay_method_wrap{
+    background-color: aqua;
+    width: 500px;
+}
+.payment_info_wrap{
+    background-color: blue;
+    width: 400px;
+}
