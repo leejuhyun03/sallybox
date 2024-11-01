@@ -14,4 +14,6 @@ public class CinemaDTO {
     private int seats; //영화관의 총 좌석 수
     private char parking; //주차 가능 여부
     
+    private String title;
+    private String poster_path; //주현 - movie 정보 추가
 }

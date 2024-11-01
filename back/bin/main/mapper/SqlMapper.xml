@@ -7,7 +7,10 @@
 
     <select id="getCinemaInfo" parameterType="int" resultType="com.example.demo.DTO.CinemaDTO">
 
-        SELECT * FROM cinema WHERE cinema_id = #{cinema_id}
+        SELECT c.*,m.title,m.poster_path 
+        FROM cinema c, movies m
+        WHERE c.cinema_id = #{cinema_id}
+        and m.movie_id = 1075676
         
     </select>
 
