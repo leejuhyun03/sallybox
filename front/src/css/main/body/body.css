@@ -1,0 +1,479 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body, input, button, select, textarea {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+}
+
+.main_movie_list .item .top_info .poster_info img {
+    width: 100%;
+}
+
+#contents {
+    width: 980px;
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+}
+
+.contents_main {
+    padding-top: 0;
+}
+
+.contents_main .movi_current_list {
+    position: static;
+    margin-top: -100px;
+    margin-bottom: 100px;
+}
+
+.movi_current_list, .movi_pre_list {
+    position: relative;
+    margin-bottom: 37px;
+}
+
+.contents_main .movi_current_list:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #000;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 355px;
+    z-index: -1;
+}
+
+.contents_main .movi_current_list .movi_info_txt {
+    position: relative;
+    right: 10px;
+    top: 20px;
+    float: right;
+    color: #fff;
+    font-size: 11px;
+}
+
+.contents_main .movi_current_list .movi_info_txt a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    color: #FFF;
+}
+
+.contents_main .movi_current_list .movi_info_txt em {
+    
+    font-family: 'Roboto';
+    font-size: 12px;
+    padding-left: 16px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/time2.png) no-repeat 0 1px;
+}
+
+h1, h2, h3, h4, h5, h6, address, caption, em, th {
+    font-style: normal;
+    font-weight: normal;
+}
+
+.owl-stage:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+
+.contents_main .main_cont_wrap {
+    position: relative;
+    margin-bottom: 33px;
+}
+
+.contents_main .main_cont_wrap.special .sec_tit {
+    border-bottom: 1px dashed #D9D9D9;
+    padding-bottom: 10px;
+}
+
+.contents_main .main_cont_wrap .sec_tit {
+    position: relative;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 19px;
+    margin-bottom: 10px;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+}
+
+.contents_main .main_cont_wrap.special .special_wrap2 {
+    padding: 16px 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.contents_main .main_cont_wrap.special .special_wrap2 > li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contents_main .main_cont_wrap .btn_txt_more {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background-position: right 3.5px;
+}
+
+.btn_txt_more.ty2 {
+    display: inline-block;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/arr_rg_6.png) no-repeat right 2px;
+    border: 0 none;
+    width: auto;
+    padding: 0 10px 0 0;
+    color: #666666;
+    font-size: 10px;
+}
+
+.btn_txt_more {
+    width: 100%;
+    padding: 8px 0;
+    border: 1px solid #ECECEC;
+    background-color: #ffffff;
+}
+
+.movi_current_list, .movi_pre_list {
+    position: relative;
+    margin-bottom: 37px;
+}
+
+.movie_list {
+    overflow: hidden;
+    margin-bottom: 50px;
+    margin: 0 -7.5px;
+}
+
+.movie_list .btm_info {
+    display: block;
+    margin-top: 20px;
+    position: relative;
+    float: left;
+    display: block;
+    min-height: 1px;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.titleInfo {
+    display: inline-flex;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.ageRating {
+    padding-right: 6px;
+    background-color: transparent;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.movieTitle {
+    color: #fff;
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+.main_movie_list .item .btm_info .tit_info {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.main_movie_list.new23 .item .btm_info .tit_info .ic_grade, .movie_list li .btm_info .tit_info .ic_grade {
+    padding-right: 6px;
+}
+
+.main_movie_list .item {
+    color: #FFF;
+    text-align: center;
+}
+
+.ic_grade {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ic_grade.gr_15:before {
+    background-size: 100%;
+}
+
+.ic_grade.gr_all:before, .ic_grade.gr_12:before, .ic_grade.gr_15:before, .ic_grade.gr_18:before, .ic_grade.gr_19:before, .ic_grade.gr_non:before, .ic_grade:before {
+    content: "";
+    display: block;
+    width: 22px;
+    border-radius: 3px;
+}
+
+.ic_grade:before {
+    margin-left: -5px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFF;
+    white-space: nowrap;
+}
+
+.sub_info1 {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+
+
+
+.sub_info1 > span:first-child {
+    margin-left: 0  ;
+}
+
+.sub_info1 > span {
+    position: relative;
+    margin-left: 8px;
+    font-family: 'Roboto', "Noto Sans KR";
+}
+
+.sub_info1 > span:first-child {
+    margin-left: 0px;
+}
+
+.sub_info1 > span {
+    position: relative;
+    margin-left: 8px;
+    font-family: 'Roboto', "Noto Sans KR";
+}
+
+.sub_info1 .star_info {
+    padding-left: 22px;
+    font-weight: bold;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/movie/ic_star.png) no-repeat 9px 20%;
+    border-right: 1px;
+}
+
+.sub_info1 > span {
+    position: relative;
+    margin-left: 8px;
+    font-family: 'Roboto', "Noto Sans KR";
+}
+
+.sub_info1 .time.blacktype:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/icon_clock_black.svg) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.sub_info1 > span:first-child:before {
+    display: none;
+}
+.sub_info1 > span:before {
+    border-left: #B2B2B2;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 1px;
+    height: 8px;
+    background: #B2B2B2;
+}
+
+.sub_info1 .time.blacktype {
+    position: relative;
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+.roboto {
+    font-family: "Roboto";
+}
+
+.movie_list li {
+    float: left;
+    position: relative;
+    width: 184px;
+    margin: 0 7.5px;
+    text-align: center;
+}
+
+.contents_main .main_cont_wrap.premiere .premiere_wrap > li > a {
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+    width: 319px;
+}
+
+.contents_main .main_cont_wrap.premiere .premiere_wrap > li > a > img {
+    width: 100%;
+}
+
+.contents_main .main_cont_wrap.premiere .premiere_wrap > li + li {
+    margin-left: 11px;
+}
+.contents_main .main_cont_wrap.premiere .premiere_wrap > li {
+    float: left;
+}
+
+.contents_main .main_cont_wrap.premiere .premiere_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.contents_main .mid_menu_wrap {
+    position: relative;
+    font-size: 0;
+    margin-bottom: 50px;
+}
+
+.contents_main .mid_menu_wrap .mid_itm {
+    display: inline-block;
+    width: 187px;
+    height: 133px;
+}
+
+.contents_main .mid_menu_wrap .mid_itm>img {
+    width: 100%;
+    height: 100%;
+}
+
+.contents_main .mid_menu_wrap .mid_itm+.mid_itm {
+    margin-left: 10px;
+}
+
+.contents_main .main_cont_wrap.notice {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #AAA;
+}
+
+.contents_main .main_cont_wrap {
+    position: relative;
+    margin-bottom: 70px;
+}
+
+.contents_main .main_cont_wrap.notice .sec_tit {
+    display: inline-block;
+    margin: 0;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.contents_main .main_cont_wrap.notice .sec_tit:after {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 13px;
+    background: #707070;
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+.contents_main .main_cont_wrap .sec_tit {
+    position: relative;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.contents_main .main_cont_wrap.notice .rolling_menu_wrap {
+    position: relative;
+    display: inline-block;
+    width: 840px;
+    height: 15px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+
+@keyframes scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+.contents_main .main_cont_wrap.notice .rolling_menu_wrap .rolling_menu {
+    position: absolute;
+    left: 0;
+    animation: scroll 5s linear infinite;
+}
+
+.contents_main .main_cont_wrap .btn_txt_more {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background-position: right 3.5px;
+}
+
+.btn_txt_more.ty2 {
+    display: inline-block;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/arr_rg_6.png) no-repeat right 2px;
+    border: 0 none;
+    width: auto;
+    padding: 0 10px 0 0;
+    color: #666666;
+    font-size: 10px;
+}
+
+.contents_main .main_cont_wrap.notice .rolling_menu_wrap .rolling_menu>li {
+    height: 15px;
+    line-height: 15px;
+}
+
+.contents_main .main_cont_wrap.notice .rolling_menu_wrap .rolling_menu>li>a {
+    font-size: 13px;
+    line-height: 15px;
+}
+
+.owl-stage .btm_info .tit_info {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.tit_type1 {
+    margin-top: 5px;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.tit_type1 strong.ty2 {
+    display: inline;
+    margin-bottom: 0;
+    color: #ED4C6B;
+}
+
+.tit_type1 .eng {
+    font-family: 'Roboto', "Noto Sans KR";
+}
