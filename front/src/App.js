@@ -11,6 +11,7 @@ import SignIn from './components/SignIn/index';
 import FindPassword from './components/findpassword/index';
 import ResetPassword from './components/findpassword/RestPassword';
 import Footer from './components/footer/Footer';
+import Payment from "./components/payment/Payment";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function AppRoutes() {
           <Route path="cinema/:cinema_id" element={<Theater />} />
           <Route path="reserv/ticketing" element={<Ticketing />} />
           <Route path="reserv/seats" element={<Reservation />} />
+          <Route path="payment" element={<Payment/>}/>
           <Route path='sign-in' element={<SignIn />} />
           <Route path="verification" element={<FindPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />

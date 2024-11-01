@@ -30,8 +30,8 @@ const LeftHeader = () => {
                         </a>                          
                     </li> 
                     <li>   
-                        <a href='/sallybox/reserv/payment' style={getLinkStyle('/sallybox/reserv/payment')}>                         
-                            <strong style={getLinkStyle('/sallybox/reserv/payment')}>
+                        <a href='/sallybox/payment' style={getLinkStyle('/sallybox/payment')}>                         
+                            <strong style={getLinkStyle('/sallybox/payment')}>
                                 <span>03</span><br/>
                                 결제
                             </strong>   
