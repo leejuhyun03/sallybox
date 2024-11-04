@@ -27,6 +27,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     const [genres, setGenres] = useState([]); // 기본 장르
     const [selectedGenre, setSelectedGenre] = useState('28'); // 기본 장르
     const [recommendedMovies, setRecommendedMovies] = useState([]);
+    const [topRecentMovies, setTopRecentMovies] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -224,6 +225,42 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     const handleSelectChange = (event) => {
         setSelectedGenre(event.target.value); // 선택한 장르로 상태 업데이트
     };
+
+    useEffect(() => {
+        const fetchTopRatedMovies = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/movies/recent-movies');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+    
+                // 데이터가 배열인지 확인하고, 맵핑
+                if (Array.isArray(data)) {
+                    const topRecentArray = data.map(item => ({
+                        movieId: item.movie_id,                    // 영화 고유 ID
+                        genreIds: item.genre_ids,                  // 장르 ID 리스트 (CSV)
+                        popularity: item.popularity,                // 인기 점수
+                        posterPath: item.poster_path,               // 포스터 이미지 경로
+                        releaseDate: item.release_date,             // 개봉일
+                        title: item.title,                          // 영화 제목
+                        voteAverage: item.vote_average,             // 평균 평점
+                        runtime: item.runtime,                      // 영화 런타임
+                        certification: item.certification,          // 관람 연령
+                        genreText: getGenreText(item.genre_ids),
+                        ageRatingImg: getAgeRatingImg(item.certification), // 연령 등급 이미지
+                    }));
+                    console.log(topRecentArray);
+                    setTopRecentMovies(topRecentArray);
+                } else {
+                    console.error('Data is not an array:', data);
+                }
+            } catch (error) {
+                console.error('Error fetching top-rated movies:', error);
+            }
+        };
+        fetchTopRatedMovies();
+    }, []);
     
     return (
         <>
@@ -262,10 +299,10 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     modules={[EffectCoverflow, Pagination, Mousewheel, Keyboard, Autoplay]}
                     className="myBodySwiper1"
                 >
-                {movies.map(movie => (
+                {topRatedMovies.map(movie => (
                     <SwiperSlide key={movie.movieId} className='owl-stage' style={{ width: '184px', marginRight: '15px', background: '#000' }}>
                         <div>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} />
+                            <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px'}}/>
                             <div className='titleInfo'>
                             <span className="ageRating">
                                 <img src={movie.ageRatingImg} alt={movie.title}/>
@@ -327,64 +364,11 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     </li>
                 </ul>
                 <button type="button" className="btn_txt_more ty2">더보기</button>
-            </div>
-            {
-                 isAuthenticated && (
-                 <div id="main_specialCinema" className="main_cont_wrap special">
-                    <div className="sec_tit">{userNickName}님의 취향저격 베스트 영화</div>
-                    <Swiper
-                        slidesPerView={5}
-                        slidesPerGroup={1}
-                        spaceBetween={10}
-                        cssMode={true}
-                        navigation= {{
-                            prevEl: '.sw1',
-                            nextEl: '.sw2'
-                        }}
-                        pagination={false}
-                        loop={true}
-                        mousewheel={true}
-                        keyboard={true}
-                        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                        className="myBodySwiper2"
-                        >
-                        <div className="swiper-button-prev sw1"></div>
-                        <div className="swiper-button-next sw2"></div>
-                        <div className='movi_current_list'>
-                            <ul className='movie_list'>
-                                <div className='item'>
-                                {recommendedMovies.map(movie => (
-                                    <SwiperSlide key={movie.movieId}>
-                                        <li style={{float: 'left', position: 'relative', width: '100%', margin: '0 0  ', textAlign: 'center', height: '326px'}}>
-                                        <img style={{width:'100%', height:'262px', position: 'relative'}} 
-                                        src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
-                                        <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
-                                            <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
-                                            <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
-                                            <span className="sub_info1">
-                                                <span className="time blacktype"><span className="roboto">{movie.runtime}</span>분</span>
-                                                <span className="star_info">{movie.voteAverage}</span>
-                                            </span>
-                                        </div>
-                                        </li>
-                                    </SwiperSlide>
-                                ))} 
-                                </div>
-                            </ul>
-                        </div>
-                    </Swiper>
-                        <select className="btn_txt_more ty2" style={{ background: '0' }} value={selectedGenre} onChange={handleSelectChange}>
-                            {genres.map((genre, index) => (
-                                <option key={index} value={genre.genreId}>{genre.genreText}</option>
-                            ))}
-                        </select>
-                    </div>
-                    )}
-            
+            </div>            
             
             <div style={{marginTop: '70px', marginBottom: '70px'}}>
-            <h3 className="tit_type1">Sally&nbsp;
-                <strong className="ty2 eng">TOP 10</strong>
+            <h3 className="tit_type1">현재 상영작&nbsp;
+                <strong className="ty2 eng">TOP 5</strong>
             </h3>
             
             <Swiper
@@ -412,10 +396,10 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                 <div className='movi_current_list'>
                     <ul className='movie_list'>
                         <div className='item'>
-                        {topRatedMovies.map(movie => (
+                        {topRecentMovies.map(movie => (
                             <SwiperSlide key={movie.movieId}>
                                 <li style={{float: 'left', position: 'relative', width: '100%', margin: '0 0  ', textAlign: 'center', height: '326px'}}>
-                                <img style={{width:'100%', height:'262px', position: 'relative'}} 
+                                <img style={{width:'100%', height:'262px', position: 'relative', borderRadius: '4px'}}
                                 src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                 <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
                                     <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
@@ -432,7 +416,60 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     </ul>
                 </div>
             </Swiper>
-            </div>     
+            </div>   
+
+            {
+                isAuthenticated && (
+                <div id="main_specialCinema" className="main_cont_wrap special">
+                <div className="sec_tit">{userNickName}님의 취향저격 베스트 영화</div>
+                <Swiper
+                    slidesPerView={5}
+                    slidesPerGroup={1}
+                    spaceBetween={10}
+                    cssMode={true}
+                    navigation= {{
+                        prevEl: '.sw1',
+                        nextEl: '.sw2'
+                    }}
+                    pagination={false}
+                    loop={true}
+                    mousewheel={true}
+                    keyboard={true}
+                    modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+                    className="myBodySwiper2"
+                    >
+                    <div className="swiper-button-prev sw1"></div>
+                    <div className="swiper-button-next sw2"></div>
+                    <div className='movi_current_list'>
+                        <ul className='movie_list'>
+                            <div className='item'>
+                            {recommendedMovies.map(movie => (
+                                <SwiperSlide key={movie.movieId}>
+                                    <li style={{float: 'left', position: 'relative', width: '100%', margin: '0 0  ', textAlign: 'center', height: '326px'}}>
+                                    <img style={{width:'100%', height:'262px', position: 'relative'}} 
+                                    src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
+                                    <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
+                                        <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
+                                        <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
+                                        <span className="sub_info1">
+                                            <span className="time blacktype"><span className="roboto">{movie.runtime}</span>분</span>
+                                            <span className="star_info">{movie.voteAverage}</span>
+                                        </span>
+                                    </div>
+                                    </li>
+                                </SwiperSlide>
+                            ))} 
+                            </div>
+                        </ul>
+                    </div>
+                    </Swiper>
+                        <select className="btn_txt_more ty2" style={{ background: '0' }} value={selectedGenre} onChange={handleSelectChange}>
+                            {genres.map((genre, index) => (
+                                <option key={index} value={genre.genreId}>{genre.genreText}</option>
+                            ))}
+                        </select>
+                    </div>
+                )}  
 
             <div className='main_cont_wrap premiere'>
                 <div className="sec_tit">시사회/무대인사</div>
