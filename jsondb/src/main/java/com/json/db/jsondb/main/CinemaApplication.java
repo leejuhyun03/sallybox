@@ -17,10 +17,10 @@ import com.json.db.jsondb.service.TheaterService;
 @MapperScan("com.json.db.jsondb.mapper")
 public class CinemaApplication implements CommandLineRunner{
 
-    // @Autowired
-    // private CinemaService cinemaService;
     @Autowired
-    private SeatsService seatsService;
+    private CinemaService cinemaService;
+    // @Autowired
+    // private SeatsService seatsService;
     // @Autowired
     // private TheaterService theaterService;
     // @Autowired
@@ -31,14 +31,14 @@ public class CinemaApplication implements CommandLineRunner{
         SpringApplication.run(CinemaApplication.class, args);
     }
 
-    // @Override
-    // public void run(String... args) throws Exception {
-    //     cinemaService.insertCinemasFromJson();
-    // }
     @Override
     public void run(String... args) throws Exception {
-        seatsService.insertSeatsFromJson();
+        cinemaService.insertCinemasFromJson();
     }
+    // @Override
+    // public void run(String... args) throws Exception {
+    //     seatsService.insertSeatsFromJson();
+    // }
     // }
     // @Override
     // public void run(String... args) throws Exception {
