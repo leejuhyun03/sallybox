@@ -5,9 +5,10 @@ export const BookingContext = createContext()
 export const BookingProvider = ({children}) => {
 
     const [bookingData, setBookingData] = useState({
-        movie: null,
         schedule: null,
-        seat:null,
+        selectedSeats:null,
+        counts: { adult: 0, teenager: 0, senior: 0, disabled: 0 } //인원수
+      })
 
         //티켓팅 할때 내가 클릭할 값에 대한 정보를 
         //movie,schedule,theater -> 내가 초기값을 null로줌
@@ -21,7 +22,7 @@ export const BookingProvider = ({children}) => {
 
         //세세한거는 주현언니 파일 보면서 확인하기
 
-      })
+      
 
     return (
         <BookingContext.Provider value={{bookingData,setBookingData}}>

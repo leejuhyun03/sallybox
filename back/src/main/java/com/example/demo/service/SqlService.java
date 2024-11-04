@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.CinemaDTO;
-import com.example.demo.DTO.SchedulesTheaterDTO;
-import com.example.demo.DTO.SeatsDTO;
-
 import java.util.*;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.example.demo.DTO.JH.CinemaDTO;
+import com.example.demo.DTO.JH.SchedulesTheaterDTO;
+import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.KH.CustomDTO;
 
 public interface SqlService {
     
@@ -17,4 +20,11 @@ public interface SqlService {
     
     public List<SeatsDTO> getSeatsbyTheaterId(int theater_id,int schedule_id) throws Exception;
 
+    // 강현 service
+    CustomDTO findByEmail(String email);
+    CustomDTO findByName(String name);
+    String maskEmail(String email);
+    String login(String email, String password); // 로그인 메서드 추가
+    void sendSms(String to, String cerNum); // 인증번호
+    void updatePassword(@Param("email") String email, @Param("password") String password); // 새로운 비밀번호
 }

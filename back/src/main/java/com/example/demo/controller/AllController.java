@@ -1,20 +1,26 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
-import com.example.demo.DTO.CinemaDTO;
-import com.example.demo.DTO.CinemaScheduleDTO;
-import com.example.demo.DTO.SchedulesTheaterDTO;
-import com.example.demo.DTO.SeatsDTO;
+import com.example.demo.DTO.JH.CinemaDTO;
+import com.example.demo.DTO.JH.CinemaScheduleDTO;
+import com.example.demo.DTO.JH.SchedulesTheaterDTO;
+import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.KH.CustomDTO;
+import com.example.demo.DTO.KH.FindEmailRequest;
+import com.example.demo.DTO.KH.LoginRequest;
 import com.example.demo.service.SqlService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 
@@ -52,6 +58,121 @@ public class AllController {
         return sqlService.getSeatsbyTheaterId(theater_id,schedule_id);
     }
     
+    //강현 Controller
+    @PostMapping("/api/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws Exception {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+
+        System.out.println("email: " + email);
+        System.out.println("password; " + password);
+
+        // 로그인 로직
+        String token = sqlService.login(email, password); // 로그인 메서드 호출
+
+        // System.out.println("token:" + token);
+
+        if (token != null) {
+            // 로그인 성공 시 토큰 발급
+            return ResponseEntity.ok().body("Bearer " + token); // JWT 토큰 반환
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("이메일 또는 비밀번호가 일치하지 않습니다.");
+        }
+    }
+
+    @PostMapping("/api/findEmail")
+    public ResponseEntity<?> findEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
+        // 로그인 로직
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+
+        if(dto != null) {
+
+            String maskedEmail = sqlService.maskEmail(dto.getEmail());
+
+            if (maskedEmail != null) {
+               
+                return ResponseEntity.ok(maskedEmail);
+    
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("입력하신 정보가 잘못 되었습니다.");
+            }
+        }else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("입력하신 정보가 잘못 되었습니다.");
+        }
+    }
+
+    @PostMapping("/api/allfindEmail")
+    public ResponseEntity<?> allfindEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
+        // 로그인 로직
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+
+        if(dto != null) {
+
+            // if (dto.getBirthday().equals(findEmailRequest.getBirthday())) {
+
+            //     String email = dto.getEmail();
+               
+            //     return ResponseEntity.ok(email);
+    
+            // } else {
+            //     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("입력하신 정보가 잘못 되었습니다.");
+            // }
+
+            return ResponseEntity.ok(dto.getEmail());
+        }else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("입력하신 정보가 잘못 되었습니다.");
+        }
+    }
+
+    @PostMapping("/api/send-sms")
+    public ResponseEntity<?> sendSms (@RequestBody Map<String, String> body) { 
+   
+        String to = body.get("phoneNumber");
+
+        Random rnd  = new Random();
+        StringBuffer buffer = new StringBuffer();
+        for (int i=0; i<6; i++) {
+            buffer.append(rnd.nextInt(10));
+        }
+        String cerNum = buffer.toString();
+        System.out.println("수신자 번호 : " + to);
+        System.out.println("인증번호 : " + cerNum);
+
+        sqlService.sendSms(to, cerNum);
+         Map<String, String> response = new HashMap<>();
+        response.put("message", "인증번호가 발송되었습니다.");
+        response.put("code", cerNum);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/api/verificationCode")
+    public ResponseEntity<?> verificationCode (@RequestBody Map<String, String> body) {
+
+        String verificationCode = body.get("verificationCode");
+        String code = body.get("code");
+
+        System.out.println("사용자가 입력한 인증번호 : " + verificationCode);
+        System.out.println("인증번호 : " + code);
+
+        if (verificationCode.equals(code)) {
+            return ResponseEntity.ok("인증에 성공하였습니다.");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("인증번호가 일치하지 않습니다.");
+        }           
+    }
+
+    @PostMapping("/api/resetPassword")
+    public ResponseEntity<?> updatePassword(@RequestParam String email, @RequestParam String password) {
+        try {
+            System.out.println("email: " + email);
+            System.out.println("newPassword: " + password);
+
+            sqlService.updatePassword(email, password);
+            return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("비밀번호 변경에 실패했습니다.");
+        }
+    }
     
     
     
