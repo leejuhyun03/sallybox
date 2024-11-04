@@ -155,7 +155,7 @@ const ReservSeats = () => {
         if (bookingData.selectedSeats && bookingData.selectedSeats.length > 0) {
             navigate('/sallybox/payment');
         } else {
-            alert('좌석을 선택하세요.');
+            alert('인원수를 선택하세요.');
         }
     };
 
@@ -165,7 +165,7 @@ const ReservSeats = () => {
     return (
         <div className='reserv_seats_wrap'>
             <div className='group_top'>
-                <h4>인원/좌석 선택</h4>
+                <h4 style={{marginLeft: '200px'}}>인원/좌석 선택</h4>
                 <p>*인원은 최대 8명까지 선택 가능합니다.</p>
             </div>
             <div className='inner_wrap'>
