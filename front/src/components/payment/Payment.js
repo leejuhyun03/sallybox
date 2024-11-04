@@ -7,7 +7,7 @@ import ReserveInfo from './ReserveInfo';
 import PayMethod from './PayMethod';
 import PaymentInfo from './PaymentInfo';
 
-const Payment = () => {
+const Payment = ({userId}) => {
 
     const {bookingData} = useContext(BookingContext)
 
@@ -25,7 +25,7 @@ const Payment = () => {
                     <ReserveInfo/>
                 </div>
                 <div className='pay_method_wrap'>
-                    <PayMethod/>
+                    <PayMethod userId={userId}/>
                 </div>
                 <div className='payment_info_wrap'>
                     <PaymentInfo/>

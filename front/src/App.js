@@ -12,6 +12,7 @@ import FindPassword from './components/findpassword/index';
 import ResetPassword from './components/findpassword/RestPassword';
 import Footer from './components/footer/Footer';
 import Payment from "./components/payment/Payment";
+import { useState } from 'react';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
 function AppRoutes() {
   const location = useLocation();
+  const [userId,setUserId] = useState('');
 
   return (
     <div>
@@ -33,7 +35,7 @@ function AppRoutes() {
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
         && location.pathname !== '/sallybox/resetPassword'
-        && <MainHeader />}
+        && <MainHeader setUserId={setUserId}/>}
 
       <Routes>
           <Route path="/" element={<MainSallybox />} />
@@ -41,7 +43,7 @@ function AppRoutes() {
           <Route path="cinema/:cinema_id" element={<Theater />} />
           <Route path="reserv/ticketing" element={<Ticketing />} />
           <Route path="reserv/seats" element={<Reservation />} />
-          <Route path="payment" element={<Payment/>}/>
+          <Route path="payment" element={<Payment userId={userId}/>}/>
           <Route path='sign-in' element={<SignIn />} />
           <Route path="verification" element={<FindPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/header/MainHeader.css'
+import { jwtDecode } from 'jwt-decode';
 
-const MainHeader = () => {
+const MainHeader = ({setUserId}) => {
 
 let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
@@ -17,7 +18,16 @@ let [visible1, setVisible1] = useState(false)
 
   useEffect(() => {
       const token = localStorage.getItem('token');
+      
       setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
+      if (token) {
+        try {
+          const decodedToken = jwtDecode(token); // JWT 디코딩
+          setUserId(decodedToken.user_id); // user_id 상태 업데이트
+        } catch (error) {
+          console.error('Invalid token:', error);
+        }
+      }
   }, []);
 
   const handleLogout = () => {
