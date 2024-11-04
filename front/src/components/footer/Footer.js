@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <>
             <div id='footer_section' className='footer'>
-                <div className="inner">
+                <div className="inner" style={{alignItems: 'center'}}>
                     <span className="f_logo">
                         <Link to={'/sallybox'}><img src={sallylogo} alt="LOTTE CINEMA"/></Link>
                     </span>

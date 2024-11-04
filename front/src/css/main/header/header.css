@@ -291,6 +291,10 @@ ul, ol {
     text-align: center;
 }
 
+.navbar > ul > li {
+   float: left;
+}
+
 .navbar > ul > li > a {
     opacity: .5;
     color: #FFF;
@@ -301,9 +305,22 @@ ul, ol {
     display: block;
     height: 38px;
     line-height: 38px;
-    padding: 0 5px;
-    float: left;
-    margin: 0 8px;
+    margin: 0 10px;
+}
+
+.navbarul {
+    display: inline-block;
+    position: relative;
+    width: 710px;
+    top: 8px;
+}
+
+.navbarul > li > a {
+    opacity: .6 !important;
+    height: 22px !important;
+    line-height: 18px !important;
+    margin: 0 5px !important;
+    color: #FFF !important;
 }
 
 .navbar > ul:after {

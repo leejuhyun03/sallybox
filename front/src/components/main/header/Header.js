@@ -141,14 +141,14 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
             { // visible이 true이면 이라는 뜻
               visible1 &&
             <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue1} onMouseLeave={onFalse1}>
-              <ul style={{display: 'inline-block', listStyle: 'none', margin: '0', padding: '0', opacity: '1'}}>
-                <li style={{float: 'left'}}>
+              <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
+                <li>
                   <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing" title="예매하기">예매하기</a>
                 </li>
-                <li style={{float: 'left'}}>
+                <li>
                   <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/Schedule" title="상영시간표">상영시간표</a>
                 </li>
-                <li style={{float: 'left'}}>
+                <li>
                   <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/DiscountGuide" title="할인안내">할인안내</a>
                 </li>
               </ul> 
@@ -160,18 +160,18 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
             { // visible이 true이면 이라는 뜻
               visible2 &&
             <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue2} onMouseLeave={onFalse2}>
-              <ul  style={{display: 'inline-block', listStyle: 'none', margin: '0', padding: '0', opacity: '1'}}>
-                <li style={{float: 'left'}}>
+              <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
+                <li>
                   <a href="https://www.lottecinema.co.kr/NLCHS/Movie" title="홈">홈</a>
                 </li>
-                <li style={{float: 'left'}}>
+                <li>
                   <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1" title="현재상영작">현재상영작</a>
                 </li>
-                <li style={{float: 'left'}}>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=5" title="상영예정작">상영예정작</a>
+                <li>
+                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=5" title="추천영화">추천영화</a>
                 </li>
-                <li style={{float: 'left'}}>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/Arte" title="아르떼">아르떼</a>
+                <li>
+                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/Arte" title="추억의 영화관">추억의 영화관</a>
                 </li>
               </ul> 
             </div>
@@ -181,78 +181,83 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
             <a href='#' className='hover' onMouseOver={onTrue3} onMouseLeave={onFalse3}>영화관</a>
             { // visible이 true이면 이라는 뜻
               visible3 &&
-            <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue3} onMouseLeave={onFalse3}>
-              <ul style={{display: 'inline-block', listStyle: 'none', margin: '0', padding: '0', opacity: '1'}}>
-                <li style={{float: 'left'}}>
+            <div className='navbar' style={{display: 'block', height: '60px'}} onMouseOver={onTrue3} onMouseLeave={onFalse3}>
+              <ul className='navbarul'>
+                <li>
                   <a href="#" title="스페셜관">스페셜관</a>
                 </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/5" title="김포공항">김포공항</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/6" title="노원">노원</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/7" title="도곡">도곡</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/8" title="독산">독산</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/10" title="수락산">수락산</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/11" title="수유">수유</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/13" title="신도림">신도림</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/14" title="신림">신림</a>
-                        </li>
-                        <br/>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/16" title="영등포">영등포</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/17" title="월드타워">월드타워</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/18" title="은평">은평</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/19" title="중랑">중랑</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/20" title="청량리">청량리</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/21" title="합정">합정</a>
-                        </li>
-                        <li style={{float: 'left'}}>
-                          <a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
-                        </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/5" title="김포공항">김포공항</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/6" title="노원">노원</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/7" title="도곡">도곡</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/8" title="독산">독산</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/10" title="수락산">수락산</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/11" title="수유">수유</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/13" title="신도림">신도림</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/14" title="신림">신림</a>
+                </li>
+                <li><a href='#'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/16" title="영등포">영등포</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/17" title="월드타워">월드타워</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/18" title="은평">은평</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/19" title="중랑">중랑</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/20" title="청량리">청량리</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/21" title="합정">합정</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
+                </li>
               </ul> 
             </div>
             }

@@ -95,10 +95,6 @@
     clear: both;
 }
 
-.navbars > ul > li > a {
-    color: black;
-}
-
 .navbars {
     position: absolute;
     z-index: 2;
@@ -109,10 +105,16 @@
     text-align: center;
 }
 
-.navbars > ul > li > a {
-    opacity: .5;
-    color: black;
+.navbars > ul > li {
     float: left;
+}
+
+.navbars > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 10px;
+    opacity: .6;
 }
 
 .navbars > ul > li > a {
@@ -128,6 +130,21 @@
     content: "";
     display: block;
     clear: both;
+}
+
+.navbaruls {
+    display: inline-block;
+    position: relative;
+    width: 853px;
+    top: 8px;
+}
+
+.navbaruls > li > a {
+    opacity: .6 !important;
+    height: 22px !important;
+    line-height: 18px !important;
+    margin: 0 5px !important;
+    color: #000 !important;
 }
 
 .navbar1 {
