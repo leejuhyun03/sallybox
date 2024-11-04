@@ -46,27 +46,41 @@
     width: 22px;
     height: 22px;
 }
-dl{
+.reserve_movie_info dl{
     display: table;
     margin: 0 auto;
     text-align: left;
 }
-dt, dd {
+.reserve_movie_info dt,.reserve_movie_info dd {
     display: table-row; /* dt와 dd를 행처럼 표시 */
-    margin: 0;
-    padding: 0;
 }
-dt{
+.reserve_movie_info dt{
     font-weight: bold; 
+    font-size: 15px;
+    padding: 10px 0;
 }
-dd{
+.reserve_movie_info dd{
     padding-left: 10px;
+    font-size: 15px;
+    padding: 10px 0;
 }
 .reserve_seat_info{
-    width: 100%;
+    display: table;
     margin: 20px 0;
-    text-align: left !important;
-    border: 1px solid black;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.reserve_seat_info dt{
+    font-weight: bold; 
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+.reserve_seat_info dd{
+    font-size: 15px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    margin-left: 0;
 }
 .group_discount{
     text-align: left;
