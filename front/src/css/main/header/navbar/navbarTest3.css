@@ -1,0 +1,266 @@
+.navbar {
+    display: block;
+    position: fixed;
+    top: -80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 43px;
+    border-bottom: 1px solid #EEE;
+    background: #fff;
+    z-index: 99999;
+    transition: top 0.3s;
+}
+
+.navbar.show {
+    top: 0; /*네비게이션 바의 위치를 화면 상단으로 설정합니다. 이 속성이 적용되면 네비게이션 바가 화면의 최상단에 고정됩니다. 초기에는 top: -80px;로 설정되어 있어서 화면 밖에 위치하지만, 스크롤을 내려 show 클래스가 추가되면 이 위치로 이동하여 화면에 나타나게 됩니다.*/
+}
+
+.topNavs {
+    border-bottom: 1px solid #EEE;
+    background: #fff;
+    width: 100%;
+    z-index: 90;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 43px;
+}
+
+.headerf {
+    width: 980px;
+    margin: 3px auto 0;
+    text-align: center;
+}
+
+.headerf .gnbs > ul {
+    opacity: 1;
+}
+
+.headerf .gnbs .g_menu3 {
+    position: absolute;
+    right: 25%;
+    top: 18px;
+    margin-top: 0;
+}
+
+.headerf .gnbs .g_menu3 > li {
+    margin-left: 25px;
+}
+
+.headerf .gnbs > ul > li {
+    float: left;
+}
+.headerf .gnbs .g_menu3 li .btn_my {
+    background-image: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_my.png);
+}
+
+.headerf .gnbs > ul > li > a, .topNavs .gnbs > ul > li > button {
+    color: #000;
+}
+
+.headerf .gnbs .g_menu3 > li .btn_my {
+    padding-left: 15px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_my.png) no-repeat 0 center;
+}
+
+.headerf .gnbs .g_menu3 > li > a, .headerf .gnbs .g_menu3 > li > button {
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+.headerf .gnbs > ul > li > a {
+    display: block;
+}
+
+.headerf .gnbs .g_menu3 li .btn_reserve {
+    background-image: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve.png);
+}
+
+.headerf .gnbs .g_menu3 > li .btn_reserve {
+    margin-top: 0;
+    padding-left: 18px;
+    border: none;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve.png) no-repeat 0 2px;
+}
+
+
+/* 
+.topNavs {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    width: 980px;
+    margin: 3px auto 0;
+    text-align: center;
+}
+
+.topNavs {
+    position: relative;
+    height: 114px;
+    border-bottom: 1px solid #EEE;
+    background-color: #fff;
+}
+
+.topNavs .gnbs {
+    position: relative;
+    width: 1300px;
+    height: 70px;
+    margin: 0 auto;
+    border-bottom: 1px solid #B2B2B2;
+}
+
+.topNavs .gnbs .g_menu2 {
+    float: right;
+}
+
+.topNavs .gnbs > ul {
+    margin-top: 40px;
+}
+
+.topNavs .gnbs .g_menu2 > li {
+    margin-left: 14px;
+}
+
+.topNavs .gnbs > ul > li {
+    float: left;
+}
+
+.topNavs .gnbs > ul > li > a {
+    display: block;
+    font-size: 12px;
+    color: #656565;
+}
+
+.topNavs .gnbs .g_menu3 {
+    position: absolute;
+    right: 0;
+    top: 88px;
+    margin-top: 0;
+}
+
+.topNavs .gnbs .g_menu3 > li {
+    margin-left: 25px;
+}
+
+.topNavs .gnbs > ul > li {
+    float: left;
+}
+
+.topNavs .gnbs .g_menu3 > li .btn_my {
+    padding-left: 15px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_my.png
+    ) no-repeat 0 center;
+}
+
+.topNavs .gnbs .g_menu3 > li > a, .headers .gnbs .g_menu3 > li > button {
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+.topNavs .gnbs .g_menu3 > li .btn_reserve {
+    margin-top: 0;
+    padding-left: 18px;
+    border: none;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve.png
+    ) no-repeat 0 2px;
+}
+
+.topNavs .gnbs .g_menu3 > li .btn_menu_all {
+    width: 17px;
+    margin-top: -2px;
+    border: none;
+    text-indent: -9999em;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all.png) no-repeat center center;
+}
+
+.topNavs .gnbs:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.navbars {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 114px;
+    height: 38px;
+    text-align: center;
+}
+
+.navbars > ul > li {
+    float: left;
+}
+
+.navbars > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 10px;
+    opacity: .6;
+}
+
+.navbars > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 5px;
+    float: left;
+    margin: 0 8px;
+}
+
+.navbars > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.navbaruls {
+    display: inline-block;
+    position: relative;
+    width: 853px;
+    top: 8px;
+}
+
+.navbaruls > li > a {
+    opacity: .6 !important;
+    height: 22px !important;
+    line-height: 18px !important;
+    margin: 0 5px !important;
+    color: #000 !important;
+}
+
+.navbar1 {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 38px;
+    text-align: center;
+    background-color: #000;
+}
+
+.navbar1 > ul {
+    opacity: 0;
+    display: inline-block;
+    width: 980px;
+    margin: 10px 0;
+}
+
+.navbar1 > ul > li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.navbar1 > ul > li > a {
+    display: block;
+    opacity: .6;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 5px;
+    color: black;
+} */

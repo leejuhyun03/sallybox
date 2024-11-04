@@ -269,6 +269,7 @@ ul, ol {
     height: 38px;
     text-align: center;
     background-color: rgba(0, 0, 0, .7);
+    border-bottom: none;
 }
 
 .hover { 

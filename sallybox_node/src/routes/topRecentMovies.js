@@ -10,11 +10,19 @@ router.get('/', async (req, res) => {
         const result = await connection.execute(`
             SELECT *
             FROM (
-                SELECT *
+                SELECT 
+                    movie_id AS movieId,
+                    genre_ids AS genreIds,
+                    poster_path AS posterPath,
+                    title AS title,
+                    vote_average AS voteAverage,
+                    certification AS certification,
+                    release_date AS releaseDate,
+                    runtime AS runtime
                 FROM nowmovies
-                ORDER BY TO_DATE(release_date, 'YYYY-MM-DD') DESC
+                ORDER BY vote_average DESC
             )
-            WHERE ROWNUM <= 10
+            WHERE ROWNUM <= 5
         `);
         res.json(result.rows);
     } catch (err) {

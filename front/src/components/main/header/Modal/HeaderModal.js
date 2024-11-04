@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../../../css/main/header/modal/HeaderModal.css'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const HeaderModal = ({onClose, isAuthenticated, handleLogout}) => {
+const HeaderModal = ({onClose, isAuthenticated, userid}) => {
+
+    const [name, setName] = useState([]);
+    const [point, setPoint] = useState([]);
+    const [error, setError] = useState(null);
+    console.log(userid)
+
+    const fetchUser = async () => {
+        if (!userid) return; // userid가 없으면 함수 종료
+
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/api/movies/user`,
+                {
+                    params: {
+                        userId: userid
+                    },
+                }
+            );
+            const data = response.data;
+            
+            setName(data[0])
+            setPoint(data[1])
+            
+        } catch (err) {
+            setError('Failed to fetch recommended movies.');
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, [userid]);
 
     return (
         
@@ -12,7 +45,7 @@ const HeaderModal = ({onClose, isAuthenticated, handleLogout}) => {
                 <div id="layerAllMenu" className="menu_all_wrap active">
                     <strong className="hidden">레이어 팝업 시작</strong>
                     <div className="group_menu_all">
-                        <table>
+                        <table className='mainTable'>
                             <caption>전체메뉴</caption>
                             <thead>
                                 <tr>
@@ -162,12 +195,12 @@ const HeaderModal = ({onClose, isAuthenticated, handleLogout}) => {
                                     <div className="grade_area">
                                         <span className="txt_rank_common ml5">일반</span>
                                         </div>
-                                    <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>허강현님</strong>반가워요!</p>
+                                    <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>{name}님</strong>반가워요!</p>
                                     <div className="my_point">
                                         <dl>
                                             <dt><img src="https://www.lottecinema.co.kr/NLCHS/Content/images/icon/txt_lpoint_46.png" alt="L.POINT"/></dt>
                                             <dd>
-                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>770P</b></strong></a>
+                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{point}P</b></strong></a>
                                             </dd>
                                             <dt><b>쿠폰함</b></dt>
                                             <dd><a href="#" style={{color: '#000'}} title="쿠폰함 페이지 이동" tabIndex="0"><b>0</b></a></dd>
@@ -185,11 +218,11 @@ const HeaderModal = ({onClose, isAuthenticated, handleLogout}) => {
                                 : 
                                 <>
                                     <div className="area_btn_login">
-                                        <Link to={'/sallybox/sign-in'} className="btn_col3 ty4 w_full" tabIndex="0" style={{borderRadius: '7px'}}>로그인</Link>
+                                        <Link to={'/sign-in'} className="btn_col3 ty4 w_full" tabIndex="0" style={{borderRadius: '7px'}}>로그인</Link>
                                     </div>
                                     <div className="nomember_box">
                                         <p className="tip">로그인 하시고<br/>다양한 혜택을 확인하세요.</p>
-                                        <Link to={'/sallybox/sign-up'} className="btn_col3 ty4 rnd" title="회원가입 페이지 이동" tabIndex="0" style={{borderRadius: '20px'}}>회원가입</Link>
+                                        <Link to={'/sign-up'} className="btn_col3 ty4 rnd" title="회원가입 페이지 이동" tabIndex="0" style={{borderRadius: '20px'}}>회원가입</Link>
                                     </div>
                                 </>
                                 }

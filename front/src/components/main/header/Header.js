@@ -20,18 +20,15 @@ import data4 from '../../../image/swimage/TwilightOfTheWarriors_1920774.jpg'
 import { Link } from 'react-router-dom';
 import HeaderModal from './Modal/HeaderModal';
 import { jwtDecode } from 'jwt-decode';
-// import NavbarTest2 from './Navbar/NavbarTest2';
+import NavbarTest3 from './Navbar/NavbarTest3';
 
 const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated }) => {
 
   let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
   let [visible3, setVisible3] = useState(false)
-  let [visible38, setVisible38] = useState(false)
   
-  const [isShow, setIsShow] = useState(false)
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const [userId, setUserId] = useState(null);
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -42,7 +39,6 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
       try {
         const decodedToken = jwtDecode(token); // JWT 디코딩
         setUserid(decodedToken.user_id); // user_id 상태 업데이트
-        console.log(decodedToken.user_nickname)
         setUserName(decodedToken.user_nickname)
       } catch (error) {
         console.error('Invalid token:', error);
@@ -94,19 +90,10 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
     setVisible3(false)
   }
 
-    let onTrue38 = () => {
-      // !true = false, !false - > true
-      setVisible38(true)
-    }
-
-    let onFalse38 = () => {
-      // !true = false, !false - > true
-      setVisible38(false)
-    }
 
   return (
   <>
-  {/*<NavbarTest2 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>*/}
+  <NavbarTest3 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
   <div id='header_section' className='header ty3'>
       <Link to={'/sallybox'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
