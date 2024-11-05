@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import type1 from '../../image/seat_type1.png'
 import type2 from '../../image/seat_type2.png'
 import type3 from '../../image/seat_type3.png'
+import type4 from '../../image/seat_type4.png'
 import SeatModal from './SeatModal';
 
 const ReservSeats = () => {
@@ -28,11 +29,6 @@ const ReservSeats = () => {
     //스프링 부트에 theater_id 보내서 seats 정보 받아옴 
     useEffect(() => {
 
-        if(!bookingData.schedule){
-            setShowModal(true)
-            return
-        }
-
         const getSeats = async () => {
             if (bookingData.schedule && bookingData.schedule.theater_id) {
                 try {
@@ -40,16 +36,21 @@ const ReservSeats = () => {
                         params: { theater_id: bookingData.schedule.theater_id, schedule_id:bookingData.schedule.schedule_id },
                         headers: { 'Content-Type': 'application/json' }
                     });
-                    console.log(response.data)
+
+                    // console.log(response.data)
                     setSeats(response.data);
                     
                 } catch (error) {
                     console.log('백엔드에서 seats 정보 가져오는데 실패함', error);
                     setErr('좌석 정보를 가져오는데 실패했습니다.');
                 } 
+            }else{
+                setShowModal(true)
             }
         };
+
         getSeats();
+
     }, [bookingData,navigate]);
 
     const handleModal = () => {
@@ -71,6 +72,10 @@ const ReservSeats = () => {
                 [type]: prevCounts[type] < 8 ? prevCounts[type] + 1 : 8
             };
             calcPrice(updatedCounts); // 인원 변경 시 가격 계산
+            setBookingData((prevData) => ({
+                ...prevData,
+                counts: updatedCounts
+            }));
             return updatedCounts;
         })
     }
@@ -81,6 +86,10 @@ const ReservSeats = () => {
                 [type]: prevCounts[type] > 0 ? prevCounts[type] - 1 : 0
             };
             calcPrice(updatedCounts); // 인원 변경 시 가격 계산
+            setBookingData((prevData) => ({
+                ...prevData,
+                counts: updatedCounts
+            }));
             return updatedCounts;
         });
     };
@@ -94,7 +103,7 @@ const ReservSeats = () => {
         const priceTable = {
             '2D' : {adult:15000,teenager:12000,senior:10000,disabled:8000},
             '4D' : {adult:18000,teenager:15000,senior:13000,disabled:11000},
-            '리클라이너' : {adult:18000,teenager:15000,senior:13000,disabled:11000}
+            '리클라이너' : {adult:20000,teenager:17000,senior:15000,disabled:13000}
         } 
 
         if(priceTable[theater_type]){
@@ -109,10 +118,44 @@ const ReservSeats = () => {
     const getAgeRatingImg = (age_rating) => {
         switch(age_rating){
             // case '전체연령가' : return '../image/grade_all.png'
-            case '12세' : return twelve;
-            case '15세' : return fifteen;
-            case '19세' : return nineteen ;
+            case '12세 관람가' : return twelve;
+            case '15세 관람가' : return fifteen;
+            case '19세 관람가' : return nineteen ;
             default : return all;
+        }
+    };
+
+    //날짜, 시간 조정
+    const formatDate = (created) => {
+        const date = new Date(created)
+
+        const year = date.getFullYear()
+        const month = (`0${date.getMonth() + 1}`).slice(-2)
+        const day = (`0${date.getDate()}`).slice(-2)
+
+        return `${year}-${month}-${day}`
+    }
+
+    const formatTime = (isoString) => {
+        const date = new Date(isoString)
+        return date.toLocaleTimeString([],{hour: '2-digit', minute: '2-digit',hour12: false})
+    }
+
+     // ** bookingData.schedule이 없을 때 모달을 먼저 표시하고 나머지 컴포넌트 렌더링을 막음**
+     if (!bookingData.schedule) {
+        return (
+            <>
+                { showModal && <SeatModal handleModal={handleModal} /> }
+            </>
+        );
+    }
+    // ***************************************************
+
+    const handlePaymentClick = () => {
+        if (bookingData.selectedSeats && bookingData.selectedSeats.length > 0) {
+            navigate('/sallybox/payment');
+        } else {
+            alert('인원수를 선택하세요.');
         }
     };
 
@@ -122,22 +165,22 @@ const ReservSeats = () => {
     return (
         <div className='reserv_seats_wrap'>
             <div className='group_top'>
-                <h4>인원/좌석 선택</h4>
+                <h4 style={{marginLeft: '200px'}}>인원/좌석 선택</h4>
                 <p>*인원은 최대 8명까지 선택 가능합니다.</p>
             </div>
             <div className='inner_wrap'>
                 <div className='seat_count'>
-                    <div className='movie_info'>
-                        <span><img src='' alt='예매영화포스터'/></span>
+                    <div className='movie_info'>   
+                        <img src={`https://image.tmdb.org/t/p/original/${bookingData.schedule.poster_path}`} alt='예매영화포스터'/>
                         <div className='movie_info_text'>
                             <div className='bx_title'>
-                                <img alt='연령 이미지' src={getAgeRatingImg(bookingData.schedule.age_rating)}/>
-                                <strong>{bookingData.schedule.movie_title}</strong>
+                                <img alt='연령 이미지' src={getAgeRatingImg(bookingData.schedule.certification)}/>
+                                <strong>{bookingData.schedule.title}</strong>
                             </div>
                             <div className='bx_info'>
-                                <span>날짜</span>
-                                <span>시간</span><br/>
-                                <span>영화관, 상영관</span>
+                                <span>{formatDate(bookingData.schedule.created)}</span><br/>
+                                <span>{formatTime(bookingData.schedule.start_time)+'~'+formatTime(bookingData.schedule.end_time)}</span><br/>
+                                <span>{bookingData.schedule.name}, {bookingData.schedule.screen_no}관</span>
                             </div>
                         </div>
                     </div>
@@ -207,6 +250,8 @@ const ReservSeats = () => {
                             <span>선택한 좌석</span>
                             <img src={type3} alt='선택 불가 좌석'/>
                             <span>예매 완료</span>
+                            <img src={type4} alt='장애인 석'/>
+                            <span>장애인 석</span>
                         </div>
                     </div>
                 </div>
@@ -219,9 +264,9 @@ const ReservSeats = () => {
                         </div>
                     </div>
                     <div className='group_right'>
-                        <a href='' className='to_pay_link'>
+                        <button onClick={handlePaymentClick} className='to_pay_link'>
                             <span>결제하기</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
