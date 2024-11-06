@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .time_scroll_select_wrap{
     margin-top: 20px;
     width: auto;
@@ -19,3 +20,26 @@
     font-size: 15px;
 }
 
+=======
+.time_scroll_select_wrap{
+    margin-top: 20px;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+}
+.time_scroll_title{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+.time_scroll_title span{
+    padding-bottom: 3px;
+    font-size: 15px;
+}
+
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969

@@ -50,10 +50,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+<<<<<<< HEAD
 
 	//지영
 	// org.json.simple 의존성 (오타 수정)
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+=======
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 }
 
 tasks.named('test') {

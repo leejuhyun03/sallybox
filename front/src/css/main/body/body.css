@@ -195,6 +195,7 @@
     margin: 0 -7.5px;
 }
 
+<<<<<<< HEAD
 .movie_list .btm_info {
     display: block;
     margin-top: 20px;
@@ -206,6 +207,8 @@
     touch-action: pan-y;
 }
 
+=======
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 .titleInfo {
     display: inline-flex;
     overflow: hidden;
@@ -234,6 +237,7 @@
     margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .main_movie_list .item .btm_info .tit_info {
     display: block;
     overflow: hidden;
@@ -247,6 +251,8 @@
     padding-right: 6px;
 }
 
+=======
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 .main_movie_list .item {
     color: #FFF;
     text-align: center;
@@ -280,6 +286,10 @@
     font-weight: bold;
     color: #FFF;
     white-space: nowrap;
+<<<<<<< HEAD
+=======
+    padding-right: 6px;
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 }
 
 .sub_info1 {
@@ -289,8 +299,11 @@
     font-size: 11px;
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 .sub_info1 > span:first-child {
     margin-left: 0  ;
 }
@@ -500,7 +513,11 @@
     line-height: 15px;
 }
 
+<<<<<<< HEAD
 .owl-stage .btm_info .tit_info {
+=======
+.btm_info {
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
     display: block;
     overflow: hidden;
     white-space: nowrap;

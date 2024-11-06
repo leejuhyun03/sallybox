@@ -39,7 +39,11 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
 
     return (
         
+<<<<<<< HEAD
         <div className='Modal'>
+=======
+        <div className='Modals'>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
             <div className='bg'></div>
             <div className='popup' style={{position: 'fixed', left: '50%', top: '70px', marginLeft: '-490px'}}>
                 <div id="layerAllMenu" className="menu_all_wrap active">
@@ -59,28 +63,43 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                     <th scope="col" id="gmenu1"><span>예매</span></th>
                                     <th scope="col" id="gmenu2"><span>영화</span></th>
                                     <th scope="col" id="gmenu3"><span>영화관</span></th>
+<<<<<<< HEAD
                                     <th scope="col" id="gmenu4"><span>스페셜관</span></th>
                                     <th scope="col" id="gmenu5"><span>스토어</span></th>
                                     <th scope="col" id="gmenu6"><span>멤버십</span></th>
+=======
+                                    
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu1">
                                         <ul style={{paddingInlineStart: '0px'}}>
+<<<<<<< HEAD
                                             <li><a title="예매하기" tabIndex="0">예매하기</a></li>
+=======
+                                            <li><a href='http' title="예매하기" tabIndex="0">예매하기</a></li>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                             <li><a title="상영시간표" tabIndex="0">상영시간표</a></li>
                                             <li><a title="할인안내" tabIndex="0">할인안내</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu2">
                                         <ul style={{paddingInlineStart: '0px'}}>
+<<<<<<< HEAD
                                             <li><a title="홈" tabIndex="0">홈</a></li>
                                             <li><a title="현재상영작" tabIndex="0">현재상영작</a></li>
                                             <li><a title="상영예정작" tabIndex="0">상영예정작</a></li>
                                             <li><a title="아르떼" tabIndex="0">아르떼</a></li>
+=======
+                                            <li><a title="현재상영작" tabIndex="0">현재상영작</a></li>
+                                            <li><a title="상영예정작" tabIndex="0">Sally 추천작</a></li>
+                                            <li><a title="아르떼" tabIndex="0">추억의 영화관</a></li>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu3">
                                         <ul style={{paddingInlineStart: '0px'}}>
+<<<<<<< HEAD
                                             <li><a title="스페셜관" tabIndex="0">스페셜관</a></li>
                                             <li><a title="서울" tabIndex="0">서울</a></li>
                                             <li><a title="경기/인천" tabIndex="0">경기/인천</a></li>
@@ -121,34 +140,116 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                             <li><a title="짝꿍클럽" tabIndex="0">짝꿍클럽</a></li>
                                             <li><a title="틴틴클럽" tabIndex="0">틴틴클럽</a></li>
                                             <li><a title="브라보클럽" tabIndex="0">브라보클럽</a></li>
+=======
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/5" title="김포공항">김포공항</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/6" title="노원">노원</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/7" title="도곡">도곡</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/8" title="독산">독산</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/10" title="수락산">수락산</a>
+                                            </li>
+                                        </ul>
+                                        <ul style={{paddingInlineStart: '0px'}}>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/11" title="수유">수유</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/13" title="신도림">신도림</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/14" title="신림">신림</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/16" title="영등포">영등포</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/17" title="월드타워">월드타워</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/18" title="은평">은평</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/19" title="중랑">중랑</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/20" title="청량리">청량리</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/21" title="합정">합정</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
+                                            </li>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         </ul>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="col" id="gmenu7"><span>마이</span></th>
                                     <th scope="col" id="gmenu8"><span>고객센터</span></th>
+<<<<<<< HEAD
                                     <th scope="col" id="gmenu9"><span>회원 서비스</span></th>
                                     <th scope="col" id="gmenu10"><span>이벤트</span></th>
                                     <th scope="col" id="gmenu11"><span>할인안내</span></th>
+=======
+                                    <th scope="col" id="gmenu8"><span>회원 서비스</span></th>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu7">
                                         <ul style={{paddingInlineStart: '0px'}}>
                                             <li><a title="결제내역" tabIndex="0">결제내역</a></li>
+<<<<<<< HEAD
                                             <li><a title="쿠폰함" tabIndex="0">쿠폰함</a></li>
                                             <li><a title="MY 이벤트" tabIndex="0">MY 이벤트</a></li>
                                             <li><a title="MY 클럽" tabIndex="0">MY 클럽</a></li>
                                             <li><a title="MY 무비로그" tabIndex="0">MY 무비로그</a></li>
+=======
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                             <li><a title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">
                                         <ul style={{paddingInlineStart: '0px'}}>
+<<<<<<< HEAD
                                             <li><a title="브라보클럽" tabIndex="0">FAQ</a></li>
                                             <li><a title="공지사항" tabIndex="0">공지사항</a></li>
                                             <li><a title="1:1 문의" tabIndex="0">1:1 문의</a></li>
                                             <li><a title="단체관람/대관문의" tabIndex="0">단체관람/대관문의</a></li>
                                             <li><a title="분실물문의" tabIndex="0">분실물문의</a></li>
+=======
+                                            <li><a title="공지사항" tabIndex="0">공지사항</a></li>
+                                            <li><a title="1:1 문의" tabIndex="0">1:1 문의</a></li>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu9">
@@ -163,6 +264,7 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                             <li><a title="L.POINT회원안내" tabIndex="0">L.POINT회원안내</a></li>
                                         </ul>
                                     </td>
+<<<<<<< HEAD
                                     <td headers="gmenu gmenu10">
                                         <ul style={{paddingInlineStart: '0px'}}>
                                             <li><a title="영화" tabIndex="0">영화</a></li>
@@ -180,6 +282,8 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                             <li><a title="기타결제수단" tabIndex="0">기타결제수단</a></li>
                                         </ul>
                                     </td>
+=======
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                 </tr>
                             </tbody>
                         </table>

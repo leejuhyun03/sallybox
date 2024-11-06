@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .reserv_header{
     height: auto;
     width: 100%;
@@ -36,4 +37,44 @@
     font-size: 16px;
     font-family: 'Roboto',"Noto Sans KR";
     color: black;
+=======
+.reserv_header{
+    height: auto;
+    width: 100%;
+}
+.reserv_header ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+.reserv_header li{
+    border: 1px solid #333;
+    flex: 1; /* 각 리스트 아이템이 동일한 너비를 가지도록 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E4E4E4;
+    padding: 0;
+}
+.reserv_header a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+.reserv_header strong{
+    display: inline-block;
+    text-align: center; /* 텍스트를 수평 가운데 정렬 */
+    vertical-align: middle; /* 텍스트를 수직 가운데 정렬 */
+    line-height: normal; /* 줄 높이를 기본값으로 설정 */
+    font-size: 16px;
+    font-family: 'Roboto',"Noto Sans KR";
+    color: black;
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 }

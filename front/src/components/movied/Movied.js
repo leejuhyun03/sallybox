@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 
 import '../../css/movies/movies.css'
@@ -43,6 +44,38 @@ const Movied = () => {
         return <div>Error: {error.message}</div>;
       }
 
+=======
+import React, { useEffect, useRef, useState } from 'react';
+
+import '../../css/movied/movied.css' 
+import NowMovies from './NowMovies';
+import RecommendMovies from './RecommendMovies';
+import { useParams } from 'react-router-dom';
+
+const Movied = () => {
+
+    const {on} = useParams();
+    
+    const [visible, setVisible] = useState(true);
+    const [hoveredMovieId, setHoveredMovieId] = useState(null);
+
+    useEffect(() => {
+        if (on === '1') {
+            setVisible(true);  // 'on'이 1이면 visible을 true로 설정
+        } else if (on === '2') {
+            setVisible(false); // 그 외의 값이면 false로 설정
+        }
+    }, [on]);
+
+    const onNow = () => {
+        setVisible(true)
+    }
+
+    const onRec = () => {
+        setVisible(false)
+    }
+    
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
     const onOpen = (id) => {
         setHoveredMovieId(id);
     };
@@ -57,16 +90,25 @@ const Movied = () => {
             <div className='movie_screen_boxe'>
                 <ul className='tab_btn_type1e'>
                     <li className={`${visible ? 'actives' : 'activef'}`}>
+<<<<<<< HEAD
                     <button type="button" className='buttone' onClick={() => setVisible(true)}>
+=======
+                    <button type="button" className='buttone' onClick={onNow}>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                         <span>현재 상영작</span>
                     </button>
                     </li>
                     <li className={`${visible ? 'activef' : 'actives'}`}>
+<<<<<<< HEAD
                     <button type="button" className='buttone' onClick={() => setVisible(false)}>
+=======
+                    <button type="button" className='buttone' onClick={onRec}>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                             <span>Sally 추천작</span>
                         </button>
                     </li>
                 </ul>
+<<<<<<< HEAD
                 <ul className='movie_liste type2e' onMouseOver={() => setVisible2(true)} onMouseLeave={() => setVisible2(false)}>
                     <li className={`screen_add_boxe ${visible2 ? 'actives' : ''}`}> {/*여기가 map onMouseOver={() => onOpen(movie.movieId)} onMouseLeave={onClose}*/}
                         <div className="top_infoe">
@@ -93,6 +135,21 @@ const Movied = () => {
                         </div>
                     </li>
                 </ul>
+=======
+                {
+                    visible ? 
+                        <NowMovies
+                            hoveredMovieId={hoveredMovieId}
+                            onOpen={onOpen}
+                            onClose={onClose}
+                        /> :
+                        <RecommendMovies
+                            hoveredMovieId={hoveredMovieId}
+                            onOpen={onOpen}
+                            onClose={onClose}
+                        />
+                }
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
             </div>
         </div>
     );

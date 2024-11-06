@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .reserve_info_wrap{
     background-color: antiquewhite;
     width: 300px;
@@ -9,4 +10,17 @@
 .payment_info_wrap{
     background-color: blue;
     width: 400px;
+=======
+.reserve_info_wrap{
+    background-color: antiquewhite;
+    width: 300px;
+}
+.pay_method_wrap{
+    background-color: aqua;
+    width: 400px;
+}
+.payment_info_wrap{
+    background-color: blue;
+    width: 400px;
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 }

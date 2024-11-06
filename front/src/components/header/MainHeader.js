@@ -155,6 +155,7 @@ let [visible1, setVisible1] = useState(false)
                     <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
                          onMouseOver={onTrue2} onMouseLeave={onFalse2}>
                       <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
+<<<<<<< HEAD
                         <li>
                           <a href="https://www.lottecinema.co.kr/NLCHS/Movie" title="홈">홈</a>
                         </li>
@@ -166,6 +167,16 @@ let [visible1, setVisible1] = useState(false)
                         </li>
                         <li>
                           <a href="https://www.lottecinema.co.kr/NLCHS/Movie/Arte" title="추억의 영화관">추억의 영화관</a>
+=======
+                      <li>
+                          <Link to={'/sallybox/movied/1'}>현재상영작</Link>
+                        </li>
+                        <li>
+                          <Link to={'/sallybox/movied/2'}>Sally 추천작</Link>
+                        </li>
+                        <li>
+                          <Link to={'/sallybox/classic'}>추억의 영화관</Link>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                         </li>
                       </ul> 
                     </div>

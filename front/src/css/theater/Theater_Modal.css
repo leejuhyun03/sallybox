@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Modal{
     position: fixed;
     top: 50%;
@@ -90,3 +91,97 @@
 .info_desc_grade span img{
     margin-right: 10px;
 }
+=======
+.Modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 9999;
+}
+.Modal_title{
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    position: relative;  /* h2랑 span의 위치를 조정하기 위해 */
+    padding: 20px 0;
+}
+.Modal_title h2{
+    margin: 0;
+    font-size: 20px;
+    text-align: center;
+}
+.Modal_title span{
+    position: absolute;
+    right: 15px;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 20px;
+}
+.Modal_info_wrap{
+    flex-grow: 1;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.Modal_info_title{
+    top: 0;    
+    background-color: white;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 80px;
+}
+.Modal_info_title span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.Modal_info_title span:first-child{
+   position: absolute;
+    left: 80px;
+}
+.Modal_info_title span:last-child{
+    position: absolute;
+    right: 100px;
+}
+.Modal_info_desc{
+    flex-grow: 1;
+    height: 350px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 300px; */
+}
+.info_desc_grade{
+    display: flex;
+    gap: 20px;
+    min-height: 70px;
+    border-bottom: 1px solid gray;
+}
+.info_desc_grade span{
+    display: flex;
+    align-items: center;
+    margin: 20px 10px;
+    font-size: 15px;
+}
+.info_desc_grade span:last-child{
+    margin-left: auto;
+}
+.info_desc_grade span img{
+    margin-right: 10px;
+}
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969

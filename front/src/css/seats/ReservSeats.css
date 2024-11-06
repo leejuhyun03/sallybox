@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .reserv_seats_wrap{
     width: 100%;
@@ -222,3 +223,229 @@
 }
 
 
+=======
+
+.reserv_seats_wrap{
+    width: 100%;
+}
+.group_top{
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+.group_top h4{
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+}
+.group_top p{
+    margin-left: auto;
+    font-size: 13px;
+}
+.inner_wrap{
+    display: flex;
+    flex-direction: column;
+}
+.seat_count{
+    box-sizing: border-box;
+    background-color: white;
+    padding: 0 20px;
+    display: flex;
+    width: 100%;
+    height: 117px;
+}
+.movie_info{
+    display: flex;
+    align-items: center;
+    width: 220px;
+}
+.movie_info img{
+    width: 60px;
+    height: 80px;
+    border-radius: 5px;
+}
+.movie_info_text{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.bx_title{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.bx_title img{
+    width: 20px;
+    height: 20px;
+}
+.bx_info span{
+    margin-right: 10px;
+    font-size: 12px;
+}
+.count_people{
+    flex: 1;
+    padding: 0 20px;
+    width: 100%;
+}
+.count_people ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.count_people li{
+    width: 180px;
+    display: flex;
+    align-items: center;
+}
+.count_people li span{
+    height: 45px;
+    width: 100px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.count_people li span button{
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+.count_people li span p {
+    font-size: 20px;
+    margin: 0;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
+}
+.select_seat_wrap{
+    background-color: black;
+    height: 638px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top_txt_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    margin: 20px 0;
+}
+.top_txt_info p {
+    color: white;
+    font-size: 14px;
+}
+.center_seat_info{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+.center_seat_info span{
+    padding: 5px 0 5px;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Roboto', "Noto Sans KR";
+    text-align: center;
+    letter-spacing: 15px;
+    background-color: #6e6e6e;
+    width: 100%;
+}
+.seat_info_under{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.seat_btm_box{
+    background-color: black;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.seat_type_info{
+    height: 100%;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.seat_top_info {
+  padding-left: 15px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.seat_top_info img {
+    width: 15px; /* 이미지의 가로 크기를 조정합니다 */
+    height: 15px; /* 이미지의 세로 크기를 조정합니다 */
+}
+
+.seat_top_info span {
+    font-size: 13px; /* 텍스트의 크기를 키웁니다 */
+}
+.person_summary{
+    background-color: #828282;
+    height: 117px;
+    display: flex;
+}
+.group_left{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+.group_right{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+.select_seat_result{
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.select_seat_result span{
+    font-size: 20px;
+    color: #fff;
+    font-family: 'Roboto',"Noto Sans KR";
+}
+.select_seat_result span:nth-child(2) {
+    font-size: 30px; /* 원하는 크기로 조정 */
+    font-weight: bold; /* 추가적으로 강조하고 싶을 때 */
+}
+.to_pay_link{
+    background-color: #FF1212;
+    height: 100%;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Roboto',"Noto Sans KR";
+    text-decoration: none;
+}
+
+
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969

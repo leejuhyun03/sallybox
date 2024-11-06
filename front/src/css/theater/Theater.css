@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #wrap{
     width: 980px;
     margin: 0 auto;
@@ -15,3 +16,22 @@
     margin-top: 50px;
 }
 
+=======
+#wrap{
+    width: 980px;
+    margin: 0 auto;
+}
+
+.header{
+    position: static;
+    height: 114px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.contents{
+    position: relative;
+    margin-top: 50px;
+}
+
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969

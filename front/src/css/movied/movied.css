@@ -1,0 +1,337 @@
+#contentse {
+    width: 980px;
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+}
+
+.hiddene {
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.movie_screen_boxe {
+    position: relative;
+}
+
+.tab_btn_type1e {
+    margin-bottom: 17px;
+    padding: 0;
+}
+
+.tab_btn_type1e > li {
+    float: left;
+    margin-right: 30px;
+}
+
+.tab_btn_type1e > li button {
+    padding: 0;
+    border: none;
+}
+
+.buttone {
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+}
+
+.tab_btn_type1e > li.actives button > span {
+    border-bottom: 1px solid #000;
+    opacity: 1;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    font-size: 18px !important;
+    color: #000;
+}
+
+.tab_btn_type1e > li.activef button > span {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    font-size: 18px;
+    color: #000;
+    opacity: 0.6;
+}
+.buttone > * {
+    position: relative;
+}
+
+.tab_btn_type1e:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.movie_liste.type2e {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.movie_liste {
+    overflow: hidden;
+    margin-bottom: 50px;
+    margin: 0 -7.5px;
+}
+
+.movie_liste.type2e li {
+    height: 310px;
+    margin-bottom: 42px;
+}
+
+.movie_liste li {
+    float: left;
+    position: relative;
+    width: 184px;
+    margin: 0 7.5px;
+    text-align: center;
+}
+
+.movie_liste li .top_infoe {
+    overflow: hidden;
+    position: relative;
+    height: 262px;
+    border-radius: 4px;
+}
+
+.box__tagse {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+.box__tagse .wrap__tage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.movie_liste li .top_infoe .poster_infoe {
+    display: flex;
+    height: 100%;
+}
+
+.movie_liste li .top_infoe .poster_infoe img {
+    width: 100%;
+    border: none;
+    vertical-align: top;
+}
+
+.movie_liste li .top_infoe .poster_infoe .num_infoe {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 23px;
+    padding-left: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 26px;
+    font-style: italic;
+    font-family: 'Roboto', "Noto Sans KR";
+    text-align: left;
+    /* background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.5) 100%); */
+    /* background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.5) 100%); */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.5) 100%);
+    /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 ); */
+}
+
+.over_boxe {
+    overflow: inherit;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.over_boxe::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;    
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
+    border-radius: 4px;
+}
+
+.over_boxe .innere {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    right: 0;
+    padding: 0 18px;
+    color: #FFF;
+    text-align: center;
+}
+
+.over_boxe .innere .btn_col3e {
+    display: block;
+    line-height: 26px;
+    margin-top: 10px;
+    background: transparent;
+    color: #fff !important;
+    border-color: #fff;
+    height: 28px;
+    padding: 0 14px;
+}
+
+.btn_col3e {
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.movie_liste li .btm_infoe {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.movie_liste li .btm_infoe .tit_infoe {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.movie_liste li .btm_infoe .tit_infoe .ic_gradee {
+    padding-right: 6px;
+}
+
+.ic_gradee.gr_15e {
+    background-color: transparent;
+}
+
+.ic_gradee {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ic_gradee.gr_15e:before {
+    
+    background-size: 100%;
+}
+
+.ic_gradee.gr_15e:before, .ic_gradee:before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+}
+
+.ic_gradee.gr_15e:before {
+    font-family: "Roboto";
+}   
+
+.ic_gradee:before {
+    margin-left: -1px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFF;
+    white-space: nowrap;
+}
+
+.movie_liste li .btm_infoe .sub_info1e {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+
+.movie_liste li .btm_infoe .sub_info1e .timee.blacktypee {
+    position: relative;
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+.movie_liste li .btm_infoe .sub_info1e > span {
+    font-family: 'Roboto', "Noto Sans KR";
+}
+
+.movie_liste li .btm_infoe .sub_info1e .timee.blacktypee:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/icon_clock_black.svg
+    ) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.movie_liste li .btm_infoe .sub_info1e .timee.blacktypef {
+    position: relative;
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+.movie_liste li .btm_infoe .sub_info1e .timee.blacktypef:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-size: 100%;
+}
+
+.robotoe {
+    font-family: "Roboto";
+}
+.timee.blacktypef .robotof {
+    font-family: "Roboto";
+    font-weight: bold;
+}
+
+.sub_info1 .star_info {
+    padding-left: 22px;
+    font-weight: bold;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/movie/ic_star.png) no-repeat 9px 20%;
+    border-right: 1px;
+}
+
+.btn_txt_moree {
+    width: 100%;
+    padding: 8px 0;
+    border: 1px solid #ECECEC;
+    background-color: #ffffff;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-appearance: none;
+}
+
+.btn_txt_moree span {
+    padding-right: 20px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/arr_dw_9.png) no-repeat right center;
+    position: relative;
+}

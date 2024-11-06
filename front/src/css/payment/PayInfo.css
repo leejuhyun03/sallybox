@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .article_wrap{
     display: flex;
     flex-direction: column;
@@ -87,4 +88,95 @@
 }
 .gourp_payment{
 
+=======
+.article_wrap{
+    display: flex;
+    flex-direction: column;
+}
+.group_top{
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+.group_top h4 {
+    margin: 0; /* 좌우 마진 초기화 */
+    padding: 0; /* 패딩 초기화 */
+}
+.inner{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+.reserve_movie_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    text-align: center;
+}
+.reserve_movie_info img{
+    margin: 15px;
+    width: 150px;
+    height: 180px;
+}
+.reserve_movie_title_info{
+    width: 100%;
+    height: auto;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+.reserve_movie_title_info img{
+    width: 22px;
+    height: 22px;
+}
+.reserve_movie_info dl{
+    display: table;
+    margin: 0 auto;
+    text-align: left;
+}
+.reserve_movie_info dt,.reserve_movie_info dd {
+    display: table-row; /* dt와 dd를 행처럼 표시 */
+}
+.reserve_movie_info dt{
+    font-weight: bold; 
+    font-size: 15px;
+    padding: 10px 0;
+}
+.reserve_movie_info dd{
+    padding-left: 10px;
+    font-size: 15px;
+    padding: 10px 0;
+}
+.reserve_seat_info{
+    display: table;
+    margin: 20px 0;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.reserve_seat_info dt{
+    font-weight: bold; 
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+.reserve_seat_info dd{
+    font-size: 15px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    margin-left: 0;
+}
+.group_discount{
+    text-align: left;
+}
+.gourp_payment{
+
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 }

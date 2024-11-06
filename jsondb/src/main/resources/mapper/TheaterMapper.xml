@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -8,4 +9,16 @@
         INSERT INTO theater (theater_id,cinema_id, screen_no, theater_type, seats,link_id)
         VALUES (#{theater_id},#{cinema_id}, #{screen_no}, #{theater_type}, #{seats},#{link_id})
     </insert>
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.json.db.jsondb.mapper.TheaterMapper">
+    <insert id="insertTheater" parameterType="com.json.db.jsondb.dto.TheaterDTO">
+        INSERT INTO theater (theater_id,cinema_id, screen_no, theater_type, seats,link_id)
+        VALUES (#{theater_id},#{cinema_id}, #{screen_no}, #{theater_type}, #{seats},#{link_id})
+    </insert>
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 </mapper>
