@@ -5,6 +5,7 @@ import twelve from '../../image/grade_12.png'
 import fifteen from '../../image/grade_15.png'
 import nineteen from '../../image/pc_grade_19.png'
 import all from '../../image/grade_all.png'
+import { Link } from 'react-router-dom';
 
 const NowMovies = ({hoveredMovieId, onOpen, onClose}) => {
 
@@ -13,16 +14,8 @@ const NowMovies = ({hoveredMovieId, onOpen, onClose}) => {
     const [visible2, setVisible2] = useState(false);
     const [movies, setMovies] = useState([]);
     const [ageRating, setAgeRating] = useState([]);
+    const [movieId, setMovieId] = useState();
     const [error, setError] = useState(null);
-    const [count, setCount] = useState(0);
-
-    const increment = () => {
-        // useRef의 값 증가
-        countRef.current += 1;
-
-        // state를 업데이트하여 화면을 리렌더링
-        setCount(countRef.current);
-    };
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -47,8 +40,11 @@ const NowMovies = ({hoveredMovieId, onOpen, onClose}) => {
             default : return all;
         }
     };
- 
 
+    const onMoveMovie = (id) => {
+        setMovieId(id);
+        
+    }
     
     return (
         <>
@@ -72,7 +68,7 @@ const NowMovies = ({hoveredMovieId, onOpen, onClose}) => {
                             <div className="over_boxe">
                                 <div className="innere" style={{marginTop: '-33px'}}>
                                     <a href="" className="btn_col3e ty3" style={{marginTop: '0'}}>예매하기</a>
-                                    <a href="" className="btn_col3e ty3">상세정보</a>
+                                    <Link to={`sallybox/movies/${movie.movieId}`} className="btn_col3e ty3">상세정보</Link>
                                 </div>
                             </div>
                             }
