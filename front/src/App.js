@@ -14,7 +14,7 @@ import Footer from './components/footer/Footer';
 import Payment from "./components/payment/Payment";
 import Movied from "./components/movied/Movied";
 import { useState } from 'react';
-import ClassicMoviesPage from './components/movies/ClassicMoviesPage';
+import ClassicMoviesPage from './components/movied/ClassicMoviesPage';
 
 function App() {
   return (

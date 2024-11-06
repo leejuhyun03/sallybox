@@ -14,7 +14,7 @@ const ClassicMoviesPage = () => {
     const [visible3, setVisible3] = useState(false);
     const [hoveredMovieId, setHoveredMovieId] = useState(null);
     const [classic, setClassic] = useState([]);
-    const [page, setPage] = useState(5);
+    const [page, setPage] = useState(15);
     const [ageRating, setAgeRating] = useState([]);
     const [error, setError] = useState(null);
  

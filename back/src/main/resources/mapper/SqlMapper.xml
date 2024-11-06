@@ -94,7 +94,7 @@
             movies
             <![CDATA[
         WHERE 
-            release_date < TO_DATE('2024-10-31', 'YYYY-MM-DD')
+            release_date < TO_DATE('2010-12-31', 'YYYY-MM-DD')
         ]]>
         ORDER BY 
             vote_average DESC
