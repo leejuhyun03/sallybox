@@ -1,0 +1,73 @@
+#app {
+  height: 100%;
+}
+
+html,  
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.myHeaderSwiper .swiper-button-next::after,
+.myHeaderSwiper .swiper-button-prev::after {
+  display: none;
+}
+
+
+.myHeaderSwiper .swiper-button-next {
+  background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/arr_rg_31_wht.png) no-repeat;
+  background-size: auto;
+  background-color: transparent;
+  border: none;
+  padding: 10px !important;
+  font: inherit;
+  opacity: .6;
+  &:hover {
+      opacity: 1; 
+  }
+}
+
+.myHeaderSwiper .swiper-button-prev {
+  background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/arr_lf_31_wht.png) no-repeat;
+  background-size: auto;
+  background-color: transparent;
+  border: none;
+  padding: 10px !important;
+  font: inherit;
+  opacity: .6;
+  &:hover {
+      opacity: 1;
+  }
+}

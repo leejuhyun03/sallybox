@@ -1,0 +1,179 @@
+.headers {
+    position: relative;
+    height: 114px;
+    border-bottom: 1px solid #EEE;
+    background-color: #fff;
+}
+
+.headers .logos {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    width: 200px;
+    height: 60px;
+    background-position: 50% 50%;
+    margin-left: -109px;
+    text-indent: -9999em;
+    background: url('../../image/logo_red.png') no-repeat center center;
+}
+
+.headers .gnbs {
+    position: relative;
+    width: 1300px;
+    height: 70px;
+    margin: 0 auto;
+    border-bottom: 1px solid #B2B2B2;
+}
+
+.headers .gnbs .g_menu2 {
+    float: right;
+}
+
+.headers .gnbs > ul {
+    margin-top: 40px;
+}
+
+.headers .gnbs .g_menu2 > li {
+    margin-left: 14px;
+}
+
+.headers .gnbs > ul > li {
+    float: left;
+}
+
+.headers .gnbs > ul > li > a {
+    display: block;
+    font-size: 12px;
+    color: #656565;
+}
+
+.headers .gnbs .g_menu3 {
+    position: absolute;
+    right: 0;
+    top: 88px;
+    margin-top: 0;
+}
+
+.headers .gnbs .g_menu3 > li {
+    margin-left: 25px;
+}
+
+.headers .gnbs > ul > li {
+    float: left;
+}
+
+.headers .gnbs .g_menu3 > li .btn_my {
+    padding-left: 15px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_my.png
+    ) no-repeat 0 center;
+}
+.headers .gnbs .g_menu3 > li > a, .headers .gnbs .g_menu3 > li > button {
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+.headers .gnbs .g_menu3 > li .btn_reserve {
+    margin-top: 0;
+    padding-left: 18px;
+    border: none;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve.png
+    ) no-repeat 0 2px;
+}
+
+.headers .gnbs .g_menu3 > li .btn_menu_all {
+    width: 17px;
+    margin-top: -2px;
+    border: none;
+    text-indent: -9999em;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all.png) no-repeat center center;
+}
+
+.headers .gnbs:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.navbars {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 114px;
+    height: 38px;
+    text-align: center;
+}
+
+.navbars > ul > li {
+    float: left;
+}
+
+.navbars > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 10px;
+    opacity: .6;
+}
+
+.navbars > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 5px;
+    float: left;
+    margin: 0 8px;
+}
+
+.navbars > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.navbaruls {
+    display: inline-block;
+    position: relative;
+    width: 853px;
+    top: 8px;
+}
+
+.navbaruls > li > a {
+    opacity: .6 !important;
+    height: 22px !important;
+    line-height: 18px !important;
+    margin: 0 5px !important;
+    color: #000 !important;
+}
+
+.navbar1 {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 38px;
+    text-align: center;
+    background-color: #000;
+}
+
+.navbar1 > ul {
+    opacity: 0;
+    display: inline-block;
+    width: 980px;
+    margin: 10px 0;
+}
+
+.navbar1 > ul > li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.navbar1 > ul > li > a {
+    display: block;
+    opacity: .6;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 5px;
+    color: black;
+}

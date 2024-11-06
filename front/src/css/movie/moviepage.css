@@ -1,0 +1,414 @@
+/* 특정 요소에 대한 인라인 스타일 */
+element.style {
+}
+
+/* jycontents_new23 ID에 대한 스타일 */
+#jycontents_new23 {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    margin-top: 90px;
+}
+
+/* #jycontent ID에 대한 스타일 */
+#jycontent {
+    margin-top: 120px;
+}
+
+/* 버튼 스타일 */
+.jybutton {
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    color: #ffffff !important;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #FF243E;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0 24px;
+    width: 323px;
+    height: 60px;
+    line-height: 58px;
+    font-size: 24px;
+    border-radius: 60px;
+    margin-bottom: 100px;
+}
+
+/* 기본 스타일을 위한 사용자 에이전트 스타일시트 */
+.jydiv {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+/* 본문 및 폼 요소에 대한 공통 스타일 */
+.jybody, .jyinput, .jybutton, .jyselect, .jytextarea {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+}
+
+/* 본문 및 텍스트 영역의 줄 높이 및 글자 간격 */
+.jybody, .jytextarea {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.jystrong {
+    font-weight: bold;
+}
+
+.jytit_info {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    color: #000;
+    margin: -2px 0 15px 0;
+    display: block;
+    padding-top: 10px;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+}
+
+.jydetail_top_wrap.jynew22 {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 17px;
+    color: #000;
+    position: relative;
+    margin-bottom: 15px;
+    min-height: 460px;
+    padding-left: 400px;
+}
+
+.jycontents_movie_detail {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    width: 980px;
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+    padding-top: 35px;
+}
+
+.jyhidden {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    color: #000;
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: normal;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.jyicon_trailerplay {
+    list-style: none;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    cursor: pointer;
+    line-height: 38px;
+    color: #000;
+    font-size: 19px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 8.5px;
+    height: 13px;
+    background-size: 100%;
+    margin-right: 6px;
+}
+
+.jyroboto {
+    font-family: "Roboto";
+}
+
+.jyposter_info {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    top: -30px;
+    width: 316px;
+    height: 468px;
+}
+
+.jyposter_info img {
+    max-width: 100%;
+    height: auto;
+}
+
+#jycontents_new23 .jydetail_top_wrap .jyposter_info img {
+    border-radius: 20px;
+}
+
+.jybox__tag {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.jywrap__tag {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.jymov_info1 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 0;
+    width: 420px;
+    height: 24px;
+    list-style: none;
+    font-size: 18px;
+}
+
+.jymov_info1 li {
+    font-size: large;
+    position: relative;
+    padding-left: 10px;
+}
+
+.jymov_info1 li::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 15px;
+    background: #000;
+    opacity: 0.7;
+    position: absolute;
+    top: 4px;
+    left: 0px;
+}
+
+.jymov_info1 li .jyroboto {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.jymov_info1 li:first-child:before {
+    content: none;
+}
+
+.jytime {
+    display: flex;
+    align-items: center;
+}
+
+.jyicon_clock_black {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    color: #000;
+    list-style: none;
+    font-size: 18px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+    transform: translateY(3px);
+}
+
+.jygrade_txt {
+    background-color: none;
+    color: #DD7430;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.jymov_info2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    margin-top: 50px;
+}
+
+.jymov_info2 li {
+    margin: 0;
+}
+
+.jymov_info2 button {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    -webkit-appearance: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    border: 1px solid #000;
+    border-radius: 50px;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0;
+    margin-right: 15px;
+}
+
+.jybtn_trailer {
+    width: 137.76px;
+    height: 40px;
+    font-size: 18px;
+    padding: 0;
+    line-height: 40px;
+}
+
+#jymylikemovie {
+    width: 88px;
+    height: 40px;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 40px;
+}
+
+.jytxtarea_box .jytxtarea {
+    overflow-y: scroll;
+    height: 115px;
+    line-height: 1.6;
+    font-size: 18;
+    border: 0;
+    padding: 0 20px 0 0;
+}
+
+.jylayer_wrap {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 970px;
+    background-color: #FFF;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.jylayer_header .jybtn_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.jylayer_contents iframe {
+    width: 100%;
+    height: calc(100% - 40px);
+}
+
+.jylayer_wrap.active {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 970px;
+    height: 583px;
+    background-color: #FFF;
+    border-radius: 10px;
+    height: auto;
+}
+
+.jylayer_wrap.active.jylayer_movie_trailer {
+    width: 970px;
+    height: 583px;
+}
+
+.jylayer_wrap .jylayer_header {
+    position: relative;
+    height: 54px;
+    line-height: 58px;
+    border-bottom: 1px solid #CCC;
+    color: #FFF;
+    text-align: center;
+    width: 975px;
+}
+
+.jylayer_wrap.jyty2 .jylayer_header {
+    height: 0;
+    line-height: 0;
+    border-bottom: none;
+}
+
+#jylayerMovieTrailer.jylayer_wrap .jylayer_header .jybtn_close {
+    top: 0px;
+}
+
+.jylayer_wrap .jylayer_header .jybtn_close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: auto;
+    height: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.jylayer_wrap .jylayer_contents {
+    padding: 31px 25px;
+    height: 580px;
+    width: 900px;
+    margin: 0px 10px;
+}
+
+.jycert-12 {
+    color: #E9B630;
+    font-weight: bold;
+}
+
+.jycert-15 {
+    color: #DD7430;
+    font-weight: bold;
+}
+
+.jycert-all {
+    color: #229C56;
+    font-weight: bold;
+}
+
+.jycert-19 {
+    color: #CD1327;
+    font-weight: bold;
+}

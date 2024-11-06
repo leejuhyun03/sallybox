@@ -1,0 +1,53 @@
+.time_scroll_select{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+.time_scroll_select span{
+    font-weight: bold;
+}
+.time_scroll_select_buttons {
+    display: flex;
+    flex-wrap: wrap; /* 버튼들이 한 줄에 맞지 않을 경우 다음 줄로 이동 */
+    gap: 10px; /* 버튼 간의 간격 설정 */
+}
+.time_scroll_select button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+.time_scroll_select_buttons button{
+    width: 100px;
+    position: relative;
+}
+
+
+/* 툴팁 스타일링 */
+.time_scroll_select_buttons button::after {
+    content: attr(data-end-time);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    margin-bottom: 15px;
+  }
+  
+
+  
+  .time_scroll_select_buttons button:hover::after,
+  .time_scroll_select_buttons button:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }

@@ -1,0 +1,17 @@
+.reserve_wrap{
+    margin: 50px auto;
+    width: 1200px;
+    display: flex;
+
+}
+.left_reserv_wrap {
+    background-color: white;
+    width: 150px;
+    flex: 0 0 auto; /* 왼쪽 섹션이 자연 크기를 유지하며 왼쪽에 고정되도록 설정 */
+    display: flex;
+}
+.center_reserv_wrap {
+    background-color: black;
+    flex: 1; /* 나머지 공간을 차지하도록 설정 */
+    display: flex;
+}

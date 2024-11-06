@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
+@keyframes grow {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(2.5); /* 원하는 최대 크기 */
+    }
+  }
+
+div {
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+  
+.growing {
+    animation: grow 1.5s forwards; /* 2초 동안 애니메이션 */
+  }
+
+.header.ty3 {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 194px;
+    border-bottom: none;
+    background-color: transparent;
+    background: -moz-linear-gradient(top, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(top, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to bottom, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1d1d1f", endColorstr="#00000000",GradientType=0 );
+}
+
+.header.ty3 .logo {
+    background-image: url('../../../image/logo_white.png');
+}
+
+.header .logo {
+    position: absolute;
+    z-index: 1;
+    top: 7px;
+    left: 50%;
+    margin-left: -109px;
+    text-indent: -9999em;
+    background: url('../../../image/logo_white.png') no-repeat center center;
+    background-size: 50px;
+}
+
+.header .logo a {
+    display: block;
+    width: 219px;
+    height: 37px;
+    text-decoration: none;
+}
+
+a, a:link, a:visited, a:active, a:hover { /*주의사항 1*/
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header.ty3 .gnb {
+    border-bottom-color: rgba(255, 255, 255, .3);
+}
+
+.header .gnb {
+    position: relative;
+    width: 980px;
+    height: 70px;
+    margin: 0 auto;
+    border-bottom: 1px solid #B2B2B2;
+}
+
+.header .gnb:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.header.ty3 .gnb .g_menu2 {
+    opacity: .5;
+}
+
+.header.ty3 .gnb .g_menu2 {
+    float: right;
+}
+
+.header .gnb > ul {
+    margin-top: 40px;
+    list-style: none;
+}
+
+.header.ty3 .gnb .g_menu2 > li {
+    margin-left: 14px;
+}
+
+.header .gnb > ul > li {
+    float: left;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.header .gnb > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.header .gnb .g_menu2 > li {
+    margin-left: 14px;
+}
+
+.header .gnb .g_menu3 > li {
+    margin-left: 25px;
+}
+
+.header .gnb > ul > li > a {
+    display: block;
+    font-size: 12px;
+    color: #656565;
+    text-decoration: none;
+    
+}
+
+.header .gnb .g_menu3 {
+    position: absolute;
+    right: 0;
+    top: 88px;
+    margin-top: 0;
+}
+
+.header.ty3 .gnb .g_menu3 li .btn_my {
+    padding-left: 15px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_my_wht.png) no-repeat 0 center;
+    
+}
+
+.header.ty3 .gnb > ul > li > a, .header.ty3 .gnb > ul > li > button {
+    color: #FFF;
+}
+
+.header .gnb .g_menu3 > li > a, .header .gnb .g_menu3 > li > button {
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+.header .gnb .g_menu3 > li .btn_reserve {
+    margin-top: 0;
+    padding-left: 18px;
+    border: none;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve_wht.png) no-repeat 0 2px;
+}
+ 
+#nav { /*#: id / .: className*/
+    width: 980px;
+    margin: -10px auto 0;
+    text-align: center;
+}
+
+#nav > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+    
+}
+
+.area__gnbmovingbar{
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    font-size: 12px;
+    color: #000;
+    width: 980px;
+    margin: 3px auto 0;
+    text-align: center;
+}
+
+#nav > ul > li {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.header.ty3 #nav > ul > li > a {
+    color: #FFF;
+}
+
+#nav > ul > li > a {
+    display: block;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 24px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+}
+
+.header.ty3 #nav > ul > li a:before {
+    opacity: 1;
+}
+
+#nav > ul > li:first-child a:before {
+    display: none;
+}
+
+#nav > ul > li > a:before {
+    content: "";
+    opacity: .2;
+    position: absolute;
+    left: 0;
+    top: 55%;
+    height: 9px;
+    margin-top: -5px;
+    border-left: 1px solid #707070;
+}
+.navbar {
+    z-index: 99999;
+}
+
+#nav.area__gnbmovingbar .wrap_nav_underline {
+    position: relative;
+    width: 980px;
+    height: 2px;
+    margin-top: -2px;
+}
+
+#nav.area__gnbmovingbar > ul > li ~ .wrap_nav_underline .nav_underline {
+    left: 277px;
+    width: 77px;
+    opacity: 0;
+}
+
+#nav.area__gnbmovingbar .nav_underline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 65px;
+    height: 2px;
+    background: #FF1744;
+    transition: all .3s ease-in-out;
+}
+
+.item {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 140px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 1) 100%);
+}
+
+#nav > ul > li > div {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 114px;
+    height: 38px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .7);
+    border-bottom: none;
+}
+
+.hover { 
+    transition: 0.5s;
+    &:hover {
+        height: 38px;
+        border-bottom: 2px solid #FF1744;
+        z-index: 3;
+    }
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, .7);
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 114px;
+    height: 38px;
+    text-align: center;
+}
+
+.navbar > ul > li {
+   float: left;
+}
+
+.navbar > ul > li > a {
+    opacity: .5;
+    color: #FFF;
+    float: left;
+}
+
+.navbar > ul > li > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 10px;
+}
+
+.navbarul {
+    display: inline-block;
+    position: relative;
+    width: 710px;
+    top: 8px;
+}
+
+.navbarul > li > a {
+    opacity: .6 !important;
+    height: 22px !important;
+    line-height: 18px !important;
+    margin: 0 5px !important;
+    color: #FFF !important;
+}
+
+.navbar > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.navbar1 {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 38px;
+    text-align: center;
+    background-color: #000;
+}
+
+.navbar1 > ul {
+    opacity: 0;
+    display: inline-block;
+    width: 980px;
+    margin: 10px 0;
+}
+
+.navbar1 > ul > li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.navbar1 > ul > li > a {
+    display: block;
+    opacity: .6;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 5px;
+    color: #FFF;
+}
+
+.btn_menu_all {
+    width: 17px;
+    margin-top: 0px;
+    border: none;
+    text-indent: -9999em;
+    background-color: #000;
+    vertical-align: middle;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all_wht.png) no-repeat center center;
+}
+
+.btn_menu_all {
+    background-image: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_all_wht.png);
+}
+
+.gnb > ul > li > button {
+    color: #FFF;
+}
+
+.gnb .g_menu3 > li > button {
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+.your-elements {
+    top: 11px;
+}

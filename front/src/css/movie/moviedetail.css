@@ -1,0 +1,334 @@
+.jytab_wrap {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+}
+
+.jytab_tit {
+    width: 245px;
+    margin: 0 5px;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.jytab_tit.active {
+    border-color: red;
+}
+
+.jyslider {
+    position: absolute;
+    height: 4px;
+    background-color: black;
+    bottom: -2px;
+    transition: left 0.3s ease;
+}
+
+.jyinnerfull {
+    width: 100%;
+    background: #F8F8F8;
+}
+
+.jyinner980 {
+    width: 980px;
+    margin: 0 auto;
+}
+
+.jymovi_tab_info1 {
+    padding: 50px 0;
+    margin-top: 5px;
+    overflow: hidden;
+    margin-bottom: 45px;
+    color: #000000;
+}
+
+.jydetail_info2 {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #7c7c7c;
+    font-size: 21px;
+}
+
+.jydetail_info2 li::before {
+    content: "• ";
+    margin-right: 10px;
+    color: #7c7c7c;
+    font-size: 23px;
+}
+
+.jymovi_tab_info2 {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.jyowl-carousel .jyowl-stage-outer {
+    position: relative;
+}
+
+.jyslide_wrap {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.jyslide_wrap .jyslide_movie_detail_trailer {
+   width: 980px;
+   height: 200px;
+}
+
+.jyimage-item {
+   margin: 10px;
+}
+
+.jyreview-item {
+   margin-bottom: 20px;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
+}
+
+.jyreview-author {
+   font-weight: bold;
+   margin-bottom: 5px;
+   font-size: 18px;
+}
+
+.jyreview-content {
+   font-size: 16px;
+   line-height: 1.5;
+   color: #555;
+}
+
+.jytrailers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.jytrailers div {
+    flex: 0 1 316px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.jymovie-image {
+    width: 100%;
+    height: 176px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+#jycrewDetailModal {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 580px;
+    height: 620px;
+    background-color: #FFF;
+    border-radius: 10px;
+    height: auto;
+}
+
+.jyline_type a {
+    color: black;
+    text-decoration: none;
+}
+
+.jyline_type a:hover {
+    text-decoration: underline;
+}
+
+.jylayer_wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    z-index: 1000;
+}
+
+.jytrailer_modal {
+    width: 70%;
+    height: 60%;
+    background-color: #000;
+    color: #fff;
+}
+
+.jytrailer_modal .jylayer_contents iframe {
+    border: none;
+}
+
+.jycrew_modal {
+    background-color: #f8f8f8;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.jylayer_wrap .jylayer_contents_crew {
+    padding: 31px 0px;
+    height: 580px;
+    width: 580px;
+    margin: 0 auto;
+}
+
+.jycrew_modal .jyprofile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.jycrew_modal .jyfilmography-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+}
+
+.jyfilmography-section {
+    margin-top: 20px;
+}
+
+.jyfilmography-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-right: 80%;
+}
+
+.jyfilmography-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.jyfilmography-item {
+    width: 120px;
+    text-align: center;
+}
+
+.jyfilmography-item img,
+.jyfilmography-item p {
+    transition: transform 0.3s;
+}
+
+.jyfilmography-item img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+.jyrating-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.jyrating-container label {
+    margin: 0 5px;
+}
+
+.jyreviews-container {
+    margin: 20px 0;
+}
+
+.jyreview_write_row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin-top: 0; /* 위쪽 공백 제거 */
+    padding-top: 0; /* 필요시 추가 */
+    overflow: hidden; /* 내부 요소가 벗어나지 않도록 설정 */
+}
+
+.jyreview_write_box {
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.jytextarea {
+    width: 100%;
+    height: 130px; /* 필요한 높이로 설정 */
+    padding: 10px; /* 원하는 패딩으로 설정 */
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+}
+
+.jysubmit-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.jysubmit-button {
+    width: 150px;
+    height: 150px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jybyte_info {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    color: #999;
+}
+
+.jylist_bdr_box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.jytitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.jylist_txt {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.jylist_txt li {
+    margin-bottom: 8px;
+}
