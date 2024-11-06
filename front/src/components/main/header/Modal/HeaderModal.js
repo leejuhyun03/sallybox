@@ -39,11 +39,7 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
 
     return (
         
-<<<<<<< HEAD
-        <div className='Modal'>
-=======
         <div className='Modals'>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
             <div className='bg'></div>
             <div className='popup' style={{position: 'fixed', left: '50%', top: '70px', marginLeft: '-490px'}}>
                 <div id="layerAllMenu" className="menu_all_wrap active">
@@ -63,84 +59,25 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                     <th scope="col" id="gmenu1"><span>예매</span></th>
                                     <th scope="col" id="gmenu2"><span>영화</span></th>
                                     <th scope="col" id="gmenu3"><span>영화관</span></th>
-<<<<<<< HEAD
-                                    <th scope="col" id="gmenu4"><span>스페셜관</span></th>
-                                    <th scope="col" id="gmenu5"><span>스토어</span></th>
-                                    <th scope="col" id="gmenu6"><span>멤버십</span></th>
-=======
                                     
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu1">
                                         <ul style={{paddingInlineStart: '0px'}}>
-<<<<<<< HEAD
-                                            <li><a title="예매하기" tabIndex="0">예매하기</a></li>
-=======
                                             <li><a href='http' title="예매하기" tabIndex="0">예매하기</a></li>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                             <li><a title="상영시간표" tabIndex="0">상영시간표</a></li>
                                             <li><a title="할인안내" tabIndex="0">할인안내</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu2">
                                         <ul style={{paddingInlineStart: '0px'}}>
-<<<<<<< HEAD
-                                            <li><a title="홈" tabIndex="0">홈</a></li>
-                                            <li><a title="현재상영작" tabIndex="0">현재상영작</a></li>
-                                            <li><a title="상영예정작" tabIndex="0">상영예정작</a></li>
-                                            <li><a title="아르떼" tabIndex="0">아르떼</a></li>
-=======
                                             <li><a title="현재상영작" tabIndex="0">현재상영작</a></li>
                                             <li><a title="상영예정작" tabIndex="0">Sally 추천작</a></li>
                                             <li><a title="아르떼" tabIndex="0">추억의 영화관</a></li>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu3">
                                         <ul style={{paddingInlineStart: '0px'}}>
-<<<<<<< HEAD
-                                            <li><a title="스페셜관" tabIndex="0">스페셜관</a></li>
-                                            <li><a title="서울" tabIndex="0">서울</a></li>
-                                            <li><a title="경기/인천" tabIndex="0">경기/인천</a></li>
-                                            <li><a title="충청/대전" tabIndex="0">충청/대전</a></li>
-                                            <li><a title="전라/광주" tabIndex="0">전라/광주</a></li>
-                                            <li><a title="경북/대구" tabIndex="0">경북/대구</a></li>
-                                            <li><a title="경남/부산/울산" tabIndex="0">경남/부산/울산</a></li>
-                                            <li><a title="강원" tabIndex="0">강원</a></li>
-                                            <li><a title="제주" tabIndex="0">제주</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu4">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="홈" tabIndex="0">홈</a></li>
-                                            <li><a title="샤롯데" tabIndex="0">샤롯데</a></li>
-                                            <li><a title="수퍼플렉스" tabIndex="0">수퍼플렉스</a></li>
-                                            <li><a title="수퍼MX4D" tabIndex="0">수퍼MX4D</a></li>
-                                            <li><a title="수퍼 4D" tabIndex="0">수퍼 4D</a></li>
-                                            <li><a title="수퍼LED" tabIndex="0">수퍼LED</a></li>
-                                            <li><a title="광음시네마" tabIndex="0">광음시네마</a></li>
-                                            <li><a title="리클라이너" tabIndex="0">리클라이너</a></li>
-                                            <li><a title="씨네패밀리" tabIndex="0">씨네패밀리</a></li>
-                                            <li><a title="씨네커플" tabIndex="0">씨네커플</a></li><li>
-                                            <a title="씨네비즈" tabIndex="0">씨네비즈</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu5">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="베스트" tabIndex="0">베스트</a></li>
-                                            <li><a title="포토카드" tabIndex="0">포토카드</a></li>
-                                            <li><a title="관람권" tabIndex="0">관람권</a></li>
-                                            <li><a title="스낵음료" tabIndex="0">스낵음료</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu6">
-                                        <ul style={{paddingInlineStart: '0px'}}>    
-                                            <li><a title="VIP" tabIndex="0">VIP</a></li>
-                                            <li><a title="짝꿍클럽" tabIndex="0">짝꿍클럽</a></li>
-                                            <li><a title="틴틴클럽" tabIndex="0">틴틴클럽</a></li>
-                                            <li><a title="브라보클럽" tabIndex="0">브라보클럽</a></li>
-=======
                                             <li>
                                                 <a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
                                             </li>
@@ -209,47 +146,25 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                             <li>
                                                 <a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
                                             </li>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         </ul>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="col" id="gmenu7"><span>마이</span></th>
                                     <th scope="col" id="gmenu8"><span>고객센터</span></th>
-<<<<<<< HEAD
-                                    <th scope="col" id="gmenu9"><span>회원 서비스</span></th>
-                                    <th scope="col" id="gmenu10"><span>이벤트</span></th>
-                                    <th scope="col" id="gmenu11"><span>할인안내</span></th>
-=======
                                     <th scope="col" id="gmenu8"><span>회원 서비스</span></th>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu7">
                                         <ul style={{paddingInlineStart: '0px'}}>
                                             <li><a title="결제내역" tabIndex="0">결제내역</a></li>
-<<<<<<< HEAD
-                                            <li><a title="쿠폰함" tabIndex="0">쿠폰함</a></li>
-                                            <li><a title="MY 이벤트" tabIndex="0">MY 이벤트</a></li>
-                                            <li><a title="MY 클럽" tabIndex="0">MY 클럽</a></li>
-                                            <li><a title="MY 무비로그" tabIndex="0">MY 무비로그</a></li>
-=======
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                             <li><a title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">
                                         <ul style={{paddingInlineStart: '0px'}}>
-<<<<<<< HEAD
-                                            <li><a title="브라보클럽" tabIndex="0">FAQ</a></li>
                                             <li><a title="공지사항" tabIndex="0">공지사항</a></li>
                                             <li><a title="1:1 문의" tabIndex="0">1:1 문의</a></li>
-                                            <li><a title="단체관람/대관문의" tabIndex="0">단체관람/대관문의</a></li>
-                                            <li><a title="분실물문의" tabIndex="0">분실물문의</a></li>
-=======
-                                            <li><a title="공지사항" tabIndex="0">공지사항</a></li>
-                                            <li><a title="1:1 문의" tabIndex="0">1:1 문의</a></li>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu9">
@@ -264,26 +179,6 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                             <li><a title="L.POINT회원안내" tabIndex="0">L.POINT회원안내</a></li>
                                         </ul>
                                     </td>
-<<<<<<< HEAD
-                                    <td headers="gmenu gmenu10">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="영화" tabIndex="0">영화</a></li>
-                                            <li><a title="시사회/무대인사" tabIndex="0">시사회/무대인사</a></li>
-                                            <li><a title="HOT" tabIndex="0">HOT</a></li>
-                                            <li><a title="제휴할인" tabIndex="0">제휴할인</a></li>
-                                            <li><a title="우리동네영화관" tabIndex="0">우리동네영화관</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu11">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="신용카드" tabIndex="0">신용카드</a></li>
-                                            <li><a title="포인트" tabIndex="0">포인트</a></li>
-                                            <li><a title="통신사" tabIndex="0">통신사</a></li>
-                                            <li><a title="기타결제수단" tabIndex="0">기타결제수단</a></li>
-                                        </ul>
-                                    </td>
-=======
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                 </tr>
                             </tbody>
                         </table>

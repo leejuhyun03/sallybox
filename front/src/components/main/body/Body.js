@@ -94,10 +94,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     certification: item[5],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-<<<<<<< HEAD
-                console.log('moviesArray: ' + moviesArray)
-=======
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                 setMovies(moviesArray);
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -129,11 +125,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                         runtime: item[7],
                         ageRatingImg: getAgeRatingImg(item[5]),
                     }));
-<<<<<<< HEAD
-                    console.log('topRatedArray: ' + topRatedArray)
-=======
-
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                     setTopRatedMovies(topRatedArray);
                 } else {
                     console.error('Data is not an array:', data);
@@ -184,11 +175,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     runtime: item[7],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-<<<<<<< HEAD
-                console.log('topRecommendArray: ' + topRatedArray)
-=======
-
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                 setRecommendedMovies(topRatedArray);
             } else {
                 console.error('Data is not an array:', data);
@@ -458,11 +444,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                                         </div>
                                     </div>
                                     }
-<<<<<<< HEAD
-                                <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
-=======
                                 <div className="btm_info">
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                     <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                     <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                     <span className="sub_info1">
@@ -518,11 +500,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                                         </div>
                                     </div>
                                     }
-<<<<<<< HEAD
-                                    <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
-=======
                                     <div className="btm_info">
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
                                         <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                         <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                         <span className="sub_info1">

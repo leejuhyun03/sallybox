@@ -7,10 +7,6 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-<<<<<<< HEAD
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-=======
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
 
 public class CustomDetailsDTO implements UserDetails {
 
