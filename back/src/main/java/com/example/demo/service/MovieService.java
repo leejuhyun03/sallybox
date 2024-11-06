@@ -2,10 +2,10 @@ package com.example.demo.service;
 
 import java.util.*;
 import com.example.demo.DTO.JH.CinemaDTO;
-import com.example.demo.DTO.JY.MovieDTO;
-import com.example.demo.DTO.JY.NowMovieDTO;
-import com.example.demo.DTO.JY.ReviewsDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
+import com.example.demo.DTO.ZERO.MovieDTO;
+import com.example.demo.DTO.ZERO.NowMovieDTO;
+import com.example.demo.DTO.ZERO.ReviewsDTO;
 
 public interface MovieService {
    
@@ -47,4 +47,3 @@ public interface MovieService {
     boolean checkIfMovieExists(int movieId);
 
 }
-

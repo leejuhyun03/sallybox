@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../css/movie/moviedetail.css'; // CSS 파일 import
 import axios from 'axios';
 import { PiStarFill } from "react-icons/pi";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa"; // 다음/이전 버튼 아이콘
 import { IoClose } from "react-icons/io5"; // 닫기 버튼 아이콘
-
+import { useSearchParams } from 'react-router-dom';
+import { BiSort } from "react-icons/bi";
+import { useNavigate } from 'react-router-dom'; // navigate 추가
 const API_KEY = 'c1fe680d16ac165e297b9bf72e80e897';
 
 const MovieDetail = ({ movie_id }) => {
@@ -13,13 +15,14 @@ const MovieDetail = ({ movie_id }) => {
     const [credits, setCredits] = useState({});
     const [trailers, setTrailers] = useState([]);
     const [reviews, setReviews] = useState([]);
-    const [sortOrder, setSortOrder] = useState('최신순'); // 정렬 기준 상태 추가-관람평
+    const [sortOrder, setSortOrder] = useState('true'); // 정렬 기준 상태 추가-관람평
     const [images, setImages] = useState([]);
     const [selectedActor, setSelectedActor] = useState(null);
     const [selectedDirector, setSelectedDirector] = useState(null);
     const [isActorModalOpen, setIsActorModalOpen] = useState(false);
     const [isDirectorModalOpen, setIsDirectorModalOpen] = useState(false);
     const [comment, setComment] = useState(''); // comment 상태와 setComment 함수 선언
+    const [visibleReviews, setVisibleReviews] = useState(10); // 초기에 10개만 표시
 
     // 모달
     const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 (true일 때 모달이 열림)
@@ -32,6 +35,8 @@ const MovieDetail = ({ movie_id }) => {
     const [editingReviewId, setEditingReviewId] = useState(null); // 수정 중인 리뷰 ID
     const [isImageModalOpen, setIsImageModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const [showExistingReview, setShowExistingReview] = useState(true);
+    
     
     useEffect(() => {
         const fetchMovieData = async () => {
@@ -77,12 +82,16 @@ const MovieDetail = ({ movie_id }) => {
     }, [movie_id]);
 
     const sortedReviews = reviews.sort((a, b) => {
-        if (sortOrder === '최신순') {
+        if (sortOrder) {
             return new Date(b.createdAt) - new Date(a.createdAt); // 최신순
         } else {
             return new Date(a.createdAt) - new Date(b.createdAt); // 오래된순
         }
     });
+
+    const toggleSortOrder = () => {
+        setSortOrder(!sortOrder);
+    };
 
     const fetchActorDetails = async (actorId) => {
         try {
@@ -184,19 +193,30 @@ const MovieDetail = ({ movie_id }) => {
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-
+        
         try {
             if (isEditing) {
+                // 수정 요청 보내기
                 const response = await axios.put(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/${editingReviewId}`, {
                     reviewText: reviewContent,
                     user_id: 1,
                     rating: rating,
                     nickname: nickname,
                 });
-
+    
+                // 전체 리뷰 목록 재요청 - 수정 후 createdAt 포함
                 const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
                 setReviews(reviewsRes.data);
+    
+                // 수정 완료된 리뷰로 스크롤 이동 - 수정!!!!!!!!!!
+                setTimeout(() => {
+                    const editedReviewElement = document.getElementById(`review-${editingReviewId}`);
+                    if (editedReviewElement) {
+                        editedReviewElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100); // 수정!!!!!!!!!!
             } else {
+                // 새로운 리뷰 작성
                 const response = await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`, {
                     movie_id: movie_id,
                     reviewText: reviewContent,
@@ -204,25 +224,25 @@ const MovieDetail = ({ movie_id }) => {
                     rating: rating,
                     nickname: nickname,
                 });
-
-                setReviews((prevReviews) => [...prevReviews, response.data]);
+    
+                // 전체 리뷰 목록 재요청 - 신규 리뷰 포함
+                const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
+                setReviews(reviewsRes.data);
             }
-
-            const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
-            setReviews(reviewsRes.data);
-
+    
             setReviewContent('');
             setNickname('');
             setRating(5);
             setIsEditing(false);
             setEditingReviewId(null);
-
+            setShowExistingReview(true); // 기존 내용 표시
+    
         } catch (error) {
             console.error("Error submitting review:", error);
         } finally {
             setIsSubmitting(false);
         }
-    };
+    };  
 
     const handleLike = async (reviewId) => {
         try {
@@ -242,11 +262,30 @@ const MovieDetail = ({ movie_id }) => {
         }
     };
 
+    // 입력창을 참조할 useRef 훅 추가
+    const reviewInputRef = useRef(null);
+
+
+    // "더보기" 버튼 클릭 시 더 많은 리뷰를 로드
+    const handleShowMoreReviews = (e) => {
+        e.preventDefault(); // 기본 동작 방지
+        e.stopPropagation(); // 이벤트 버블링 방지
+        setVisibleReviews((prevVisibleReviews) => prevVisibleReviews + 10);
+    };
+
+
+    // 리뷰 수정 시 입력창으로 스크롤 이동
     const handleEditReview = (review) => {
         setReviewContent(review.reviewText);
         setRating(review.rating);
         setIsEditing(true);
         setEditingReviewId(review.reviewId);
+        setShowExistingReview(false);
+
+        // DOM 업데이트 후 입력창으로 스크롤 이동
+        setTimeout(() => {
+            reviewInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 0);
     };
 
     const handleDeleteReview = async (reviewId) => {
@@ -268,12 +307,12 @@ const MovieDetail = ({ movie_id }) => {
             <div>
                 <ul className='jytab_wrap jyouter jymoviedetailbar jynew22 jyactionmovingbar' style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
                     <li>
-                        <button type='button' className={`jytab_tit ${activeTab === 'details' ? 'active' : ''}`} onClick={() => handleTabClick('details')} style={{ width: '485px' }}>
+                        <button type='button' className={`jytab_tit ${activeTab === 'details' ? 'active' : ''}`} onClick={() => handleTabClick('details')} style={{ width: '485px',backgroundColor: activeTab === 'details' ? '#333' : '#ddd', color: activeTab === 'details' ? '#fff' : '#000'}}>
                             <span>상세정보</span>
                         </button>
                     </li>
                     <li>
-                        <button type='button' className={`jytab_tit ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => handleTabClick('reviews')} style={{ width: '485px' }}>
+                        <button type='button' className={`jytab_tit ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => handleTabClick('reviews')} style={{ width: '485px',backgroundColor: activeTab === 'reviews' ? '#333' : '#ddd', color: activeTab === 'reviews' ? '#fff' : '#000'}}>
                             <span>관람평</span>
                         </button>
                     </li>
@@ -345,13 +384,11 @@ const MovieDetail = ({ movie_id }) => {
                                         <p>트레일러가 없습니다.</p>
                                     )}
                                 </div>
-
+                                {isModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}        
                                 {isModalOpen && selectedTrailer && (
-                                    <div id="jylayerMovieTrailer" className="jylayer_wrap jytrailer_modal active">
-                                        <div className="jylayer_header">
-                                            <button type="button" className="jybtn_close" onClick={closeModal}>팝업 닫기</button>
-                                        </div>
+                                    <div id="jylayerMovieTrailer" className="jylayer_wrap jytrailer_modal active" style={{width:'970px', height:'580px'}}>
                                         <div className="jylayer_contents">
+                                        <button type="button" className="jybtn_close" onClick={closeModal}><IoClose  size={30}/></button>
                                             <iframe
                                                 width="100%"
                                                 height="100%"
@@ -391,6 +428,8 @@ const MovieDetail = ({ movie_id }) => {
                 {activeTab === 'reviews' && (
                     <form onSubmit={handleReviewSubmit} className="jyreview-form">
                         <div className="jyreviews-container">
+
+                        
                             <div className="jyrating-container">
                                 {[1, 2, 3, 4, 5].map((star) => (
                                     <label key={star} style={{ cursor: 'pointer' }}>
@@ -412,6 +451,7 @@ const MovieDetail = ({ movie_id }) => {
                             <div className="jyreview_write_row">
                                 <div className="jyreview_write_box" style={{width:'130px', height:'130px'}}>
                                     <textarea
+                                        ref={reviewInputRef}
                                         id="jyreviewContent"
                                         value={reviewContent}
                                         onChange={(e) => {
@@ -419,7 +459,7 @@ const MovieDetail = ({ movie_id }) => {
                                                 setReviewContent(e.target.value);
                                             }
                                         }}
-                                        style={{ width: '100%', height: '150px', padding: '10px', boxSizing: 'border-box' , marginTop:'-10px'}}
+                                        style={{ width: '100%', height: '150px', padding: '10px', boxSizing: 'border-box' , marginTop:'-10px',fontSize:'17px'}}
                                         placeholder="평점 및 영화 관람평을 작성해 주세요. (최소 10글자 이상)"
                                         required
                                         title="관람평 작성"
@@ -441,39 +481,45 @@ const MovieDetail = ({ movie_id }) => {
                                             : '관람평 작성'}
                                 </button>
                             </div>
+                        
 
-                            <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-                                <option value="최신순">최신순</option>
-                                <option value="오래된순">오래된순</option>
-                            </select>
+                            
 
                             <div className="jyreview-list">
-                                {sortedReviews.length > 0 ? (
-                                    sortedReviews.map((review) => (
-                                        <div key={review.reviewId} className="jyreview-item">
-                                            {isEditing && editingReviewId === review.reviewId ? (
-                                                <>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <h5>{review.nickname}</h5>
-                                                    <p>{review.reviewText}</p>
-                                                    <p>{formatDate(review.createdAt)}</p>
-                                                    <button onClick={() => handleEditReview(review)}>수정</button>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleDeleteReview(review.reviewId)}
-                                                    >
-                                                        삭제
-                                                    </button>
-                                                </>
-                                            )}
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p>작성된 리뷰가 없습니다.</p>
-                                )}
-                            </div>
+                                {/* 정렬 버튼 추가 */}
+                            <button type="button" onClick={toggleSortOrder} className="jy-sort-button">
+                                <BiSort />{sortOrder ? '최신순' : '오래된순'}
+                            </button>
+
+                            
+                            {sortedReviews.length > 0 ? (
+                                sortedReviews.slice(0, visibleReviews).map((review) => (
+                                    <div key={review.reviewId} id={`review-${review.reviewId}`} className={`jyreview-item ${!showExistingReview && editingReviewId === review.reviewId ? 'jyhidden' : ''}`}> 
+                                        {isEditing && editingReviewId === review.reviewId ? null : (
+                                            <>
+                                            
+                                            <p style={{ fontWeight: 'bold' }}>{review.nickname}</p>
+                                            <p>{review.reviewText}</p>
+                                            <p>{formatDate(review.createdAt)}</p>
+                    
+                                            
+                                            <button onClick={() => handleEditReview(review)}>수정</button>
+                                            <button type="button" onClick={() => handleDeleteReview(review.reviewId)}>삭제</button>
+                                        </>
+                                        )}
+                                    </div>
+                                ))
+                            ) : (
+                                <p>작성된 리뷰가 없습니다.</p>
+                            )}
+
+                            {/* 리뷰가 10개 이상일 때만 "더보기" 버튼 표시 */}
+                            {sortedReviews.length > visibleReviews && sortedReviews.length > 10 && (
+                                <button type="button" onClick={handleShowMoreReviews} className="jyshow-more-button">
+                                    더보기
+                                </button>
+                            )}
+                        </div>
 
                             <div className="jylist_bdr_box">
                                 <h3 className="jytitle jytxt_caution2">유의사항</h3>
@@ -489,10 +535,15 @@ const MovieDetail = ({ movie_id }) => {
                     </form>
                 )}
 
+                {isActorModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}
                 {isActorModalOpen && selectedActor && (
                     <div id="jycrewDetailModal" className="jylayer_wrap jycrew_modal">
                         <div className="jylayer_header_crew">
-                            <button type="button" className="jybtn_close jybtnCloseLayer" onClick={closeActorModal}>팝업 닫기</button>
+                            <button type="button" className="jybtn_close jybtnCloseLayer" onClick={closeActorModal}
+                            style={{ background: 'none', 
+                                border: 'none', 
+                                cursor: 'pointer',
+                                padding: '5px'}}><IoClose  size={30}/></button>
                         </div>
                         <div className="jylayer_contents_crew">
                             {selectedActor && (
@@ -506,8 +557,8 @@ const MovieDetail = ({ movie_id }) => {
                                         className="jyprofile_image"
                                     />
                                     <h3>{selectedActor.name}</h3>
-                                    <p style={{ fontSize: '21px' }}>{selectedActor.birthday}</p>
-                                    <p>{selectedActor.place_of_birth}</p>
+                                    <p style={{ fontSize: '17px' }}>{selectedActor.birthday}</p>
+                                    <p style={{ fontSize : '11px'}}>{selectedActor.place_of_birth}</p>
                                     <p className="jyfilmography-title">필모그래피</p>
                                     <div className="jyfilmography-grid">
                                         {selectedActor.movieCredits && selectedActor.movieCredits.length > 0 ? (
@@ -534,10 +585,11 @@ const MovieDetail = ({ movie_id }) => {
                     </div>
                 )}
 
+                {isDirectorModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}
                 {isDirectorModalOpen && selectedDirector && (
                     <div id="jycrewDetailModal" className="jylayer_wrap jycrew_modal">
                         <div className="jylayer_header_crew">
-                            <button type="button" className="jybtn_close jybtnCloseLayer" onClick={closeDirectorModal}>팝업 닫기</button>
+                            <button type="button" className="jybtn_close jybtnCloseLayer" onClick={closeDirectorModal}><IoClose  size={30}/></button>
                         </div>
                         <div className="jylayer_contents_crew">
                             {selectedDirector && (
@@ -580,6 +632,7 @@ const MovieDetail = ({ movie_id }) => {
                     </div>
                 )}
 
+                {isImageModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}
                 {isImageModalOpen && (
                     <div id="jyimageModal" className="jylayer_wrap jyimage_modal active">
                         <div className="jylayer_header">

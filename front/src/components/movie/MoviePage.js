@@ -188,6 +188,7 @@ const MoviePage = () => {
                 </li>
             </ul>
   
+            {isModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}
             {isModalOpen && selectedTrailer && (
               <div id="jylayerMovieTrailer" className="jylayer_wrap active">
                 <div className="jylayer_header">
@@ -226,7 +227,7 @@ const MoviePage = () => {
                   cursor: isMovieNowPlaying ? 'pointer' : 'default', //상영 종료 시 클릭 비활성화
                 }}
               >
-                {isMovieNowPlaying ? '예매하기' : '상영 종료'} {/* 버튼 텍스트 변경 */}
+                {isMovieNowPlaying ? '예매하기' : '상영종료'} {/* 버튼 텍스트 변경 */}
               </button>
 
             </a>

@@ -60,4 +60,168 @@
       select movie_id AS movieId, poster_path AS posterPath, title, vote_average AS voteAverage, certification from nowmovies
     </select>
 
+    <!-- 지영 Mapper.xml -->
+
+    <!-- 서울 기준으로 시간을 맞추기 위해서 -->
+    <select id="setSessionTimeZone">
+        ALTER SESSION SET TIME_ZONE = 'Asia/Seoul'
+    </select>
+
+    <!-- INSERT 쿼리: Movies 테이블에 영화 정보를 삽입 -->
+    <insert id="insertMovie" parameterType="com.example.demo.DTO.JY.MovieDTO">
+        INSERT INTO movies (genre_ids, movie_id, original_language, overview, popularity, poster_path, release_date, title, vote_average, videos, runtime, certification)
+        VALUES (#{genreIdsString}, #{movieId}, #{originalLanguage}, #{overview}, #{popularity}, #{posterPath}, #{releaseDate}, #{title}, #{voteAverage}, #{videos}, #{runtime}, #{certification})
+    </insert>
+
+    <select id="findMoviesByTitle" parameterType="string" resultType="com.example.demo.DTO.JY.MovieDTO">
+       SELECT * FROM movies WHERE title LIKE CONCAT('%', #{title}, '%')
+    </select>
+
+    <select id="findById" resultType="com.example.demo.DTO.JY.MovieDTO">
+      SELECT 
+        MOVIE_ID as movieId,
+        GENRE_IDS as genreIdsString, 
+        ORIGINAL_LANGUAGE as originalLanguage, 
+        OVERVIEW as overview, 
+        POSTER_PATH as posterPath, 
+        RELEASE_DATE as releaseDate, 
+        TITLE as title, 
+        VOTE_AVERAGE as voteAverage, 
+        VIDEOS as videos, 
+        RUNTIME as runtime, 
+        CERTIFICATION as certification,
+        POPULARITY as popularity
+      FROM movies 
+      WHERE MOVIE_ID = #{movieId}
+    </select>
+
+    <select id="checkWishlist" resultType="int">
+        SELECT COUNT(*) FROM wishlist 
+        WHERE user_id = #{userId} 
+        AND movie_id = #{movieId}
+    </select>
+
+    <insert id="insertWishlist">
+        INSERT INTO wishlist (user_id, movie_id, genre_ids, created_at)
+        VALUES (#{userId}, #{movieId}, #{genreIds}, SYSDATE)
+    </insert>
+
+    <delete id="deleteWishlist">
+        DELETE FROM wishlist 
+        WHERE user_id = #{userId} 
+          AND movie_id = #{movieId}
+    </delete>
+
+    <!-- 리뷰 저장 쿼리 -->
+    <!-- 리뷰 저장 
+    <insert id="insertReview" parameterType="com.project.sallybox_back.model.ReviewsDTO">
+        INSERT INTO MOVIEREVIEWS (REVIEW_ID, MOVIE_ID, USER_ID, NICKNAME, RATING, REVIEW_TEXT, CREATED_AT, LIKED)
+        VALUES (REVIEWS_SEQ.NEXTVAL, #{movieId}, #{userId}, #{nickname}, #{rating}, #{reviewText,jdbcType=VARCHAR}, #{createdAt}, 0)
+    </insert>
+-->
+    <!-- mapper XML에서 createdAt 필드를 사용할 때, `jdbcType`을 `TIMESTAMP WITH TIME ZONE`으로 설정해 주세요. -->
+    <insert id="insertReview" parameterType="com.example.demo.DTO.JY.ReviewsDTO">
+        INSERT INTO MOVIEREVIEWS (REVIEW_ID, MOVIE_ID, USER_ID, NICKNAME, RATING, REVIEW_TEXT, CREATED_AT, LIKED)
+        VALUES (REVIEWS_SEQ.NEXTVAL, #{movieId}, #{userId}, #{nickname}, #{rating}, #{reviewText,jdbcType=VARCHAR}, 
+        #{createdAt,jdbcType=TIMESTAMP}, 0)
+    </insert>
+
+
+
+
+
+    <!-- 리뷰 수정 -->
+    <update id="updateReview" parameterType="com.example.demo.DTO.JY.ReviewsDTO">
+        UPDATE MOVIEREVIEWS
+        SET REVIEW_TEXT = #{reviewText}, RATING = #{rating}, NICKNAME = #{nickname}
+        WHERE REVIEW_ID = #{reviewId} AND USER_ID = #{userId}
+    </update>
+
+    <!-- 리뷰 삭제 -->
+    <delete id="deleteReview" parameterType="map">
+        DELETE FROM MOVIEREVIEWS WHERE REVIEW_ID = #{review_id} AND USER_ID = #{user_id}
+    </delete>
+
+   
+
+    <!-- 특정 영화의 리뷰 목록 가져오기 -->
+    <select id="findReviewsByMovieId" parameterType="int" resultType="com.example.demo.DTO.JY.ReviewsDTO"  flushCache="true">
+        SELECT 
+            review_id AS reviewId,          -- DTO의 reviewId와 매칭
+            movie_id AS movieId,            -- DTO의 movieId와 매칭
+            user_id AS userId,              -- DTO의 userId와 매칭
+            nickname AS nickname,           -- DTO의 nickname과 매칭
+            rating AS rating,               -- DTO의 rating과 매칭
+            review_text AS reviewText,      -- DTO의 reviewText와 매칭
+            created_at AS createdAt,        -- DTO의 createdAt과 매칭
+            liked AS liked                  -- DTO의 liked와 매칭
+        FROM MOVIEREVIEWS
+        WHERE movie_id = #{movieId}
+    </select>
+
+    <!-- 리뷰 추천 추가 -->
+    <insert id="addLike" parameterType="map">
+        INSERT INTO REVIEW_LIKES (review_id, user_id, created_at)
+        VALUES (#{reviewId}, #{userId}, SYSDATE)
+    </insert>
+
+    <!-- 리뷰 추천 여부 확인 -->
+    <select id="isReviewLiked" resultType="int">
+        SELECT COUNT(*) FROM REVIEW_LIKES WHERE review_id = #{reviewId} AND user_id = #{userId}
+    </select>
+
+    <!-- 리뷰 추천수 가져오기 -->
+    <select id="countReviewLikes" resultType="int">
+        SELECT COUNT(*) FROM REVIEW_LIKES WHERE review_id = #{reviewId}
+    </select>
+
+    <!-- 예매페이지!!!!!!!!!!!!!! -->
+     <select id="getCinemaInfojy" parameterType="int" resultType="com.example.demo.DTO.JH.CinemaDTO">
+
+        SELECT * FROM cinema WHERE cinema_id = #{cinema_id}
+        
+    </select>
+
+    <select id="getSchedulesTheaterjy" parameterType="int" resultType="com.example.demo.DTO.JH.SchedulesTheaterDTO">
+        SELECT s.schedule_id, s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
+            m.title AS title, m.certification AS certification,
+            t.theater_type AS theater_type, t.screen_no AS screen_no
+        FROM schedule s
+        JOIN movies m ON s.movie_id = m.movie_id
+        JOIN theater t ON s.theater_id = t.theater_id
+        WHERE s.cinema_id = #{cinema_id}
+        ORDER BY s.start_time
+    </select>
+    <!-- #{cinema_id} -->
+
+
+
+    <!-- 특정 지역의 영화관 목록을 가져오는 SQL 쿼리 -->
+    <select id="getCinemasByRegion" parameterType="String" resultType="com.example.demo.DTO.JH.CinemaDTO">
+        SELECT * FROM cinema WHERE location LIKE #{region}
+    </select>
+
+    <!-- 상영작 20개 -->
+    <select id="findNowMovieById" parameterType="int" resultType="com.example.demo.DTO.JY.NowMovieDTO">
+        SELECT 
+        MOVIE_ID as movieId,
+        GENRE_IDS as genreIdsString, 
+        ORIGINAL_LANGUAGE as originalLanguage, 
+        OVERVIEW as overview, 
+        POSTER_PATH as posterPath, 
+        RELEASE_DATE as releaseDate, 
+        TITLE as title, 
+        VOTE_AVERAGE as voteAverage, 
+        VIDEOS as videos, 
+        RUNTIME as runtime, 
+        CERTIFICATION as certification,
+        POPULARITY as popularity
+        FROM nowmovies 
+        WHERE MOVIE_ID = #{movieId}
+    </select>
+
+    <select id="existsByMovieId" parameterType="int" resultType="int">
+        SELECT movie_id FROM nowmovies WHERE movie_id = #{movieId}
+    </select>
+
 </mapper>

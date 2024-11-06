@@ -12,8 +12,9 @@ import FindPassword from './components/findpassword/index';
 import ResetPassword from './components/findpassword/RestPassword';
 import Footer from './components/footer/Footer';
 import Payment from "./components/payment/Payment";
-import Movies from "./components/movies/Movies";
 import { useState } from 'react';
+import Movied from './components/movied/Movied';
+import Movies from './components/movie/Movies';
 
 function App() {
   return (
@@ -42,13 +43,15 @@ function AppRoutes() {
         <Route path="/" element={<MainSallybox />} />
         <Route path='/sallybox'>
           <Route path="cinema/:cinema_id" element={<Theater />} />
-          <Route path="reserv/ticketing" element={<Ticketing />} />
+          {/* <Route path="reserv/ticketing" element={<Ticketing />} /> */}
           <Route path="reserv/seats" element={<Reservation />} />
           <Route path="payment" element={<Payment userId={userId}/>}/>
           <Route path='sign-in' element={<SignIn />} />
           <Route path="verification" element={<FindPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />
-          <Route path="movies" element={<Movies />} />
+          <Route path="movied" element={<Movied />} />
+          <Route path="movies/:movie_id" element={<Movies />} />
+          <Route path="reserv/ticketing" element={<Ticketing />} />
         </Route>
       </Routes>
 

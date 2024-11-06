@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.example.demo.DTO.JH.CinemaDTO;
-import com.example.demo.DTO.JY.MovieDTO;
-import com.example.demo.DTO.JY.NowMovieDTO;
-import com.example.demo.DTO.JY.ReviewsDTO;
-import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.mapper.SqlMapper;
 import com.example.demo.service.MovieService;
+import com.example.demo.DTO.JH.SchedulesTheaterDTO;
+import com.example.demo.DTO.ZERO.MovieDTO;
+import com.example.demo.DTO.ZERO.NowMovieDTO;
+import com.example.demo.DTO.ZERO.ReviewsDTO;
 
 import lombok.RequiredArgsConstructor;
 
