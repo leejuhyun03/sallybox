@@ -7,6 +7,7 @@ import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.KH.CustomDTO;
+import com.example.demo.DTO.KH.NowMoviesDTO;
 
 import java.util.*;
 
@@ -25,5 +26,7 @@ public interface SqlMapper {
     CustomDTO findByEmail(String email);
     CustomDTO findByName(String name);
     void updatePassword(@Param("email") String email, @Param("password") String password);
-
+    List<NowMoviesDTO> getNowMovies();
+    List<NowMoviesDTO> getReccommendMovies();
+    List<NowMoviesDTO> getClassicMovies();
 }

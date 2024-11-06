@@ -94,7 +94,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     certification: item[5],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-                console.log('moviesArray: ' + moviesArray)
                 setMovies(moviesArray);
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -126,7 +125,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                         runtime: item[7],
                         ageRatingImg: getAgeRatingImg(item[5]),
                     }));
-                    console.log('topRatedArray: ' + topRatedArray)
+
                     setTopRatedMovies(topRatedArray);
                 } else {
                     console.error('Data is not an array:', data);
@@ -177,7 +176,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     runtime: item[7],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-                console.log('topRecommendArray: ' + topRatedArray)
+
                 setRecommendedMovies(topRatedArray);
             } else {
                 console.error('Data is not an array:', data);
@@ -447,7 +446,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                                         </div>
                                     </div>
                                     }
-                                <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
+                                <div className="btm_info">
                                     <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                     <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                     <span className="sub_info1">
@@ -503,7 +502,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                                         </div>
                                     </div>
                                     }
-                                    <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
+                                    <div className="btm_info">
                                         <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                         <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                         <span className="sub_info1">

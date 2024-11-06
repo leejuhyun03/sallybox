@@ -50,10 +50,59 @@
       SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name}
     </select>
 
-     <update id="updatePassword" parameterType="map">
-        UPDATE users
-        SET password = #{password}
-        WHERE email = #{email}
+    <update id="updatePassword" parameterType="map">
+      UPDATE users
+      SET password = #{password}
+      WHERE email = #{email}
     </update>
+
+    <select id="getNowMovies" resultType="com.example.demo.DTO.KH.NowMoviesDTO">
+      select movie_id AS movieId, poster_path AS posterPath, title, vote_average AS voteAverage, certification, runtime from nowmovies
+      ORDER BY vote_average DESC
+    </select>
+
+    <select id="getReccommendMovies" resultType="com.example.demo.DTO.KH.NowMoviesDTO">
+      SELECT * FROM (
+        SELECT 
+            movie_id AS movieId, 
+            poster_path AS posterPath, 
+            title, 
+            vote_average AS voteAverage, 
+            certification, 
+            runtime
+        FROM 
+            movies
+        ORDER BY 
+            vote_average DESC
+        )
+      <![CDATA[
+      WHERE ROWNUM <= 20
+      ]]>
+    </select>
+
+    <select id="getClassicMovies" resultType="com.example.demo.DTO.KH.NowMoviesDTO">
+      SELECT * FROM (
+        SELECT 
+            movie_id AS movieId, 
+            poster_path AS posterPath, 
+            title, 
+            release_date AS releaseDate,
+             vote_average AS voteAverage,
+            certification, 
+            runtime
+        FROM 
+            movies
+            <![CDATA[
+        WHERE 
+            release_date < TO_DATE('2024-10-31', 'YYYY-MM-DD')
+        ]]>
+        ORDER BY 
+            vote_average DESC
+      )
+      <![CDATA[
+      WHERE ROWNUM <= 30
+      ]]>
+
+    </select>
 
 </mapper>

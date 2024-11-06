@@ -16,6 +16,7 @@ import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.KH.CustomDTO;
+import com.example.demo.DTO.KH.NowMoviesDTO;
 import com.example.demo.mapper.SqlMapper;
 import com.example.demo.service.SqlService;
 import com.example.demo.util.JwtUtil;
@@ -148,7 +149,20 @@ public class SqlServiceImpl implements SqlService{
 	public void updatePassword(String email, String password) {
 		sqlMapper.updatePassword(email, password);
 	}
-    
 
+    @Override
+    public List<NowMoviesDTO> getNowMovies() {
+        return sqlMapper.getNowMovies();
+    }
+    
+    @Override
+    public List<NowMoviesDTO> getReccommendMovies() {
+        return sqlMapper.getReccommendMovies();
+    }
+
+    @Override
+    public List<NowMoviesDTO> getClassicMovies() {
+        return sqlMapper.getClassicMovies();
+    }
 
 }

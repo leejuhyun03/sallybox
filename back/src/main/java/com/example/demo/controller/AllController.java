@@ -13,6 +13,7 @@ import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.FindEmailRequest;
 import com.example.demo.DTO.KH.LoginRequest;
+import com.example.demo.DTO.KH.NowMoviesDTO;
 import com.example.demo.service.SqlService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -164,8 +165,6 @@ public class AllController {
     @PostMapping("/api/resetPassword")
     public ResponseEntity<?> updatePassword(@RequestParam String email, @RequestParam String password) {
         try {
-            System.out.println("email: " + email);
-            System.out.println("newPassword: " + password);
 
             sqlService.updatePassword(email, password);
             return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
@@ -173,7 +172,24 @@ public class AllController {
             return ResponseEntity.status(500).body("비밀번호 변경에 실패했습니다.");
         }
     }
-    
-    
-    
+
+    @GetMapping("/api/nowmovies")
+    public List<NowMoviesDTO> getNowMovies() {
+        List<NowMoviesDTO> movies = sqlService.getNowMovies();
+        return movies;
+    }
+
+    @GetMapping("/api/recommendmovies")
+    public List<NowMoviesDTO> getRecommendMovies() {
+        List<NowMoviesDTO> movies = sqlService.getReccommendMovies();
+        return movies;
+    }
+
+    @GetMapping("/api/classicmovies")
+    public List<NowMoviesDTO> getClassicMovies() {
+        List<NowMoviesDTO> movies = sqlService.getClassicMovies();
+        return movies;
+    }
+
+        
 }

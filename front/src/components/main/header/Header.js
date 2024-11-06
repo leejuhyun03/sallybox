@@ -102,7 +102,7 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
           <li><a href='#'>고객센터</a></li>
           <li><a href='#'>단체관람/대관문의</a></li>
           {
-            isAuthenticated ? <li><a href='/sallybox' onClick={handleLogout}>로그아웃</a></li>
+            isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
                             : <li><Link to={'/sallybox/sign-in'}>로그인</Link></li>
           }
           
@@ -148,18 +148,15 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
               visible2 &&
             <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue2} onMouseLeave={onFalse2}>
               <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie" title="홈">홈</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1" title="현재상영작">현재상영작</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=5" title="추천영화">추천영화</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/Arte" title="추억의 영화관">추억의 영화관</a>
-                </li>
+              <li>
+                <Link to={'/sallybox/movied/1'}>현재상영작</Link>
+              </li>
+              <li>
+                <Link to={'/sallybox/movied/2'}>Sally 추천작</Link>
+              </li>
+              <li>
+                <Link to={'/sallybox/classic'}>추억의 영화관</Link>
+              </li>
               </ul> 
             </div>
             }
