@@ -68,7 +68,7 @@ const NowMovies = ({hoveredMovieId, onOpen, onClose}) => {
                             <div className="over_boxe">
                                 <div className="innere" style={{marginTop: '-33px'}}>
                                     <a href="" className="btn_col3e ty3" style={{marginTop: '0'}}>예매하기</a>
-                                    <Link to={`sallybox/movies/${movie.movieId}`} className="btn_col3e ty3">상세정보</Link>
+                                    <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3e ty3">상세정보</Link>
                                 </div>
                             </div>
                             }
