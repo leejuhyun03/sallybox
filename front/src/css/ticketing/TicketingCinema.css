@@ -1,0 +1,139 @@
+.jycinema_area_inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.jytab_tit {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    flex: 1; /* 전체와 스페셜관이 동일한 너비로 나뉘도록 설정 */
+    text-align: center;
+}
+
+.jytab_tit.jyactive {
+    background-color: #ddd;
+}
+
+.jycontent_row {
+    display: flex;
+    width: 100%;
+}
+
+.jyregion_button {
+    flex: 1; /* 너비 50% */
+    box-sizing: border-box; /* 패딩 포함 */
+    margin-top: -9px; /* 원하는 만큼 위로 올림 */
+}
+
+.jyregion_button button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s; /* 부드러운 색상 전환 */
+}
+
+.jyregion_button button.jyactive-button {
+    background-color: #e0e0e0; /* 클릭 시 배경색 변경 */
+}
+
+.jyregion_button button:hover {
+    background-color: #e0e0e0;
+}
+
+.jyregion_list {
+    flex: 1; /* 너비 50% */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin-top: -8px;
+    max-height: 756px; /* 원하는 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+}
+
+.jyregion_list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jyregion_item,
+.jycinema_item {
+    padding: 12px 0px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0px;
+    width: 97%;
+    text-align: left;
+}
+
+.jyregion_item.jyselected,
+.jycinema_item.jyselected {
+    background-color: #ddd;
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.jyregion_item:hover,
+.jycinema_item:hover {
+    background-color: #e0e0e0;
+}
+
+/* 오른쪽 영화관 리스트 스타일 */
+.jycinema_content {
+    flex: 1;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.jycinema_content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jycinema_content li {
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid transparent;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.jycinema_content li.jyselected {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.jycinema_content li:hover {
+    background-color: #f5f5f5;
+}
+
+.jyregion_item::marker,
+.jycinema_item::marker {
+    content: none; /* 도트 제거 */
+}

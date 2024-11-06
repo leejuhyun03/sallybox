@@ -1,0 +1,419 @@
+.jytab_wrap {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+}
+
+.jytab_tit {
+    width: 245px;
+    margin: 0 5px;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.jytab_tit.active {
+    border-color: red;
+}
+
+.jyslider {
+    position: absolute;
+    height: 4px;
+    background-color: black;
+    bottom: -2px;
+    transition: left 0.3s ease;
+}
+
+.jyinnerfull {
+    width: 100%;
+    background: #F8F8F8;
+}
+
+.jyinner980 {
+    width: 980px;
+    margin: 0 auto;
+}
+
+.jymovi_tab_info1 {
+    padding: 50px 0;
+    margin-top: 5px;
+    overflow: hidden;
+    margin-bottom: 45px;
+    color: #000000;
+}
+
+.jydetail_info2 {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #7c7c7c;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.jydetail_info2 li::before {
+    content: "• ";
+    margin-right: 10px;
+    color: #7c7c7c;
+    font-size: 23px;
+}
+
+.jymovi_tab_info2 {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.jyowl-carousel .jyowl-stage-outer {
+    position: relative;
+}
+
+.jyslide_wrap {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.jyslide_wrap .jyslide_movie_detail_trailer {
+   width: 980px;
+   height: 200px;
+}
+
+.jyimage-item {
+   margin: 10px;
+}
+
+.jyreview-item {
+   margin-bottom: 0px;
+   margin-top: 0px;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
+}
+
+.jyreview-author {
+   font-weight: bold;
+   margin-bottom: 5px;
+   font-size: 18px;
+}
+
+.jyreview-content {
+   font-size: 16px;
+   line-height: 1.5;
+   color: #555;
+}
+
+.jytrailers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.jytrailers div {
+    flex: 0 1 316px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.jymovie-image {
+    width: 100%;
+    height: 176px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+#jycrewDetailModal {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 580px;
+    height: 620px;
+    background-color: #FFF;
+    border-radius: 10px;
+    height: auto;
+    overflow-y: auto;
+}
+
+.jyline_type a {
+    color: black;
+    text-decoration: none;
+}
+
+.jyline_type a:hover {
+    text-decoration: underline;
+}
+
+.jylayer_wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    z-index: 1000;
+}
+
+.jytrailer_modal {
+    width: 70%;
+    height: 60%;
+    background-color: #000;
+    color: #fff;
+}
+
+.jytrailer_modal .jylayer_contents iframe {
+    border: none;
+}
+
+.jycrew_modal {
+    background-color: #f8f8f8;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.jylayer_wrap .jylayer_contents {
+    padding: 0px 15px;
+    height: 580px;
+    width: 900px;
+    margin: -13px 10px;
+    margin-bottom: 22px;
+}
+
+.jylayer_wrap .jylayer_contents_crew {
+    padding: 31px 0px;
+    height: 580px;
+    width: 580px;
+    margin: 0 auto;
+}
+
+.jycrew_modal .jyprofile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.jycrew_modal .jyfilmography-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+    font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
+}
+
+.jyfilmography-section {
+    margin-top: 20px;
+}
+
+.jyfilmography-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-right: 80%;
+}
+
+.jyfilmography-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.jyfilmography-item {
+    width: 120px;
+    text-align: center;
+}
+
+.jyfilmography-item img,
+.jyfilmography-item p {
+    transition: transform 0.3s;
+}
+
+.jyfilmography-item img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+.jyrating-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 가운데 정렬 */
+
+    background-color: #f8f8f8; /* 배경색 적용 */
+    width: 100%; /* 부모 요소 너비에 맞추기 */
+    max-width: 980px; /* 최대 너비 설정 */
+    height: 70px;
+    padding: 10px 0; /* 상하 패딩 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+.jyrating-container label {
+    margin: 0 5px;
+}
+
+.jyreviews-container {
+    margin: 0px 0;
+}
+
+.jyreview_write_row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 0; /* 내부 여백 추가 */
+    margin-top: 0; /* 위쪽 공백 제거 */
+    margin-bottom: 50px; /* 아래쪽 여백 설정 */
+    background-color: #F8F8F8; /* 배경색 설정 */
+}
+
+
+.jyreview_write_box {
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.jytextarea {
+    width: 100%;
+    height: 130px; /* 필요한 높이로 설정 */
+    padding: 10px; /* 원하는 패딩으로 설정 */
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+}
+
+.jysubmit-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.jysubmit-button {
+    width: 150px;
+    height: 150px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jybyte_info {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    color: #999;
+}
+
+.jylist_bdr_box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.jytitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.jylist_txt {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.jylist_txt li {
+    margin-bottom: 8px;
+}
+
+.jyhidden {
+    display: none;
+}
+
+.jyshow-more-button {
+    width: 980px;
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border: 1px solid #ddd;
+    color: none;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.jyreview-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.jy-sort-button {
+    position: absolute;
+    right: 0; /* 오른쪽 끝으로 정렬 */
+    display: flex;
+    align-items: center;
+    font-size: 12px; /* 글자 크기 조정 */
+    padding: 8px 12px; /* 패딩 조정 */
+    background-color: white; /* 배경색 추가 */
+    border: 1px solid white; /* 얇은 테두리 추가 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    margin-top: -40px; /* 위쪽 여백 추가 */
+}
+
+.jy-sort-button svg {
+    font-size: 15px; /* 아이콘 크기 조정 */
+    margin-right: 5px; /* 아이콘과 텍스트 간격 */
+}
+
+/* 오버레이 스타일 */
+.jyoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 반투명 배경 */
+    z-index: 98; /* 모달보다 낮은 레이어 */
+}
+
+.jybtn_close {
+    position: absolute; /* 버튼을 모달 내부에 고정 위치 */
+    top: 10px; /* 모달 상단에서의 여백 */
+    right: 10px; /* 모달 오른쪽에서의 여백 */
+    background-color: transparent; /* 배경색 제거 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 내부 공백 제거 */
+    cursor: pointer; /* 클릭 가능 커서 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

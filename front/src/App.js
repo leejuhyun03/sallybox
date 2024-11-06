@@ -15,6 +15,7 @@ import Payment from "./components/payment/Payment";
 import Movied from "./components/movied/Movied";
 import { useState } from 'react';
 import ClassicMoviesPage from './components/movied/ClassicMoviesPage';
+import Movies from "./components/movie/Movies";
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function AppRoutes() {
           <Route path="resetPassword" element={<ResetPassword />} />
           <Route path="movied/:on" element={<Movied />} />
           <Route path="classic" element={<ClassicMoviesPage />} />
+          <Route path="movies/:movie_id" element={<Movies />} />
+          <Route path="reserv/ticketing" element={<Ticketing />} />
         </Route>
       </Routes>
 

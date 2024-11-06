@@ -8,6 +8,24 @@ router.get('/', async (req, res) => {
     try {
         connection = await db.getConnection();
         const result = await connection.execute(`
+<<<<<<< HEAD
+            SELECT 
+                *
+            FROM (
+                SELECT 
+                    movie_id AS movieId,
+                    genre_ids AS genreIds,
+                    poster_path AS posterPath,
+                    title AS title,
+                    vote_average AS voteAverage,
+                    certification AS certification,
+                    release_date AS releaseDate,
+                    runtime AS runtime
+                FROM movies
+                WHERE release_date BETWEEN TRUNC(SYSDATE) - 20 AND TRUNC(SYSDATE)
+                ORDER BY vote_average DESC
+            ) 
+=======
             SELECT *
                 FROM (
                     SELECT 
@@ -22,6 +40,7 @@ router.get('/', async (req, res) => {
                     FROM movies
                     ORDER BY DBMS_RANDOM.VALUE
                 )
+>>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
             WHERE ROWNUM <= 10
         `);
         res.json(result.rows);

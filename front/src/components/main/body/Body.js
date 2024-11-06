@@ -125,7 +125,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                         runtime: item[7],
                         ageRatingImg: getAgeRatingImg(item[5]),
                     }));
-
                     setTopRatedMovies(topRatedArray);
                 } else {
                     console.error('Data is not an array:', data);
@@ -176,7 +175,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     runtime: item[7],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-
                 setRecommendedMovies(topRatedArray);
             } else {
                 console.error('Data is not an array:', data);

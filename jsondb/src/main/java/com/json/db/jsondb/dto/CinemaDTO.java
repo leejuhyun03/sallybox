@@ -15,3 +15,4 @@ public class CinemaDTO {
     private char parking; 
 
 }
+
