@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- SQL위치 -->
 <!DOCTYPE configuration
@@ -15,21 +14,3 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
     </settings>
 
 </configuration>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- SQL위치 -->
-<!DOCTYPE configuration
-PUBLIC "-//mybatis.org//DTD config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
-
-<configuration>
-
-	<mappers>
-		<mapper resource="mapper/*.xml"/>	
-	</mappers>
-	<settings>
-        <setting name="jdbcTypeForNull" value="NULL" />
-    </settings>
-
-</configuration>
->>>>>>> 963c018b77b364d1a5310fbcfa99d105fdfe1969
