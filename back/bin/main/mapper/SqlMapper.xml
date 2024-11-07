@@ -43,7 +43,7 @@
 
     <!-- 강현 -->
     <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->
-      SELECT user_id AS userid, email, password, name, nickname FROM users WHERE email = #{email}
+      SELECT user_id AS userid, email, password, name, nickname, points FROM users WHERE email = #{email}
     </select>
 
     <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
@@ -104,6 +104,28 @@
       ]]>
 
     </select>
+
+    <!-- 주용 xml -->
+
+    <insert id="insertInquiry" parameterType="com.example.demo.DTO.JY.InquiryRequest">
+        INSERT INTO CustomerInquiries (inquiry_id, name, phone_Number, email, title, content, created_at)
+        VALUES (CustomerInquiries_seq.NEXTVAL, #{name}, #{phone_Number}, #{email}, #{title}, #{content}, SYSDATE)
+    </insert>
+
+    <select id="selectAllInquiries" resultType="com.example.demo.DTO.JY.InquiryRequest">
+        SELECT * FROM CustomerInquiries
+    </select>
+
+    <delete id="deleteInquiryByTitle" parameterType="String">
+        DELETE FROM CustomerInquiries WHERE title = #{title}
+    </delete>
+    
+    <update id="updateInquiry" parameterType="com.example.demo.DTO.JY.InquiryRequest">
+        UPDATE CUSTOMERINQUIRIES
+            SET title = #{title},
+                content = #{content}
+            WHERE email = #{email}
+    </update>
 
     <!-- 지영 Mapper.xml -->
 

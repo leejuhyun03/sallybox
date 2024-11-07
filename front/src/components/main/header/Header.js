@@ -19,10 +19,10 @@ import data4 from '../../../image/swimage/TwilightOfTheWarriors_1920774.jpg'
 
 import { Link } from 'react-router-dom';
 import HeaderModal from './Modal/HeaderModal';
-import { jwtDecode } from 'jwt-decode';
 import NavbarTest3 from './Navbar/NavbarTest3';
+import { useUser } from '../../../context/UserContext';
 
-const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated }) => {
+const Header = () => {
 
   let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
@@ -30,21 +30,7 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
   
   const [isShow, setIsShow] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
-    console.log(token)
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token); // JWT 디코딩
-        setUserid(decodedToken.user_id); // user_id 상태 업데이트
-        setUserName(decodedToken.user_nickname)
-      } catch (error) {
-        console.error('Invalid token:', error);
-      }
-    }
-  }, []);
+  const { userId, isAuthenticated, setIsAuthenticated, userName, userPoint } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -52,13 +38,23 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
     setIsAuthenticated(false); // 인증 상태 업데이트
   };
 
+  useEffect(() => {
+    const modalStatus = localStorage.getItem('modalStatus');
+    if (modalStatus === 'open') {
+      setIsShow(true); // 로컬 스토리지에 'open'이 저장되어 있으면 모달을 연다
+    }
+  }, []);
+
   const onOpen = () => {
-    setIsShow(true)
-  }
+    // 페이지 새로고침 후 모달을 열기 위해 로컬 스토리지에 저장
+    localStorage.setItem('modalStatus', 'open');
+    window.location.reload(); // 페이지 새로고침
+  };
 
   const onClose = () => {
-      setIsShow(false)
-  }
+    setIsShow(false);
+    localStorage.removeItem('modalStatus'); // 모달 닫을 때 로컬 스토리지에서 값 제거
+  };
 
   let onTrue1 = () => {
     // !true = false, !false - > true
@@ -93,13 +89,13 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
 
   return (
   <>
-  <NavbarTest3 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+  <NavbarTest3 handleLogout={handleLogout}/>
   <div id='header_section' className='header ty3'>
       <Link to={'/sallybox'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
         <ul className="g_menu2">
           <li><a href='#'>멤버십</a></li>
-          <li><a href='#'>고객센터</a></li>
+          <li><a href='http://localhost:3000/sallybox/gogaksenter'>고객센터</a></li>
           <li><a href='#'>단체관람/대관문의</a></li>
           {
             isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
@@ -116,7 +112,7 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
           <li><a href="#" className="btn_reserve">바로 예매</a></li>
           <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>
           {
-              isShow && <HeaderModal onClose ={onClose} isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+              isShow && <HeaderModal onClose = {onClose} userName = {userName} userPoint = {userPoint}/>
           }
         </ul>
       </div>

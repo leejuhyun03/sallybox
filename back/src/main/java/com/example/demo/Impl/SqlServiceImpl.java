@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.NowMoviesDTO;
 import com.example.demo.mapper.SqlMapper;
@@ -111,7 +112,9 @@ public class SqlServiceImpl implements SqlService{
 
 		if (matches) {
 			// 비밀번호가 일치하는 경우 JWT 토큰 생성
-			return jwtUtil.generateToken(dto.getEmail(), dto.getUserid(), dto.getNickname()); // 이메일과 userId를 사용하여 JWT 토큰 생성
+			return jwtUtil.generateToken(dto.getEmail(), dto.getUserid(), 
+                                         dto.getNickname(), dto.getName(),
+                                         dto.getPoints()); // 이메일과 userId를 사용하여 JWT 토큰 생성
 		}
 		return null; // 로그인 실패
 	}
@@ -163,6 +166,28 @@ public class SqlServiceImpl implements SqlService{
     @Override
     public List<NowMoviesDTO> getClassicMovies() {
         return sqlMapper.getClassicMovies();
+    }
+
+    // 주용 ServiceImpl
+   
+    @Override
+    public void saveInquiry(InquiryRequest inquiryRequest) {
+        sqlMapper.insertInquiry(inquiryRequest);
+    }
+
+    @Override
+    public List<InquiryRequest> getAllInquiries() {
+        return sqlMapper.selectAllInquiries();
+    }
+
+    @Override
+    public void deleteInquiryByTitle(String title) {
+        sqlMapper.deleteInquiryByTitle(title); // 제목으로 삭제 메서드 호출
+    }
+
+    @Override
+    public void updateInquiry(InquiryRequest inquiryRequest) {
+        sqlMapper.updateInquiry(inquiryRequest); // 수정 메서드 호출
     }
 
 }
