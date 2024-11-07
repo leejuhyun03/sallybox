@@ -16,7 +16,9 @@ import Footer from './components/footer/Footer';
 import Payment from "./components/payment/Payment";
 import Movied from "./components/movied/Movied";
 import ClassicMoviesPage from './components/movied/ClassicMoviesPage';
-import Movies from "./components/movie/Movies";
+import Movies from "./components/movie/Movies";  
+import Gogaksenter from './components/주용/Gogaksenter';
+import Gogakregistration from './components/주용/Gogakregistration';
 
 function AppRoutes() {
   const location = useLocation();
@@ -53,17 +55,18 @@ function AppRoutes() {
     <Routes>
         <Route path="/" element={<MainSallybox />} />
         <Route path='/sallybox'>
-           <Route path="cinema/:cinema_id" element={<Theater />} />
-           <Route path="reserv/ticketing" element={<Ticketing />} />
-           <Route path="reserv/seats" element={<Reservation />} />
-            <Route path="payment" element={<Payment/>}/>
-           <Route path='sign-in' element={<SignIn />} />
-           <Route path="verification" element={<FindPassword />} />
-           <Route path="resetPassword" element={<ResetPassword />} />
-           <Route path="movied/:on" element={<Movied />} />
-           <Route path="classic" element={<ClassicMoviesPage />} />
-           <Route path="movies/:movie_id" element={<Movies />} />
-           <Route path="reserv/ticketing" element={<Ticketing />} />
+          <Route path="cinema/:cinema_id" element={<Theater />} />
+          <Route path="reserv/ticketing" element={<Ticketing />} />
+          <Route path="reserv/seats" element={<Reservation />} />
+          <Route path="payment" element={<Payment/>}/>
+          <Route path='sign-in' element={<SignIn />} />
+          <Route path="verification" element={<FindPassword />} />
+          <Route path="resetPassword" element={<ResetPassword />} />
+          <Route path="movied/:on" element={<Movied />} />
+          <Route path="classic" element={<ClassicMoviesPage />} />
+          <Route path="movies/:movie_id" element={<Movies />} />
+          <Route path="gogaksenter" element={<Gogaksenter />} />
+          <Route path="registration" element={<Gogakregistration />} />
         </Route>
      </Routes>
 

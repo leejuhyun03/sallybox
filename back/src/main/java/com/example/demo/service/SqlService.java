@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.NowMoviesDTO;
 
@@ -31,4 +32,10 @@ public interface SqlService {
     List<NowMoviesDTO> getNowMovies();
     List<NowMoviesDTO> getReccommendMovies();
     List<NowMoviesDTO> getClassicMovies();
+
+    // 주용 service
+    void saveInquiry(InquiryRequest inquiryRequest);
+    List<InquiryRequest> getAllInquiries();
+    void deleteInquiryByTitle(String title); // 제목으로 삭제 메서드 추가
+    void updateInquiry(InquiryRequest inquiryRequest); // 수정 메서드 추가
 }

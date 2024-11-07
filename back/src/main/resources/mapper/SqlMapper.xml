@@ -105,6 +105,28 @@
 
     </select>
 
+    <!-- 주용 xml -->
+
+    <insert id="insertInquiry" parameterType="com.example.demo.DTO.JY.InquiryRequest">
+        INSERT INTO CustomerInquiries (inquiry_id, name, phone_Number, email, title, content, created_at)
+        VALUES (CustomerInquiries_seq.NEXTVAL, #{name}, #{phone_Number}, #{email}, #{title}, #{content}, SYSDATE)
+    </insert>
+
+    <select id="selectAllInquiries" resultType="com.example.demo.DTO.JY.InquiryRequest">
+        SELECT * FROM CustomerInquiries
+    </select>
+
+    <delete id="deleteInquiryByTitle" parameterType="String">
+        DELETE FROM CustomerInquiries WHERE title = #{title}
+    </delete>
+    
+    <update id="updateInquiry" parameterType="com.example.demo.DTO.JY.InquiryRequest">
+        UPDATE CUSTOMERINQUIRIES
+            SET title = #{title},
+                content = #{content}
+            WHERE email = #{email}
+    </update>
+
     <!-- 지영 Mapper.xml -->
 
     <!-- 서울 기준으로 시간을 맞추기 위해서 -->

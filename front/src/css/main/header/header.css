@@ -86,6 +86,7 @@ a, a:link, a:visited, a:active, a:hover { /*주의사항 1*/
 
 .header.ty3 .gnb .g_menu2 {
     float: right;
+    margin-right: 7px;
 }
 
 .header .gnb > ul {
@@ -132,6 +133,7 @@ ul, ol {
     right: 0;
     top: 88px;
     margin-top: 0;
+    margin-right: 8px;
 }
 
 .header.ty3 .gnb .g_menu3 li .btn_my {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../../../css/main/header/modal/HeaderModal.css'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import hani from '../../../../image/hanni2.jpg'
 import { useUser } from '../../../../context/UserContext';
 

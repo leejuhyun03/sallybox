@@ -293,7 +293,7 @@ const Body = () => {
     
     return (
         <>
-        <div id='contents' className='contents_main'>
+        <div id='contentsg' className='contents_main'>
             <div className='movi_current_list'>
                 <span className='movi_info_txt'>
                     <a href='https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1'>
@@ -450,7 +450,7 @@ const Body = () => {
                                     <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                     <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                     <span className="sub_info1">
-                                        <span className="time blacktype"><span className="roboto">{movie.runtime}</span>분</span>
+                                        <span className="time blacktype"><span className="robotog">{movie.runtime}</span>분</span>
                                         <span className="star_info">{movie.voteAverage}</span>
                                     </span>
                                 </div>

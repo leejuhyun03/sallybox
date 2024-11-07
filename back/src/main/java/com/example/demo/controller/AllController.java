@@ -14,6 +14,7 @@ import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.CinemaScheduleDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.FindEmailRequest;
 import com.example.demo.DTO.KH.LoginRequest;
@@ -216,6 +217,36 @@ public class AllController {
     public List<NowMoviesDTO> getClassicMovies() {
         List<NowMoviesDTO> movies = sqlService.getClassicMovies();
         return movies;
+    }
+
+    //주용
+
+    @PostMapping("/api/inquiries")
+    public void createInquiry(@RequestBody InquiryRequest inquiryRequest) {
+        sqlService.saveInquiry(inquiryRequest);
+    }
+
+    @GetMapping("/api/inquiries")
+    public List<InquiryRequest> getAllInquiries() {
+        return sqlService.getAllInquiries();
+    }
+
+    @DeleteMapping("/api/inquiries")
+    public ResponseEntity<Void> deleteInquiry(@RequestBody Map<String, String> request) {
+        String title = request.get("title");
+        sqlService.deleteInquiryByTitle(title);
+        return ResponseEntity.noContent().build();
+    }
+    
+    @PutMapping("/api/inquiries")
+    public ResponseEntity<?> updateInquiry(@RequestBody InquiryRequest inquiryRequest) {
+        
+        try {
+            sqlService.updateInquiry(inquiryRequest);
+            return ResponseEntity.ok("게시물이 성공적으로 수정되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("수정 중 오류 발생: " + e.getMessage());
+        }
     }
     
     //지영 controller
