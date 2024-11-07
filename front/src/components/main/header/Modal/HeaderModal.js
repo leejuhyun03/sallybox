@@ -3,12 +3,16 @@ import '../../../../css/main/header/modal/HeaderModal.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import hani from '../../../../image/hanni2.jpg'
+import { useUser } from '../../../../context/UserContext';
 
-const HeaderModal = ({onClose, isAuthenticated, userId}) => {
+const HeaderModal = ({onClose}) => {
 
     const [name, setName] = useState([]);
     const [point, setPoint] = useState([]);
     const [error, setError] = useState(null);
+
+    const { userId, isAuthenticated } = useUser();
+
     console.log('modal:' ,userId)
 
     const fetchUser = async () => {
@@ -27,8 +31,6 @@ const HeaderModal = ({onClose, isAuthenticated, userId}) => {
             
             setName(data[0])
             setPoint(data[1])
-            console.log(name);
-            console.log(point);
             
         } catch (err) {
             setError('Failed to fetch recommended movies.');

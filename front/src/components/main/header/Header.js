@@ -19,10 +19,10 @@ import data4 from '../../../image/swimage/TwilightOfTheWarriors_1920774.jpg'
 
 import { Link } from 'react-router-dom';
 import HeaderModal from './Modal/HeaderModal';
-import { jwtDecode } from 'jwt-decode';
 import NavbarTest3 from './Navbar/NavbarTest3';
+import { useUser } from '../../../context/UserContext';
 
-const Header = ({ setUserId, userId, setUserName, isAuthenticated, setIsAuthenticated }) => {
+const Header = () => {
 
   let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
@@ -30,20 +30,7 @@ const Header = ({ setUserId, userId, setUserName, isAuthenticated, setIsAuthenti
   
   const [isShow, setIsShow] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token); // JWT 디코딩
-        setUserId(decodedToken.user_id); // user_id 상태 업데이트
-        setUserName(decodedToken.user_nickname)
-      } catch (error) {
-        console.error('Invalid token:', error);
-      }
-    }
-  }, []);
+  const { userId, isAuthenticated, setIsAuthenticated } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -92,7 +79,7 @@ const Header = ({ setUserId, userId, setUserName, isAuthenticated, setIsAuthenti
 
   return (
   <>
-  <NavbarTest3 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+  <NavbarTest3 handleLogout={handleLogout}/>
   <div id='header_section' className='header ty3'>
       <Link to={'/sallybox'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>

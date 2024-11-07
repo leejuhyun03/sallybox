@@ -74,11 +74,6 @@ public class SqlServiceImpl implements SqlService{
 	@Autowired
 	private JwtUtil jwtUtil; // JwtUtil 임포트
 
-    @Override
-    public CustomDTO findByEmail(String email) {
-        return sqlMapper.findByEmail(email);
-    }
-
 	@Override
 	public CustomDTO findByName(String name) {
 		return sqlMapper.findByName(name); // 이메일 조회

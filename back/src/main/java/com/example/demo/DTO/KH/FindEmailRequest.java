@@ -6,6 +6,6 @@ import lombok.Getter;
 public class FindEmailRequest {
     
     private String name;
-    // private String phoneNumber;
-    // private String birthday;
+    private String phoneNumber;
+    private String birthday;
 }

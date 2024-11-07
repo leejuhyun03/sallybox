@@ -18,8 +18,9 @@ import '../../../css/main/body/bodyswiper.css'
 // import required modules
 import { Autoplay, EffectCoverflow, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import axios from 'axios';
+import { useUser } from '../../../context/UserContext';
 
-const Body = ({userId, userNickName, isAuthenticated}) => {
+const Body = () => {
 
     const [now, setNow] = useState(new Date());
     const [movies, setMovies] = useState([]);
@@ -32,6 +33,8 @@ const Body = ({userId, userNickName, isAuthenticated}) => {
     const [hoveredMovieId, setHoveredMovieId] = useState(null);
     const [hoveredMovieId2, setHoveredMovieId2] = useState(null);
     const [hoveredMovieId3, setHoveredMovieId3] = useState(null);
+
+    const { userId, isAuthenticated, userNickName } = useUser();
 
     const onOpen = (id) => {
         setHoveredMovieId(id);

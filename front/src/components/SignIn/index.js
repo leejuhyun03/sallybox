@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import EmailFindForm from './madal/EmailFindForm';
 import EmailFindResult from './madal/EmailFindResult';
 import EmailFindAllForm from './madal/EmailFindAllForm';
+import { useUser } from '../../context/UserContext';
 
 export default function SignIn() {
     const passwordRef = useRef(null);
@@ -23,6 +24,8 @@ export default function SignIn() {
     const [isEmailAllFindModalOpen, setIsEmailAllFindModalOpen] = useState(false);
     const [maskedEmail, setMaskedEmail] = useState(''); // 가공된 이메일 상태 추가
     const [allEmail, setAllEmail] = useState(''); // 가공된 이메일 상태 추가
+
+    const { setIsAuthenticated } = useUser();
 
 
     const onEmailChangeHandler = (event) => {
@@ -54,9 +57,7 @@ export default function SignIn() {
             if (response.data) {
               // 로그인 성공, JWT를 로컬 스토리지에 저장
               localStorage.setItem('token', response.data); // 토큰 저장
-    
-              console.log('Response Data:', response.data); // 로그 추가
-              
+              setIsAuthenticated(true);
               // 메인 페이지로 이동
               navigate('/');
             }
@@ -112,7 +113,7 @@ export default function SignIn() {
             <div className='sign-in-container'></div>
             <div className='sign-in-box'></div>
             <div className='sign-in-title'>
-                <div className='SALLYBOX-logo-button'></div>
+                <Link to={'/'}><div className='SALLYBOX-logo-button'></div></Link>
             </div>
             <div className='sign-in-content-box'>
                 <div className='sign-in-content-input-box'>

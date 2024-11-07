@@ -5,7 +5,6 @@ import '../../../css/SignIn/modal/modal.css';
 function EmailFindForm({ isOpen, onClose, onFindEmail }) {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [birthday, setBirthday] = useState('');
     const [error, setError] = useState('');
     const [maskedEmail, setMaskedEmail] = useState('');
 
@@ -13,7 +12,7 @@ function EmailFindForm({ isOpen, onClose, onFindEmail }) {
       e.preventDefault();
       setError('');
 
-      axios.post('/api/findEmail', { name })
+      axios.post('/api/findEmail', { name,  phoneNumber})
       .then(response => {
         if (response.data) {
             setMaskedEmail(response.data); // 가공된 이메일 저장
@@ -54,7 +53,6 @@ function EmailFindForm({ isOpen, onClose, onFindEmail }) {
           <form onSubmit={handleSubmit}>
             <h4>이름: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></h4>
             <h4>휴대폰 번호: <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /></h4>
-            <h4>생년월일: <input type="text" value={birthday} onChange={(e) => setBirthday(e.target.value)} /></h4>
             <button type='submit'>이메일 찾기</button>
           </form>
           {error && <p style={{ color: 'red' }}>{error}</p>}
