@@ -47,7 +47,7 @@ export default function SignIn() {
 
         e.preventDefault();
         setError('');
-    console.log(password)
+
         // 로그인 요청
         axios.post('/api/login', { email, password }) // 요청 본문에 이메일과 비밀번호 전달
           .then(response => {
@@ -58,7 +58,7 @@ export default function SignIn() {
               console.log('Response Data:', response.data); // 로그 추가
               
               // 메인 페이지로 이동
-              navigate('/sallybox');
+              navigate('/');
             }
           })
           .catch(error => {
@@ -86,7 +86,7 @@ export default function SignIn() {
 
     const onPasswordKeyDownHandler = (event) => {
         if (event.key !== 'Enter') return;
-        onSignInButtonClickHandler();
+        onSignInButtonClickHandler(event);
     };    
   
     const handleFindEmail = (email) => {

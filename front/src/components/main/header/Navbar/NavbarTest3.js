@@ -14,7 +14,7 @@ const NavbarTest3 = ({setUserId}) => {
 
   useEffect(() => {
       const token = localStorage.getItem('token');
-      
+
       setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
       if (token) {
         try {

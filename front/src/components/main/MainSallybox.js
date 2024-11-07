@@ -3,15 +3,15 @@ import Header from './header/Header';
 import Body from './body/Body';
 
 const MainSallybox = () => {
-    const [userid, setUserid] = useState(null);
+    const [userId, setUserId] = useState(null);
     const [userNickName, setUserNickName] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     return (
         <div>
-            <Header setUserid={setUserid} setUserName={setUserNickName} 
+            <Header userId = {userId} setUserId={setUserId} setUserName={setUserNickName} 
                     isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>
-            <Body userid={userid} userNickName={userNickName}
+            <Body userId={userId} userNickName={userNickName}
                   isAuthenticated={isAuthenticated}/>
         </div>
     );

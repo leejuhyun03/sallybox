@@ -22,7 +22,7 @@ import HeaderModal from './Modal/HeaderModal';
 import { jwtDecode } from 'jwt-decode';
 import NavbarTest3 from './Navbar/NavbarTest3';
 
-const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated }) => {
+const Header = ({ setUserId, userId, setUserName, isAuthenticated, setIsAuthenticated }) => {
 
   let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
@@ -33,12 +33,11 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
-    console.log(token)
 
     if (token) {
       try {
         const decodedToken = jwtDecode(token); // JWT 디코딩
-        setUserid(decodedToken.user_id); // user_id 상태 업데이트
+        setUserId(decodedToken.user_id); // user_id 상태 업데이트
         setUserName(decodedToken.user_nickname)
       } catch (error) {
         console.error('Invalid token:', error);
@@ -116,7 +115,7 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
           <li><a href="#" className="btn_reserve">바로 예매</a></li>
           <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>
           {
-              isShow && <HeaderModal onClose ={onClose} isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+              isShow && <HeaderModal onClose ={onClose} isAuthenticated={isAuthenticated} userId={userId}/>
           }
         </ul>
       </div>

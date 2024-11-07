@@ -19,7 +19,7 @@ import '../../../css/main/body/bodyswiper.css'
 import { Autoplay, EffectCoverflow, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import axios from 'axios';
 
-const Body = ({userid, userNickName, isAuthenticated}) => {
+const Body = ({userId, userNickName, isAuthenticated}) => {
 
     const [now, setNow] = useState(new Date());
     const [movies, setMovies] = useState([]);
@@ -149,14 +149,14 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     };
 
     const fetchRecommendedMovies = async () => {
-        if (!userid) return; // userid가 없으면 함수 종료
+        if (!userId) return; // userid가 없으면 함수 종료
 
         try {
             const response = await axios.get(
                 `http://localhost:5000/api/movies/recommend`,
                 {
                     params: {
-                        userId: userid,
+                        userId: userId,
                         genre: selectedGenre,
                     },
                 }
@@ -187,14 +187,14 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     };
 
     const fetchRecommendedGenre = async () => {
-        if (!userid) return; // userid가 없으면 함수 종료
+        if (!userId) return; // userid가 없으면 함수 종료
 
         try {
             const response = await axios.get(
                 `http://localhost:5000/api/movies/genre`,
                 {
                     params: {
-                        userId: userid
+                        userId: userId
                     },
                 }
             );
@@ -206,7 +206,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     genreId: item[0], // genreIds
                     genreText: getGenreText(item[0]),
                 }));
-                console.log('topGenreArray: ' + topRatedArray)
                 setGenres(topRatedArray);
             } else {
                 console.error('Data is not an array:', data);
@@ -247,7 +246,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     useEffect(() => {
         fetchRecommendedMovies();
         fetchRecommendedGenre();
-    }, [userid, selectedGenre]); // userId 또는 selectedGenre가 변경될 때마다 호출
+    }, [userId, selectedGenre]); // userId 또는 selectedGenre가 변경될 때마다 호출
 
     const handleSelectChange = (event) => {
         setSelectedGenre(event.target.value); // 선택한 장르로 상태 업데이트
