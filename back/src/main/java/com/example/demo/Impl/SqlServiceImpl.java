@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
+import com.example.demo.DTO.JH.PaymentDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
@@ -66,7 +68,47 @@ public class SqlServiceImpl implements SqlService{
         return sqlMapper.getSeatsbyTheaterId(params);
     }
 
+    @Override
+    public Integer getPoints(int user_id) throws Exception {
+        return sqlMapper.getPoints(user_id);
+    }
 
+    @Override
+    public void insertBooking(BookingDTO bookingDTO) {
+        sqlMapper.insertBooking(bookingDTO);
+    }
+
+    @Override
+    public void insertPayment(PaymentDTO paymentDTO) {
+        sqlMapper.insertPayment(paymentDTO);
+    }
+
+    @Override
+    public void updatePoints(int userId, int pointUsage,int totalPrice) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", userId);
+        params.put("pointUsage", pointUsage);
+        params.put("totalPrice", totalPrice);
+
+        double grade = this.getGrade(userId);
+        params.put("grade", grade);
+
+        sqlMapper.updatePoints(params);
+    }
+
+    @Override
+    public double getGrade(int userId) {
+            
+        String grade = sqlMapper.getGrade(userId);
+
+        switch(grade.toLowerCase()) {
+            case "vip" : return 0.05;
+            case "vvip" : return 0.08;
+            case "gold" : return 0.12;
+            case "platinum" : return 0.18;
+            default : return 0.05;
+        }
+    }
     //강현 ServiceImpl
 
 	@Autowired

@@ -153,6 +153,10 @@ const ReservSeats = () => {
 
     const handlePaymentClick = () => {
         if (bookingData.selectedSeats && bookingData.selectedSeats.length > 0) {
+            setBookingData((prevData) => ({
+                ...prevData,
+                totalPrice:price
+            }));
             navigate('/sallybox/payment');
         } else {
             alert('인원수를 선택하세요.');

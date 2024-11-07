@@ -4,7 +4,9 @@ import java.util.*;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
+import com.example.demo.DTO.JH.PaymentDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
@@ -21,6 +23,16 @@ public interface SqlService {
     public Map<String,List<SchedulesTheaterDTO>> groupCinemaSchedules(List<SchedulesTheaterDTO> schedules) throws Exception;
     
     public List<SeatsDTO> getSeatsbyTheaterId(int theater_id,int schedule_id) throws Exception;
+
+    public Integer getPoints(int user_id) throws Exception;
+
+    public void insertBooking(BookingDTO bookingDTO);
+
+    public double getGrade(int userId);
+
+    public void updatePoints(int userId,int pointUsage,int totalPrice);
+
+    public void insertPayment(PaymentDTO paymentDTO);
 
     // 강현 service
     CustomDTO findByEmail(String email);

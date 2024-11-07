@@ -6,9 +6,10 @@ export const BookingProvider = ({children}) => {
 
     const [bookingData, setBookingData] = useState({
         schedule: null,
-        selectedSeats:null,
-        counts: { adult: 0, teenager: 0, senior: 0, disabled: 0 } //인원수
-      })
+        selectedSeats:[],
+        counts: { adult: 0, teenager: 0, senior: 0, disabled: 0 }, //인원수
+        totalPrice:0
+    })
 
       
 

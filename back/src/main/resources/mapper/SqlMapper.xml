@@ -32,7 +32,7 @@
     </select>
 
     <select id="getSeatsbyTheaterId" parameterType="map" resultType="com.example.demo.DTO.JH.SeatsDTO">
-        select s.*, 
+        select DISTINCT s.*, 
             case when b.seat_id is not null then 'yes' else 'no' end as status
             FROM seats s
             left JOIN booking b ON s.seat_id = b.seat_id and b.schedule_id = #{schedule_id}
@@ -40,6 +40,29 @@
             WHERE t.theater_id = #{theater_id}
             ORDER BY s.seat_id
     </select>
+
+    <select id="getPoints" parameterType="int" resultType="int">
+        select points FROM users WHERE user_id = #{user_id}
+    </select>
+
+    <insert id="insertBooking" parameterType="com.example.demo.DTO.BookingDTO">
+        INSERT INTO booking (booking_id, user_id, schedule_id,seat_id, booking_date, people_type,booking_num,movie_id)
+        VALUES (booking_seq.NEXTVAL, #{userId}, #{scheduleId},#{seatId}, #{bookingDate}, #{peopleType},#{bookingNum,jdbcType=NUMERIC},#{movieId})
+    </insert>
+
+    <select id="getGrade" parameterType="int" resultType="String">
+        select grade FROM users WHERE user_id = #{userId}
+    </select>
+
+    <update id="updatePoints" parameterType="map">
+        update users set points = points - #{pointUsage} + #{totalPrice}*#{grade}
+        where user_id = #{userId}
+    </update>
+
+    <insert id="insertPayment" parameterType="com.example.demo.DTO.PaymentDTO">
+        INSERT INTO payment (payment_id,user_id, booking_num, payment_method, price, payment_date, point_usage)
+        VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_DATE(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS'), #{pointUsage})
+    </insert>
 
     <!-- 강현 -->
     <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->

@@ -10,8 +10,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.CinemaScheduleDTO;
+import com.example.demo.DTO.JH.PaymentDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
@@ -62,6 +64,7 @@ public class AllController {
     private static final int NOW_PLAYING_TOTAL_PAGES = 5; // 현재 상영 중 영화 페이지 수
     private static final int POPULAR_TOTAL_PAGES = 25; // 인기 영화 페이지 수
 
+    //주현//
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/sallybox/cinema/{id}")
     public CinemaScheduleDTO getSchedules(@PathVariable("id") int cinema_id) throws Exception{
@@ -90,6 +93,36 @@ public class AllController {
         return sqlService.getSeatsbyTheaterId(theater_id,schedule_id);
     }
     
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/sallybox/payment")
+    public Integer getPoints(@RequestBody Map<String, Integer> requestData) throws Exception{
+        int userId = requestData.get("user_id");
+        return sqlService.getPoints(userId);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/sallybox/payment/booking")
+    public ResponseEntity<Void> createBooking(@RequestBody BookingDTO bookingDTO) throws Exception{
+        try{
+            sqlService.insertBooking(bookingDTO);
+            return ResponseEntity.ok().build(); 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/sallybox/payment/final")
+    public void processFinalPaymen(@RequestBody PaymentDTO paymentDTO) throws Exception{
+        try{
+            sqlService.updatePoints(paymentDTO.getUserId(), paymentDTO.getPointUsage(),paymentDTO.getPrice()-paymentDTO.getPointUsage());
+            sqlService.insertPayment(paymentDTO);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     //강현 Controller
     @PostMapping("/api/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws Exception {
