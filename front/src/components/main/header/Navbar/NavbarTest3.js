@@ -11,7 +11,7 @@ const NavbarTest3 = ({setUserId}) => {
   let [visible3, setVisible3] = useState(false)
 
 
-  const { userId, isAuthenticated, setIsAuthenticated } = useUser();
+  const { isAuthenticated } = useUser();
 
   const handleScroll = () => {
     if (window.scrollY > 100) {

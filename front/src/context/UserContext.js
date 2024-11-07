@@ -9,10 +9,13 @@ export function UserProvider({ children }) {
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
   const [userNickName, setUserNickName] = useState('');
+  const [userPoint, setUserPoint] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <UserContext.Provider value={{ userId, setUserId, userName, setUserName, userNickName, setUserNickName, isAuthenticated, setIsAuthenticated }}>
+    <UserContext.Provider value={{ userId, setUserId, userName, setUserName, 
+                                   userNickName, setUserNickName, isAuthenticated, setIsAuthenticated,
+                                   userPoint, setUserPoint }}>
       {children}
     </UserContext.Provider>
   );

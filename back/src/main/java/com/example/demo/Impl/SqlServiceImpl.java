@@ -106,7 +106,9 @@ public class SqlServiceImpl implements SqlService{
 
 		if (matches) {
 			// 비밀번호가 일치하는 경우 JWT 토큰 생성
-			return jwtUtil.generateToken(dto.getEmail(), dto.getUserid(), dto.getNickname(), dto.getName()); // 이메일과 userId를 사용하여 JWT 토큰 생성
+			return jwtUtil.generateToken(dto.getEmail(), dto.getUserid(), 
+                                         dto.getNickname(), dto.getName(),
+                                         dto.getPoints()); // 이메일과 userId를 사용하여 JWT 토큰 생성
 		}
 		return null; // 로그인 실패
 	}

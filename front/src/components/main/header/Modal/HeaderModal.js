@@ -7,40 +7,8 @@ import { useUser } from '../../../../context/UserContext';
 
 const HeaderModal = ({onClose}) => {
 
-    const [name, setName] = useState([]);
-    const [point, setPoint] = useState([]);
-    const [error, setError] = useState(null);
+    const { userName, isAuthenticated, userPoint } = useUser();
 
-    const { userId, isAuthenticated } = useUser();
-
-    console.log('modal:' ,userId)
-
-    const fetchUser = async () => {
-        if (!userId) return; // userid가 없으면 함수 종료
-
-        try {
-            const response = await axios.get(
-                `http://localhost:5000/api/movies/user`,
-                {
-                    params: {
-                        userId: userId
-                    },
-                }
-            );
-            const data = response.data;
-            
-            setName(data[0])
-            setPoint(data[1])
-            
-        } catch (err) {
-            setError('Failed to fetch recommended movies.');
-            console.error(err);
-        }
-    };
-
-    useEffect(() => {
-        fetchUser();
-    }, [userId]);
 
     return (
         
@@ -157,12 +125,12 @@ const HeaderModal = ({onClose}) => {
                                     <div className="grade_area">
                                         <span className="txt_rank_common ml5">일반</span>
                                         </div>
-                                    <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>{name}님</strong>반가워요!</p>
+                                    <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>{userName}님</strong>반가워요!</p>
                                     <div className="my_point">
                                         <dl>
                                             <dt><img src="https://www.lottecinema.co.kr/NLCHS/Content/images/icon/txt_lpoint_46.png" alt="L.POINT"/></dt>
                                             <dd>
-                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{point}P</b></strong></a>
+                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{userPoint}P</b></strong></a>
                                             </dd>
                                         </dl>
                                     </div>

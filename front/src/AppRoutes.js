@@ -20,7 +20,7 @@ import Movies from "./components/movie/Movies";
 
 function AppRoutes() {
   const location = useLocation();
-  const { setUserId, setUserName, setUserNickName, setIsAuthenticated } = useUser();
+  const { setUserId, setUserName, setUserNickName, setIsAuthenticated, setUserPoint } = useUser();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,6 +32,7 @@ function AppRoutes() {
         setUserId(decodedToken.user_id);
         setUserName(decodedToken.user_name);
         setUserNickName(decodedToken.user_nickname);
+        setUserPoint(decodedToken.user_point);
       } catch (error) {
         console.error('Invalid token:', error);
       }

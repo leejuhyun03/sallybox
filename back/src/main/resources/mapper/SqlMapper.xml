@@ -43,7 +43,7 @@
 
     <!-- 강현 -->
     <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->
-      SELECT user_id AS userid, email, password, name, nickname FROM users WHERE email = #{email}
+      SELECT user_id AS userid, email, password, name, nickname, points FROM users WHERE email = #{email}
     </select>
 
     <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
