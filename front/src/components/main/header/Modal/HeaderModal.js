@@ -5,16 +5,16 @@ import axios from 'axios';
 import hani from '../../../../image/hanni2.jpg'
 import { useUser } from '../../../../context/UserContext';
 
-const HeaderModal = ({onClose}) => {
+const HeaderModal = ({onClose, userName, userPoint}) => {
 
-    const { userName, isAuthenticated, userPoint } = useUser();
+    const {isAuthenticated} = useUser();
 
 
     return (
         
         <div className='Modals'>
             <div className='bg'></div>
-            <div className='popup' style={{position: 'fixed', left: '50%', top: '70px', marginLeft: '-490px'}}>
+            <div className='popup' style={{position: 'fixed', left: '55%', top: '70px', marginLeft: '-490px'}}>
                 <div id="layerAllMenu" className="menu_all_wrap active">
                     <strong className="hidden">레이어 팝업 시작</strong>
                     <div className="group_menu_all">

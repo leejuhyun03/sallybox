@@ -30,12 +30,12 @@ export default function SignIn() {
 
     const onEmailChangeHandler = (event) => {
         const { value } = event.target;
-        setEmail(value);
+        setEmail(value.trim());
     };
 
     const onPasswordChangeHandler = (event) => {
         const { value } = event.target;
-        setPassword(value);
+        setPassword(value.trim());
     };
 
     const onSignUpButtonClickHandler = () => {

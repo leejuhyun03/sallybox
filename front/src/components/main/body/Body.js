@@ -320,10 +320,10 @@ const Body = () => {
                         depth: 100,
                         modifier: 1,
                         slideShadows: true }}
-                    autoplay={{
-                        delay: 3000, // 3초마다 다음 슬라이드로 이동
-                        disableOnInteraction: false
-                    }}
+                    // autoplay={{
+                    //     delay: 3000, // 3초마다 다음 슬라이드로 이동
+                    //     disableOnInteraction: false
+                    // }}
                         
                     modules={[EffectCoverflow, Pagination, Mousewheel, Keyboard, Autoplay]}
                     className="myBodySwiper1"
@@ -331,7 +331,7 @@ const Body = () => {
                 {topRatedMovies.map(movie => (
                     <SwiperSlide key={movie.movieId} className='owl-stage' style={{ width: '184px', marginRight: '15px', background: '#000' }}
                     onMouseOver={() => onOpen(movie.movieId)} onMouseLeave={onClose}>
-                        <div>
+                        <div style={{width: '100%', height: '100%'}}>
                             <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px'}}/>
                             <div className='titleInfo'>
                             <span className="ageRating">

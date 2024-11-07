@@ -95,9 +95,6 @@ public class AllController {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
-        System.out.println("email: " + email);
-        System.out.println("password; " + password);
-
         // 로그인 로직
         String token = sqlService.login(email, password); // 로그인 메서드 호출
 

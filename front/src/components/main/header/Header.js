@@ -30,7 +30,7 @@ const Header = () => {
   
   const [isShow, setIsShow] = useState(false);
 
-  const { userId, isAuthenticated, setIsAuthenticated } = useUser();
+  const { userId, isAuthenticated, setIsAuthenticated, userName, userPoint } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -38,13 +38,23 @@ const Header = () => {
     setIsAuthenticated(false); // 인증 상태 업데이트
   };
 
+  useEffect(() => {
+    const modalStatus = localStorage.getItem('modalStatus');
+    if (modalStatus === 'open') {
+      setIsShow(true); // 로컬 스토리지에 'open'이 저장되어 있으면 모달을 연다
+    }
+  }, []);
+
   const onOpen = () => {
-    setIsShow(true)
-  }
+    // 페이지 새로고침 후 모달을 열기 위해 로컬 스토리지에 저장
+    localStorage.setItem('modalStatus', 'open');
+    window.location.reload(); // 페이지 새로고침
+  };
 
   const onClose = () => {
-      setIsShow(false)
-  }
+    setIsShow(false);
+    localStorage.removeItem('modalStatus'); // 모달 닫을 때 로컬 스토리지에서 값 제거
+  };
 
   let onTrue1 = () => {
     // !true = false, !false - > true
@@ -102,7 +112,7 @@ const Header = () => {
           <li><a href="#" className="btn_reserve">바로 예매</a></li>
           <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>
           {
-              isShow && <HeaderModal onClose ={onClose} isAuthenticated={isAuthenticated} userId={userId}/>
+              isShow && <HeaderModal onClose = {onClose} userName = {userName} userPoint = {userPoint}/>
           }
         </ul>
       </div>
