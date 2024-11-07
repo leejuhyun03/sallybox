@@ -191,24 +191,24 @@ const MoviePage = () => {
             {isModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}
             {isModalOpen && selectedTrailer && (
               <div id="jylayerMovieTrailer" className="jylayer_wrap active">
-                <div className="jylayer_header">
-                  <button type="button" className="jybtn_close" onClick={closeModal}>
-                    <IoClose  size={30}/>
-                  </button>
-                </div>
-                <div className="jylayer_contents">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={`https://www.youtube.com/embed/${selectedTrailer}`}
-                    allowFullScreen
-                    title={movieDetails.title}
-                  ></iframe>
-                </div>
+                  <div className="jylayer_header">
+                    <button type="button" className="jybtn_close" onClick={closeModal}>
+                      <IoClose  size={30}/>
+                    </button>
+                  </div>
+                  <div className="jylayer_contents">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${selectedTrailer}`}
+                      allowFullScreen
+                      title={movieDetails.title}
+                    ></iframe>
+                  </div>
               </div>
             )}
   
-            <div className="jytxtarea_box jymovdetailtxt" style={{marginBottom:'45px'}}>
+            <div className="jytxtarea_box" style={{marginBottom:'45px'}}>
               <div className="jytxtarea">
                 <span>{movieDetails.overview}</span>
               </div>

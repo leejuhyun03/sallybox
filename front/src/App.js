@@ -17,6 +17,7 @@ import { useState } from 'react';
 import ClassicMoviesPage from './components/movied/ClassicMoviesPage';
 import Movies from "./components/movie/Movies";
 
+
 function App() {
   return (
     <BookingProvider>

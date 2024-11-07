@@ -32,7 +32,7 @@ const Movies = () => {
 
   return (
     <div>
-      <h2>SALLY BOX</h2>
+
       {/* movieDetails가 있을 때만 MoviePage 또는 MovieDetail 렌더링 */}
       {movieDetails && (
         <>

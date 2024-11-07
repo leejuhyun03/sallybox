@@ -6,12 +6,12 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    gap: 10px;
+    gap: 0px;
 }
 
 .jytab_tit {
     width: 245px;
-    margin: 0 5px;
+    margin: 0 0px;
     font-size: 20px;
     padding: 10px;
     text-align: center;
@@ -83,7 +83,7 @@
 .jyslide_wrap {
    display: flex;
    flex-wrap: wrap;
-   justify-content: center;
+   justify-content: space-between;
 }
 
 .jyslide_wrap .jyslide_movie_detail_trailer {
@@ -91,8 +91,10 @@
    height: 200px;
 }
 
+
+
 .jyimage-item {
-   margin: 10px;
+   margin: 0px;
 }
 
 .jyreview-item {
@@ -162,12 +164,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
+    /* background-color: rgba(0, 0, 0, 0.7) !important; */
     padding: 20px;
     border-radius: 8px;
     width: 400px;
     max-width: 90%;
     z-index: 1000;
 }
+
+
 
 .jytrailer_modal {
     width: 70%;
@@ -369,6 +374,18 @@
     background-color: white;
 }
 
+.jyshow-more-button2 {
+    width: 980px;
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border: 1px solid #ddd;
+    color: none;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: white;
+}
+
 .jyreview-form {
     position: relative;
     display: flex;
@@ -401,7 +418,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* 어두운 반투명 배경 */
+    background-color: rgba(0, 0, 0, 0.8); /* 어두운 반투명 배경 */
     z-index: 98; /* 모달보다 낮은 레이어 */
 }
 
@@ -417,3 +434,78 @@
     align-items: center;
     justify-content: center;
 }
+
+.jylayer_wrap2 {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 970px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 그림자 추가 */
+}
+
+.jylayer_wrap2.active {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 970px;
+    height: 583px;
+    background-color: rgba(0, 0, 0, 0);
+    /* background-color: white; */
+    /* border-radius: 10px; */
+    height: auto;
+    /* border: 1px solid #ccc;  */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)!important; 그림자 효과를 좀 더 강하게 설정 */
+}
+
+.jylayer_wrap2.active.jylayer_movie_trailer {
+    width: 970px;
+    height: 583px;
+}
+
+.jylayer_wrap2 .jylayer_header {
+    position: relative;
+    height: 54px;
+    line-height: 58px;
+    border-bottom: 1px solid #CCC;
+    color: #FFF;
+    text-align: center;
+    width: 975px;
+}
+
+.jylayer_wrap2.jyty2 .jylayer_header {
+    height: 0;
+    line-height: 0;
+    border-bottom: none;
+}
+
+#jylayerMovieImages.jylayer_wrap2 .jylayer_header .jybtn_close {
+    top: 0px;
+}
+
+.jylayer_wrap2 .jylayer_header .jybtn_close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: auto;
+    height: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.jylayer_wrap2 .jylayer_contents {
+    padding: 31px 25px;
+    height: 580px;
+    width: 900px;
+    margin: 0px 0px;
+}
+

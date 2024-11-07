@@ -9,7 +9,7 @@ element.style {
     font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
     font-size: 12px;
     color: #000;
-    margin-top: 90px;
+    margin-top: -57px;
 }
 
 /* #jycontent ID에 대한 스타일 */
@@ -193,8 +193,9 @@ element.style {
     width: 480px;
     height: 30px;
     list-style: none;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
+    margin-left: -18px;
 }
 
 .jymov_info1 li {
@@ -308,10 +309,11 @@ element.style {
 }
 
 .jytxtarea_box .jytxtarea {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 115px;
     line-height: 1.6;
-    font-size: 18;
+    font-size: 21px !important; 
+    /* 지영 !important */
     border: 0;
     padding: 0 20px 0 0;
 }
@@ -349,10 +351,12 @@ element.style {
     background-color: white;
     border-radius: 10px;
     height: auto;
-    border: 1px solid #ccc; /* 얇은 회색 테두리 추가 */
+    border: 1px solid #ccc; 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)!important;   /* 그림자 효과를 좀 더 강하게 설정 */
     
 }
+
+
 
 .jylayer_wrap.active.jylayer_movie_trailer {
     width: 970px;
@@ -428,6 +432,6 @@ element.style {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* 어두운 반투명 배경 */
+    background-color: rgba(0, 0, 0, 0.8); /* 어두운 반투명 배경 */
     z-index: 98; /* 모달보다 낮은 레이어 */
 }

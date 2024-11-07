@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../css/movie/moviedetail.css'; // CSS 파일 import
 import axios from 'axios';
 import { PiStarFill } from "react-icons/pi";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa"; // 다음/이전 버튼 아이콘
+import { SlArrowLeft, SlArrowRight  } from "react-icons/sl"; // 다음/이전 버튼 아이콘
 import { IoClose } from "react-icons/io5"; // 닫기 버튼 아이콘
 import { useSearchParams } from 'react-router-dom';
 import { BiSort } from "react-icons/bi";
@@ -36,8 +36,11 @@ const MovieDetail = ({ movie_id }) => {
     const [isImageModalOpen, setIsImageModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [showExistingReview, setShowExistingReview] = useState(true);
-    
-    
+
+    // 한 번에 보여줄 이미지 개수를 정의합니다. (수정!!!)
+    const initialImageCount = 6;
+    const [visibleImageCount, setVisibleImageCount] = useState(initialImageCount); // 수정!!!
+
     useEffect(() => {
         const fetchMovieData = async () => {
             try {
@@ -52,9 +55,14 @@ const MovieDetail = ({ movie_id }) => {
                 setCredits(creditsData);
 
                 // 트레일러 정보 가져오기
-                const trailersRes = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${API_KEY}&language=ko-KR`);
+                const trailersRes = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`);
                 const trailersData = await trailersRes.json();
-                setTrailers(trailersData.results.slice(0, 2)); // 3개만 저장
+
+                    // "Teaser"와 "Trailer" 각각 하나씩 가져오기
+                    const teaser = trailersData.results.find(video => video.type === "Teaser");
+                    const trailer = trailersData.results.find(video => video.type === "Trailer");
+                    // teaser와 trailer 중 존재하는 항목만 배열로 만들어서 저장
+                    setTrailers([teaser, trailer].filter(Boolean));
 
                 // 스틸컷 정보 가져오기
                 const imagesRes = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/images?api_key=${API_KEY}`);
@@ -302,6 +310,11 @@ const MovieDetail = ({ movie_id }) => {
         }
     };
 
+    // "더보기" 버튼 클릭 시 더 많은 이미지를 로드 (수정!!!)
+    const handleLoadMoreImages = () => {
+        setVisibleImageCount(prevCount => prevCount + initialImageCount);
+    };
+
     return (
         <div>
             <div>
@@ -367,18 +380,20 @@ const MovieDetail = ({ movie_id }) => {
 
                                 <h5 className="jytit_info jytype1">트레일러</h5>
                                 <div className="jytrailers">
-                                    {trailers.length > 0 ? (
-                                        trailers.map(trailer => (
-                                            <div key={trailer.id} style={{ marginTop: '50px' }}>
-                                                <img
-                                                    src={`https://img.youtube.com/vi/${trailer.key}/0.jpg`}
-                                                    alt={trailer.name}
-                                                    className="jymovie-image"
-                                                    style={{ width: '316px', height: '176px', cursor: 'pointer' }}
-                                                    onClick={() => handleTrailerClick(trailer.key)}
-                                                />
-                                                <strong style={{ paddingTop: '50px' }}>{trailer.name}</strong>
-                                            </div>
+                                {trailers.length > 0 ? (
+                                    trailers.map(trailer => (
+                                        <div key={trailer.id} style={{ marginTop: '50px' }}>
+                                            <img
+                                                src={`https://img.youtube.com/vi/${trailer.key}/0.jpg`}
+                                                alt={movieDetails.title}
+                                                className="jymovie-image"
+                                                style={{ width: '316px', height: '176px', cursor: 'pointer' }}
+                                                onClick={() => handleTrailerClick(trailer.key)}
+                                            />
+                                            <strong style={{ paddingTop: '50px', fontSize: '18px' }}>
+                                                {trailer.type === "Teaser" ? "티저 예고편" : "메인 예고편"}
+                                            </strong>
+                                        </div>
                                         ))
                                     ) : (
                                         <p>트레일러가 없습니다.</p>
@@ -401,16 +416,22 @@ const MovieDetail = ({ movie_id }) => {
                                 )}
 
                                 <div className="jymovi_tab_info3">
-                                    <h5 className="jytit_info jytype1">스틸컷</h5>
-                                    <div className='jyslide_wrap jyslide_movie_detail_images' style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                    <h5 className="jytit_info jytype1" style={{marginTop:'50px'}}>스틸컷</h5>
+                                    <div className='jyslide_wrap jyslide_movie_detail_images' style={{
+                                            display: 'grid', 
+                                            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
+                                            gap: '10px', 
+                                            padding: '0',
+                                            margin: '0',
+                                        }}>
                                         {images && images.length > 0 ? (
-                                            images.map((image, index) => (
+                                            images.slice(0, visibleImageCount).map((image, index) => ( // 수정!!!
                                                 <div className='jyimage-item' key={image.file_path}>
                                                     <img
                                                         src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
                                                         alt="스틸컷"
                                                         className="jymovie-image"
-                                                        style={{ width: '200px', height: 'auto', margin: '10px', cursor: 'pointer' }}
+                                                        style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
                                                         onClick={() => handleImageClick(index)}
                                                     />
                                                 </div>
@@ -419,6 +440,14 @@ const MovieDetail = ({ movie_id }) => {
                                             <p>스틸컷이 없습니다.</p>
                                         )}
                                     </div>
+                                    {visibleImageCount < images.length && (
+                                        <button
+                                            onClick={handleLoadMoreImages} 
+                                            className="jyshow-more-button2"
+                                        >
+                                            더보기
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -634,26 +663,29 @@ const MovieDetail = ({ movie_id }) => {
 
                 {isImageModalOpen && <div className="jyoverlay" onClick={closeModal}></div>}
                 {isImageModalOpen && (
-                    <div id="jyimageModal" className="jylayer_wrap jyimage_modal active">
-                        <div className="jylayer_header">
-                            <button type="button" className="jybtn_close" onClick={() => setIsImageModalOpen(false)}>
-                                <IoClose size={30} />
-                            </button>
-                        </div>
+                    <div id="jyimageModal" className="jylayer_wrap2 jyimage_modal active">
                         <div className="jylayer_contents" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <button type="button" className="jybtn_prev" onClick={handlePrevImage} style={{ marginLeft: '20px', background: 'white', border: 'none', outline: 'none' }}>
-                                <FaCaretLeft size={40} />
+                            <button type="button" className="jybtn_close" onClick={() => setIsImageModalOpen(false)} style={{
+                                    position: 'absolute',
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    color:'white',
+                                }}>
+                                <IoClose size={60} />
+                            </button>
+                            <button type="button" className="jybtn_prev" onClick={handlePrevImage} style={{ marginRight: '30px', backgroundColor: 'rgba(0, 0, 0, 0)', border: 'none', outline: 'none', color:'white' }}>
+                                <SlArrowLeft size={50} />
                             </button>
 
                             <img
                                 src={`https://image.tmdb.org/t/p/w500${images[selectedImageIndex].file_path}`}
                                 alt="스틸컷"
                                 className="jymodal-image"
-                                style={{ width: '70%', height: 'auto' }}
+                                style={{ width: '100%', height: 'auto' }}
                             />
 
-                            <button type="button" className="jybtn_next" onClick={handleNextImage} style={{ marginLeft: '20px', background: 'white', border: 'none', outline: 'none' }}>
-                                <FaCaretRight size={40} />
+                            <button type="button" className="jybtn_next" onClick={handleNextImage} style={{ marginLeft: '30px',  backgroundColor: 'rgba(0, 0, 0, 0)', border: 'none', outline: 'none', color:'white' }}>
+                                <SlArrowRight size={40} />
                             </button>
                         </div>
                     </div>
