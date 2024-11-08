@@ -13,6 +13,8 @@ import ResetPassword from './components/findpassword/RestPassword';
 import Footer from './components/footer/Footer';
 import Payment from "./components/payment/Payment";
 import { useState } from 'react';
+import Gogaksenter from './components/주용/Gogaksenter';
+import Gogakregistration from './components/주용/Gogakregistration';
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function AppRoutes() {
           <Route path='sign-in' element={<SignIn />} />
           <Route path="verification" element={<FindPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />
+        <Route path="gogaksenter" element={<Gogaksenter />} />
+        <Route path="registration" element={<Gogakregistration />} />
         </Route>
       </Routes>
 

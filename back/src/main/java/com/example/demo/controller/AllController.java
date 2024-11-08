@@ -10,15 +10,18 @@ import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.CinemaScheduleDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.FindEmailRequest;
 import com.example.demo.DTO.KH.LoginRequest;
 import com.example.demo.service.SqlService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -173,6 +176,37 @@ public class AllController {
             return ResponseEntity.status(500).body("비밀번호 변경에 실패했습니다.");
         }
     }
+    
+    //주용
+
+    @PostMapping("/api/inquiries")
+    public void createInquiry(@RequestBody InquiryRequest inquiryRequest) {
+        sqlService.saveInquiry(inquiryRequest);
+    }
+
+    @GetMapping("/api/inquiries")
+    public List<InquiryRequest> getAllInquiries() {
+        return sqlService.getAllInquiries();
+    }
+
+    @DeleteMapping("/api/inquiries")
+    public ResponseEntity<Void> deleteInquiry(@RequestBody Map<String, String> request) {
+        String title = request.get("title");
+        sqlService.deleteInquiryByTitle(title);
+        return ResponseEntity.noContent().build();
+    }
+    
+    @PutMapping("/api/inquiries")
+    public ResponseEntity<?> updateInquiry(@RequestBody InquiryRequest inquiryRequest) {
+        
+        try {
+            sqlService.updateInquiry(inquiryRequest);
+            return ResponseEntity.ok("게시물이 성공적으로 수정되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("수정 중 오류 발생: " + e.getMessage());
+        }
+    }
+
     
     
     

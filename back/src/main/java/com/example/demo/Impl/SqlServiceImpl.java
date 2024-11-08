@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
+import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.mapper.SqlMapper;
 import com.example.demo.service.SqlService;
@@ -150,5 +151,25 @@ public class SqlServiceImpl implements SqlService{
 	}
     
 
+    // 주용 ServiceImpl
+   
+    @Override
+    public void saveInquiry(InquiryRequest inquiryRequest) {
+        sqlMapper.insertInquiry(inquiryRequest);
+    }
 
+    @Override
+    public List<InquiryRequest> getAllInquiries() {
+        return sqlMapper.selectAllInquiries();
+    }
+
+    @Override
+    public void deleteInquiryByTitle(String title) {
+        sqlMapper.deleteInquiryByTitle(title); // 제목으로 삭제 메서드 호출
+    }
+
+    @Override
+    public void updateInquiry(InquiryRequest inquiryRequest) {
+        sqlMapper.updateInquiry(inquiryRequest); // 수정 메서드 호출
+    }
 }

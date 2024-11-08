@@ -1,0 +1,43 @@
+
+.tab_wrap > li > .tab_tit {
+    border: none;
+}
+
+.tab_wrap > li > .tab_tit {
+    position: absolute;
+    top: 0;
+}
+
+
+.tab_wrap.outer > li > .tab_tit {
+    height: 50px;
+    line-height: 50px;
+    /* border-bottom: 1px solid #CCC; */
+    font-size: 15px;
+    /* color: #7F7F7F; */
+}
+
+
+.tab_wrap > li > .tab_tit {
+    border: none;
+}
+
+
+.tab_wrap.outer {
+    padding-top: 5px;
+}
+.tab_wrap {
+    position: relative;
+}
+
+.tab_wrap > li.active > .tab_con {
+    overflow: inherit;
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+.tab_wrap > li > .tab_tit {
+    position: absolute;
+    top: 0;
+}
