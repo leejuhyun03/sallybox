@@ -70,7 +70,7 @@
     </select>
 
     <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
-      SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name}
+      SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name} AND phone_number = #{phoneNumber}
     </select>
 
     <update id="updatePassword" parameterType="map">

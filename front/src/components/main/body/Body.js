@@ -331,22 +331,24 @@ const Body = () => {
                 {topRatedMovies.map(movie => (
                     <SwiperSlide key={movie.movieId} className='owl-stage' style={{ width: '184px', marginRight: '15px', background: '#000' }}
                     onMouseOver={() => onOpen(movie.movieId)} onMouseLeave={onClose}>
-                        <div style={{width: '100%', height: '100%'}}>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px'}}/>
-                            <div className='titleInfo'>
+                        <div>
+                            <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px',
+                                width: '100%', height: '260px'
+                            }}/>
+                            <div className='titleInfo' style={{marginBottom: '20px'}}>
                             <span className="ageRating">
                                 <img src={movie.ageRatingImg} alt={movie.title}/>
                             </span>
                             {
                                 hoveredMovieId === movie.movieId &&
-                            <div className='test'>
+                            <div className='testf'>
                                 <div className="in">
                                     <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                     <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                 </div>
                             </div>
                             }
-                            <strong>{movie.title && <div className='movieTitle'>{movie.title}</div>}</strong>
+                            {movie.title && <strong className='movieTitle'>{movie.title}</strong>}
                             </div>    
                         </div>
                     </SwiperSlide>
