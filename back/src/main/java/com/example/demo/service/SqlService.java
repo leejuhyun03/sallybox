@@ -12,6 +12,12 @@ import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.NowMoviesDTO;
+import com.example.demo.DTO.SH.CustomerDTO;
+import com.example.demo.DTO.SH.MyBookingDTO;
+import com.example.demo.DTO.SH.MyMovieDTO;
+import com.example.demo.DTO.SH.MyPayDTO;
+import com.example.demo.DTO.SH.ProfileDTO;
+import com.example.demo.DTO.SH.UserUpdateDTO;
 
 public interface SqlService {
     
@@ -50,4 +56,23 @@ public interface SqlService {
     List<InquiryRequest> getAllInquiries();
     void deleteInquiryByTitle(String title); // 제목으로 삭제 메서드 추가
     void updateInquiry(InquiryRequest inquiryRequest); // 수정 메서드 추가
+
+    // 선호 service
+    public CustomerDTO getCustomerInfo(int userId) throws Exception;
+    public List<MyMovieDTO> getWishlistMovies(int userId) throws Exception;
+
+    public boolean removeFromWishlist(int userId, int movieId) throws Exception;
+
+    public boolean deactivateUser(int userId);
+
+    public ProfileDTO updateNickname(int userId, String nickname);
+
+    public boolean updateCustomer(UserUpdateDTO userUpdateDto);
+
+    public List<MyBookingDTO> getBookingsByUserId(int userId);
+
+    public List<MyPayDTO> getPaymentsByUserId(int userId);
+
+    //결제취소
+    public void cancelBooking(int userId, Long bookingNum, int pointUsage) throws Exception;
 }

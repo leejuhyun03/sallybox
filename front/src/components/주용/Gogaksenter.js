@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../../css/jy/Gogaksenter.css";
-import "../../css/jy/nav.css";
 import "../../css/jy/tab.css";
 
 import qowndyd from "../../image/temp_1728880786084.1233137906.jpeg";

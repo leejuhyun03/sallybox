@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../css/jy/tab.css';
-import '../../css/jy/nav.css';
 import '../../css/jy/Gogaksenter.css';
 import '../../css/jy/Gogakregistration.css';
 import { Link } from 'react-router-dom';

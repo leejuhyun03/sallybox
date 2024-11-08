@@ -18,7 +18,7 @@
 
 .contents_main .movi_current_list {
     position: static;
-    margin-top: -100px;
+    margin-top: -75px;
     margin-bottom: 50px;
 }
 
@@ -167,6 +167,50 @@
     padding: 0 14px;
 }
 
+.testf {
+    overflow: inherit;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.testf::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 260px;
+    background: #000;
+    opacity: 0.7;
+    border-radius: 4px;
+}
+
+.testf .in {
+    position: absolute;
+    z-index: 1;
+    top: 30%;
+    left: 0;
+    right: 0;
+    padding: 0 18px;
+    color: #FFF;
+    text-align: center;
+}
+
+.testf .in .btn_col3s {
+    display: block;
+    line-height: 26px;
+    margin-top: 10px;
+    background: transparent;
+    color: #fff !important;
+    border-color: #fff;
+    height: 28px;
+    padding: 0 14px;
+}
+
 .btn_col3s {
     box-sizing: border-box;
     border-radius: 4px;
@@ -190,7 +234,7 @@
 }
 
 li {
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-bottom: 50px;
     margin: 0 0;
 }
