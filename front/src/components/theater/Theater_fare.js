@@ -20,7 +20,7 @@ const Theater_fare = () => {
                 <div className={`fare_bottom_content ${type === 'general' ? 'active':''}`}>
                     <div className='top_content'>
                         <div className='price_title'>
-                            <h4>2D,3D 일반석</h4>
+                            <h4>2D 일반석</h4>
                         </div>
                         <div className='price_content'>
                              <div className='content_content'>

@@ -10,9 +10,9 @@ import TimeTheaterType from './TimeTheaterType';
 const getAgeRatingImg = (age_rating) => {
     switch(age_rating){
         // case '전체연령가' : return '../image/grade_all.png'
-        case '12세' : return tweleve;
-        case '15세' : return fifteen;
-        case '19세' : return nineteen ;
+        case '12세 관람가' : return tweleve;
+        case '15세 관람가' : return fifteen;
+        case '19세 관람가' : return nineteen ;
         default : return all;
     }
 };
@@ -41,8 +41,8 @@ const TheaterTime = ({scheduleMap}) => {
             {Object.entries(groupedData).map(([movie_id,schedules]) => (
                 <div key={movie_id} className='time_scroll_select_wrap'>
                     <div className='time_scroll_title'>
-                        <img src={getAgeRatingImg(schedules[0].age_rating)} alt='연령 사진' style={{width:'30px'}}/>
-                        <span>{schedules[0].movie_title}</span>
+                        <img src={getAgeRatingImg(schedules[0].certification)} alt='연령 사진' style={{width:'22px'}}/>
+                        <span>{schedules[0].title}</span>
                         <a href=''><img src={arrow} alt='영화 정보페이지 링크' style={{width:'10px'}}/></a>
                     </div>
                     <div>

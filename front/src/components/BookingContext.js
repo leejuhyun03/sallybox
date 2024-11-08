@@ -5,10 +5,13 @@ export const BookingContext = createContext()
 export const BookingProvider = ({children}) => {
 
     const [bookingData, setBookingData] = useState({
-        movie: null,
         schedule: null,
-        seat:null
-      })
+        selectedSeats:[],
+        counts: { adult: 0, teenager: 0, senior: 0, disabled: 0 }, //인원수
+        totalPrice:0
+    })
+
+      
 
     return (
         <BookingContext.Provider value={{bookingData,setBookingData}}>

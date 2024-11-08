@@ -5,6 +5,7 @@
     background-color: transparent;
     display: flex;
     flex-direction: column;
+    /* border-bottom: 1px solid gray; */
 }
 .time_scroll_title{
     display: flex;

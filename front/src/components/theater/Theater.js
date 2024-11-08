@@ -41,9 +41,7 @@ const Theater = () => {
 
     return (
         <div id='wrap'>   
-            <div className='header'> 
-                {/* navbar들어갈 자리           */}
-            </div>
+            
             <div className='contents'>
                 
                 <TheaterTop cinemaDTO={cinemaDTO}/>

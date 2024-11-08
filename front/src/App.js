@@ -1,24 +1,19 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import { BookingProvider } from "./components/BookingContext";
-import Reservation from "./components/seats/Reservation";
-import Theater from "./components/theater/Theater";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Ticketing from "./components/ticketing/Ticketing";
-import LoginTest from "./components/강현/LoginTest"
+
+import { UserProvider } from './context/UserContext'; // UserProvider 추가
+import AppRoutes from './AppRoutes'
+
 
 function App() {
   return (
-    <div>
+    <UserProvider>
       <BookingProvider>
         <Router>
-          <Routes>
-            <Route path="/sallybox/cinema/:cinema_id" element={<Theater />} />
-            <Route path="/sallybox/reserv/ticketing" element={<Ticketing/>}/>
-            <Route path="/sallybox/reserv/seats" element={<Reservation />}/>
-            <Route path="/sallybox/login" element={<LoginTest />}/>
-          </Routes>
+          <AppRoutes />
         </Router>
       </BookingProvider>
-    </div>
+    </UserProvider>
   );
 }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.json.db.jsondb.mapper.TheaterSeatLink">
+    <insert id="insertLink" parameterType="com.json.db.jsondb.dto.TheaterSeatLinkDTO">
+        INSERT INTO Link (link_id)
+        VALUES (#{link_id})
+    </insert>
+</mapper>

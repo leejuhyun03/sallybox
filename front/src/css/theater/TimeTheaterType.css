@@ -20,4 +20,34 @@
 }
 .time_scroll_select_buttons button{
     width: 100px;
+    position: relative;
 }
+
+
+/* 툴팁 스타일링 */
+.time_scroll_select_buttons button::after {
+    content: attr(data-end-time);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    margin-bottom: 15px;
+  }
+  
+
+  
+  .time_scroll_select_buttons button:hover::after,
+  .time_scroll_select_buttons button:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }
