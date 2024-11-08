@@ -234,7 +234,7 @@
 }
 
 li {
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-bottom: 50px;
     margin: 0 0;
 }

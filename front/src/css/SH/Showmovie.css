@@ -1,0 +1,330 @@
+.ticket_list {
+    margin-bottom: 10px;
+    position: relative;
+    padding: 73px 50px 1px 104px;
+    min-height: 523px;
+    /* background: #f8f8f8; */
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.ticket_list .ticket_info .date .week {
+    padding: 10px;
+    font-size: 11px;
+    font-family: 'Noto';
+}
+
+.ticket_list .ticket_info .date {
+    position: absolute;
+    left: -155px;
+    top: 0;
+    font-size: 13px;
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+.ticket_list .ticket_info li > button {
+    display: block;
+    position: relative;
+    padding: 0;
+    width: 100%;
+    border: 0;
+    text-align: left;
+    background: none;
+}
+
+.ticket_list .ticket_info .tit {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+button > * {
+    position: relative;
+}
+
+.ticket_list .ticket_info .sum {
+    margin-left: 12px;
+    font-size: 11px;
+    vertical-align: middle;
+}
+.ticket_list .ticket_info .num {
+    margin-left: 20px;
+    color: #666;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.ticket_list .ticket_info li.open .ticket {
+    display: block;
+}
+
+.ticket_list .ticket_info .ticket {
+    display: none;
+    position: relative;
+    margin-top: 23px;
+    padding: 23px 22px;
+    width: 725px;
+    min-height: 280px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.ticket_info .ticket .info_area .img {
+    float: left;
+    width: 100px;
+    height: 145px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.txt_col1.ty2, .txt_col2.ty2, .txt_col3.ty2, .txt_col4.ty2, .txt_col5.ty2, .txt_col6.ty2, .txt_col7.ty2, .txt_col8.ty2 {
+    height: 19px;
+    line-height: 17px;
+    padding: 0 8px;
+    font-size: 11px;
+}
+
+.txt_col7 {
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #FF243E;
+    font-size: 10px;
+    color: #FF243E;
+    background-color: #ffffff;
+}
+
+.ticket_info .ticket .info_area .img img {
+    width: 100%;
+}
+
+img {
+    border: none;
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.ticket_info .ticket .info_area .info {
+   
+    margin-left: 20px;
+    padding-top: 12px;
+    float: left;
+    width: 557px;
+}
+
+.ticket_info .ticket .info_area .info dl {
+    position: relative;
+    margin-top: 4px;
+    padding-left: 93px;
+    min-height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+.ticket_info .ticket .info_area .info dt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 93px;
+}
+
+.ticket_info .ticket .info_area .info dd {
+    color: #666;
+}
+
+.ticket_info .ticket .info_area .info dd em {
+    font-family: "Roboto";
+}
+
+.ticket_info .ticket .info_area .info .inter {
+    position: relative;
+    margin-left: 15px;
+    padding-left: 16px;
+}
+
+.ticket_info .ticket .info_area .info .btn_wrap > * {
+    margin-left: 8px;
+    min-width: 148px;
+}
+
+.ticket_info .ticket .info_area .info .btn_wrap {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 0;
+    text-align: right;
+}
+
+.btn_col3 {
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    color: #000000 !important;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.payment_area {
+    margin-top: 28px;
+    border-top: 1px solid #000;
+}
+
+.ticket_info.new2020 .payment_area .date_pay {
+    margin-top: 10px;
+}
+
+.payment_area .date_pay {
+    padding: 14px 0;
+    line-height: 18px;
+    font-size: 13px;
+}
+
+.payment_area .total_pay {
+    padding-top: 16px;
+    min-height: 87px;
+}
+
+.payment_area > * {
+    border-top: 1px solid #ddd;
+}
+
+.payment_area .date_pay em {
+    line-height: 17px;
+    font-family: 'Roboto';
+}
+
+.payment_area .date_pay dt {
+    width: 66px;
+}
+
+.payment_area .date_pay > * {
+    float: left;
+}
+
+.payment_area .pay_area:first-child {
+    padding-right: 24px;
+    width: 200px;
+}
+
+.payment_area .pay_area {
+    position: relative;
+    float: left;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+
+
+.payment_area .pay_area .pay {
+    
+    font-size: 13px;
+}
+
+.payment_area .pay_area .pay em{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.payment_area .pay_area .pay dd {
+    float: right;
+}
+
+.ticket_info.new2020 .payment_area .total_pay .pay_area dt {
+    float: left;
+}
+
+.ticket_info.new2020 .payment_area .pay_area.dotline {
+    border-right: 1px dashed #e6e6e6;
+    border-left: 1px dashed #e6e6e6;
+}
+
+.payment_area .pay_area:first-child + .pay_area {
+    padding: 0 24px;
+    width: 240px;
+}
+
+.ticket_info.new2020 .payment_area .total_pay .pay_area .minus dt, .ticket_info.new2020 .payment_area .total_pay .pay_area .plus dt {
+    font-size: 13px;
+}
+
+.ticket_info.new2020 .payment_area .total_pay .pay_area .minus dd, .ticket_info.new2020 .payment_area .total_pay .pay_area .plus dd {
+    float: right;
+}
+
+.ticket_info.new2020 .payment_area .total_pay .pay_area .minus em, .ticket_info.new2020 .payment_area .total_pay .pay_area .plus em {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.payment_area .pay_area:first-child + .pay_area::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 13px;
+    width: 21px;
+    height: 21px;
+    background: url(../../image/ic_rnd_21_01.png) no-repeat;
+}
+
+.payment_area .pay_area:first-child + .pay_area + .pay_area::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 13px;
+    width: 21px;
+    height: 21px;
+    background: url(../../image/ic_rnd_21_02.png) no-repeat;
+}
+
+.payment_area .pay_area .discont {
+    margin-top: 12px;
+}
+
+.payment_area .pay_area .pay .txt_color {
+    color: #FF243E;
+}
+
+.ticket_info.new2020 .payment_area .total_pay .pay_area .minus::after, .ticket_info.new2020 .payment_area .total_pay .pay_area .plus::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.payment_area .pay_area:first-child + .pay_area + .pay_area {
+    padding-left: 24px;
+    width: 235px;
+}
+
+.payment_area .pay_area .number {
+    border-radius: 5px; /* 테두리 둥글게 */
+    margin-top: 9px;
+    color: #666;
+    font-size: 15px;
+    font-family: 'Roboto';
+    
+    padding: 5px; /* 내용과 테두리 사이 여백 추가 */
+}
+
+.txt_card1.ty1 {
+    background-color: #AFAFAF;
+}
+
+.payment_area .pay_area::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 73px;
+    border-left: 1px dashed #e6e6e6;
+}

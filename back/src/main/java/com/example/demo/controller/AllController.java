@@ -21,6 +21,13 @@ import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.FindEmailRequest;
 import com.example.demo.DTO.KH.LoginRequest;
 import com.example.demo.DTO.KH.NowMoviesDTO;
+import com.example.demo.DTO.SH.CustomerDTO;
+import com.example.demo.DTO.SH.MyBookingDTO;
+import com.example.demo.DTO.SH.MyMovieDTO;
+import com.example.demo.DTO.SH.MyPayDTO;
+import com.example.demo.DTO.SH.ProfileDTO;
+import com.example.demo.DTO.SH.UserDeactivationDTO;
+import com.example.demo.DTO.SH.UserUpdateDTO;
 import com.example.demo.DTO.ZERO.MovieDTO;
 import com.example.demo.DTO.ZERO.NowMovieDTO;
 import com.example.demo.DTO.ZERO.ReviewsDTO;
@@ -670,6 +677,111 @@ public class AllController {
     @GetMapping("/sallybox/nowmovies/exists/{movie_id}")
     public boolean checkIfMovieExists(@PathVariable("movie_id") int movieId) {
         return movieService.getNowMovieById(movieId) != null;
+    }
+
+    //선호 controller
+    @GetMapping("/sallybox/mypage/{userId}")
+    public ResponseEntity<Map<String, Object>> getCustomerInfoAndWishlist(@PathVariable("userId") int userId) throws Exception{
+     
+        CustomerDTO customerInfo = sqlService.getCustomerInfo(userId);
+        List<MyMovieDTO> wishlistMovies = sqlService.getWishlistMovies(userId);
+
+        System.out.println("wishlistMovies--------------------"+wishlistMovies);
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("customerInfo", customerInfo);
+        response.put("wishlistMovies", wishlistMovies);
+        
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/sallybox/mypage/{userId}/{movieId}")
+    public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int movieId) throws Exception {
+        boolean removed = sqlService.removeFromWishlist(userId, movieId);
+        if (removed) {
+            return ResponseEntity.ok().body("영화가 위시리스트에서 삭제되었습니다.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }   
+    
+    @PutMapping("/sallybox/mypage/deactivate")
+    public ResponseEntity<?> deactivateUser(@RequestBody UserDeactivationDTO dto) {
+
+        //System.out.println("Received userId: " + dto.getUserId());
+        //System.out.println("Received status: " + dto.getStatus());
+
+        boolean result = sqlService.deactivateUser(dto.getUserId());
+
+        if (result) {
+            return ResponseEntity.ok().body("{\"success\": true}");
+        } else {
+            return ResponseEntity.badRequest().body("{\"success\": false}");
+        }
+    }
+
+    @PostMapping("/sallybox/auth/logout")
+    public ResponseEntity<?> logout() {
+        // 로그아웃 로직 구현
+        return ResponseEntity.ok().body("{\"success\": true}");
+    }
+
+    @PutMapping("/sallybox/mypage/editprofile")
+    public ResponseEntity<?> updateNickname(@RequestBody ProfileDTO profileDTO) {
+        try {
+            ProfileDTO updatedProfile = sqlService.updateNickname(profileDTO.getUserId(), profileDTO.getNickname());
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("data", updatedProfile);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", "닉네임 업데이트에 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+    }
+
+    @PutMapping("/sallybox/mypage/update")
+    public ResponseEntity<String> updateCustomer(@RequestBody UserUpdateDTO userUpdateDTO) {
+        try {
+            boolean updated = sqlService.updateCustomer(userUpdateDTO);
+            if (updated) {
+                return ResponseEntity.ok("Customer updated successfully");
+            } else {
+                return ResponseEntity.badRequest().body("Failed to update customer");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed to update customer: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/sallybox/mypage/booking/{userId}")
+    public List<MyBookingDTO> getBookings(@PathVariable int userId) {
+        return sqlService.getBookingsByUserId(userId);
+    }
+
+    @GetMapping("sallybox/mypage/payment/{userId}")
+    public ResponseEntity<List<MyPayDTO>> getPayments(@PathVariable int userId) {
+
+        List<MyPayDTO> payments = sqlService.getPaymentsByUserId(userId);
+
+        return ResponseEntity.ok(payments);
+    }
+    
+     
+    @PostMapping("/sallybox/mypage/cancel")
+    public ResponseEntity<String> cancelBooking(
+        @RequestParam int userId,
+        @RequestParam Long bookingNum,
+        @RequestParam int pointUsage
+    ) {
+        try {
+            sqlService.cancelBooking(userId, bookingNum, pointUsage);
+            return ResponseEntity.ok("예매가 성공적으로 취소되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("예매 취소 중 오류가 발생했습니다.");
+        }
     }
 
         

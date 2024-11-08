@@ -1,0 +1,62 @@
+.mypage_menu_box:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.mypage_wrap {
+    margin-top: 30px;
+    padding-top: 35px;
+}
+
+.mypage_menu_box li a {
+    display: block;
+    position: relative;
+    padding-top: 83px;
+    width: 188px;
+    height: 126px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+
+
+.mypage_menu_box li a {
+    display: block;
+    position: relative;
+    padding-top: 83px;
+    width: 188px;
+    height: 126px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.mypage_menu_box li {
+    float: left;
+    background-color: #F8F8F8;
+}
+
+.mypage_menu_box li .img {
+    position: absolute;
+    left: 0;
+    top: 34px;
+    width: 100%;
+    text-align: center;
+}
