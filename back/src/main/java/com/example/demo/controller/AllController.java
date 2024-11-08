@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.websocket.server.PathParam;
+
 import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.CinemaScheduleDTO;
@@ -152,7 +154,8 @@ public class AllController {
     @PostMapping("/api/findEmail")
     public ResponseEntity<?> findEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
         // 로그인 로직
-        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName(), findEmailRequest.getPhoneNumber());
 
         if(dto != null) {
 
@@ -173,7 +176,7 @@ public class AllController {
     @PostMapping("/api/allfindEmail")
     public ResponseEntity<?> allfindEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
         // 로그인 로직
-        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName(), findEmailRequest.getPhoneNumber());
 
         if(dto != null) {
 
@@ -481,11 +484,12 @@ public class AllController {
     @PostMapping("/sallybox/movies/{movie_id}/wishlist/toggle")
     public ResponseEntity<Map<String, Boolean>> toggleWishlist(
             @PathVariable("movie_id") int movieId,   // URL에서 movie_id 가져옴
+            @RequestParam("user_id") int userId,   // URL에서 movie_id 가져옴
             @RequestBody WishlistDTO wishlistDTO) {   // 요청의 본문에서 user_id 등 받아옴
-     
+     System.out.println(userId);
         // DTO의 movie_id를 URL에서 가져온 movie_id로 설정
         wishlistDTO.setMovieId(movieId);  
-        wishlistDTO.setUserId(1); // 로그인 미구현, 임시 user_id 설정
+        wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
         MovieDTO dto = movieService.findMovieById(movieId);
         String genreIds=dto.getGenreIdsString();
         // 위시리스트에 있는지 확인 후 토글

@@ -14,7 +14,7 @@ let [visible1, setVisible1] = useState(false)
   
   const [isShow, setIsShow] = useState(false)
 
-  const { isAuthenticated, setIsAuthenticated } = useUser();
+  const { userId, isAuthenticated, setIsAuthenticated } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -105,7 +105,7 @@ let [visible1, setVisible1] = useState(false)
                 </ul>
                 <ul className="g_menu3">
                 {
-                  isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+                  isAuthenticated ? <li><Link className='btn_my' to={`/sallybox/mypage/${userId}`}>마이</Link></li>
                                 : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
                 }
                 <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>

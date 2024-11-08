@@ -7,7 +7,7 @@ import { useUser } from '../../../../context/UserContext';
 
 const HeaderModal = ({onClose, userName, userPoint}) => {
 
-    const {isAuthenticated} = useUser();
+    const {isAuthenticated, userId} = useUser();
 
     const point = numeral(userPoint).format('0,0');
 
@@ -90,8 +90,8 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                 <tr>
                                     <td headers="gmenu gmenu7">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a href='http://localhost:3000/sallybox/mypage' title="결제내역" tabIndex="0">결제내역</a></li>
-                                            <li><a href='http://localhost:3000/sallybox/mypage' title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
+                                            <li><a href={`http://localhost:3000/sallybox/mypage/${userId}`} title="결제내역" tabIndex="0">결제내역</a></li>
+                                            <li><a href={`http://localhost:3000/sallybox/mypage/${userId}`} title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">

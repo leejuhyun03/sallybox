@@ -11,7 +11,7 @@ const NavbarTest3 = ({setUserId}) => {
   let [visible3, setVisible3] = useState(false)
 
 
-  const { isAuthenticated } = useUser();
+  const { isAuthenticated, userId } = useUser();
 
   const handleScroll = () => {
     if (window.scrollY > 100) {
@@ -66,7 +66,7 @@ const NavbarTest3 = ({setUserId}) => {
               <div className='gnbs'>
                 <ul className="g_menu3">
                 {
-                isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+                isAuthenticated ? <li><Link className='btn_my' to={`/sallybox/mypage/${userId}`}>마이</Link></li>
                                 : <li><Link className='btn_my' to={'/sallybox/sign-in'}>로그인</Link></li>
                 }
                   <li><a href="'http://localhost:3000/sallybox/reserv/ticketing'" className="btn_reserve">바로 예매</a></li>
@@ -82,7 +82,7 @@ const NavbarTest3 = ({setUserId}) => {
                     <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1} style={{color: 'black'}}>영화</a>
                     { // visible이 true이면 이라는 뜻
                     visible1 &&
-                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8', top: '44px'}} 
+                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8', top: '37px'}} 
                          onMouseOver={onTrue1} onMouseLeave={onFalse1}>
                       <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
                         <li>
@@ -102,7 +102,7 @@ const NavbarTest3 = ({setUserId}) => {
                     <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2} style={{color: 'black'}}>영화관</a>
                     { // visible이 true이면 이라는 뜻
                     visible2 &&
-                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8', height: '60px', top: '44px'}} 
+                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8', height: '60px', top: '37px'}} 
                          onMouseOver={onTrue2} onMouseLeave={onFalse2}>
                       <ul className='navbaruls'>
                         <li>

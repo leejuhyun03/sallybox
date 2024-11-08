@@ -45,7 +45,7 @@ public interface SqlMapper {
 
     // 강현 Mapper
     CustomDTO findByEmail(String email);
-    CustomDTO findByName(String name);
+    CustomDTO findByName(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
     void updatePassword(@Param("email") String email, @Param("password") String password);
     List<NowMoviesDTO> getNowMovies();
     List<NowMoviesDTO> getReccommendMovies();
