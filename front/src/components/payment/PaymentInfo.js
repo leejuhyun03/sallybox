@@ -13,6 +13,8 @@ const PaymentInfo = ({usePoint}) => {
     const {setPaymentData} = useContext(PaymentContext)
     const {totalPrice} = bookingData
 
+    const { isAuthenticated, setIsAuthenticated } = useUser();
+
     const onBooking = async() => {
 
         try{
