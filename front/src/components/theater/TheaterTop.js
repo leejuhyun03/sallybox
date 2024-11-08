@@ -44,7 +44,7 @@ const TheaterTop = ({cinemaDTO}) => {
                                 <dd className='addr'>{location}</dd>
                             </dl>
                             <dl className='theater_info'>
-                                <dt><FaCar/> 주차가능여부 : </dt>
+                                <dt><FaCar /> 주차가능여부 : </dt>
                                 <dd><span>{ParkingStatus(parking)}</span></dd>                                
                             </dl>                                                           
                         </div>

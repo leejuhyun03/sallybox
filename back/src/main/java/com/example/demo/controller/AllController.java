@@ -629,7 +629,7 @@ public class AllController {
     }
 
 
-    @GetMapping("/sallybox/cinema/{cinema_id}")
+    @GetMapping("/sallybox/cinemajy/{cinema_id}")
     public CinemaScheduleDTO getCinemaAndSchedules(@PathVariable("cinema_id") int cinema_id) throws Exception {
         // 1. 영화관 정보를 가져옵니다.
         CinemaDTO cinemaDTO = movieService.getCinemaInfojy(cinema_id);
