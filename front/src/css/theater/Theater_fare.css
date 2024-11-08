@@ -14,6 +14,7 @@
     cursor: pointer;
     position: relative;
     background-color: transparent;
+    font-size: 16px;
 }
 .fare_top_wrap button::after {
     content: '';
@@ -49,6 +50,7 @@
     padding-left: 61px;
     border-bottom: 1px solid #EAEAEA;
     background-color: #FFFFF8;
+    font-size: 15px;
 }
 
 .price_content{
@@ -63,19 +65,33 @@
 .content_content strong{
     margin-left: 10px;
     margin-right: 100px;
-    font-size: 15px;
+    font-size: 16px;
 }
 .content_content strong,
 .content_content span{
     flex: 1;
     text-align: center;
 }
+.content_content span{
+    font-size: 15px;
+    font-family: 'Roboto';
+}
 .fare_detail_wrap{
     display: flex;
     flex-direction: column;
     padding: 40px 48px;
-    margin: 30px 45px;
+    margin: 60px 45px;
     font-size: 12px;
     background-color: #E7E7E7;
     border-radius: 15px;
+}
+.fare_detail_wrap strong{
+    font-size: 14px;
+    margin: 14px 0 0 0;
+}
+.fare_detail_wrap ul{
+    margin: 20px 0;
+}
+.fare_detail_wrap li{
+    font-size: 14px;
 }
