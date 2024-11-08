@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import '../../css/payment/PayInfo.css'
 import axios from 'axios';
+import { useUser } from '../../context/UserContext';
 
 const PayMethod = ({setUsePoint}) => {
 
     const [pointOpen,setPointOpen] = useState(false)
     const [userPoint,setUserPoint] = useState(0)
     const [inputPoint,setInputPoint] = useState('');
+    const { userId } = useUser();
 
     const fetchId = async() => {
         try {
             const response = await axios.post('http://localhost:8085/sallybox/payment', {
-                user_id: '1'
+                user_id: userId
             });
             setUserPoint(response.data)
         } catch (error) {

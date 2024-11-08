@@ -62,16 +62,12 @@ a, a:link, a:visited, a:active, a:hover { /*주의사항 1*/
     cursor: pointer;
 }
 
-.header.ty3 .gnb {
-    border-bottom-color: rgba(255, 255, 255, .3);
-}
-
 .header .gnb {
     position: relative;
     width: 980px;
     height: 70px;
     margin: 0 auto;
-    border-bottom: 1px solid #B2B2B2;
+    border-bottom: 1px solid  rgba(255, 255, 255, .3);
 }
 
 .header .gnb:after {
@@ -215,7 +211,7 @@ ul, ol {
 
 #navs > ul > li > a:before {
     content: "";
-    opacity: .2;
+    opacity: .7;
     position: absolute;
     left: 0;
     top: 55%;
@@ -227,20 +223,20 @@ ul, ol {
     z-index: 99999;
 }
 
-#nav.area__gnbmovingbar .wrap_nav_underline {
+#navs.area__gnbmovingbar .wrap_nav_underline {
     position: relative;
     width: 980px;
     height: 2px;
     margin-top: -2px;
 }
 
-#nav.area__gnbmovingbar > ul > li ~ .wrap_nav_underline .nav_underline {
+#navs.area__gnbmovingbar > ul > li ~ .wrap_nav_underline .nav_underline {
     left: 277px;
     width: 77px;
     opacity: 0;
 }
 
-#nav.area__gnbmovingbar .nav_underline {
+#navs.area__gnbmovingbar .nav_underline {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -261,7 +257,7 @@ ul, ol {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 1) 100%);
 }
 
-#nav > ul > li > div {
+#navs > ul > li > div {
     display: none;
     position: absolute;
     z-index: 2;

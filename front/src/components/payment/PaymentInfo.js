@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import numeral from 'numeral';
 
+import { useUser } from '../../context/UserContext';
+
 const PaymentInfo = ({usePoint}) => {
 
     const navigate = useNavigate();
@@ -13,7 +15,8 @@ const PaymentInfo = ({usePoint}) => {
     const {setPaymentData} = useContext(PaymentContext)
     const {totalPrice} = bookingData
 
-    const { isAuthenticated, setIsAuthenticated } = useUser();
+    const { userId, userName } = useUser();
+    console.log("payment: ", userId, userName);
 
     const onBooking = async() => {
 
@@ -36,7 +39,7 @@ const PaymentInfo = ({usePoint}) => {
                 }
 
                 const bookingDataToSend = {
-                    userId: '1', // jwt에서 userId 받아서 쓸거임
+                    userId: userId, // jwt에서 userId 받아서 쓸거임
                     scheduleId: schedule.schedule_id,
                     seatId: seat.seat_id,
                     bookingDate: new Date(),
@@ -50,7 +53,7 @@ const PaymentInfo = ({usePoint}) => {
             }
 
             await axios.post('http://localhost:8085/sallybox/payment/final',{
-                userId:'1', //jwt에서 받음
+                userId:userId, //jwt에서 받음
                 bookingNum:bookingNum,
                 paymentMethod:'card',
                 price:totalPrice,
@@ -60,8 +63,8 @@ const PaymentInfo = ({usePoint}) => {
             })
 
             setPaymentData({
-                userId: '1', //jwt에서 받기
-                userName: '이주현', //jwt에서 받기
+                userId: userId, //jwt에서 받기
+                userName: userName, //jwt에서 받기
                 posterPath:schedule.poster_path,
                 bookingNum:bookingNum,
                 created:schedule.created,

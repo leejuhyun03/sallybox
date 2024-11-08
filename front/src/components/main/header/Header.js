@@ -107,7 +107,7 @@ const Header = () => {
         </ul>
       </div>
 
-      <div id='nav' className='area__gnbmovingbar'>
+      <div id='navs' className='area__gnbmovingbar'>
         <ul>
           <li className='your-elements'>
             <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'>예매</a>
