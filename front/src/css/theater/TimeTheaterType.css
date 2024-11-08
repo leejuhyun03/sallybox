@@ -6,11 +6,13 @@
 }
 .time_scroll_select span{
     font-weight: bold;
+    font-size: 18px;
+    margin: 10px 0 5px 10px;
 }
 .time_scroll_select_buttons {
     display: flex;
     flex-wrap: wrap; /* 버튼들이 한 줄에 맞지 않을 경우 다음 줄로 이동 */
-    gap: 10px; /* 버튼 간의 간격 설정 */
+    gap: 15px; /* 버튼 간의 간격 설정 */
 }
 .time_scroll_select button{
     display: flex;
@@ -19,10 +21,12 @@
     margin-right: 10px;
 }
 .time_scroll_select_buttons button{
-    width: 100px;
+    width: 120px;
     position: relative;
 }
-
+.time_scroll_select_buttons span{
+    font-weight: normal;
+}
 
 /* 툴팁 스타일링 */
 .time_scroll_select_buttons button::after {
@@ -36,12 +40,13 @@
     padding: 5px 10px;
     border-radius: 4px;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 18px;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
     pointer-events: none;
     margin-bottom: 15px;
+    width: 90px;
   }
   
 

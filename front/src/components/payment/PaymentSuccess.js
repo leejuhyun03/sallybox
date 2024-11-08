@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import '../../css/payment/PaymentSucess.css'
+import '../../css/payment/PaymentSuccess.css'
 import '../../css/seats/Reservation.css'
 import LeftHeader from '../seats/LeftHeader';
 import topNotice from '../../image/top_notice.png'
