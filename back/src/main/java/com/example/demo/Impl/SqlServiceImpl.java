@@ -9,8 +9,10 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
@@ -20,6 +22,13 @@ import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.NowMoviesDTO;
+import com.example.demo.DTO.SH.CustomerDTO;
+import com.example.demo.DTO.SH.MyBookingDTO;
+import com.example.demo.DTO.SH.MyMovieDTO;
+import com.example.demo.DTO.SH.MyPayDTO;
+import com.example.demo.DTO.SH.ProfileDTO;
+import com.example.demo.DTO.SH.UserDeactivationDTO;
+import com.example.demo.DTO.SH.UserUpdateDTO;
 import com.example.demo.mapper.SqlMapper;
 import com.example.demo.service.SqlService;
 import com.example.demo.util.JwtUtil;
@@ -232,4 +241,86 @@ public class SqlServiceImpl implements SqlService{
         sqlMapper.updateInquiry(inquiryRequest); // 수정 메서드 호출
     }
 
+    //선호 Service Impl
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoders;
+
+    @Override
+    public CustomerDTO getCustomerInfo(int userId) throws Exception {
+       
+        return sqlMapper.getCustomerInfo(userId);
+    }
+
+    @Override
+    public List<MyMovieDTO> getWishlistMovies(int userId) throws Exception{
+        //System.out.println(userId);
+        List<MyMovieDTO> movies = sqlMapper.getWishlistMovies(userId);
+        //System.out.println("Number of movies: " + movies.size());
+        // for (MyMovieDTO movie : movies) {
+        //     System.out.println(movie);
+        // }
+         return movies;
+    }
+
+    @Override
+    public boolean removeFromWishlist(int userId, int movieId) throws Exception{
+        int deletedRows = sqlMapper.deleteFromWishlist(userId, movieId);
+        return deletedRows > 0;
+    }
+    
+    @Override
+    @Transactional
+    public boolean deactivateUser(int userId) {
+        UserDeactivationDTO dto = new UserDeactivationDTO();
+        dto.setUserId(userId);
+        dto.setStatus("N");
+        int updatedRows = sqlMapper.deactivateUser(dto);
+        return updatedRows > 0;
+    }
+
+    @Override
+    @Transactional
+    public ProfileDTO updateNickname(int userId, String nickname) {
+
+        ProfileDTO profileDTO = new ProfileDTO(userId, nickname);
+        
+        int updatedRows = sqlMapper.updateNickname(profileDTO);
+        
+        if (updatedRows == 0) {
+            throw new RuntimeException("닉네임 업데이트에 실패했습니다.");
+        }
+        
+        return profileDTO;
+    }
+
+    @Override
+    @Transactional
+    public boolean updateCustomer(UserUpdateDTO userUpdateDto) {
+        if (userUpdateDto.getPassword() != null && !userUpdateDto.getPassword().isEmpty()) {
+            userUpdateDto.setPassword(passwordEncoder.encode(userUpdateDto.getPassword()));
+        }
+
+        int updatedRows = sqlMapper.updateCustomer(userUpdateDto);
+        return updatedRows > 0;
+    }
+
+    @Override
+    public List<MyBookingDTO> getBookingsByUserId(int userId) {
+        return sqlMapper.getBookingsByUserId(userId);
+    }
+
+    @Override
+    public List<MyPayDTO> getPaymentsByUserId(int userId) {
+        return sqlMapper.getPaymentsByUserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public void cancelBooking(int userId, Long bookingNum, int pointUsage) throws Exception {
+
+        sqlMapper.deleteBooking(bookingNum);
+        sqlMapper.deletePayment(bookingNum);
+        sqlMapper.updateCustomerPoint(userId, pointUsage);
+        
+    }
 }

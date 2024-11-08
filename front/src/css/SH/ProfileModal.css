@@ -1,0 +1,198 @@
+.layer_wrap.layer_mypage .layer_header .tit {
+    color: #FFF;
+}
+
+.layer_wrap .layer_header .tit {
+    font-size: 18px;
+    color: #000;
+}
+
+.layer_wrap .layer_contents {
+    padding: 30px 25px;
+}
+
+.btn_btm_wraps.ty1 a, .btn_btm_wraps.ty1 button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, address, caption, em, th {
+    font-style: normal;
+    font-weight: normal;
+}
+
+.layer_wrap.layer_mypage .layer_contents:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* height: 184px; */
+    height: 54px;
+    background-color: #FF7787;
+}
+
+.layer_wrap.active.layer_mypage .reg_nick label input {
+    width: 100%;
+    height: 48px;
+}
+
+.layer_wrap.active.layer_mypage .reg_nick label span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    appearance: auto;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+
+/* 모달 레이아웃 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white; /* 흰색 배경 */
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* 팝업 너비 */
+    position: relative;
+}
+
+.layer_wrap.layer_mypage .layer_header {
+    background-color: #FF7787; /* 헤더 색상 */
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+.layer_wrap.layer_mypage .layer_contents {
+    padding: 20px 25px; /* 내용 패딩 */
+}
+
+.reg_nick label input {
+    width: 100%;
+    height: 48px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.reg_nick .cnt {
+    font-size: 14px;
+    color: #888;
+    text-align: right;
+}
+
+.btn_btm_wraps.ty1 {
+    margin-top: 20px;
+}
+
+.btn_btm_wraps.ty1 button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn_btm_wraps.ty1 button:hover {
+    background-color: #555;
+}
+
+/* 닫기 버튼 */
+.btn_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.layer_wrap.active {
+
+    background-color: #FFF;
+}
+
