@@ -627,14 +627,14 @@ public class AllController {
         // 1. 영화관 정보를 가져옵니다.
         CinemaDTO cinemaDTO = movieService.getCinemaInfojy(cinema_id);
         
-        System.out.println("Cinema: " + cinema_id);
+        //System.out.println("Cinema: " + cinema_id);
         // 2. 해당 영화관의 상영 일정을 가져옵니다.
         List<SchedulesTheaterDTO> schedules = movieService.getSchedulesTheaterjy(cinema_id);
-        System.out.println("Schedules: " + schedules);
+        //System.out.println("Schedules: " + schedules);
 
         // 3. 상영 일정 목록을 날짜별로 그룹화하여 맵 형태로 변환합니다. -> 내부에서 날짜별로 스케줄을 그룹화 하는 로직으로 데이터베이스 쿼리 없이 자바 코드로 처리 됩니다
         Map<String, List<SchedulesTheaterDTO>> scheduleMap = movieService.groupCinemaSchedules(schedules);
-        System.out.println("Schedule Map: " + scheduleMap);
+        //System.out.println("Schedule Map: " + scheduleMap);
         // 4. CinemaScheduleDTO 객체에 영화관 정보와 일정 목록을 담아 반환합니다.
         return new CinemaScheduleDTO(cinemaDTO, scheduleMap);
     }

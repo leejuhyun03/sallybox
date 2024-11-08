@@ -273,14 +273,16 @@
     </select>
 
     <select id="getSchedulesTheaterjy" parameterType="int" resultType="com.example.demo.DTO.JH.SchedulesTheaterDTO">
-        SELECT s.schedule_id, s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
-            m.title AS title, m.certification AS certification,
-            t.theater_type AS theater_type, t.screen_no AS screen_no
+        select  s.schedule_id,s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
+           m.title AS title, m.certification AS certification, m.poster_path AS poster_path,
+           t.theater_type AS theater_type, t.screen_no AS screen_no,
+           c.name AS name
         FROM schedule s
         JOIN movies m ON s.movie_id = m.movie_id
         JOIN theater t ON s.theater_id = t.theater_id
+        JOIN cinema c ON s.cinema_id = c.cinema_id
         WHERE s.cinema_id = #{cinema_id}
-        ORDER BY s.start_time
+        ORDER BY s.start_time 
     </select>
     <!-- #{cinema_id} -->
 
