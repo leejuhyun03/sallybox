@@ -45,7 +45,7 @@
         select points FROM users WHERE user_id = #{user_id}
     </select>
 
-    <insert id="insertBooking" parameterType="com.example.demo.DTO.BookingDTO">
+    <insert id="insertBooking" parameterType="com.example.demo.DTO.JH.BookingDTO">
         INSERT INTO booking (booking_id, user_id, schedule_id,seat_id, booking_date, people_type,booking_num,movie_id)
         VALUES (booking_seq.NEXTVAL, #{userId}, #{scheduleId},#{seatId}, #{bookingDate}, #{peopleType},#{bookingNum,jdbcType=NUMERIC},#{movieId})
     </insert>
@@ -59,7 +59,7 @@
         where user_id = #{userId}
     </update>
 
-    <insert id="insertPayment" parameterType="com.example.demo.DTO.PaymentDTO">
+    <insert id="insertPayment" parameterType="com.example.demo.DTO.JH.PaymentDTO">
         INSERT INTO payment (payment_id,user_id, booking_num, payment_method, price, payment_date, point_usage)
         VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_DATE(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS'), #{pointUsage})
     </insert>

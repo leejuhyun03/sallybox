@@ -340,8 +340,8 @@ const Body = () => {
                             {
                                 hoveredMovieId === movie.movieId &&
                             <div className='test'>
-                                <div className="in" style={{marginTop: '-33px'}}>
-                                    <a href="#" className="btn_col3s ty3" title="화면이동" style={{marginTop: '0'}}>예매하기</a>
+                                <div className="in">
+                                    <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                     <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                 </div>
                             </div>
@@ -439,9 +439,9 @@ const Body = () => {
                                 src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                 {
                                         hoveredMovieId2 === movie.movieId &&
-                                    <div className='test' style={{height: '95%'}}>
-                                        <div className="in" style={{marginTop: '-33px'}}>
-                                            <a href="#" className="btn_col3s ty3" title="화면이동" style={{marginTop: '0'}}>예매하기</a>
+                                    <div className='test' style={{height: '99.2%'}}>
+                                        <div className="in">
+                                            <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                             <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                         </div>
                                     </div>
@@ -495,9 +495,9 @@ const Body = () => {
                                     src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                     {
                                         hoveredMovieId3 === movie.movieId &&
-                                    <div className='test' style={{height: '95%'}}>
-                                        <div className="in" style={{marginTop: '-33px'}}>
-                                            <a href="#" className="btn_col3s ty3" title="화면이동" style={{marginTop: '0'}}>예매하기</a>
+                                    <div className='test' style={{height: '99.2%'}}>
+                                        <div className="in">
+                                            <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                             <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                         </div>
                                     </div>
@@ -566,7 +566,7 @@ const Body = () => {
                         <li><a href="#none" title="롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내">롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내</a></li>
                     </ul>
                 </div>
-                <button type="button" className="btn_txt_more ty2">더보기</button>
+                <button type="button" className="btn_txt_more ty2"><a href='http://localhost:3000/sallybox/gogaksenter'>더보기</a></button>
             </div>
         </div>
         

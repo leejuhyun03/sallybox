@@ -109,38 +109,21 @@ let [visible1, setVisible1] = useState(false)
                   isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
                                 : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
                 }
-                <li><a href="#" className="btn_reserve">바로 예매</a></li>
+                <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
                 </ul>
             </div>
 
             <div id='nav' className='area__gnbmovingbar'>
                 <ul>
                 <li className='your-elements'>
-                    <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1} style={{color: 'black'}}>예매</a>
+                    <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'style={{color: 'black'}}>예매</a>
+                </li>
+                <li className='your-elements'>
+                    <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1} style={{color: 'black'}}>영화</a>
                     { // visible이 true이면 이라는 뜻
                     visible1 &&
                     <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
                          onMouseOver={onTrue1} onMouseLeave={onFalse1}>
-                      <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing" title="예매하기">예매하기</a>
-                        </li>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/Schedule" title="상영시간표">상영시간표</a>
-                        </li>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/DiscountGuide" title="할인안내">할인안내</a>
-                        </li>
-                      </ul> 
-                    </div>
-                    }
-                </li>
-                <li className='your-elements'>
-                    <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2} style={{color: 'black'}}>영화</a>
-                    { // visible이 true이면 이라는 뜻
-                    visible2 &&
-                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
-                         onMouseOver={onTrue2} onMouseLeave={onFalse2}>
                       <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
                       <li>
                           <Link to={'/sallybox/movied/1'}>현재상영작</Link>
@@ -156,11 +139,11 @@ let [visible1, setVisible1] = useState(false)
                     }
                 </li>
                 <li className='your-elements'>
-                    <a href='#' className='hover' onMouseOver={onTrue3} onMouseLeave={onFalse3} style={{color: 'black'}}>영화관</a>
+                    <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2} style={{color: 'black'}}>영화관</a>
                     { // visible이 true이면 이라는 뜻
-                    visible3 &&
+                    visible2 &&
                     <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8', height: '60px'}} 
-                         onMouseOver={onTrue3} onMouseLeave={onFalse3}>
+                         onMouseOver={onTrue2} onMouseLeave={onFalse2}>
                       <ul className='navbaruls'>
                         <li>
                           <a href="#" title="스페셜관">스페셜관</a>
