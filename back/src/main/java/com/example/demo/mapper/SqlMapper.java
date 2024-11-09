@@ -60,21 +60,22 @@ public interface SqlMapper {
     void insertWishlist(@Param("userId") int userId, @Param("movieId") int movieId, @Param("genreIds") String genreIds); 
     void deleteWishlist(@Param("userId") int userId, @Param("movieId") int movieId); 
 
-    
+    /*1108 
     // 리뷰 관련 메서드
     void insertReview(ReviewsDTO reviewsDTO); // 리뷰 저장
     void updateReview(ReviewsDTO reviewsDTO); // 리뷰 수정
     void deleteReview(@Param("review_id") int reviewId, @Param("user_id") int userId); // 리뷰 삭제
     void deleteLikesByReviewId(@Param("review_id") int reviewId); // 리뷰에 대한 추천 삭제
     List<ReviewsDTO> findReviewsByMovieId(@Param("movieId") int movieId); // 영화 ID로 리뷰 목록 가져오기
-
-   
-
-    // 추천 관련 메서드
-    int isReviewLiked(@Param("review_id") int reviewId, @Param("user_id") int userId); // 추천 여부 확인
-    void addLike(@Param("review_id") int reviewId, @Param("user_id") int userId); // 추천 추가
-    void removeLike(@Param("review_id") int reviewId, @Param("user_id") int userId); // 추천 삭제
-    int countReviewLikes(@Param("review_id") int reviewId); // 추천수 가져오기
+    */
+    // 리뷰 관련 메서드
+    void saveReview(ReviewsDTO reviewsDTO); // 리뷰 저장
+    void updateReview(ReviewsDTO reviewsDTO); // 리뷰 수정
+    void deleteReview(@Param("review_id") int reviewId, @Param("user_id") int userId); // 리뷰 삭제
+    List<ReviewsDTO> findReviewsByMovieId(@Param("movieId") int movieId); // 영화 ID로 리뷰 목록 가져오기
+    int checkBookingExists(@Param("userId") int userId, @Param("movieId") int movieId);
+    // 리뷰의 작성자(user_id)를 가져오는 메서드 추가 - 본인 리뷰인지 확인
+    Integer getReviewOwner(@Param("review_id") int reviewId); // 수정했음!!
 
 
     //예매 관련 메서드

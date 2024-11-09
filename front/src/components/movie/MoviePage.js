@@ -74,6 +74,7 @@ const MoviePage = () => {
         }
     };
 
+    //예매 페이지로 영화 정보 보내는 함수
     const handleBookingClick = () => {
         const today = new Date();
         const date = today.toLocaleDateString();

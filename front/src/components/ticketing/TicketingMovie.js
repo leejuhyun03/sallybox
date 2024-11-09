@@ -67,7 +67,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
     const fetchCinemaAndSchedules = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/sallybox/cinema/${cinemaId}`, {
+            const response = await axios.get(`http://localhost:8085/sallybox/cinemajy/${cinemaId}`, {
                 params: { selected_date: selectedDate }
             });
             const fetchedMovies = response.data.schedules[selectedDate] || [];
