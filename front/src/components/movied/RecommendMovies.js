@@ -87,7 +87,7 @@ const RecommendMovies = ({hoveredMovieId, onOpen, onClose}) => {
                             <span className="sub_info1e"><span className="timee blacktypee" style={{marginLeft: '0'}}><span className="robotoe">{movie.runtime}</span>분</span></span>
                         </div>
                     </li>
-                ))};   
+                ))}   
             </ul>   
         </>
     );
