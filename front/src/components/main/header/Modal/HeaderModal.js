@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../../../../css/main/header/modal/HeaderModal.css'
+import numeral from 'numeral';
 import { Link } from 'react-router-dom';
 import hani from '../../../../image/hanni2.jpg'
 import { useUser } from '../../../../context/UserContext';
 
 const HeaderModal = ({onClose, userName, userPoint}) => {
 
-    const {isAuthenticated} = useUser();
+    const {isAuthenticated, userId} = useUser();
+
+    const point = numeral(userPoint).format('0,0');
 
 
     return (
@@ -36,7 +39,7 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                 <tr>
                                     <td headers="gmenu gmenu1">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a href='http' title="예매하기" tabIndex="0">예매하기</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/reserv/ticketing' title="예매하기" tabIndex="0">예매하기</a></li>
                                             <li><a title="상영시간표" tabIndex="0">상영시간표</a></li>
                                             <li><a title="할인안내" tabIndex="0">할인안내</a></li>
                                         </ul>
@@ -87,14 +90,14 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                 <tr>
                                     <td headers="gmenu gmenu7">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a href='http://localhost:3000/sallybox/mypage' title="결제내역" tabIndex="0">결제내역</a></li>
-                                            <li><a href='http://localhost:3000/sallybox/mypage' title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
+                                            <li><a href={`http://localhost:3000/sallybox/mypage/${userId}`} title="결제내역" tabIndex="0">결제내역</a></li>
+                                            <li><a href={`http://localhost:3000/sallybox/mypage/${userId}`} title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a href='http://localhost:3000/sallybox/' title="공지사항" tabIndex="0">공지사항</a></li>
-                                            <li><a href='http://localhost:3000/sallybox/' title="1:1 문의" tabIndex="0">1:1 문의</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/gogaksenter' title="공지사항" tabIndex="0">공지사항</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/registration' title="1:1 문의" tabIndex="0">1:1 문의</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu9">
@@ -127,9 +130,9 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                     <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>{userName}님</strong>반가워요!</p>
                                     <div className="my_point">
                                         <dl>
-                                            <dt><img src="https://www.lottecinema.co.kr/NLCHS/Content/images/icon/txt_lpoint_46.png" alt="L.POINT"/></dt>
+                                            <dt style={{color: '#28A3FC'}}>S.POINT</dt>
                                             <dd>
-                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{userPoint}P</b></strong></a>
+                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{point}<b style={{color: '#28A3FC'}}>P</b></b></strong></a>
                                             </dd>
                                         </dl>
                                     </div>

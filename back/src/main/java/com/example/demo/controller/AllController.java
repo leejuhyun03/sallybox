@@ -10,8 +10,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.websocket.server.PathParam;
+
+import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.CinemaScheduleDTO;
+import com.example.demo.DTO.JH.PaymentDTO;
 import com.example.demo.DTO.JH.SchedulesTheaterDTO;
 import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
@@ -19,6 +23,13 @@ import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.FindEmailRequest;
 import com.example.demo.DTO.KH.LoginRequest;
 import com.example.demo.DTO.KH.NowMoviesDTO;
+import com.example.demo.DTO.SH.CustomerDTO;
+import com.example.demo.DTO.SH.MyBookingDTO;
+import com.example.demo.DTO.SH.MyMovieDTO;
+import com.example.demo.DTO.SH.MyPayDTO;
+import com.example.demo.DTO.SH.ProfileDTO;
+import com.example.demo.DTO.SH.UserDeactivationDTO;
+import com.example.demo.DTO.SH.UserUpdateDTO;
 import com.example.demo.DTO.ZERO.MovieDTO;
 import com.example.demo.DTO.ZERO.NowMovieDTO;
 import com.example.demo.DTO.ZERO.ReviewsDTO;
@@ -62,6 +73,7 @@ public class AllController {
     private static final int NOW_PLAYING_TOTAL_PAGES = 5; // 현재 상영 중 영화 페이지 수
     private static final int POPULAR_TOTAL_PAGES = 25; // 인기 영화 페이지 수
 
+    //주현//
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/sallybox/cinema/{id}")
     public CinemaScheduleDTO getSchedules(@PathVariable("id") int cinema_id) throws Exception{
@@ -90,6 +102,36 @@ public class AllController {
         return sqlService.getSeatsbyTheaterId(theater_id,schedule_id);
     }
     
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/sallybox/payment")
+    public Integer getPoints(@RequestBody Map<String, Integer> requestData) throws Exception{
+        int userId = requestData.get("user_id");
+        return sqlService.getPoints(userId);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/sallybox/payment/booking")
+    public ResponseEntity<Void> createBooking(@RequestBody BookingDTO bookingDTO) throws Exception{
+        try{
+            sqlService.insertBooking(bookingDTO);
+            return ResponseEntity.ok().build(); 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/sallybox/payment/final")
+    public void processFinalPaymen(@RequestBody PaymentDTO paymentDTO) throws Exception{
+        try{
+            sqlService.updatePoints(paymentDTO.getUserId(), paymentDTO.getPointUsage(),paymentDTO.getPrice()-paymentDTO.getPointUsage());
+            sqlService.insertPayment(paymentDTO);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     //강현 Controller
     @PostMapping("/api/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws Exception {
@@ -112,7 +154,8 @@ public class AllController {
     @PostMapping("/api/findEmail")
     public ResponseEntity<?> findEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
         // 로그인 로직
-        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName(), findEmailRequest.getPhoneNumber());
 
         if(dto != null) {
 
@@ -133,7 +176,7 @@ public class AllController {
     @PostMapping("/api/allfindEmail")
     public ResponseEntity<?> allfindEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
         // 로그인 로직
-        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName(), findEmailRequest.getPhoneNumber());
 
         if(dto != null) {
 
@@ -441,11 +484,12 @@ public class AllController {
     @PostMapping("/sallybox/movies/{movie_id}/wishlist/toggle")
     public ResponseEntity<Map<String, Boolean>> toggleWishlist(
             @PathVariable("movie_id") int movieId,   // URL에서 movie_id 가져옴
+            @RequestParam("user_id") int userId,   // URL에서 movie_id 가져옴
             @RequestBody WishlistDTO wishlistDTO) {   // 요청의 본문에서 user_id 등 받아옴
-     
+     System.out.println(userId);
         // DTO의 movie_id를 URL에서 가져온 movie_id로 설정
         wishlistDTO.setMovieId(movieId);  
-        wishlistDTO.setUserId(1); // 로그인 미구현, 임시 user_id 설정
+        wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
         MovieDTO dto = movieService.findMovieById(movieId);
         String genreIds=dto.getGenreIdsString();
         // 위시리스트에 있는지 확인 후 토글
@@ -646,14 +690,14 @@ public class AllController {
         // 1. 영화관 정보를 가져옵니다.
         CinemaDTO cinemaDTO = movieService.getCinemaInfojy(cinema_id);
         
-        System.out.println("Cinema: " + cinema_id);
+        //System.out.println("Cinema: " + cinema_id);
         // 2. 해당 영화관의 상영 일정을 가져옵니다.
         List<SchedulesTheaterDTO> schedules = movieService.getSchedulesTheaterjy(cinema_id);
-        System.out.println("Schedules: " + schedules);
+        //System.out.println("Schedules: " + schedules);
 
         // 3. 상영 일정 목록을 날짜별로 그룹화하여 맵 형태로 변환합니다. -> 내부에서 날짜별로 스케줄을 그룹화 하는 로직으로 데이터베이스 쿼리 없이 자바 코드로 처리 됩니다
         Map<String, List<SchedulesTheaterDTO>> scheduleMap = movieService.groupCinemaSchedules(schedules);
-        System.out.println("Schedule Map: " + scheduleMap);
+        //System.out.println("Schedule Map: " + scheduleMap);
         // 4. CinemaScheduleDTO 객체에 영화관 정보와 일정 목록을 담아 반환합니다.
         return new CinemaScheduleDTO(cinemaDTO, scheduleMap);
     }
@@ -689,6 +733,111 @@ public class AllController {
     @GetMapping("/sallybox/nowmovies/exists/{movie_id}")
     public boolean checkIfMovieExists(@PathVariable("movie_id") int movieId) {
         return movieService.getNowMovieById(movieId) != null;
+    }
+
+    //선호 controller
+    @GetMapping("/sallybox/mypage/{userId}")
+    public ResponseEntity<Map<String, Object>> getCustomerInfoAndWishlist(@PathVariable("userId") int userId) throws Exception{
+     
+        CustomerDTO customerInfo = sqlService.getCustomerInfo(userId);
+        List<MyMovieDTO> wishlistMovies = sqlService.getWishlistMovies(userId);
+
+        System.out.println("wishlistMovies--------------------"+wishlistMovies);
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("customerInfo", customerInfo);
+        response.put("wishlistMovies", wishlistMovies);
+        
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/sallybox/mypage/{userId}/{movieId}")
+    public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int movieId) throws Exception {
+        boolean removed = sqlService.removeFromWishlist(userId, movieId);
+        if (removed) {
+            return ResponseEntity.ok().body("영화가 위시리스트에서 삭제되었습니다.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }   
+    
+    @PutMapping("/sallybox/mypage/deactivate")
+    public ResponseEntity<?> deactivateUser(@RequestBody UserDeactivationDTO dto) {
+
+        //System.out.println("Received userId: " + dto.getUserId());
+        //System.out.println("Received status: " + dto.getStatus());
+
+        boolean result = sqlService.deactivateUser(dto.getUserId());
+
+        if (result) {
+            return ResponseEntity.ok().body("{\"success\": true}");
+        } else {
+            return ResponseEntity.badRequest().body("{\"success\": false}");
+        }
+    }
+
+    @PostMapping("/sallybox/auth/logout")
+    public ResponseEntity<?> logout() {
+        // 로그아웃 로직 구현
+        return ResponseEntity.ok().body("{\"success\": true}");
+    }
+
+    @PutMapping("/sallybox/mypage/editprofile")
+    public ResponseEntity<?> updateNickname(@RequestBody ProfileDTO profileDTO) {
+        try {
+            ProfileDTO updatedProfile = sqlService.updateNickname(profileDTO.getUserId(), profileDTO.getNickname());
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("data", updatedProfile);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", "닉네임 업데이트에 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+    }
+
+    @PutMapping("/sallybox/mypage/update")
+    public ResponseEntity<String> updateCustomer(@RequestBody UserUpdateDTO userUpdateDTO) {
+        try {
+            boolean updated = sqlService.updateCustomer(userUpdateDTO);
+            if (updated) {
+                return ResponseEntity.ok("Customer updated successfully");
+            } else {
+                return ResponseEntity.badRequest().body("Failed to update customer");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed to update customer: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/sallybox/mypage/booking/{userId}")
+    public List<MyBookingDTO> getBookings(@PathVariable int userId) {
+        return sqlService.getBookingsByUserId(userId);
+    }
+
+    @GetMapping("sallybox/mypage/payment/{userId}")
+    public ResponseEntity<List<MyPayDTO>> getPayments(@PathVariable int userId) {
+
+        List<MyPayDTO> payments = sqlService.getPaymentsByUserId(userId);
+
+        return ResponseEntity.ok(payments);
+    }
+    
+     
+    @PostMapping("/sallybox/mypage/cancel")
+    public ResponseEntity<String> cancelBooking(
+        @RequestParam int userId,
+        @RequestParam Long bookingNum,
+        @RequestParam int pointUsage
+    ) {
+        try {
+            sqlService.cancelBooking(userId, bookingNum, pointUsage);
+            return ResponseEntity.ok("예매가 성공적으로 취소되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("예매 취소 중 오류가 발생했습니다.");
+        }
     }
 
         

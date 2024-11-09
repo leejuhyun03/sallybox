@@ -3,7 +3,6 @@ import axios from "axios"; // axios 임포트
 import "../../css/jy/tab.css";
 import "../../css/jy/Gogakregistration.css";
 import "../../css/jy/Gogaksenter.css";
-import "../../css/jy/nav.css";
 
 const PrivacyPolicy = ({ onAgreementChange }) => {
   const [isAgreed, setIsAgreed] = useState(false); // 동의 상태를 관리

@@ -153,6 +153,10 @@ const ReservSeats = () => {
 
     const handlePaymentClick = () => {
         if (bookingData.selectedSeats && bookingData.selectedSeats.length > 0) {
+            setBookingData((prevData) => ({
+                ...prevData,
+                totalPrice:price
+            }));
             navigate('/sallybox/payment');
         } else {
             alert('인원수를 선택하세요.');
@@ -164,7 +168,7 @@ const ReservSeats = () => {
 
     return (
         <div className='reserv_seats_wrap'>
-            <div className='group_top'>
+            <div className='reserv_group_top'>
                 <h4 style={{marginLeft: '200px'}}>인원/좌석 선택</h4>
                 <p>*인원은 최대 8명까지 선택 가능합니다.</p>
             </div>
@@ -175,7 +179,7 @@ const ReservSeats = () => {
                         <div className='movie_info_text'>
                             <div className='bx_title'>
                                 <img alt='연령 이미지' src={getAgeRatingImg(bookingData.schedule.certification)}/>
-                                <strong>{bookingData.schedule.title}</strong>
+                                <strong style={{fontSize:'18px'}}>{bookingData.schedule.title}</strong>
                             </div>
                             <div className='bx_info'>
                                 <span>{formatDate(bookingData.schedule.created)}</span><br/>
@@ -187,41 +191,41 @@ const ReservSeats = () => {
                     <div className='count_people'>
                         <ul>
                             <li>
-                                <strong>성인:</strong>
+                                <strong>성인 :</strong>
                                 <span>
-                                    <button onClick={()=>decreaseCount('adult')} style={{marginBottom:'7px'}}>
+                                    <button onClick={()=>decreaseCount('adult')} style={{marginBottom:'27px',fontSize:'45px'}}>
                                             -
                                     </button>
                                     <p>{counts.adult}</p>
-                                    <button onClick={()=>increaseCount('adult')}>
+                                    <button onClick={()=>increaseCount('adult')} style={{marginBottom:'7px'}}>
                                             +
                                     </button>
                                 </span>
                             </li>
                             <li>
-                                <strong>청소년:</strong>
+                                <strong>청소년 :</strong>
                                 <span>
-                                    <button onClick={()=>decreaseCount('teenager')} style={{marginBottom:'7px'}}>
+                                    <button onClick={()=>decreaseCount('teenager')} style={{marginBottom:'27px',fontSize:'45px'}}>
                                             -
                                     </button>
                                     <p>{counts.teenager}</p>
-                                    <button onClick={()=>increaseCount('teenager')}>+</button>
+                                    <button onClick={()=>increaseCount('teenager')} style={{marginBottom:'7px'}}>+</button>
                                 </span>
                             </li>
                             <li>
-                                <strong>경로:</strong>
+                                <strong>경로 :</strong>
                                 <span>
-                                    <button onClick={()=>decreaseCount('senior')} style={{marginBottom:'7px'}}>-</button>
+                                    <button onClick={()=>decreaseCount('senior')} style={{marginBottom:'27px',fontSize:'45px'}}>-</button>
                                     <p>{counts.senior}</p>
-                                    <button onClick={()=>increaseCount('senior')}>+</button>
+                                    <button onClick={()=>increaseCount('senior')} style={{marginBottom:'7px'}}>+</button>
                                 </span>
                             </li>
                             <li>
-                                <strong>장애인:</strong>
+                                <strong>장애인 :</strong>
                                 <span>
-                                    <button onClick={()=>decreaseCount('disabled')} style={{marginBottom:'7px'}}>-</button>
+                                    <button onClick={()=>decreaseCount('disabled')} style={{marginBottom:'27px',fontSize:'45px'}}>-</button>
                                     <p>{counts.disabled}</p>
-                                    <button onClick={()=>increaseCount('disabled')}>+</button>
+                                    <button onClick={()=>increaseCount('disabled')} style={{marginBottom:'7px'}}>+</button>
                                 </span>
                             </li>
                         </ul>

@@ -32,7 +32,7 @@
     </select>
 
     <select id="getSeatsbyTheaterId" parameterType="map" resultType="com.example.demo.DTO.JH.SeatsDTO">
-        select s.*, 
+        select DISTINCT s.*, 
             case when b.seat_id is not null then 'yes' else 'no' end as status
             FROM seats s
             left JOIN booking b ON s.seat_id = b.seat_id and b.schedule_id = #{schedule_id}
@@ -41,13 +41,36 @@
             ORDER BY s.seat_id
     </select>
 
+    <select id="getPoints" parameterType="int" resultType="int">
+        select points FROM users WHERE user_id = #{user_id}
+    </select>
+
+    <insert id="insertBooking" parameterType="com.example.demo.DTO.JH.BookingDTO">
+        INSERT INTO booking (booking_id, user_id, schedule_id,seat_id, booking_date, people_type,booking_num,movie_id)
+        VALUES (booking_seq.NEXTVAL, #{userId}, #{scheduleId},#{seatId}, #{bookingDate}, #{peopleType},#{bookingNum,jdbcType=NUMERIC},#{movieId})
+    </insert>
+
+    <select id="getGrade" parameterType="int" resultType="String">
+        select grade FROM users WHERE user_id = #{userId}
+    </select>
+
+    <update id="updatePoints" parameterType="map">
+        update users set points = points - #{pointUsage} + #{totalPrice}*#{grade}
+        where user_id = #{userId}
+    </update>
+
+    <insert id="insertPayment" parameterType="com.example.demo.DTO.JH.PaymentDTO">
+        INSERT INTO payment (payment_id,user_id, booking_num, payment_method, price, payment_date, point_usage)
+        VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_DATE(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS'), #{pointUsage})
+    </insert>
+
     <!-- 강현 -->
-    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->
+    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 로그인 할 때 사용 -->
       SELECT user_id AS userid, email, password, name, nickname, points FROM users WHERE email = #{email}
     </select>
 
     <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
-      SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name}
+      SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name} AND phone_number = #{phoneNumber}
     </select>
 
     <update id="updatePassword" parameterType="map">
@@ -229,14 +252,16 @@
     </select>
 
     <select id="getSchedulesTheaterjy" parameterType="int" resultType="com.example.demo.DTO.JH.SchedulesTheaterDTO">
-        SELECT s.schedule_id, s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
-            m.title AS title, m.certification AS certification,
-            t.theater_type AS theater_type, t.screen_no AS screen_no
+        select  s.schedule_id,s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
+           m.title AS title, m.certification AS certification, m.poster_path AS poster_path,
+           t.theater_type AS theater_type, t.screen_no AS screen_no,
+           c.name AS name
         FROM schedule s
         JOIN movies m ON s.movie_id = m.movie_id
         JOIN theater t ON s.theater_id = t.theater_id
+        JOIN cinema c ON s.cinema_id = c.cinema_id
         WHERE s.cinema_id = #{cinema_id}
-        ORDER BY s.start_time
+        ORDER BY s.start_time 
     </select>
     <!-- #{cinema_id} -->
 
@@ -270,5 +295,129 @@
         SELECT movie_id FROM nowmovies WHERE movie_id = #{movieId}
     </select>
 
+    <!-- 선호 -->
+    <select id="getCustomerInfo" parameterType="int" resultType="com.example.demo.DTO.SH.CustomerDTO">
+        SELECT user_id, nickname, grade, points 
+        FROM users 
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="getWishlistMovies" resultType="com.example.demo.DTO.SH.MyMovieDTO" parameterType="int">
+        SELECT m.movie_id, m.overview, m.poster_path , m.title, m.certification
+        FROM movies m
+        JOIN wishlist w ON m.movie_id = w.movie_id
+        JOIN users u ON w.user_id = u.user_id
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <delete id="deleteFromWishlist">
+        DELETE FROM wishlist WHERE user_id = #{userId} AND movie_id = #{movieId}
+    </delete>
+
+    <update id="deactivateUser" parameterType="com.example.demo.DTO.SH.UserDeactivationDTO">
+        UPDATE users 
+        SET status = #{status}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateNickname" parameterType="com.example.demo.DTO.SH.ProfileDTO">
+        UPDATE users SET nickname = #{nickname} 
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateCustomer" parameterType="com.example.demo.DTO.SH.UserUpdateDTO">
+        UPDATE users
+        SET nickname = #{nickname},
+            password = #{password},
+            phone_number = #{phoneNumber}
+        WHERE user_id = #{userId}
+    </update>
+
+    <resultMap id="BookingResultMap" type="com.example.demo.DTO.SH.MyBookingDTO">
+        <id property="bookingId" column="booking_id"/>
+        <result property="bookingDate" column="booking_date"/>
+        <result property="bookingNum" column="booking_num"/>
+        <result property="movieTitle" column="movie_title"/>
+        <result property="posterPath" column="poster_path"/>
+        <result property="cinemaName" column="cinema_name"/>
+        <result property="screenNo" column="screen_no"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="peopleDetails" column="people_details"/>
+        <result property="seatNumbers" column="seat_numbers"/>
+    </resultMap>
+
+
+    <select id="getBookingsByUserId" parameterType="int" resultMap="BookingResultMap">
+                
+        SELECT 
+            b.booking_id,
+            b.booking_date,
+            b.booking_num,
+            m.title AS movie_title,
+            m.poster_path,
+            c.name AS cinema_name,
+            t.screen_no,
+            s.start_time,
+            s.end_time,
+            (
+                SELECT LISTAGG(people_type || ':' || count, ', ') WITHIN GROUP (ORDER BY people_type) AS result
+                FROM (
+                    SELECT booking_num, people_type, COUNT(*) as count
+                    FROM booking
+                    WHERE user_id = #{userId}
+                    GROUP BY booking_num, people_type
+                ) pd
+                WHERE pd.booking_num = b.booking_num
+            ) AS people_details,
+            (
+                SELECT LISTAGG(se.seat_row || se.num, ', ') WITHIN GROUP (ORDER BY se.seat_row, se.num)
+                FROM seats se
+                WHERE se.seat_id IN (
+                    SELECT seat_id 
+                    FROM booking 
+                    WHERE booking_num = b.booking_num AND user_id = #{userId}
+                )
+            ) AS seat_numbers
+        FROM booking b
+        JOIN schedule s ON b.schedule_id = s.schedule_id
+        JOIN movies m ON b.movie_id = m.movie_id
+        JOIN cinema c ON s.cinema_id = c.cinema_id
+        JOIN theater t ON s.theater_id = t.theater_id
+        WHERE b.user_id = #{userId}
+        ORDER BY b.booking_date DESC
+    </select>
+
+
+    <select id="getPaymentsByUserId" resultType="com.example.demo.DTO.SH.MyPayDTO">
+        SELECT 
+            payment_id as paymentId,
+            booking_num as bookingNum,
+            payment_method as paymentMethod,
+            price,
+            payment_date as paymentDate,
+            point_usage as pointUsage,
+            total_payment as totalPayment
+        FROM 
+            payment
+        WHERE 
+            user_id = #{userId}
+        ORDER BY 
+            payment_date DESC
+    </select>
+    
+    <delete id="deleteBooking" parameterType="Long">
+        DELETE FROM booking WHERE booking_num = #{bookingNum}
+    </delete>
+
+    <delete id="deletePayment" parameterType="Long">
+        DELETE FROM payment WHERE booking_num = #{bookingNum}
+    </delete>
+
+    <update id="updateCustomerPoint">
+        UPDATE users 
+        SET points = points + #{pointUsage} 
+        WHERE user_id = #{userId}
+    </update>
 
 </mapper>

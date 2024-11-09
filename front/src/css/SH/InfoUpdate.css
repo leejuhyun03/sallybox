@@ -1,0 +1,354 @@
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    #mast-body .container {
+        padding: 20px 30px 80px;
+        width: auto;
+    }
+}
+
+#mast-body .container {
+    margin: 0 auto;
+    padding: 40px 0 100px 0;
+    max-width: 1100px;
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .title {
+        margin-bottom: 18px;
+        padding: 7px 0;
+    }
+}
+
+.title {
+    margin-bottom: 38px;
+    padding: 8px 0;
+    font-weight: 100;
+    font-size: 28px;
+    line-height: 32px;
+    color: #000;
+    word-break: break-all;
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .headline {
+        font-size: 30px;
+        line-height: 38px;
+    }
+}
+
+.headline {
+    margin: 0 0 10px;
+    font-weight: 100;
+    font-size: 42px;
+    line-height: 54px;
+    color: #000;
+    letter-spacing: -0.05em;
+    word-break: break-all;
+}
+
+.subject.__underline {
+    border-bottom: 1px solid #000;
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .subject {
+        margin: 0 -30px;
+        padding: 0 30px 5px;
+        font-size: 15px;
+    }
+}
+
+.subject > em .__require-info {
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.__point-color {
+    color: #ee1c25;
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .subject > em {
+        display: block;
+        margin: 0 -30px;
+        padding: 0 30px;
+        width: auto;
+    }
+}
+
+.section > .row {
+    padding: 20px 0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.section > .row > .col-md:first-child {
+    width: 160px;
+    color: #8a8a8a;
+}
+
+.row .col-md, .row .col-md-1, .row .col-md-2, .row .col-md-3, .row .col-md-4, .row .col-md-5, .row .col-md-6, .row .col-md-7, .row .col-md-8, .row .col-md-9, .row .col-md-10, .row .col-md-11, .row .col-md-12 {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.section > .row > .col-md, .section > .row .col-md .row > .col-md {
+    color: #8a8a8a;
+}
+
+.section > .row > .col-md > label {
+    line-height: 34px;
+}
+
+
+/* dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: inherit;
+    border: 0;
+    vertical-align: baseline;
+} */
+
+.ui-input.__disable {
+    width: auto !important;
+    text-align: left !important;
+    background-color: #fff;
+    flex-basis: auto !important;
+    -webkit-flex-basis: auto !important;
+}
+
+.ui-input {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #f0f0f0;
+}
+
+.ui-input.__disable > label {
+    position: relative;
+    color: #000;
+    font-size: 15px;
+    line-height: 34px;
+    text-align: left !important;
+}
+
+body {
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.05em;
+    word-break: keep-all;
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    #mast-body .toparea {
+        margin-bottom: 59px;
+    }
+}
+
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .headline {
+        font-size: 30px;
+        line-height: 38px;
+    }
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .__half {
+        margin: 0 0 50px !important;
+    }
+}
+
+.row .col-md, .row .col-md-1, .row .col-md-2, .row .col-md-3, .row .col-md-4, .row .col-md-5, .row .col-md-6, .row .col-md-7, .row .col-md-8, .row .col-md-9, .row .col-md-10, .row .col-md-11, .row .col-md-12 {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.form-wrap.__normal .ui-input {
+    margin: 0 6px 0 0;
+    max-width: 462px;
+    width: 100%;
+}
+
+.ui-input > input {
+    position: relative;
+    padding: 0 10px;
+    width: 180%;
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    border: 0;
+   
+  
+    z-index: 1;
+}
+
+.form-wrap > .inner {
+    margin: 10px 0 0;
+}
+
+.ui-input > .placeholder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 10px;
+    font-size: 13.125px;
+    line-height: 34px;
+    color: #8a8a8a;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .tooltip-trigger {
+        background: url(../../image/ico-inform__x2.png) no-repeat 0 0;
+        background-size: 14px 14px;
+    }
+}
+
+.tooltip-trigger {
+    position: relative;
+    top: 6px;
+    z-index: 0;
+    display: inline-block;
+    height: 25px;
+    width: 14px;
+    margin: -2px 0 0 2px;
+    text-indent: -1000px;
+    vertical-align: middle;
+    background: url(../../image/ico-inform.png) no-repeat 0 0;
+    overflow: hidden;
+}
+
+.ui-input.__disable + .ui-button.__square-small {
+    margin-left: 20px;
+}
+
+.ui-button.__black {
+    color: #fff;
+    background-color: #333;
+}
+
+.ui-button.__square-small {
+    padding: 0 2px;
+    min-width: 70px;
+    height: 34px;
+    font-size: 13px;
+    line-height: 34px;
+}
+
+.ui-button {
+    display: inline-block;
+    font-weight: inherit;
+    font-size: inherit;
+    text-align: center;
+    vertical-align: top;
+    border: none;
+    border-radius: 2px;
+    background: transparent;
+    
+}
+
+
+@media only screen and (min-width: 681px) and (max-width: 1024px) {
+    .tooltip-trigger {
+        background: url(../../image/ico-inform__x2.png) no-repeat 0 0;
+        background-size: 14px 14px;
+    }
+}
+
+
+/* 모달 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 80%;
+    text-align: center;
+  }
+  
+  .layer-header {
+    background-color: #FF7787;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  /* 닫기 버튼 스타일 */
+  .layer-header-button {
+    background-color: #FF7787;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  
+  .layer-header-button:hover {
+    background-color: #ff6670;
+  }
+  
+
+  /* 회색 배경 및 스타일 추가 */
+.gray-input {
+    background-color: #f0f0f0; /* 연한 회색 */
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+  }
+  .gray-input::placeholder {
+    color: #808080; /* 플레이스홀더 색상 */
+  }
+  
+  /* 회색 배경 및 검은색 테두리 스타일 */
+.gray-input {
+    background-color: #f0f0f0; /* 연한 회색 배경 */
+    border: 1px solid #000; /* 검은색 테두리 */
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+  }
+  .gray-input::placeholder {
+    color: #808080; /* 플레이스홀더 색상 */
+  }
+  
+
+  .ui-button.__square-large {
+    padding: 0 10px;
+    min-width: 9.375em;
+    height: 40px;
+    line-height: 40px;
+}
+
+.ui-button.__point-color {
+    color: #fff;
+    background-color: #ee1c25;
+}

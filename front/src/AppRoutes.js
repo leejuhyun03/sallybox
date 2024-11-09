@@ -19,6 +19,9 @@ import ClassicMoviesPage from './components/movied/ClassicMoviesPage';
 import Movies from "./components/movie/Movies";  
 import Gogaksenter from './components/주용/Gogaksenter';
 import Gogakregistration from './components/주용/Gogakregistration';
+import { PaymentProvider } from './components/PaymentContext';
+import PaymentSuccess from './components/payment/PaymentSuccess';
+import MyPage from './components/선호/MyPage';
 
 function AppRoutes() {
   const location = useLocation();
@@ -58,7 +61,8 @@ function AppRoutes() {
           <Route path="cinema/:cinema_id" element={<Theater />} />
           <Route path="reserv/ticketing" element={<Ticketing />} />
           <Route path="reserv/seats" element={<Reservation />} />
-          <Route path="payment" element={<Payment/>}/>
+          <Route path="payment" element={<PaymentProvider> <Payment/> </PaymentProvider>}/>
+          <Route path="reserv/complete" element={<PaymentProvider> <PaymentSuccess/> </PaymentProvider>}/>
           <Route path='sign-in' element={<SignIn />} />
           <Route path="verification" element={<FindPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />
@@ -67,6 +71,7 @@ function AppRoutes() {
           <Route path="movies/:movie_id" element={<Movies />} />
           <Route path="gogaksenter" element={<Gogaksenter />} />
           <Route path="registration" element={<Gogakregistration />} />
+          <Route path="mypage/:userId" element={<MyPage/>}/>
         </Route>
      </Routes>
 

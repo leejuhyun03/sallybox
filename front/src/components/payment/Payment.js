@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import LeftHeader from '../seats/LeftHeader';
 import BookingContext from '../BookingContext';
 import '../../css/seats/Reservation.css'
@@ -7,9 +7,10 @@ import ReserveInfo from './ReserveInfo';
 import PayMethod from './PayMethod';
 import PaymentInfo from './PaymentInfo';
 
-const Payment = ({userId}) => {
+const Payment = () => {
 
     const {bookingData} = useContext(BookingContext)
+    const [usePoint,setUsePoint] = useState(0);
 
     if (!bookingData || !bookingData.selectedSeats || bookingData.selectedSeats.length === 0) {
         return <p>선택된 좌석이 없습니다.</p>;
@@ -25,10 +26,10 @@ const Payment = ({userId}) => {
                     <ReserveInfo/>
                 </div>
                 <div className='pay_method_wrap'>
-                    <PayMethod userId={userId}/>
+                    <PayMethod setUsePoint={setUsePoint}/>
                 </div>
                 <div className='payment_info_wrap'>
-                    <PaymentInfo/>
+                    <PaymentInfo usePoint={usePoint}/>
                 </div>
             </div>
         </div>

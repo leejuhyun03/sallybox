@@ -62,8 +62,8 @@ const TimeTheaterType = ({schedules}) => {
                                 key={schedule.start_time} 
                                 onClick={()=>onReserv(schedule)} 
                                 data-end-time={'종료 '+ formatTime(schedule.end_time)}>
-                                <span>{formatTime(schedule.start_time)}</span>
-                                <span>{schedule.screen_no}관</span>
+                                <span style={{margin:'5px 10px 0 10px',fontWeight:'bold'}}>{formatTime(schedule.start_time)}</span>
+                                <span style={{margin:'0 10px 3px 10px',fontSize:'15px'}}>{schedule.screen_no}관</span>
                             </button>
                         ))}
                     </div>

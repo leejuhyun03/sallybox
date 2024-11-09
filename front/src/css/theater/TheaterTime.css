@@ -5,6 +5,7 @@
     background-color: transparent;
     display: flex;
     flex-direction: column;
+    /* border-bottom: 1px solid gray; */
 }
 .time_scroll_title{
     display: flex;
@@ -12,10 +13,9 @@
     background-color: white;
     align-items: center;
     gap: 15px;
-    margin: 15px 0;
+    margin: 15px 0 20px 0;
 }
 .time_scroll_title span{
-    padding-bottom: 3px;
-    font-size: 15px;
+    font-size: 20px;
 }
 

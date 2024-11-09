@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import '../../css/theater/Theater_bottom.css'
 import allGrade from '../../image/grade_all.png'
 import twoGrade from '../../image/grade_12.png'
@@ -21,8 +21,24 @@ const Theater_bottom = ({scheduleMap}) => {
     const [isOpen,setIsOpen] = useState(false) //modal
     const [isGraySelected,setIsGraySelected] = useState(false) //회색 글자 선택하면 TimeNothing 띄우는 작업
     const [selectedDate,setSelectedDate] = useState(fullDates[0]) //선택한 날짜 css 추가
+    const [scrollPosition, setScrollPosition] = useState(0);//스크롤 위치 저장
+
+    // 스크롤 위치를 기억하고 유지하는 함수
+    const saveScrollPosition = () => {
+        setScrollPosition(window.scrollY); // 현재 스크롤 위치 저장
+    };
+
+    // activeButton이 변경될 때마다 스크롤 위치 복구
+    useLayoutEffect(() => {
+        const timer = setTimeout(() => {
+            window.scrollTo(0, scrollPosition); // 저장된 스크롤 위치로 이동
+        }, 5); // 아주 짧은 시간 후에 실행
+    
+        return () => clearTimeout(timer);
+    }, [activeButton, scrollPosition]);
 
     const handleButton = (buttonname) => { //상영시간표/요금안내
+        saveScrollPosition();
         setActiveButton(buttonname)
     }
 
@@ -123,7 +139,7 @@ const Theater_bottom = ({scheduleMap}) => {
                                 <span className='txt_grade'><img src={twoGrade} alt='description'/>12세 관람가</span>
                                 <span className='txt_grade'><img src={fiveGrade} alt='description'/>15세 관람가</span>
                                 <span className='txt_grade'><img src={nineGrade} alt='description'/>19세 관람가</span>
-                                <button type='button' className='btn_txt_grade' onClick={openModal}><img src={caution} alt='grade'/>관람등급안내</button>                                
+                                <button type='button' className='btn_txt_grade' onClick={openModal}><img src={caution} alt='grade' style={{marginRight:'5px'}}/>관람등급안내</button>                                
                             {
                                 isOpen && <TheaterModal closeModal={closeModal}/>
                             }

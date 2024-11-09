@@ -359,10 +359,11 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                         <div className="jytime_scroll_select_buttons">
                                             {schedules.map(schedule => (
                                                 <button
-                                                    key={schedule.start_time}
+                                                    key={schedule.schedule_id}
                                                     onClick={() => onScheduleSelect(schedule)}
                                                     className="jytime_button"
                                                 >
+                                                
                                                     <span>{formatTime(schedule.start_time)}</span>
                                                     <span>{schedule.screen_no}관</span>
                                                 </button>

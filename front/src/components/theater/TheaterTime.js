@@ -41,9 +41,9 @@ const TheaterTime = ({scheduleMap}) => {
             {Object.entries(groupedData).map(([movie_id,schedules]) => (
                 <div key={movie_id} className='time_scroll_select_wrap'>
                     <div className='time_scroll_title'>
-                        <img src={getAgeRatingImg(schedules[0].certification)} alt='연령 사진' style={{width:'22px'}}/>
+                        <img src={getAgeRatingImg(schedules[0].certification)} alt='연령 사진' style={{width:'28px'}}/>
                         <span>{schedules[0].title}</span>
-                        <a href=''><img src={arrow} alt='영화 정보페이지 링크' style={{width:'10px'}}/></a>
+                        <a href={`http://localhost:3000/sallybox/movies/${movie_id}`} style={{paddingTop:'5px'}}><img src={arrow} alt='영화 정보페이지 링크' style={{width:'10px'}}/></a>
                     </div>
                     <div>
                         <TimeTheaterType schedules={schedules}/>

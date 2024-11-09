@@ -1,0 +1,124 @@
+.rank_2020_wrap {
+    margin-top: 50px;
+}
+
+.rank_2020_wrap > .tit {
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6, address, caption, em, th {
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+.rank_2020_wrap .rank_2020_list_ty2 {
+    position: relative;
+    margin-top: 20px;
+    border-top: 1px solid #bbb;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl.tit {
+    width: 12%;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl {
+    float: left;
+    width: 22%;
+    text-align: center;
+}
+
+[class*="txt_2020_rank"] {
+    display: inline-block;
+    padding: 0 4px;
+    min-width: 54px;
+    height: 24px;
+    color: #fff;
+    line-height: 26px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Roboto';
+    border-radius: 25px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl dt {
+    margin-bottom: 16px;
+    padding-top: 40px;
+}
+
+
+.txt_2020_rank1 {
+    background-color: #675448;
+}
+
+
+
+[class^="ic_2020_"] {
+    background-repeat: no-repeat;
+}
+
+.ic_2020_vip {
+    background-image: url(../../image/2020_vip.png);
+    background-position: center 21px;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl dd {
+    padding: 28px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+dd {
+    display: block;
+    margin-inline-start: 0px;
+    unicode-bidi: isolate;
+}
+
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.ic_2020_vvip {
+    background-image: url(../../image/2020_vvip.png);
+    background-position: center 20px;
+}
+
+.txt_2020_rank2 {
+    background-color: #969697;
+}
+
+.ic_2020_gold {
+    background-image: url(../../image/2020_gold.png);
+    background-position: center 16px;
+}
+
+.ic_2020_platinum {
+    background-image: url(../../image/2020_platinum.png);
+    background-position: center 15px;
+}
+
+.txt_2020_rank4 {
+    background-color: #000;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl dd em {
+    font-family: "Roboto";
+}
+
+dt {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+
+.txt_2020_rank3 {
+    background-color: #756023;
+}

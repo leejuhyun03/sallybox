@@ -76,22 +76,12 @@ const Header = () => {
     setVisible2(false)
   }
 
-  let onTrue3 = () => {
-    // !true = false, !false - > true
-    setVisible3(true)
-  }
-
-  let onFalse3 = () => {
-    // !true = false, !false - > true
-    setVisible3(false)
-  }
-
 
   return (
   <>
   <NavbarTest3 handleLogout={handleLogout}/>
   <div id='header_section' className='header ty3'>
-      <Link to={'/sallybox'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
+      <Link to={'/'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
         <ul className="g_menu2">
           <li><a href='#'>멤버십</a></li>
@@ -106,10 +96,10 @@ const Header = () => {
         </ul>
         <ul className="g_menu3">
         {
-          isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+          isAuthenticated ? <li><Link className='btn_my' to={`/sallybox/mypage/${userId}`}>마이</Link></li>
                           : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
         }
-          <li><a href="#" className="btn_reserve">바로 예매</a></li>
+          <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
           <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>
           {
               isShow && <HeaderModal onClose = {onClose} userName = {userName} userPoint = {userPoint}/>
@@ -117,32 +107,16 @@ const Header = () => {
         </ul>
       </div>
 
-      <div id='nav' className='area__gnbmovingbar'>
+      <div id='navs' className='area__gnbmovingbar'>
         <ul>
           <li className='your-elements'>
-            <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1}>예매</a>
+            <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'>예매</a>
+          </li>
+          <li className='your-elements'>
+            <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1}>영화</a>
             { // visible이 true이면 이라는 뜻
               visible1 &&
             <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue1} onMouseLeave={onFalse1}>
-              <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing" title="예매하기">예매하기</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/Schedule" title="상영시간표">상영시간표</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/DiscountGuide" title="할인안내">할인안내</a>
-                </li>
-              </ul> 
-            </div>
-            }
-          </li>
-          <li className='your-elements'>
-            <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2}>영화</a>
-            { // visible이 true이면 이라는 뜻
-              visible2 &&
-            <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue2} onMouseLeave={onFalse2}>
               <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
               <li>
                 <Link to={'/sallybox/movied/1'}>현재상영작</Link>
@@ -158,10 +132,10 @@ const Header = () => {
             }
           </li>
           <li className='your-elements'>
-            <a href='#' className='hover' onMouseOver={onTrue3} onMouseLeave={onFalse3}>영화관</a>
-            { // visible이 true이면 이라는 뜻
-              visible3 &&
-            <div className='navbar' style={{display: 'block', height: '60px'}} onMouseOver={onTrue3} onMouseLeave={onFalse3}>
+            <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2}>영화관</a>
+            { 
+              visible2 &&
+            <div className='navbar' style={{display: 'block', height: '60px'}} onMouseOver={onTrue2} onMouseLeave={onFalse2}>
               <ul className='navbarul'>
                 <li>
                   <a href="#" title="스페셜관">스페셜관</a>
