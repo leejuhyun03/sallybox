@@ -65,7 +65,12 @@
     </insert>
 
     <!-- 강현 -->
-    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 로그인 할 때 사용 -->
+    <select id="findPassword" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM users WHERE email = #{email} AND name = #{name}
+    </select>
+
+    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO">
+    <!-- 돌려주는 곳(받는 데이터 타입)이 com.exe.springmybatis.CustomDTO 임 로그인 할 때 사용 -->
       SELECT user_id AS userid, email, password, name, nickname, points FROM users WHERE email = #{email}
     </select>
 
@@ -74,6 +79,7 @@
     </select>
 
     <update id="updatePassword" parameterType="map">
+    <!-- parameterType="String": SQL 쿼리에서 #{email}을 바인딩할 자바 타입은 String입니다. 여러개이면 map이나 dto 타입으로 설정 -->
       UPDATE users
       SET password = #{password}
       WHERE email = #{email}

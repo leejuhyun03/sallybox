@@ -198,7 +198,17 @@ public class AllController {
 
     @PostMapping("/api/send-sms")
     public ResponseEntity<?> sendSms (@RequestBody Map<String, String> body) { 
-   
+        
+        String email = body.get("email");
+        String name = body.get("name");
+        System.out.println(email);
+        boolean emailExists = sqlService.findPassword(email, name);
+        System.out.println("인증완료: " + emailExists);
+
+        if (!emailExists) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("이메일을 찾을 수 없습니다.");
+        }
+
         String to = body.get("phoneNumber");
 
         Random rnd  = new Random();

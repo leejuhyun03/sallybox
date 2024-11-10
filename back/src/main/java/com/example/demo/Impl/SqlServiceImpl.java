@@ -127,6 +127,13 @@ public class SqlServiceImpl implements SqlService{
 	private JwtUtil jwtUtil; // JwtUtil 임포트
 
     @Override
+    public boolean findPassword(String email, String name) {
+        // 이메일이 존재하면 1을, 없으면 0을 반환하므로
+        // 1이면 존재, 0이면 존재하지 않는 것으로 처리
+        return sqlMapper.findPassword(email, name) > 0;
+    }
+
+    @Override
     public CustomDTO findByEmail(String email) {
         return sqlMapper.findByEmail(email);
     }
