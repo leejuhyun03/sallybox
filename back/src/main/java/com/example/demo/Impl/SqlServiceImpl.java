@@ -132,8 +132,8 @@ public class SqlServiceImpl implements SqlService{
     }
 
 	@Override
-	public CustomDTO findByName(String name) {
-		return sqlMapper.findByName(name); // 이메일 조회
+	public CustomDTO findByName(String name, String phoneNumber) {
+		return sqlMapper.findByName(name, phoneNumber); // 이메일 조회
 	}
 	
 	@Override

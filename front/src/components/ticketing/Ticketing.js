@@ -1,36 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import LeftHeader from '../seats/LeftHeader';
 import '../../css/seats/LeftHeader.css';
 import '../../css/seats/Reservation.css';
 import '../../css/ticketing/Ticketing.css';
 import '../../css/ticketing/TicketingCinema.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import TicketingCinema from './TicketingCinema';
 import TicketingMovie from './TicketingMovie';
+import BookingContext from '../BookingContext';
 
 const Ticketing = () => {
+    const {bookingData,setBookingData} = useContext(BookingContext)
     const [selectedCinema, setSelectedCinema] = useState(null); // 선택된 영화관
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // 오늘 날짜 설정
     const { cinema_id } = useParams(); // URL에서 cinema_id를 가져와 변수로 설정
     const [cinemaDTO, setCinemaDTO] = useState(null);
     const [scheduleMap, setScheduleMap] = useState(new Map());
     const [selectedMovie, setSelectedMovie] = useState(null); // 선택된 영화 저장 상태
+    const navigate = useNavigate();
 
     const handleMovieSelect = (movie) => {
         setSelectedMovie(movie); // 선택된 영화를 업데이트
     };
 
-    useEffect(() => {
-        console.log("선택된 영화관:", selectedCinema);
-    }, [selectedCinema]);
+    const onScheduleSelect = (schedule) => {
+
+        // console.log(schedule) 넘어옴
+        setBookingData({
+            schedule:schedule
+        })
+
+
+        navigate('/sallybox/reserv/seats');
+
+    }
+
+    // useEffect(() => {
+    //     console.log('Updated bookingData:', bookingData);
+    // }, [bookingData]);
+
+    // useEffect(() => {
+    //     console.log("선택된 영화관:", selectedCinema);
+    // }, [selectedCinema]);
 
     // cinema_id를 URL로 가져와서 해당 영화관의 정보를 API로 요청하고, 그 결과로 cinemaDTO와 schedules 데이터를 받아옴
     // setCinemaDTO와 setScheduleMap을 통해 상태로 저장
     useEffect(() => {
         if (cinema_id) {
             axios
-                .get(`http://localhost:8085/sallybox/cinema/${cinema_id}`)
+                .get(`http://localhost:8085/sallybox/cinemajy/${cinema_id}`)
                 .then((response) => {
                     // response가 DTO 형태 (cinemaDTO, Map<Integer, List<ScheduleDTO>>)
                     setCinemaDTO(response.data.cinemaDTO);
@@ -38,6 +57,7 @@ const Ticketing = () => {
                     // object 형태로 넘어온 걸 map 형태로 변환 (map이 Object(배열) 형태로 넘어옴)
                     if (response.data.schedules) {
                         const scheduleMap = new Map(Object.entries(response.data.schedules));
+                        console.log(scheduleMap)
                         setScheduleMap(scheduleMap);
                     } else {
                         console.warn('schedules is undefined or null');
@@ -62,7 +82,7 @@ const Ticketing = () => {
             <div className="center_reserv_wrap">
                 <div className="jycinema_all">
                     <div className="jycinema_area" style={{ width: '351px', height: '870px' }}>
-                        <div className="group_top">
+                        <div className="group_tops">
                             <h4 className="cinema_title" style={{ textAlign: 'center' }}>
                                 {selectedCinema ? selectedCinema.name : '영화관 선택'}
                             </h4>
@@ -83,6 +103,7 @@ const Ticketing = () => {
                             onMovieSelect={handleMovieSelect} // `onMovieSelect`를 prop으로 전달
                             scheduleMap={scheduleMap}
                             setSelectedCinema={setSelectedCinema}
+                            onScheduleSelect={onScheduleSelect}
                         />
                     </div>
                 </div>

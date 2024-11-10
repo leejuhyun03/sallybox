@@ -12,14 +12,15 @@ import vip from '../../image/2020_vip.png'
 import vvip from '../../image/2020_vvip.png'
 import gold from '../../image/2020_gold.png'
 import platinum from '../../image/2020_platinum.png'
+import { useUser } from '../../context/UserContext';
 
 const PaymentSuccess = () => {
 
     const {paymentData} = useContext(PaymentContext)
     const navigate = useNavigate()
-    const {userId} = '15'
+    const { userId, userName } = useUser();
 
-    const {userName,posterPath,bookingNum,created, start_time, end_time, cinemaName, theaterNo, peopleType, seats, totalPrice, 
+    const {posterPath,bookingNum,created, start_time, end_time, cinemaName, theaterNo, peopleType, seats, totalPrice, 
         discountAmount} = paymentData
 
     const extractDate = (created) => {

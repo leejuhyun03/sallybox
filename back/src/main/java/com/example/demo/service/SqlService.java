@@ -42,7 +42,7 @@ public interface SqlService {
 
     // 강현 service
     CustomDTO findByEmail(String email);
-    CustomDTO findByName(String name);
+    CustomDTO findByName(String name, String phoneNumber);
     String maskEmail(String email);
     String login(String email, String password); // 로그인 메서드 추가
     void sendSms(String to, String cerNum); // 인증번호

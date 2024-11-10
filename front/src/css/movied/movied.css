@@ -215,7 +215,7 @@
     font-size: 13px;
 }
 
-.movie_liste li .btm_infoe .tit_infoe .ic_gradee {
+.movie_liste li .btm_infoe .ic_gradee .tit_infoe {
     padding-right: 6px;
 }
 
@@ -224,10 +224,10 @@
 }
 
 .ic_gradee {
-    display: inline-block;
+    /* display: block;
     width: 22px;
     height: 22px;
-    line-height: 22px;
+    line-height: 22px; */
     border-radius: 50%;
     font-size: 0;
     text-align: center;
@@ -243,7 +243,7 @@
     content: "";
     display: block;
     width: 22px;
-    height: 22px;
+    height: 12px;
     border-radius: 3px;
 }
 
@@ -313,7 +313,7 @@
     font-weight: bold;
 }
 
-.sub_info1 .star_info {
+.sub_info1e .star_infof {
     padding-left: 22px;
     font-weight: bold;
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/movie/ic_star.png) no-repeat 9px 20%;

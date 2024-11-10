@@ -8,6 +8,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoIosPlay } from "react-icons/io";
 import MovieDetail from './MovieDetail';
+import { useUser } from '../../context/UserContext';
 
 const MoviePage = () => {
     const { movie_id } = useParams();
@@ -20,6 +21,9 @@ const MoviePage = () => {
     const [loadingWishlist, setLoadingWishlist] = useState(false); // 위시리스트 로딩 상태
     const [error, setError] = useState(null);
     const [isMovieNowPlaying, setIsMovieNowPlaying] = useState(false); // 영화 상영 여부 상태 추가
+
+    const { userId } = useUser();
+
     const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에 정의 --jwt
   
     useEffect(() => {
@@ -37,7 +41,7 @@ const MoviePage = () => {
 
               const statusResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/status`, {
                   params: {
-                      user_id: 1,
+                      user_id: userId,
                       movie_id: movie_id
                   }
               });
@@ -57,9 +61,8 @@ const MoviePage = () => {
         setLoadingWishlist(true);
         
         try {
-            const response = await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/toggle`, {
-                userId: 1,
-                movieId: movie_id
+            const response = await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
+                params: {user_id: userId}
             });
 
             const newIsLiked = response.data.isLiked;
@@ -74,6 +77,7 @@ const MoviePage = () => {
         }
     };
 
+    //예매 페이지로 영화 정보 보내는 함수
     const handleBookingClick = () => {
         const today = new Date();
         const date = today.toLocaleDateString();

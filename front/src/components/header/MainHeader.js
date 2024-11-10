@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/header/MainHeader.css'
-import { jwtDecode } from 'jwt-decode';
 import { useUser } from '../../context/UserContext';
 
 const MainHeader = () => {
@@ -15,7 +14,7 @@ let [visible1, setVisible1] = useState(false)
   
   const [isShow, setIsShow] = useState(false)
 
-  const { isAuthenticated, setIsAuthenticated } = useUser();
+  const { userId, isAuthenticated, setIsAuthenticated } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -101,19 +100,19 @@ let [visible1, setVisible1] = useState(false)
                 <li><a href='#'>단체관람/대관문의</a></li>
                 {
                     isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
-                                    : <li><Link to={'/sallybox'}>로그인</Link></li>
+                                    : <li><Link to={'/sallybox/sign-in'}>로그인</Link></li>
                 }
                 </ul>
                 <ul className="g_menu3">
                 {
-                  isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+                  isAuthenticated ? <li><Link className='btn_my' to={`/sallybox/mypage/${userId}`}>마이</Link></li>
                                 : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
                 }
                 <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
                 </ul>
             </div>
 
-            <div id='nav' className='area__gnbmovingbar'>
+            <div id='navs' className='area__gnbmovingbar'>
                 <ul>
                 <li className='your-elements'>
                     <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'style={{color: 'black'}}>예매</a>

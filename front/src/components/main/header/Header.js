@@ -96,7 +96,7 @@ const Header = () => {
         </ul>
         <ul className="g_menu3">
         {
-          isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+          isAuthenticated ? <li><Link className='btn_my' to={`/sallybox/mypage/${userId}`}>마이</Link></li>
                           : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
         }
           <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
@@ -107,7 +107,7 @@ const Header = () => {
         </ul>
       </div>
 
-      <div id='nav' className='area__gnbmovingbar'>
+      <div id='navs' className='area__gnbmovingbar'>
         <ul>
           <li className='your-elements'>
             <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'>예매</a>

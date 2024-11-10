@@ -13,7 +13,7 @@ function EmailFindResult({ isOpen, onClose, maskedEmail, FindAllEmailOpen, allEm
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="modal-contents">
                 <button className="close-button" onClick={onClose}>✖</button>
                 <h2>이메일 찾기 결과</h2>
                 {maskedEmail ? (
@@ -24,7 +24,7 @@ function EmailFindResult({ isOpen, onClose, maskedEmail, FindAllEmailOpen, allEm
                 {maskedEmail === allEmail ? (
                     <button className='link' onClick={handleRefresh}>로그인</button>
                 ) : (
-                    <button onClick={FindAllEmailOpen}>이메일 전체 찾기</button>
+                    <button className='buttond' onClick={FindAllEmailOpen}>이메일 전체 찾기</button>
                 )}
             </div>
         </div>

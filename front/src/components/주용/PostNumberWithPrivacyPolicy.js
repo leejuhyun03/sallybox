@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; // 추가
 import "../../css/jy/Gogakregistration.css";
 import "../../css/jy/Gogaksenter.css";
-import "../../css/jy/nav.css";
 import "../../css/jy/tab.css";
 
 const PostNumberWithPrivacyPolicy = () => {
