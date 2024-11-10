@@ -94,7 +94,7 @@ export default function FindPassword() {
 
             if (response.data) {
                 alert('인증이 완료 되었습니다.');
-                navigate('/resetPassword', {state: email});
+                navigate('/sallybox/resetPassword', {state: email});
             } else if (error.response && error.response.data) {
                 setError2(error.response.data);
             }
