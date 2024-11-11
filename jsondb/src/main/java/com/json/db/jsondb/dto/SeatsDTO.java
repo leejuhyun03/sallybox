@@ -14,3 +14,4 @@ public class SeatsDTO {
     private String seat_type;
     
 }
+

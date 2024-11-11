@@ -1,0 +1,254 @@
+.jylist_filter {
+    overflow: hidden;
+    position: relative;
+    height: 39px;
+    padding: 0px 20px;
+    border: 1px solid #DDD;
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+}
+
+#jysortSelect {
+    width: 160px; 
+    height: 21px; 
+    font-size: medium;
+}
+
+.jymovieSelect_list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    overflow-y: auto;
+    height: 100%; /* 상위 요소의 높이에 맞추기 */
+    background-color: #ddd;
+    overflow-y: auto;
+    
+}
+
+.jydate_arrow_button {
+    background-color: transparent; /* 배경색 제거 */
+    border: none; /* 테두리 제거 */
+    box-shadow: none; /* 그림자 제거 */
+    outline: none; /* 포커스 윤곽선 제거 */
+    padding: 0; /* 여백 제거 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jymovie_item.selected {
+    border: 2px solid #000; /* 두꺼운 테두리 */
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.jymovie_item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    height: 32px;
+}
+
+.jymovie_certification {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.jymovie_title {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    color: #444;
+}
+
+.jymovie_certification {
+    font-size: 14px;
+    color: #888;
+}
+
+.jymovie_start_time {
+    font-size: 14px;
+}
+
+.jybtn {
+    flex: 1;
+    padding: 10px;
+    background-color: transparent;
+    font-size: 20px;
+    color: #A6A6A6;
+    cursor: pointer;
+    position: relative;
+}
+
+.jybtn::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background-color: transparent;
+}
+
+.jybtn.jyactive::after {
+    background-color: black;
+}
+
+.jybtn.jyactive {
+    color: black;
+}
+
+.jytime_table_wrap {
+    display: none;
+}
+
+.jytime_table_wrap.jyactive {
+    display: block;
+}   
+
+.jydate_select {
+    height: 100px;
+    margin: 10px 0px 0;
+}
+
+.jydate_slide {
+    display: flex;
+    justify-content: space-around;
+    height: 80px;
+}
+
+.jydate_item {
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    width: 100%;
+    max-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 8px;
+}
+
+.jydate_item span {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+.jyselected span:nth-child(2) {
+    color: white;
+    border: 2px solid black; /* 검정색 테두리와 굵기 설정 */
+    border-radius: 50%; /* 둥근 테두리 설정 */
+    padding: 5px;
+    display: inline-block; /* 테두리와 모양이 제대로 나타나도록 블록 설정 */
+}
+
+.jytime_scroll_wrap {
+    padding: 0 10px;
+}
+
+.jytime_scroll_select {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.jytime_scroll_select span {
+    font-weight: bold;
+}
+
+.jytime_scroll_select button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.jytime_scroll_select_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px; /* 왼쪽에 공백 추가 */
+}
+
+.jytime_button {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    margin-top: 0; /* 상단 공백 제거 */
+
+}
+
+.jytime_button span {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    margin-top: 0; /* 상단 공백 제거 */
+
+}
+
+.jytime_scroll_select_wrap {
+    margin-top: 2px;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.jytime_scroll_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px 0;
+    margin-left: 20px;
+}
+
+.jytime_scroll_title span {
+    padding-bottom: 3px;
+}
+
+.jycinema_title {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 63px;
+    padding: 0; /* 내부 여백 제거 */
+    margin: 0; /* 외부 여백 제거 */
+    line-height: 21px; /* 텍스트를 세로 가운데 정렬 */
+}
+.jycinema_movies {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 63px;
+    padding: 0; /* 내부 여백 제거 */
+    margin: 0; /* 외부 여백 제거 */
+    line-height: 21px; /* 텍스트를 세로 가운데 정렬 */
+}
+
+.jyTicketingTime{
+    overflow-y: auto; 
+}
+
+.jytheater_type_info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    padding-left: 23px; /* 왼쪽에 공백 추가 */
+    font-weight: bold;
+    margin-top: 7px;
+}

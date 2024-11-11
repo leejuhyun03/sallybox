@@ -1,47 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import '../../../../css/main/header/modal/HeaderModal.css'
+import numeral from 'numeral';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import hani from '../../../../image/hanni2.jpg'
+import { useUser } from '../../../../context/UserContext';
 
-const HeaderModal = ({onClose, isAuthenticated, userid}) => {
+const HeaderModal = ({onClose, userName, userPoint}) => {
 
-    const [name, setName] = useState([]);
-    const [point, setPoint] = useState([]);
-    const [error, setError] = useState(null);
-    console.log(userid)
+    const {isAuthenticated} = useUser();
 
-    const fetchUser = async () => {
-        if (!userid) return; // userid가 없으면 함수 종료
+    const point = numeral(userPoint).format('0,0');
 
-        try {
-            const response = await axios.get(
-                `http://localhost:5000/api/movies/user`,
-                {
-                    params: {
-                        userId: userid
-                    },
-                }
-            );
-            const data = response.data;
-            
-            setName(data[0])
-            setPoint(data[1])
-            
-        } catch (err) {
-            setError('Failed to fetch recommended movies.');
-            console.error(err);
-        }
-    };
-
-    useEffect(() => {
-        fetchUser();
-    }, [userid]);
 
     return (
         
-        <div className='Modal'>
+        <div className='Modals'>
             <div className='bg'></div>
-            <div className='popup' style={{position: 'fixed', left: '50%', top: '70px', marginLeft: '-490px'}}>
+            <div className='popup' style={{position: 'fixed', left: '55%', top: '70px', marginLeft: '-490px'}}>
                 <div id="layerAllMenu" className="menu_all_wrap active">
                     <strong className="hidden">레이어 팝업 시작</strong>
                     <div className="group_menu_all">
@@ -59,125 +34,82 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                     <th scope="col" id="gmenu1"><span>예매</span></th>
                                     <th scope="col" id="gmenu2"><span>영화</span></th>
                                     <th scope="col" id="gmenu3"><span>영화관</span></th>
-                                    <th scope="col" id="gmenu4"><span>스페셜관</span></th>
-                                    <th scope="col" id="gmenu5"><span>스토어</span></th>
-                                    <th scope="col" id="gmenu6"><span>멤버십</span></th>
+                                    
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu1">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="예매하기" tabIndex="0">예매하기</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/reserv/ticketing' title="예매하기" tabIndex="0">예매하기</a></li>
                                             <li><a title="상영시간표" tabIndex="0">상영시간표</a></li>
                                             <li><a title="할인안내" tabIndex="0">할인안내</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu2">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="홈" tabIndex="0">홈</a></li>
-                                            <li><a title="현재상영작" tabIndex="0">현재상영작</a></li>
-                                            <li><a title="상영예정작" tabIndex="0">상영예정작</a></li>
-                                            <li><a title="아르떼" tabIndex="0">아르떼</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/movied/1' title="현재상영작" tabIndex="0">현재상영작</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/movied/2' title="상영예정작" tabIndex="0">Sally 추천작</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/classic' title="아르떼" tabIndex="0">추억의 영화관</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu3">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="스페셜관" tabIndex="0">스페셜관</a></li>
-                                            <li><a title="서울" tabIndex="0">서울</a></li>
-                                            <li><a title="경기/인천" tabIndex="0">경기/인천</a></li>
-                                            <li><a title="충청/대전" tabIndex="0">충청/대전</a></li>
-                                            <li><a title="전라/광주" tabIndex="0">전라/광주</a></li>
-                                            <li><a title="경북/대구" tabIndex="0">경북/대구</a></li>
-                                            <li><a title="경남/부산/울산" tabIndex="0">경남/부산/울산</a></li>
-                                            <li><a title="강원" tabIndex="0">강원</a></li>
-                                            <li><a title="제주" tabIndex="0">제주</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu4">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="홈" tabIndex="0">홈</a></li>
-                                            <li><a title="샤롯데" tabIndex="0">샤롯데</a></li>
-                                            <li><a title="수퍼플렉스" tabIndex="0">수퍼플렉스</a></li>
-                                            <li><a title="수퍼MX4D" tabIndex="0">수퍼MX4D</a></li>
-                                            <li><a title="수퍼 4D" tabIndex="0">수퍼 4D</a></li>
-                                            <li><a title="수퍼LED" tabIndex="0">수퍼LED</a></li>
-                                            <li><a title="광음시네마" tabIndex="0">광음시네마</a></li>
-                                            <li><a title="리클라이너" tabIndex="0">리클라이너</a></li>
-                                            <li><a title="씨네패밀리" tabIndex="0">씨네패밀리</a></li>
-                                            <li><a title="씨네커플" tabIndex="0">씨네커플</a></li><li>
-                                            <a title="씨네비즈" tabIndex="0">씨네비즈</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu5">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="베스트" tabIndex="0">베스트</a></li>
-                                            <li><a title="포토카드" tabIndex="0">포토카드</a></li>
-                                            <li><a title="관람권" tabIndex="0">관람권</a></li>
-                                            <li><a title="스낵음료" tabIndex="0">스낵음료</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu6">
-                                        <ul style={{paddingInlineStart: '0px'}}>    
-                                            <li><a title="VIP" tabIndex="0">VIP</a></li>
-                                            <li><a title="짝꿍클럽" tabIndex="0">짝꿍클럽</a></li>
-                                            <li><a title="틴틴클럽" tabIndex="0">틴틴클럽</a></li>
-                                            <li><a title="브라보클럽" tabIndex="0">브라보클럽</a></li>
-                                        </ul>
+                                        <div style={{ display: 'flex'}}>
+                                            <ul style={{ paddingInlineStart: '0px', marginRight: '30px' }}>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/5" title="김포공항">김포공항</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/6" title="노원">노원</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/7" title="도곡">도곡</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/8" title="독산">독산</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/10" title="수락산">수락산</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/11" title="수유">수유</a></li>
+                                            </ul>
+                                            <ul style={{ paddingInlineStart: '0px' }}>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/13" title="신도림">신도림</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/14" title="신림">신림</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/16" title="영등포">영등포</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/17" title="월드타워">월드타워</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/18" title="은평">은평</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/19" title="중랑">중랑</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/20" title="청량리">청량리</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/21" title="합정">합정</a></li>
+                                                <li><a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a></li>
+                                            </ul>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="col" id="gmenu7"><span>마이</span></th>
                                     <th scope="col" id="gmenu8"><span>고객센터</span></th>
-                                    <th scope="col" id="gmenu9"><span>회원 서비스</span></th>
-                                    <th scope="col" id="gmenu10"><span>이벤트</span></th>
-                                    <th scope="col" id="gmenu11"><span>할인안내</span></th>
+                                    <th scope="col" id="gmenu8"><span>회원 서비스</span></th>
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu7">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="결제내역" tabIndex="0">결제내역</a></li>
-                                            <li><a title="쿠폰함" tabIndex="0">쿠폰함</a></li>
-                                            <li><a title="MY 이벤트" tabIndex="0">MY 이벤트</a></li>
-                                            <li><a title="MY 클럽" tabIndex="0">MY 클럽</a></li>
-                                            <li><a title="MY 무비로그" tabIndex="0">MY 무비로그</a></li>
-                                            <li><a title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/mypage' title="결제내역" tabIndex="0">결제내역</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/mypage' title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="브라보클럽" tabIndex="0">FAQ</a></li>
-                                            <li><a title="공지사항" tabIndex="0">공지사항</a></li>
-                                            <li><a title="1:1 문의" tabIndex="0">1:1 문의</a></li>
-                                            <li><a title="단체관람/대관문의" tabIndex="0">단체관람/대관문의</a></li>
-                                            <li><a title="분실물문의" tabIndex="0">분실물문의</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/gogaksenter' title="공지사항" tabIndex="0">공지사항</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/registration' title="1:1 문의" tabIndex="0">1:1 문의</a></li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu9">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="로그인" tabIndex="0">로그인</a></li>
-                                            <li><a title="회원가입" tabIndex="0">회원가입</a></li>
-                                            <li><a title="아이디/비밀번호찾기" tabIndex="0">아이디/비밀번호찾기</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/sign-in'title="로그인" tabIndex="0">로그인</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/sign-up' title="회원가입" tabIndex="0">회원가입</a></li>
+                                            <li><a href='http://localhost:3000/sallybox/resetPassword' title="비밀번호찾기" tabIndex="0">아이디/비밀번호찾기</a></li>
                                             <li><a title="이용약관" tabIndex="0">이용약관</a></li>
                                             <li><a title="개인정보처리방침" tabIndex="0">개인정보처리방침</a></li>
                                             <li><a title="이메일무단수집거부" tabIndex="0">이메일무단수집거부</a></li>
                                             <li><a title="r고정형 영상정보처리기기 운영 및 관리방침" tabIndex="0">고정형 영상정보처리기기 운영 및 관리방침</a></li>
                                             <li><a title="L.POINT회원안내" tabIndex="0">L.POINT회원안내</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu10">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="영화" tabIndex="0">영화</a></li>
-                                            <li><a title="시사회/무대인사" tabIndex="0">시사회/무대인사</a></li>
-                                            <li><a title="HOT" tabIndex="0">HOT</a></li>
-                                            <li><a title="제휴할인" tabIndex="0">제휴할인</a></li>
-                                            <li><a title="우리동네영화관" tabIndex="0">우리동네영화관</a></li>
-                                        </ul>
-                                    </td>
-                                    <td headers="gmenu gmenu11">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a title="신용카드" tabIndex="0">신용카드</a></li>
-                                            <li><a title="포인트" tabIndex="0">포인트</a></li>
-                                            <li><a title="통신사" tabIndex="0">통신사</a></li>
-                                            <li><a title="기타결제수단" tabIndex="0">기타결제수단</a></li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -195,38 +127,31 @@ const HeaderModal = ({onClose, isAuthenticated, userid}) => {
                                     <div className="grade_area">
                                         <span className="txt_rank_common ml5">일반</span>
                                         </div>
-                                    <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>{name}님</strong>반가워요!</p>
+                                    <p className="name"><strong style={{fontSize: '16px', marginRight: '5px'}}>{userName}님</strong>반가워요!</p>
                                     <div className="my_point">
                                         <dl>
-                                            <dt><img src="https://www.lottecinema.co.kr/NLCHS/Content/images/icon/txt_lpoint_46.png" alt="L.POINT"/></dt>
+                                            <dt style={{color: '#28A3FC'}}>S.POINT</dt>
                                             <dd>
-                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{point}P</b></strong></a>
+                                                <a href="#" style={{color: '#000'}} target="_blank" title="L.POINT 페이지 이동" tabIndex="0"><strong><b>{point}<b style={{color: '#28A3FC'}}>P</b></b></strong></a>
                                             </dd>
-                                            <dt><b>쿠폰함</b></dt>
-                                            <dd><a href="#" style={{color: '#000'}} title="쿠폰함 페이지 이동" tabIndex="0"><b>0</b></a></dd>
                                         </dl>
-                                    </div>
-                                    <div className="my_theater" id="my_theater">
-                                        <h3 className="tit">MY 영화관</h3><button type="button" className="btn_setup">설정</button>
-                                        <ul className="theater_box">
-                                            <li className="alter" id="my_theater_1"><strong>월드타워</strong></li>
-                                            <li className="add" id="my_theater_2"><a href="#" tabIndex="0">2nd</a></li>
-                                            <li className="add" id="my_theater_3"><a href="#" tabIndex="0">3rd</a></li>
-                                        </ul>
                                     </div>
                                 </>
                                 : 
                                 <>
                                     <div className="area_btn_login">
-                                        <Link to={'/sign-in'} className="btn_col3 ty4 w_full" tabIndex="0" style={{borderRadius: '7px'}}>로그인</Link>
+                                        <Link to={'/sallybox/sign-in'} className="btn_col3 ty4 w_full" tabIndex="0" style={{borderRadius: '7px'}}>로그인</Link>
                                     </div>
                                     <div className="nomember_box">
                                         <p className="tip">로그인 하시고<br/>다양한 혜택을 확인하세요.</p>
-                                        <Link to={'/sign-up'} className="btn_col3 ty4 rnd" title="회원가입 페이지 이동" tabIndex="0" style={{borderRadius: '20px'}}>회원가입</Link>
+                                        <Link to={'/sallybox/sign-up'} className="btn_col3 ty4 rnd" title="회원가입 페이지 이동" tabIndex="0" style={{borderRadius: '20px'}}>회원가입</Link>
                                     </div>
                                 </>
                                 }
                             </div>
+                        </div>
+                        <div className="bx_banner">
+                            <img src={hani} alt="팜하니"/>
                         </div>
                     </div>
                     <div className="group_close">

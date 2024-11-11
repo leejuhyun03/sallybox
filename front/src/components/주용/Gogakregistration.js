@@ -36,7 +36,7 @@ const Gogakregistration = () => {
         className="contents_customer area__movingbar litype5"
       >
         <div id="title_top">
-          <h2 className="tit" style={{ fontSize: 25 }}>
+          <h2 className="tit" style={{ fontSize: 25, margin: 0, padding: 0 }}>
             고객센터
           </h2>
         </div>
@@ -45,7 +45,7 @@ const Gogakregistration = () => {
         <ul className="tab_wrap outer actionmovingbar">
           <li className="active">
             <div className="tab_con ty2">
-              <button className="button1">1:1 나문의~</button>
+              <button className="button1" style={{width: '980px'}}>1:1 나문의~</button>
 
               <div className="tab_con">
                 <div className="con_top">
@@ -63,7 +63,7 @@ const Gogakregistration = () => {
                         type="button"
                         className="btn_col4 ty5 roboto"
                       >
-                        <Link to="/gogaksenter">
+                        <Link to="/sallybox/gogaksenter">
                         FAQ
                         </Link>
                       </button>

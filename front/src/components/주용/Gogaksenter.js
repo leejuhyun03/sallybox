@@ -22,7 +22,7 @@ const Gogaksenter = () => {
       {/* 고객센터 중단 */}
       <div id="contents">
         <div id="title_top">
-          <h2 className="tit" style={{ fontSize: 25 }}>
+          <h2 className="tit" style={{ fontSize: 25, margin: 0, padding: 0 }}>
             고객센터
           </h2>
         </div>
@@ -30,13 +30,13 @@ const Gogaksenter = () => {
         <ul className="tab_wrap outer actionmovingbar">
           <li className="active">
             <div className="tab_con ty2">
-              <button className="button1"><Link to="/gogaksenter" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}> FAQ</Link></button>
+              <button className="button1"><Link to="/sallybox/gogaksenter" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}> FAQ</Link></button>
 
                   <LookGogak/>
                         {/* 항목들 */}
 
               <div className="txt_help_wrap">
-              <Link to="/registration" style={{ fontSize: 15, fontWeight: "bold" }}
+              <Link to="/sallybox/registration" style={{ fontSize: 15, fontWeight: "bold" }}
                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>1:1문의 바로가기</Link>
               </div>
         

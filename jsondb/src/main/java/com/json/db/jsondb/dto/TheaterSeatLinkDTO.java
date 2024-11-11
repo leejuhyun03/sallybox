@@ -10,3 +10,4 @@ public class TheaterSeatLinkDTO {
     private Integer link_id;
     
 }
+

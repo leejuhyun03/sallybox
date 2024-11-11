@@ -16,7 +16,7 @@
     z-index: 100;
     top: 115px;
     left: 50%;
-    width: 980px;
+    width: 827px;
     margin-left: -490px;
     padding: 28px 0 0;
     background-color: #FFF;
@@ -75,7 +75,7 @@
 
 .menu_all_wrap .group_menu_all {
     float: left;
-    width: 620px;
+    width: 470px;
     padding: 0 20px;
 }
 
@@ -448,4 +448,16 @@ legend, caption, hr {
     height: 33px;
     line-height: 31px;
     padding: 0 14px;
+}
+
+.bx_banner {
+    margin: 25px 0 0 -19px;
+}
+
+.bx_banner > img {
+    width: 296px;
+    height: 150px;
+    border: none;
+    vertical-align: top;
+    border-radius: 4px;
 }

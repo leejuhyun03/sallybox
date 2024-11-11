@@ -37,54 +37,129 @@
 .reserve_movie_title_info{
     width: 100%;
     height: auto;
-    margin-left: 20px;
+    padding: 0 5px;
+    /* margin-left: 20px; */
     display: flex;
     align-items: center;
     font-size: 20px;
+    box-sizing: border-box;
 }
 .reserve_movie_title_info img{
     width: 22px;
     height: 22px;
 }
-.reserve_movie_info dl{
+dl{
     display: table;
     margin: 0 auto;
     text-align: left;
 }
-.reserve_movie_info dt,.reserve_movie_info dd {
+dt, dd {
     display: table-row; /* dt와 dd를 행처럼 표시 */
+    margin: 0;
+    padding: 0;
 }
-.reserve_movie_info dt{
+dt{
     font-weight: bold; 
-    font-size: 15px;
-    padding: 10px 0;
 }
-.reserve_movie_info dd{
+dd{
     padding-left: 10px;
-    font-size: 15px;
-    padding: 10px 0;
 }
 .reserve_seat_info{
-    display: table;
+    width: 100%;
     margin: 20px 0;
-    text-align: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-}
-.reserve_seat_info dt{
-    font-weight: bold; 
-    font-size: 15px;
-    padding-bottom: 10px;
-}
-.reserve_seat_info dd{
-    font-size: 15px;
-    padding-bottom: 5px;
-    padding-left: 0;
-    margin-left: 0;
+    text-align: left !important;
+    border: 1px solid black;
 }
 .group_discount{
+    margin-left: 20px;
     text-align: left;
 }
+.group_discount button{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 40px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+.jh_Point_info{
+    width: 350px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.jh_Point_info_alert{
+    margin: 20px 0;
+    text-align: center;
+}
+.jh_Point_info_Point{
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+}
+.jh_Point_info_Point input{
+    border: 1px solid #7B7B7B;
+    border-radius: 5px;
+    background-color: #D5D5D5;
+    width: 230px;
+    height: 35px;
+}
+.jh_Point_info_Point button{
+    margin-left: 10px;
+    height: 40px;
+}
+.jh_Point_use{
+    margin: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.jh_Point_use button{
+    width: 100px;
+}
 .gourp_payment{
+    display: flex;
+    margin-left: 20px;
+}
+.select_point{
+    height: 330px;
+    background-color: transparent;
+}
+.payment_sum{
+    flex: 1;
+}
+.jh_for_pay{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #414141;
+    color: white;
+}
+.jh_calc_price {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+.jh_calc_price span:first-child {
+    margin-left: 30px;
+    font-weight: normal;
+}
 
+.jh_calc_price span:last-child {
+    margin-right: 30px;
+    font-weight: bold; 
+}
+.payment_sum button{
+    border: none;
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
 }

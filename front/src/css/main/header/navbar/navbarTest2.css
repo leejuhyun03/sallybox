@@ -42,7 +42,7 @@
 
 .navbar-list li {
   display: inline-block; /* 인라인 블록으로 설정 */
-  margin: 0 0; /* 각 항목 간의 간격 설정 */
+  margin: 0 0; 
 }
 
 .topNav > ul > li > a {

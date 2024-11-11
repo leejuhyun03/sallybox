@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/header/MainHeader.css'
 import { jwtDecode } from 'jwt-decode';
+import { useUser } from '../../context/UserContext';
 
-const MainHeader = ({setUserId}) => {
+const MainHeader = () => {
 
 let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
@@ -14,21 +15,7 @@ let [visible1, setVisible1] = useState(false)
   
   const [isShow, setIsShow] = useState(false)
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-      const token = localStorage.getItem('token');
-      
-      setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
-      if (token) {
-        try {
-          const decodedToken = jwtDecode(token); // JWT 디코딩
-          setUserId(decodedToken.user_id); // user_id 상태 업데이트
-        } catch (error) {
-          console.error('Invalid token:', error);
-        }
-      }
-  }, []);
+  const { isAuthenticated, setIsAuthenticated } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -119,64 +106,44 @@ let [visible1, setVisible1] = useState(false)
                 </ul>
                 <ul className="g_menu3">
                 {
-                isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+                  isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
                                 : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
                 }
-                <li><a href="#" className="btn_reserve">바로 예매</a></li>
+                <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
                 </ul>
             </div>
 
             <div id='nav' className='area__gnbmovingbar'>
                 <ul>
                 <li className='your-elements'>
-                    <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1} style={{color: 'black'}}>예매</a>
+                    <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'style={{color: 'black'}}>예매</a>
+                </li>
+                <li className='your-elements'>
+                    <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1} style={{color: 'black'}}>영화</a>
                     { // visible이 true이면 이라는 뜻
                     visible1 &&
                     <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
                          onMouseOver={onTrue1} onMouseLeave={onFalse1}>
                       <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing" title="예매하기">예매하기</a>
+                      <li>
+                          <Link to={'/sallybox/movied/1'}>현재상영작</Link>
                         </li>
                         <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/Schedule" title="상영시간표">상영시간표</a>
+                          <Link to={'/sallybox/movied/2'}>Sally 추천작</Link>
                         </li>
                         <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/DiscountGuide" title="할인안내">할인안내</a>
+                          <Link to={'/sallybox/classic'}>추억의 영화관</Link>
                         </li>
                       </ul> 
                     </div>
                     }
                 </li>
                 <li className='your-elements'>
-                    <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2} style={{color: 'black'}}>영화</a>
+                    <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2} style={{color: 'black'}}>영화관</a>
                     { // visible이 true이면 이라는 뜻
                     visible2 &&
-                    <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8'}} 
-                         onMouseOver={onTrue2} onMouseLeave={onFalse2}>
-                      <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Movie" title="홈">홈</a>
-                        </li>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1" title="현재상영작">현재상영작</a>
-                        </li>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=5" title="추천영화">추천영화</a>
-                        </li>
-                        <li>
-                          <a href="https://www.lottecinema.co.kr/NLCHS/Movie/Arte" title="추억의 영화관">추억의 영화관</a>
-                        </li>
-                      </ul> 
-                    </div>
-                    }
-                </li>
-                <li className='your-elements'>
-                    <a href='#' className='hover' onMouseOver={onTrue3} onMouseLeave={onFalse3} style={{color: 'black'}}>영화관</a>
-                    { // visible이 true이면 이라는 뜻
-                    visible3 &&
                     <div className='navbars' style={{display: 'block', backgroundColor: '#F8F8F8', height: '60px'}} 
-                         onMouseOver={onTrue3} onMouseLeave={onFalse3}>
+                         onMouseOver={onTrue2} onMouseLeave={onFalse2}>
                       <ul className='navbaruls'>
                         <li>
                           <a href="#" title="스페셜관">스페셜관</a>

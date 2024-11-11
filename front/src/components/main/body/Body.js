@@ -18,8 +18,9 @@ import '../../../css/main/body/bodyswiper.css'
 // import required modules
 import { Autoplay, EffectCoverflow, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import axios from 'axios';
+import { useUser } from '../../../context/UserContext';
 
-const Body = ({userid, userNickName, isAuthenticated}) => {
+const Body = () => {
 
     const [now, setNow] = useState(new Date());
     const [movies, setMovies] = useState([]);
@@ -32,6 +33,8 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     const [hoveredMovieId, setHoveredMovieId] = useState(null);
     const [hoveredMovieId2, setHoveredMovieId2] = useState(null);
     const [hoveredMovieId3, setHoveredMovieId3] = useState(null);
+
+    const { userId, isAuthenticated, userNickName } = useUser();
 
     const onOpen = (id) => {
         setHoveredMovieId(id);
@@ -94,7 +97,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     certification: item[5],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-                console.log('moviesArray: ' + moviesArray)
                 setMovies(moviesArray);
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -126,7 +128,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                         runtime: item[7],
                         ageRatingImg: getAgeRatingImg(item[5]),
                     }));
-                    console.log('topRatedArray: ' + topRatedArray)
                     setTopRatedMovies(topRatedArray);
                 } else {
                     console.error('Data is not an array:', data);
@@ -151,14 +152,14 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     };
 
     const fetchRecommendedMovies = async () => {
-        if (!userid) return; // userid가 없으면 함수 종료
+        if (!userId) return; // userid가 없으면 함수 종료
 
         try {
             const response = await axios.get(
                 `http://localhost:5000/api/movies/recommend`,
                 {
                     params: {
-                        userId: userid,
+                        userId: userId,
                         genre: selectedGenre,
                     },
                 }
@@ -177,7 +178,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     runtime: item[7],
                     ageRatingImg: getAgeRatingImg(item[5]),
                 }));
-                console.log('topRecommendArray: ' + topRatedArray)
                 setRecommendedMovies(topRatedArray);
             } else {
                 console.error('Data is not an array:', data);
@@ -190,14 +190,14 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     };
 
     const fetchRecommendedGenre = async () => {
-        if (!userid) return; // userid가 없으면 함수 종료
+        if (!userId) return; // userid가 없으면 함수 종료
 
         try {
             const response = await axios.get(
                 `http://localhost:5000/api/movies/genre`,
                 {
                     params: {
-                        userId: userid
+                        userId: userId
                     },
                 }
             );
@@ -209,7 +209,6 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                     genreId: item[0], // genreIds
                     genreText: getGenreText(item[0]),
                 }));
-                console.log('topGenreArray: ' + topRatedArray)
                 setGenres(topRatedArray);
             } else {
                 console.error('Data is not an array:', data);
@@ -250,7 +249,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     useEffect(() => {
         fetchRecommendedMovies();
         fetchRecommendedGenre();
-    }, [userid, selectedGenre]); // userId 또는 selectedGenre가 변경될 때마다 호출
+    }, [userId, selectedGenre]); // userId 또는 selectedGenre가 변경될 때마다 호출
 
     const handleSelectChange = (event) => {
         setSelectedGenre(event.target.value); // 선택한 장르로 상태 업데이트
@@ -294,7 +293,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
     
     return (
         <>
-        <div id='contents' className='contents_main'>
+        <div id='contentsg' className='contents_main'>
             <div className='movi_current_list'>
                 <span className='movi_info_txt'>
                     <a href='https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1'>
@@ -321,10 +320,10 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                         depth: 100,
                         modifier: 1,
                         slideShadows: true }}
-                    autoplay={{
-                        delay: 3000, // 3초마다 다음 슬라이드로 이동
-                        disableOnInteraction: false
-                    }}
+                    // autoplay={{
+                    //     delay: 3000, // 3초마다 다음 슬라이드로 이동
+                    //     disableOnInteraction: false
+                    // }}
                         
                     modules={[EffectCoverflow, Pagination, Mousewheel, Keyboard, Autoplay]}
                     className="myBodySwiper1"
@@ -332,7 +331,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                 {topRatedMovies.map(movie => (
                     <SwiperSlide key={movie.movieId} className='owl-stage' style={{ width: '184px', marginRight: '15px', background: '#000' }}
                     onMouseOver={() => onOpen(movie.movieId)} onMouseLeave={onClose}>
-                        <div>
+                        <div style={{width: '100%', height: '100%'}}>
                             <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px'}}/>
                             <div className='titleInfo'>
                             <span className="ageRating">
@@ -341,8 +340,8 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                             {
                                 hoveredMovieId === movie.movieId &&
                             <div className='test'>
-                                <div className="in" style={{marginTop: '-33px'}}>
-                                    <a href="#" className="btn_col3s ty3" title="화면이동" style={{marginTop: '0'}}>예매하기</a>
+                                <div className="in">
+                                    <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                     <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                 </div>
                             </div>
@@ -440,18 +439,18 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                                 src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                 {
                                         hoveredMovieId2 === movie.movieId &&
-                                    <div className='test' style={{height: '95%'}}>
-                                        <div className="in" style={{marginTop: '-33px'}}>
-                                            <a href="#" className="btn_col3s ty3" title="화면이동" style={{marginTop: '0'}}>예매하기</a>
+                                    <div className='test' style={{height: '99.2%'}}>
+                                        <div className="in">
+                                            <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                             <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                         </div>
                                     </div>
                                     }
-                                <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
+                                <div className="btm_info">
                                     <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                     <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                     <span className="sub_info1">
-                                        <span className="time blacktype"><span className="roboto">{movie.runtime}</span>분</span>
+                                        <span className="time blacktype"><span className="robotog">{movie.runtime}</span>분</span>
                                         <span className="star_info">{movie.voteAverage}</span>
                                     </span>
                                 </div>
@@ -496,14 +495,14 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                                     src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                     {
                                         hoveredMovieId3 === movie.movieId &&
-                                    <div className='test' style={{height: '95%'}}>
-                                        <div className="in" style={{marginTop: '-33px'}}>
-                                            <a href="#" className="btn_col3s ty3" title="화면이동" style={{marginTop: '0'}}>예매하기</a>
+                                    <div className='test' style={{height: '99.2%'}}>
+                                        <div className="in">
+                                            <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                             <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
                                         </div>
                                     </div>
                                     }
-                                    <div className="btm_info" style={{position: 'absolute', bottom: '0px', width: '100%'}}>
+                                    <div className="btm_info">
                                         <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                         <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
                                         <span className="sub_info1">
@@ -567,7 +566,7 @@ const Body = ({userid, userNickName, isAuthenticated}) => {
                         <li><a href="#none" title="롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내">롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내</a></li>
                     </ul>
                 </div>
-                <button type="button" className="btn_txt_more ty2">더보기</button>
+                <button type="button" className="btn_txt_more ty2"><a href='http://localhost:3000/sallybox/gogaksenter'>더보기</a></button>
             </div>
         </div>
         

@@ -10,10 +10,11 @@ public class BookingDTO {
     
     private int bookingId;
     private int userId;
-    private int movieId;
-    private int cinemaId;
+    private int scheduleId;
+    private int seatId;
     private Date bookingDate;
-    private Date showTime; //상영시간
-    private String seats; //좌석 정보 = seatId
-
+    private String peopleType; 
+    private Long bookingNum;
+    private Integer movieId;
+    
 }

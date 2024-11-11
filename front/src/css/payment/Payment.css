@@ -3,10 +3,13 @@
     width: 300px;
 }
 .pay_method_wrap{
-    background-color: aqua;
+    background-color: #F6F6F6;
+    border-left: 1px solid black;
     width: 400px;
 }
 .payment_info_wrap{
-    background-color: blue;
+    background-color: #F6F6F6;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
     width: 400px;
 }

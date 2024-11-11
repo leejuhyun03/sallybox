@@ -47,7 +47,7 @@ const PostNumberWithPrivacyPolicy = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="bx_textarea">
-        <label>이름:</label>
+        <label>이름: </label>
         <input
           type="text"
           value={name}
@@ -56,7 +56,7 @@ const PostNumberWithPrivacyPolicy = () => {
         />
       </div>
       <div className="form-group">
-        <label>전화번호:</label>
+        <label>전화번호: </label>
         <input
           type="text"
           placeholder="01012345678"
@@ -66,7 +66,7 @@ const PostNumberWithPrivacyPolicy = () => {
         />
       </div>
       <div className="form-group">
-        <label>이메일:</label>
+        <label>이메일: </label>
         <input
           type="text"
           placeholder="example@domain.com"
@@ -79,7 +79,7 @@ const PostNumberWithPrivacyPolicy = () => {
         </div>
       </div>
       <div className="form-group">
-        <label>제목:</label>
+        <label>제목: </label>
         <input
           type="text"
           value={title}
@@ -88,7 +88,7 @@ const PostNumberWithPrivacyPolicy = () => {
         />
       </div>
       <div className="form-group">
-        <label>내용:</label>
+        <label>내용: </label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}

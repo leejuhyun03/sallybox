@@ -165,7 +165,7 @@ const LookGogak = () => {
                 </button>
                 <div className="txt_help_wrap">
                     <p>궁금한거 있으면 이주현 허강현 한테 물어봐주세요!</p>
-                    <Link to="/sallybox/registration" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                    <Link to={"/sallybox/registration"} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                         1:1문의 바로가기
                     </Link>
                 </div>

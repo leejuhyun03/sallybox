@@ -86,6 +86,7 @@ a, a:link, a:visited, a:active, a:hover { /*주의사항 1*/
 
 .header.ty3 .gnb .g_menu2 {
     float: right;
+    margin-right: 7px;
 }
 
 .header .gnb > ul {
@@ -132,6 +133,7 @@ ul, ol {
     right: 0;
     top: 88px;
     margin-top: 0;
+    margin-right: 8px;
 }
 
 .header.ty3 .gnb .g_menu3 li .btn_my {
@@ -157,20 +159,20 @@ ul, ol {
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/nav_side_reserve_wht.png) no-repeat 0 2px;
 }
  
-#nav { /*#: id / .: className*/
+#navs { /*#: id / .: className*/
     width: 980px;
     margin: -10px auto 0;
     text-align: center;
 }
 
-#nav > ul:after {
+#navs > ul:after {
     content: "";
     display: block;
     clear: both;
     
 }
 
-.area__gnbmovingbar{
+.area__gnbmovingbar {
     line-height: 1.1;
     letter-spacing: -0.03em;
     font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
@@ -181,7 +183,7 @@ ul, ol {
     text-align: center;
 }
 
-#nav > ul > li {
+#navs > ul > li {
     display: inline-block;
     vertical-align: top;
 }
@@ -190,7 +192,7 @@ ul, ol {
     color: #FFF;
 }
 
-#nav > ul > li > a {
+#navs > ul > li > a {
     display: block;
     position: relative;
     height: 40px;
@@ -207,11 +209,11 @@ ul, ol {
     opacity: 1;
 }
 
-#nav > ul > li:first-child a:before {
+#navs > ul > li:first-child a:before {
     display: none;
 }
 
-#nav > ul > li > a:before {
+#navs > ul > li > a:before {
     content: "";
     opacity: .2;
     position: absolute;
@@ -265,7 +267,7 @@ ul, ol {
     z-index: 2;
     left: 0;
     right: 0;
-    top: 114px;
+    top: 105px;
     height: 38px;
     text-align: center;
     background-color: rgba(0, 0, 0, .7);
@@ -273,7 +275,7 @@ ul, ol {
 }
 
 .hover { 
-    transition: 0.5s;
+    transition: 0.1s;
     &:hover {
         height: 38px;
         border-bottom: 2px solid #FF1744;

@@ -19,10 +19,10 @@ import data4 from '../../../image/swimage/TwilightOfTheWarriors_1920774.jpg'
 
 import { Link } from 'react-router-dom';
 import HeaderModal from './Modal/HeaderModal';
-import { jwtDecode } from 'jwt-decode';
 import NavbarTest3 from './Navbar/NavbarTest3';
+import { useUser } from '../../../context/UserContext';
 
-const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated }) => {
+const Header = () => {
 
   let [visible1, setVisible1] = useState(false)
   let [visible2, setVisible2] = useState(false)
@@ -30,21 +30,7 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
   
   const [isShow, setIsShow] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token); // 토큰이 존재하면 true, 없으면 false
-    console.log(token)
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token); // JWT 디코딩
-        setUserid(decodedToken.user_id); // user_id 상태 업데이트
-        setUserName(decodedToken.user_nickname)
-      } catch (error) {
-        console.error('Invalid token:', error);
-      }
-    }
-  }, []);
+  const { userId, isAuthenticated, setIsAuthenticated, userName, userPoint } = useUser();
 
   const handleLogout = () => {
     alert("로그아웃 하시겠습니까?")
@@ -52,13 +38,23 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
     setIsAuthenticated(false); // 인증 상태 업데이트
   };
 
+  useEffect(() => {
+    const modalStatus = localStorage.getItem('modalStatus');
+    if (modalStatus === 'open') {
+      setIsShow(true); // 로컬 스토리지에 'open'이 저장되어 있으면 모달을 연다
+    }
+  }, []);
+
   const onOpen = () => {
-    setIsShow(true)
-  }
+    // 페이지 새로고침 후 모달을 열기 위해 로컬 스토리지에 저장
+    localStorage.setItem('modalStatus', 'open');
+    window.location.reload(); // 페이지 새로고침
+  };
 
   const onClose = () => {
-      setIsShow(false)
-  }
+    setIsShow(false);
+    localStorage.removeItem('modalStatus'); // 모달 닫을 때 로컬 스토리지에서 값 제거
+  };
 
   let onTrue1 = () => {
     // !true = false, !false - > true
@@ -80,29 +76,19 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
     setVisible2(false)
   }
 
-  let onTrue3 = () => {
-    // !true = false, !false - > true
-    setVisible3(true)
-  }
-
-  let onFalse3 = () => {
-    // !true = false, !false - > true
-    setVisible3(false)
-  }
-
 
   return (
   <>
-  <NavbarTest3 isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+  <NavbarTest3 handleLogout={handleLogout}/>
   <div id='header_section' className='header ty3'>
-      <Link to={'/sallybox'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
+      <Link to={'/'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
         <ul className="g_menu2">
           <li><a href='#'>멤버십</a></li>
-          <li><a href='#'>고객센터</a></li>
+          <li><a href='http://localhost:3000/sallybox/gogaksenter'>고객센터</a></li>
           <li><a href='#'>단체관람/대관문의</a></li>
           {
-            isAuthenticated ? <li><a href='/sallybox' onClick={handleLogout}>로그아웃</a></li>
+            isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
                             : <li><Link to={'/sallybox/sign-in'}>로그인</Link></li>
           }
           
@@ -113,10 +99,10 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
           isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
                           : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
         }
-          <li><a href="#" className="btn_reserve">바로 예매</a></li>
+          <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
           <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>
           {
-              isShow && <HeaderModal onClose ={onClose} isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
+              isShow && <HeaderModal onClose = {onClose} userName = {userName} userPoint = {userPoint}/>
           }
         </ul>
       </div>
@@ -124,51 +110,32 @@ const Header = ({ setUserid, setUserName, isAuthenticated, setIsAuthenticated })
       <div id='nav' className='area__gnbmovingbar'>
         <ul>
           <li className='your-elements'>
-            <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1}>예매</a>
+            <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'>예매</a>
+          </li>
+          <li className='your-elements'>
+            <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1}>영화</a>
             { // visible이 true이면 이라는 뜻
               visible1 &&
             <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue1} onMouseLeave={onFalse1}>
               <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing" title="예매하기">예매하기</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/Schedule" title="상영시간표">상영시간표</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Ticketing/DiscountGuide" title="할인안내">할인안내</a>
-                </li>
+              <li>
+                <Link to={'/sallybox/movied/1'}>현재상영작</Link>
+              </li>
+              <li>
+                <Link to={'/sallybox/movied/2'}>Sally 추천작</Link>
+              </li>
+              <li>
+                <Link to={'/sallybox/classic'}>추억의 영화관</Link>
+              </li>
               </ul> 
             </div>
             }
           </li>
           <li className='your-elements'>
-            <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2}>영화</a>
-            { // visible이 true이면 이라는 뜻
+            <a href='#' className='hover' onMouseOver={onTrue2} onMouseLeave={onFalse2}>영화관</a>
+            { 
               visible2 &&
-            <div className='navbar' style={{display: 'block'}} onMouseOver={onTrue2} onMouseLeave={onFalse2}>
-              <ul style={{display: 'inline-block', listStyle: 'none', opacity: '1'}}>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie" title="홈">홈</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1" title="현재상영작">현재상영작</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=5" title="추천영화">추천영화</a>
-                </li>
-                <li>
-                  <a href="https://www.lottecinema.co.kr/NLCHS/Movie/Arte" title="추억의 영화관">추억의 영화관</a>
-                </li>
-              </ul> 
-            </div>
-            }
-          </li>
-          <li className='your-elements'>
-            <a href='#' className='hover' onMouseOver={onTrue3} onMouseLeave={onFalse3}>영화관</a>
-            { // visible이 true이면 이라는 뜻
-              visible3 &&
-            <div className='navbar' style={{display: 'block', height: '60px'}} onMouseOver={onTrue3} onMouseLeave={onFalse3}>
+            <div className='navbar' style={{display: 'block', height: '60px'}} onMouseOver={onTrue2} onMouseLeave={onFalse2}>
               <ul className='navbarul'>
                 <li>
                   <a href="#" title="스페셜관">스페셜관</a>
