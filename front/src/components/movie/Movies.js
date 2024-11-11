@@ -17,7 +17,7 @@ const Movies = () => {
         const movieDetailsResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}`);
         setMovieDetails(movieDetailsResponse.data);
 
-        // // 출연진 정보 가져오기  -> 26없어도 되는지 확인할려고 함
+        // 출연진 정보 가져오기  -> 26없어도 되는지 확인할려고 함
         // const creditsResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/credits`);
         // setCredits(creditsResponse.data);
       } catch (error) {

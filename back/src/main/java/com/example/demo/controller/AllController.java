@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.websocket.server.PathParam;
+
 import com.example.demo.DTO.JH.BookingDTO;
 import com.example.demo.DTO.JH.CinemaDTO;
 import com.example.demo.DTO.JH.CinemaScheduleDTO;
@@ -152,7 +154,8 @@ public class AllController {
     @PostMapping("/api/findEmail")
     public ResponseEntity<?> findEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
         // 로그인 로직
-        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName(), findEmailRequest.getPhoneNumber());
 
         if(dto != null) {
 
@@ -173,7 +176,7 @@ public class AllController {
     @PostMapping("/api/allfindEmail")
     public ResponseEntity<?> allfindEmail(@RequestBody FindEmailRequest findEmailRequest) throws Exception{
         // 로그인 로직
-        CustomDTO dto = sqlService.findByName(findEmailRequest.getName());
+        CustomDTO dto = sqlService.findByName(findEmailRequest.getName(), findEmailRequest.getPhoneNumber());
 
         if(dto != null) {
 
@@ -195,7 +198,17 @@ public class AllController {
 
     @PostMapping("/api/send-sms")
     public ResponseEntity<?> sendSms (@RequestBody Map<String, String> body) { 
-   
+        
+        String email = body.get("email");
+        String name = body.get("name");
+        System.out.println(email);
+        boolean emailExists = sqlService.findPassword(email, name);
+        System.out.println("인증완료: " + emailExists);
+
+        if (!emailExists) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("이메일을 찾을 수 없습니다.");
+        }
+
         String to = body.get("phoneNumber");
 
         Random rnd  = new Random();
@@ -481,23 +494,23 @@ public class AllController {
     @PostMapping("/sallybox/movies/{movie_id}/wishlist/toggle")
     public ResponseEntity<Map<String, Boolean>> toggleWishlist(
             @PathVariable("movie_id") int movieId,   // URL에서 movie_id 가져옴
-            @RequestBody WishlistDTO wishlistDTO) {   // 요청의 본문에서 user_id 등 받아옴
-     
+            @RequestParam("user_id") int userId) {   // 요청의 본문에서 user_id 등 받아옴
+     System.out.println(userId);
         // DTO의 movie_id를 URL에서 가져온 movie_id로 설정
-        wishlistDTO.setMovieId(movieId);  
-        wishlistDTO.setUserId(1); // 로그인 미구현, 임시 user_id 설정
+        // wishlistDTO.setMovieId(movieId);  
+        // wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
         MovieDTO dto = movieService.findMovieById(movieId);
         String genreIds=dto.getGenreIdsString();
         // 위시리스트에 있는지 확인 후 토글
-        boolean isLiked = movieService.toggleWishlist(wishlistDTO.getUserId(), wishlistDTO.getMovieId(), genreIds);
+        boolean isLiked = movieService.toggleWishlist(userId, movieId, genreIds);
 
         // 응답 생성
         Map<String, Boolean> response = new HashMap<>();
         response.put("isLiked", isLiked);
         return ResponseEntity.ok(response);
     }
-                
-
+        /*1108 첫날 jwt로 하면 되는거 시작임     
+        //리뷰 저장 api
         @PostMapping("sallybox/movies/{movie_id}/reviews")
         public ResponseEntity<String> submitReview(
             @PathVariable int movie_id, 
@@ -571,6 +584,71 @@ public class AllController {
             return new ResponseEntity<>("리뷰 삭제 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+         */ 
+        
+    // 리뷰 저장 API
+    @PostMapping("sallybox/movies/{movie_id}/reviews")
+    public ResponseEntity<String> submitReview(
+        @RequestBody ReviewsDTO reviewsDTO
+       ) { //RequestBody 넘어온걸 reviewsDTO에 하겠다 
+
+            // System.out.println(userId);
+            // System.out.println(movie_id);
+        try {
+            // 리뷰 텍스트가 10글자 이상인지 확인
+            // if (reviewsDTO.getReviewText() == null || reviewsDTO.getReviewText().length() < 10) {
+            //     return new ResponseEntity<>("리뷰는 최소 10글자 이상이어야 합니다.", HttpStatus.BAD_REQUEST);
+            // }
+            // reviewsDTO.setUserId(userId);
+            // reviewsDTO.setMovieId(movie_id); // 영화 ID 설정
+            movieService.saveReview(reviewsDTO); // 리뷰 저장
+            return new ResponseEntity<>("리뷰 작성이 완료되었습니다.", HttpStatus.OK);
+        } catch (DataAccessException dae) {
+            return new ResponseEntity<>("데이터베이스 오류 발생: " + dae.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>("알 수 없는 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // 리뷰 수정 API
+    @PutMapping("sallybox/movies/{movie_id}/reviews/{review_id}")
+    public ResponseEntity<String> updateReview(
+        @PathVariable int movie_id,
+        @PathVariable int review_id,
+        @RequestBody ReviewsDTO reviewsDTO) {
+        try {
+            reviewsDTO.setMovieId(movie_id); // 영화 ID 설정
+            reviewsDTO.setReviewId(review_id); // 리뷰 ID 설정
+            movieService.updateReview(reviewsDTO); // 리뷰 수정
+            return new ResponseEntity<>("리뷰 수정이 완료되었습니다.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("리뷰 수정 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // 리뷰 삭제 API
+    @DeleteMapping("/sallybox/movies/{movie_id}/reviews/{review_id}")
+    public ResponseEntity<String> deleteReview(
+        @PathVariable int movie_id,
+        @PathVariable int review_id,
+        @RequestParam int user_id) { // 삭제 요청 시 user_id를 전달받음
+        try {
+            movieService.deleteReview(review_id, user_id); // 리뷰 삭제
+            return new ResponseEntity<>("리뷰가 삭제되었습니다.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("리뷰 삭제 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //부킹에 있는지 확인
+    @GetMapping("sallybox/movies/{movie_id}/reviews/checkBooking")
+    public ResponseEntity<Boolean> checkBooking(
+        @RequestParam int userId,
+        @RequestParam int movieId) {
+        boolean exists = movieService.checkBookingExists(userId, movieId);
+        return new ResponseEntity<>(exists, HttpStatus.OK);
+    }
+   
 
     // 영화 ID로 리뷰 목록 가져오기 API
     @GetMapping("sallybox/movies/{movie_id}/reviews")
@@ -588,19 +666,6 @@ public class AllController {
         return ResponseEntity.ok(reviews);
     }
 
-    // 리뷰 추천 토글 API
-    @PostMapping("sallybox/movies/{movie_id}/reviews/{review_id}/like")
-    public ResponseEntity<String> toggleLikeReview(
-        @PathVariable int movie_id,
-        @PathVariable int review_id,
-        @RequestParam int user_id) {
-        try {
-            movieService.toggleLikeReview(review_id, user_id); // 리뷰 추천 토글
-            return new ResponseEntity<>("리뷰 추천이 완료되었습니다.", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("추천 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     //예매 페이지 컨트롤러!!!!!
     //영화 상세페이지에서 예매하기 버튼 클릭시 movie_id를 가지고 감

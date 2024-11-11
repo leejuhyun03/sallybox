@@ -79,14 +79,14 @@ const ClassicMoviesPage = () => {
                                 </div>
                                 }
                             </div>
-                            <div className="btm_infoe">
-                                <span className="ic_grade gr_12">
+                            <div className="btm_infoe" style={{marginTop: 0}}>
+                                <span className="ic_gradee gr_12">
                                     <img src={getAgeRatingImg(movie.certification)} alt={movie.certification}/>
                                 </span>
-                                <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
-                                <span className="sub_info1">
+                                <strong className="tit_infoe" style={{marginLeft: '7px', display: 'inline-block'}}>{movie.title}</strong>
+                                <span className="sub_info1e">
                                     <span className="timee blacktypef"><span className="robotof">{moment(movie.releaseDate).format('YYYY.MM.DD')}&nbsp;개봉</span></span>
-                                    <span className="star_info">{parseFloat(movie.voteAverage).toFixed(1)}</span>
+                                    <span className="star_infof">{parseFloat(movie.voteAverage).toFixed(1)}</span>
                                 </span>
                             </div>
                         </li>

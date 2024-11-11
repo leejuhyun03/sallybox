@@ -19,6 +19,7 @@ import '../../../css/main/body/bodyswiper.css'
 import { Autoplay, EffectCoverflow, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import axios from 'axios';
 import { useUser } from '../../../context/UserContext';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
 
@@ -320,10 +321,10 @@ const Body = () => {
                         depth: 100,
                         modifier: 1,
                         slideShadows: true }}
-                    // autoplay={{
-                    //     delay: 3000, // 3초마다 다음 슬라이드로 이동
-                    //     disableOnInteraction: false
-                    // }}
+                    autoplay={{
+                        delay: 3000, // 3초마다 다음 슬라이드로 이동
+                        disableOnInteraction: false
+                    }}
                         
                     modules={[EffectCoverflow, Pagination, Mousewheel, Keyboard, Autoplay]}
                     className="myBodySwiper1"
@@ -343,8 +344,8 @@ const Body = () => {
                                 hoveredMovieId === movie.movieId &&
                             <div className='testf'>
                                 <div className="in">
-                                    <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
-                                    <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
+                                    <a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_col3s ty3" title="화면이동">예매하기</a>
+                                    <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3s ty3" title="화면이동">상세정보</Link>
                                 </div>
                             </div>
                             }
@@ -435,25 +436,26 @@ const Body = () => {
                     <ul className='movie_list'>
                         <div className='item'>
                         {topRecentMovies.map(movie => (
-                            <SwiperSlide key={movie.movieId} onMouseOver={() => onOpen2(movie.movieId)} onMouseLeave={onClose2}>
-                                <li style={{float: 'left', position: 'relative', width: '100%', margin: '0 0  ', textAlign: 'center', height: '326px'}}>
-                                <img style={{width:'100%', height:'262px', position: 'relative', borderRadius: '4px'}}
+                            <SwiperSlide key={movie.movieId} onMouseOver={() => onOpen2(movie.movieId)} onMouseLeave={onClose2}
+                            style={{width : '188px', height: '348px'}}>
+                                <li style={{width: '100%', height: '100%'}}>
+                                <img style={{borderRadius: '4px', height: '81%'}}
                                 src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                 {
                                         hoveredMovieId2 === movie.movieId &&
-                                    <div className='test' style={{height: '99.2%'}}>
+                                    <div className='test'>
                                         <div className="in">
-                                            <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
-                                            <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
+                                            <a href='http://localhost:3000/sallybox/reserv/ticketing' className="btn_col3s ty3" title="화면이동">예매하기</a>
+                                            <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3s ty3" title="화면이동">상세정보</Link>
                                         </div>
                                     </div>
                                     }
-                                <div className="btm_info">
-                                    <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
-                                    <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
-                                    <span className="sub_info1">
-                                        <span className="time blacktype"><span className="robotog">{movie.runtime}</span>분</span>
-                                        <span className="star_info">{movie.voteAverage}</span>
+                                <div className="btm_infob">
+                                    <span className="ic_gradeb gr_12b"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
+                                    <strong className="tit_infob" style={{marginLeft: '7px'}}>{movie.title}</strong>
+                                    <span className="sub_info1b">
+                                        <span className="timeb blacktypeb"><span className="robotog">{movie.runtime}</span>분</span>
+                                        <span className="star_infob">{movie.voteAverage}</span>
                                     </span>
                                 </div>
                                 </li>
@@ -491,25 +493,26 @@ const Body = () => {
                         <ul className='movie_list'>
                             <div className='item'>
                             {recommendedMovies.map(movie => (
-                                <SwiperSlide key={movie.movieId} onMouseOver={() => onOpen3(movie.movieId)} onMouseLeave={onClose3}>
-                                    <li style={{float: 'left', position: 'relative', width: '100%', margin: '0 0  ', textAlign: 'center', height: '326px'}}>
-                                    <img style={{width:'100%', height:'262px', position: 'relative'}} 
+                                <SwiperSlide key={movie.movieId} onMouseOver={() => onOpen3(movie.movieId)} onMouseLeave={onClose3}
+                                style={{width : '188px', height: '348px'}}>
+                                    <li style={{width: '100%', height: '100%'}}>
+                                    <img style={{borderRadius: '4px', height: '81%'}}
                                     src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
                                     {
                                         hoveredMovieId3 === movie.movieId &&
-                                    <div className='test' style={{height: '99.2%'}}>
+                                    <div className='test'>
                                         <div className="in">
-                                            <a href="#" className="btn_col3s ty3" title="화면이동">예매하기</a>
-                                            <a href="#none" className="btn_col3s ty3" title="화면이동">상세정보</a>
+                                            <a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_col3s ty3" title="화면이동">예매하기</a>
+                                            <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3s ty3" title="화면이동">상세정보</Link>
                                         </div>
                                     </div>
                                     }
-                                    <div className="btm_info">
-                                        <span className="ic_grade gr_12"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
-                                        <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
-                                        <span className="sub_info1">
-                                            <span className="time blacktype"><span className="roboto">{movie.runtime}</span>분</span>
-                                            <span className="star_info">{movie.voteAverage}</span>
+                                    <div className="btm_infob">
+                                        <span className="ic_gradeb gr_12b"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
+                                        <strong className="tit_infob" style={{marginLeft: '7px'}}>{movie.title}</strong>
+                                        <span className="sub_info1b">
+                                            <span className="timeb blacktypeb"><span className="roboto">{movie.runtime}</span>분</span>
+                                            <span className="star_infob">{movie.voteAverage}</span>
                                         </span>
                                     </div>
                                     </li>

@@ -47,13 +47,13 @@ function EmailFindForm({ isOpen, onClose, onFindEmail }) {
 
     return (
       <div className="modal-overlay">
-        <div className="modal-content">
+        <div className="modal-contents">
           <button className="close-button" onClick={onClose} onKeyDown={(event) => onESC(event)}>✖</button> 
           <h3>이메일 찾기</h3>
           <form onSubmit={handleSubmit}>
             <h4>이름: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></h4>
             <h4>휴대폰 번호: <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /></h4>
-            <button type='submit'>이메일 찾기</button>
+            <button className='buttond' type='submit'>이메일 찾기</button>
           </form>
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>

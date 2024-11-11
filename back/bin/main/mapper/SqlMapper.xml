@@ -65,7 +65,12 @@
     </insert>
 
     <!-- 강현 -->
-    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->
+    <select id="findPassword" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM users WHERE email = #{email} AND name = #{name}
+    </select>
+
+    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO">
+    <!-- 돌려주는 곳(받는 데이터 타입)이 com.exe.springmybatis.CustomDTO 임 로그인 할 때 사용 -->
       SELECT user_id AS userid, email, password, name, nickname, points FROM users WHERE email = #{email}
     </select>
 
@@ -74,6 +79,7 @@
     </select>
 
     <update id="updatePassword" parameterType="map">
+    <!-- parameterType="String": SQL 쿼리에서 #{email}을 바인딩할 자바 타입은 String입니다. 여러개이면 map이나 dto 타입으로 설정 -->
       UPDATE users
       SET password = #{password}
       WHERE email = #{email}
@@ -203,21 +209,12 @@
     </delete>
 
     <!-- 리뷰 저장 쿼리 -->
-    <!-- 리뷰 저장 
-    <insert id="insertReview" parameterType="com.project.sallybox_back.model.ReviewsDTO">
-        INSERT INTO MOVIEREVIEWS (REVIEW_ID, MOVIE_ID, USER_ID, NICKNAME, RATING, REVIEW_TEXT, CREATED_AT, LIKED)
-        VALUES (REVIEWS_SEQ.NEXTVAL, #{movieId}, #{userId}, #{nickname}, #{rating}, #{reviewText,jdbcType=VARCHAR}, #{createdAt}, 0)
-    </insert>
--->
     <!-- mapper XML에서 createdAt 필드를 사용할 때, `jdbcType`을 `TIMESTAMP WITH TIME ZONE`으로 설정해 주세요. -->
-    <insert id="insertReview" parameterType="com.example.demo.DTO.ZERO.ReviewsDTO">
-        INSERT INTO MOVIEREVIEWS (REVIEW_ID, MOVIE_ID, USER_ID, NICKNAME, RATING, REVIEW_TEXT, CREATED_AT, LIKED)
-        VALUES (MOVIEREVIEWS_SEQ.NEXTVAL, #{movieId}, #{userId}, #{nickname}, #{rating}, #{reviewText,jdbcType=VARCHAR}, 
-        #{createdAt,jdbcType=TIMESTAMP}, 0)
+    <insert id="saveReview" parameterType="com.example.demo.DTO.ZERO.ReviewsDTO">
+        INSERT INTO MOVIEREVIEWS (REVIEW_ID, MOVIE_ID, USER_ID, RATING, REVIEW_TEXT, CREATED_AT)
+        VALUES (MOVIEREVIEWS_SEQ.NEXTVAL, #{movieId}, #{userId}, #{rating}, #{reviewText,jdbcType=VARCHAR}, 
+        #{createdAt,jdbcType=TIMESTAMP})
     </insert>
-
-
-
 
 
     <!-- 리뷰 수정 -->
@@ -232,37 +229,25 @@
         DELETE FROM MOVIEREVIEWS WHERE REVIEW_ID = #{review_id} AND USER_ID = #{user_id}
     </delete>
 
-   
+    <select id="checkBookingExists" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM BOOKING
+        WHERE user_id = #{userId} AND movie_id = #{movieId}
+    </select>
 
     <!-- 특정 영화의 리뷰 목록 가져오기 -->
-    <select id="findReviewsByMovieId" parameterType="int" resultType="com.example.demo.DTO.ZERO.ReviewsDTO"  flushCache="true">
+    <select id="findReviewsByMovieId" parameterType="int" resultType="com.example.demo.DTO.ZERO.ReviewsDTO" flushCache="true">
         SELECT 
-            review_id AS reviewId,          -- DTO의 reviewId와 매칭
-            movie_id AS movieId,            -- DTO의 movieId와 매칭
-            user_id AS userId,              -- DTO의 userId와 매칭
-            nickname AS nickname,           -- DTO의 nickname과 매칭
-            rating AS rating,               -- DTO의 rating과 매칭
-            review_text AS reviewText,      -- DTO의 reviewText와 매칭
-            created_at AS createdAt,        -- DTO의 createdAt과 매칭
-            liked AS liked                  -- DTO의 liked와 매칭
-        FROM MOVIEREVIEWS
-        WHERE movie_id = #{movieId}
-    </select>
-
-    <!-- 리뷰 추천 추가 -->
-    <insert id="addLike" parameterType="map">
-        INSERT INTO REVIEW_LIKES (review_id, user_id, created_at)
-        VALUES (#{reviewId}, #{userId}, SYSDATE)
-    </insert>
-
-    <!-- 리뷰 추천 여부 확인 -->
-    <select id="isReviewLiked" resultType="int">
-        SELECT COUNT(*) FROM REVIEW_LIKES WHERE review_id = #{reviewId} AND user_id = #{userId}
-    </select>
-
-    <!-- 리뷰 추천수 가져오기 -->
-    <select id="countReviewLikes" resultType="int">
-        SELECT COUNT(*) FROM REVIEW_LIKES WHERE review_id = #{reviewId}
+            r.review_id AS reviewId,          -- DTO의 reviewId와 매칭
+            r.movie_id AS movieId,            -- DTO의 movieId와 매칭
+            r.user_id AS userId,              -- DTO의 userId와 매칭
+            u.nickname AS nickname,           -- DTO의 nickname과 매칭
+            r.rating AS rating,               -- DTO의 rating과 매칭
+            r.review_text AS reviewText,      -- DTO의 reviewText와 매칭
+            r.created_at AS createdAt         -- DTO의 createdAt과 매칭
+        FROM MOVIEREVIEWS r
+        JOIN users u ON r.user_id = u.user_id
+        WHERE r.movie_id = #{movieId}
     </select>
 
     <!-- 예매페이지!!!!!!!!!!!!!! -->
