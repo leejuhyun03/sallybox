@@ -23,6 +23,7 @@
 .time_scroll_select_buttons button{
     width: 120px;
     position: relative;
+    border: 1px solid #bbbbbb !important;
 }
 .time_scroll_select_buttons span{
     font-weight: normal;

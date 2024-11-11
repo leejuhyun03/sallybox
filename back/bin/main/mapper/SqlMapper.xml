@@ -10,7 +10,7 @@
         SELECT c.*,m.title,m.poster_path 
         FROM cinema c, movies m
         WHERE c.cinema_id = #{cinema_id}
-        and m.movie_id = 1075676
+        and m.movie_id = 912649
         
     </select>
 
