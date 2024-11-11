@@ -620,6 +620,7 @@ public class AllController {
             movieService.updateReview(reviewsDTO); // 리뷰 수정
             return new ResponseEntity<>("리뷰 수정이 완료되었습니다.", HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace(); // 예외 상세 정보 출력
             return new ResponseEntity<>("리뷰 수정 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
