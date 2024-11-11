@@ -1,42 +1,3 @@
-<<<<<<< HEAD
-package com.example.demo.mapper;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import com.example.demo.DTO.JH.CinemaDTO;
-import com.example.demo.DTO.JH.SchedulesTheaterDTO;
-import com.example.demo.DTO.JH.SeatsDTO;
-import com.example.demo.DTO.JY.InquiryRequest;
-import com.example.demo.DTO.KH.CustomDTO;
-
-import java.util.*;
-
-@Mapper
-public interface SqlMapper {
-
-    public CinemaDTO getCinemaInfo(int cinema_id) throws Exception;
-
-    // public List<ScheduleDTO> getSchedules(int cinemaId) throws Exception;
-
-    public List<SchedulesTheaterDTO> getSchedulesTheater(int cinema_id) throws Exception;
-
-    public List<SeatsDTO> getSeatsbyTheaterId(Map<String, Object> params) throws Exception;
-
-    // 강현 Mapper
-    CustomDTO findByEmail(String email);
-    CustomDTO findByName(String name);
-    void updatePassword(@Param("email") String email, @Param("password") String password);
-
-    // 주용 Mapper 
-
-       void insertInquiry(InquiryRequest inquiry);
-    List<InquiryRequest> selectAllInquiries();
-    void deleteInquiryByTitle(String title); // 제목으로 삭제 메서드 추가
-    void updateInquiry(InquiryRequest inquiryRequest); // 수정 메서드 추가
-
-}
-=======
 package com.example.demo.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -139,4 +100,3 @@ public interface SqlMapper {
     // movie_id가 nowmovies 테이블에 존재하는지 확인하는 메서드
     Integer existsByMovieId(int movieId); // XML에 정의된 쿼리를 사용하므로 어노테이션 불필요
 }
->>>>>>> 994e26a085e7990e950add20e7965335133f8c85
