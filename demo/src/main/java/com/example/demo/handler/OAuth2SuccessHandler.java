@@ -1,6 +1,8 @@
 package com.example.demo.handler;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,16 +22,25 @@ import lombok.RequiredArgsConstructor;
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     
     private final JwtProvider jwtProvider;
+
     @Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
-		
-                CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
+        
+        CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-                String email = oAuth2User.getName();
-                String token = jwtProvider.create(email);
+        String token = jwtProvider.create(
+            oAuth2User.getUserId(),
+            oAuth2User.getEmail(),
+            oAuth2User.getName(),
+            oAuth2User.getNickname(),
+            oAuth2User.getPoints()
+        );
 
-                response.sendRedirect("http://localhost:3000/auth/oauth-response/"+token+"/3600");
-	}
+        String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8.toString());
+
+        response.sendRedirect("http://localhost:3000/sallybox/oauth-response/"+encodedToken);
+        
+    }
 
 }

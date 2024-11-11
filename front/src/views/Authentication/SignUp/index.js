@@ -239,7 +239,7 @@ export default function SignUp() {
     };
 
     const onSignInButtonClickHandler = () => {
-        navigate('/auth/sign-in');
+        navigate('/sallybox/sign-in');
     };
 
     const onSnsSignInButtonClickHandler = (type) => {

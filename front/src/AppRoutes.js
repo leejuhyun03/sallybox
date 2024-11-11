@@ -49,7 +49,7 @@ function AppRoutes() {
   return (
     <div>
       {/* 헤더 */}
-      {location.pathname !== '/' 
+      {location.pathname !== '/'  
         && location.pathname !== '/sallybox/sign-in' 
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
@@ -75,12 +75,13 @@ function AppRoutes() {
           <Route path="registration" element={<Gogakregistration />} />
           <Route path="mypage/:userId" element={<MyPage/>}/>
           <Route path='sign-up' element={<SignUp />} />
-          <Route path='oauth-response/:token/:expirationTime' element={<OAuth />} />
+          <Route path='oauth-response/:token' element={<OAuth />} />
         </Route>
      </Routes>
 
       {/* 푸터 */}
       {location.pathname !== '/sallybox/sign-in' 
+        && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
         && location.pathname !== '/sallybox/resetPassword'
