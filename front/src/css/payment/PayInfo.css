@@ -2,13 +2,14 @@
     display: flex;
     flex-direction: column;
 }
-.group_top{
+.jh_group_top{
     height: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 100%;
+    background-color: black;
 }
 .group_top h4 {
     margin: 0; /* 좌우 마진 초기화 */
