@@ -64,6 +64,9 @@ export default function SignIn() {
               //지영 이전페이지 경로가 없다면 기본 경로로 이동
               const redirectTo = location.state?.from || '/';
               navigate(redirectTo);
+              // 페이지 전체를 새로고침
+              window.location.reload();
+
             }
           })
           .catch(error => {
