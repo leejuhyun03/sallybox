@@ -10,6 +10,7 @@
     text-align: center;
     width: 100%;
     background-color: black;
+    color: white;
 }
 .group_top h4 {
     margin: 0; /* 좌우 마진 초기화 */
