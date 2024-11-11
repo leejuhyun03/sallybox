@@ -9,6 +9,7 @@ import fifteen from '../../image/grade_15.png';
 import nineteen from '../../image/pc_grade_19.png';
 import TheaterTime from '../theater/TheaterTime';
 import TicketingNothing from './TicketingNothing';
+import { useLocation } from 'react-router-dom';
 
 const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap }) => {
     const [sortMethod, setSortMethod] = useState('A');
@@ -27,6 +28,20 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [startIndex, setStartIndex] = useState(0); 
     const visibleDatesCount = 8; // 추가!!!!!! 화면에 표시할 날짜 수
 
+    const location = useLocation();
+    const movieId = location.state; // Access the movie_id from the state
+    console.log('TicketingMovie: ', movieId)
+  
+    useEffect(() => {
+        if (movieId) {
+          setSelectedMovieId(movieId);
+          applyFilter(fetchedMovies, filter, movieId);
+          onMovieSelect(movieId);
+          console.log('들어감?')
+        }
+    }, [movieId]);
+    console.log('허강현: ', selectedMovieId)
+      
     const handlePrevDate = () => {
         setStartIndex(prev => Math.max(prev - visibleDatesCount, 0));
     };
@@ -250,6 +265,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                     </div>
                     <div className="jymovieSelect_list" style={{ width: '351px', height: '755px' }}>
                         {movies.map((movie) => (
+                            
                             <div
                                 key={movie.movie_id}
                                 className={`jymovie_item ${selectedMovieId === movie.movie_id ? 'selected' : ''}`}
