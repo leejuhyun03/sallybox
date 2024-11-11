@@ -49,10 +49,10 @@ const PaymentInfo = ({usePoint}) => {
                 };
                 //console.log('전송할 데이터:', bookingDataToSend); // 전송할 데이터를 로그로 출력
                
-                await axios.post('http://localhost:8085/sallybox/payment/booking', bookingDataToSend);
+                await axios.post('http://192.168.16.4:8085/sallybox/payment/booking', bookingDataToSend);
             }
 
-            await axios.post('http://localhost:8085/sallybox/payment/final',{
+            await axios.post('http://192.168.16.4:8085/sallybox/payment/final',{
                 userId:userId, //jwt에서 받음
                 bookingNum:bookingNum,
                 paymentMethod:'card',

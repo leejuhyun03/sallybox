@@ -60,6 +60,7 @@ export default function SignIn() {
               setIsAuthenticated(true);
               // 메인 페이지로 이동
               navigate('/');
+              window.location.reload();
             }
           })
           .catch(error => {

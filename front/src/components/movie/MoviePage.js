@@ -29,17 +29,17 @@ const MoviePage = () => {
     useEffect(() => {
       const fetchMovieDetails = async () => {
           try {
-              const response = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}`);
+              const response = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}`);
               console.log(response.data);
               if (response.data) {
                   setMovieDetails(response.data);
                   setLoading(false); // 영화 정보 로딩 완료
               }
 
-               const existsResponse = await axios.get(`http://localhost:8085/sallybox/nowmovies/exists/${movie_id}`);
+               const existsResponse = await axios.get(`http://192.168.16.4:8085/sallybox/nowmovies/exists/${movie_id}`);
                setIsMovieNowPlaying(existsResponse.data); // 상영 여부 상태 설정
 
-              const statusResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/status`, {
+              const statusResponse = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/status`, {
                   params: {
                       user_id: userId,
                       movie_id: movie_id
@@ -61,7 +61,7 @@ const MoviePage = () => {
         setLoadingWishlist(true);
         
         try {
-            const response = await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
+            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
                 params: {user_id: userId}
             });
 
@@ -96,7 +96,7 @@ const MoviePage = () => {
         console.log("영화 세부 정보:", movieDetails);
         console.log("전송할 영화 정보:", movieData);
     
-        axios.post(`http://localhost:8085/sallybox/reserv/ticketing`, movieData)
+        axios.post(`http://192.168.16.4:8085/sallybox/reserv/ticketing`, movieData)
             .then(response => {
                 console.log("예매 정보가 성공적으로 전달되었습니다.");
                 console.log("응답 데이터:", response.data);

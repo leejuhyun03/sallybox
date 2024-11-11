@@ -52,7 +52,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
     const fetchMovieDetailsById = async (movieId) => {
         try {
-            const response = await axios.get(`http://localhost:8085/sallybox/movies/${movieId}`);
+            const response = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movieId}`);
             const movieDetails = response.data;
             return {
                 voteAverage: movieDetails.voteAverage,
@@ -67,7 +67,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
     const fetchCinemaAndSchedules = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/sallybox/cinemajy/${cinemaId}`, {
+            const response = await axios.get(`http://192.168.16.4:8085/sallybox/cinemajy/${cinemaId}`, {
                 params: { selected_date: selectedDate }
             });
             const fetchedMovies = response.data.schedules[selectedDate] || [];

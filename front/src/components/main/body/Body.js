@@ -84,7 +84,7 @@ const Body = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/movies');
+                const response = await fetch('http://192.168.16.4:5000/api/movies');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -110,7 +110,7 @@ const Body = () => {
     useEffect(() => {
         const fetchTopRatedMovies = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/movies/top-rated');
+                const response = await fetch('http://192.168.16.4:5000/api/movies/top-rated');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -157,7 +157,7 @@ const Body = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/movies/recommend`,
+                `http://192.168.16.4:5000/api/movies/recommend`,
                 {
                     params: {
                         userId: userId,
@@ -195,7 +195,7 @@ const Body = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/movies/genre`,
+                `http://192.168.16.4:5000/api/movies/genre`,
                 {
                     params: {
                         userId: userId
@@ -259,7 +259,7 @@ const Body = () => {
     useEffect(() => {
         const fetchTopRatedMovies = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/movies/recent');
+                const response = await fetch('http://192.168.16.4:5000/api/movies/recent');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -333,22 +333,22 @@ const Body = () => {
                     <SwiperSlide key={movie.movieId} className='owl-stage' style={{ width: '184px', marginRight: '15px', background: '#000' }}
                     onMouseOver={() => onOpen(movie.movieId)} onMouseLeave={onClose}>
                         <div>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px',
+                        <Link to={`/sallybox/movies/${movie.movieId}`}><img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title} style={{borderRadius: '4px',
                                 width: '100%', height: '260px'
-                            }}/>
+                            }}/></Link>
                             <div className='titleInfo' style={{marginBottom: '20px'}}>
                             <span className="ageRating">
                                 <img src={movie.ageRatingImg} alt={movie.title}/>
                             </span>
-                            {
+                            {/* {
                                 hoveredMovieId === movie.movieId &&
                             <div className='testf'>
                                 <div className="in">
-                                    <a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_col3s ty3" title="화면이동">예매하기</a>
+                                    <a href="http://192.168.16.4:3000/sallybox/reserv/ticketing" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                     <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3s ty3" title="화면이동">상세정보</Link>
                                 </div>
                             </div>
-                            }
+                            } */}
                             {movie.title && <strong className='movieTitle'>{movie.title}</strong>}
                             </div>    
                         </div>
@@ -445,7 +445,7 @@ const Body = () => {
                                         hoveredMovieId2 === movie.movieId &&
                                     <div className='test'>
                                         <div className="in">
-                                            <a href='http://localhost:3000/sallybox/reserv/ticketing' className="btn_col3s ty3" title="화면이동">예매하기</a>
+                                            <a href='http://192.168.16.4:3000/sallybox/reserv/ticketing' className="btn_col3s ty3" title="화면이동">예매하기</a>
                                             <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3s ty3" title="화면이동">상세정보</Link>
                                         </div>
                                     </div>
@@ -496,17 +496,17 @@ const Body = () => {
                                 <SwiperSlide key={movie.movieId} onMouseOver={() => onOpen3(movie.movieId)} onMouseLeave={onClose3}
                                 style={{width : '188px', height: '348px'}}>
                                     <li style={{width: '100%', height: '100%'}}>
-                                    <img style={{borderRadius: '4px', height: '81%'}}
-                                    src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
-                                    {
+                                    <Link to={`/sallybox/movies/${movie.movieId}`}><img style={{borderRadius: '4px', height: '81%'}}
+                                    src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/></Link>
+                                    {/* {
                                         hoveredMovieId3 === movie.movieId &&
                                     <div className='test'>
                                         <div className="in">
-                                            <a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_col3s ty3" title="화면이동">예매하기</a>
+                                            <a href="http://192.168.16.4:3000/sallybox/reserv/ticketing" className="btn_col3s ty3" title="화면이동">예매하기</a>
                                             <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3s ty3" title="화면이동">상세정보</Link>
                                         </div>
                                     </div>
-                                    }
+                                    } */}
                                     <div className="btm_infob">
                                         <span className="ic_gradeb gr_12b"><img src={movie.ageRatingImg} alt={movie.certification}/></span>
                                         <strong className="tit_infob" style={{marginLeft: '7px'}}>{movie.title}</strong>
@@ -571,7 +571,7 @@ const Body = () => {
                         <li><a href="#none" title="롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내">롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내</a></li>
                     </ul>
                 </div>
-                <button type="button" className="btn_txt_more ty2"><a href='http://localhost:3000/sallybox/gogaksenter'>더보기</a></button>
+                <button type="button" className="btn_txt_more ty2"><a href='http://192.168.16.4:3000/sallybox/gogaksenter'>더보기</a></button>
             </div>
         </div>
         

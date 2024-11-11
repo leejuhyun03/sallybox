@@ -82,7 +82,7 @@ const MovieDetail = ({ movie_id }) => {
         const fetchReviews = async () => {
             try {
                 //전체 리뷰 목록 재요청
-                const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
+                const reviewsRes = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/reviews`);
                 setReviews(reviewsRes.data);
             } catch (error) {
                 console.error("Error fetching reviews:", error);
@@ -229,8 +229,8 @@ const MovieDetail = ({ movie_id }) => {
         
 
             if (isEditing) {
-                await axios.put(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/${editingReviewId}`, payload);
-                const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
+                await axios.put(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/reviews/${editingReviewId}`, payload);
+                const reviewsRes = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/reviews`);
                 setReviews(reviewsRes.data);
                 setTimeout(() => {
                     const editedReviewElement = document.getElementById(`review-${editingReviewId}`);
@@ -240,14 +240,14 @@ const MovieDetail = ({ movie_id }) => {
                 }, 100);
             } else {
                 //console.log("payloadpayloadpayloadpayload:", payload.user_id);
-                await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`, {movieId: movie_id,
+                await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/reviews`, {movieId: movie_id,
                         reviewText: reviewContent,
                         userId: userId,
                         rating: rating,
                         nickname: userNickName, 
                     
                 }); //입력
-                const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
+                const reviewsRes = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/reviews`);
                 setReviews(reviewsRes.data);
                 console.log('입력!!!!!:'+payload);
             }
@@ -283,7 +283,7 @@ const MovieDetail = ({ movie_id }) => {
 
     const handleDeleteReview = async (reviewId) => {
         try {
-            await axios.delete(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/${reviewId}`, {
+            await axios.delete(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/reviews/${reviewId}`, {
                 params: { user_id: userId, },
             });
             setReviews((prevReviews) => prevReviews.filter((review) => review.reviewId !== reviewId));

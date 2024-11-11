@@ -12,7 +12,7 @@ const PayMethod = ({setUsePoint}) => {
 
     const fetchId = async() => {
         try {
-            const response = await axios.post('http://localhost:8085/sallybox/payment', {
+            const response = await axios.post('http://192.168.16.4:8085/sallybox/payment', {
                 user_id: userId
             });
             setUserPoint(response.data)
