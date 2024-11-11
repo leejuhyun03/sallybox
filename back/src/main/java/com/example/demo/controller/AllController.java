@@ -198,7 +198,17 @@ public class AllController {
 
     @PostMapping("/api/send-sms")
     public ResponseEntity<?> sendSms (@RequestBody Map<String, String> body) { 
-   
+        
+        String email = body.get("email");
+        String name = body.get("name");
+        System.out.println(email);
+        boolean emailExists = sqlService.findPassword(email, name);
+        System.out.println("인증완료: " + emailExists);
+
+        if (!emailExists) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("이메일을 찾을 수 없습니다.");
+        }
+
         String to = body.get("phoneNumber");
 
         Random rnd  = new Random();
@@ -361,8 +371,6 @@ public class AllController {
         return movieList; // 영화 리스트 반환
     }
    
-   
-    
 
     private MovieDTO createMovieFromJson(JsonNode movieJson) throws Exception {
         MovieDTO movie = new MovieDTO();
@@ -484,16 +492,15 @@ public class AllController {
     @PostMapping("/sallybox/movies/{movie_id}/wishlist/toggle")
     public ResponseEntity<Map<String, Boolean>> toggleWishlist(
             @PathVariable("movie_id") int movieId,   // URL에서 movie_id 가져옴
-            @RequestParam("user_id") int userId,   // URL에서 movie_id 가져옴
-            @RequestBody WishlistDTO wishlistDTO) {   // 요청의 본문에서 user_id 등 받아옴
+            @RequestParam("user_id") int userId) {   // 요청의 본문에서 user_id 등 받아옴
      System.out.println(userId);
         // DTO의 movie_id를 URL에서 가져온 movie_id로 설정
-        wishlistDTO.setMovieId(movieId);  
-        wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
+        // wishlistDTO.setMovieId(movieId);  
+        // wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
         MovieDTO dto = movieService.findMovieById(movieId);
         String genreIds=dto.getGenreIdsString();
         // 위시리스트에 있는지 확인 후 토글
-        boolean isLiked = movieService.toggleWishlist(wishlistDTO.getUserId(), wishlistDTO.getMovieId(), genreIds);
+        boolean isLiked = movieService.toggleWishlist(userId, movieId, genreIds);
 
         // 응답 생성
         Map<String, Boolean> response = new HashMap<>();

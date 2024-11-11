@@ -9,6 +9,7 @@ import fifteen from '../../image/grade_15.png';
 import nineteen from '../../image/pc_grade_19.png';
 import TheaterTime from '../theater/TheaterTime';
 import TicketingNothing from './TicketingNothing';
+import { useLocation } from 'react-router-dom';
 
 const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap }) => {
     const [sortMethod, setSortMethod] = useState('A');
@@ -27,6 +28,20 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [startIndex, setStartIndex] = useState(0); 
     const visibleDatesCount = 8; // 추가!!!!!! 화면에 표시할 날짜 수
 
+    const location = useLocation();
+    const movieId = location.state; // Access the movie_id from the state
+    console.log('TicketingMovie: ', movieId)
+  
+    useEffect(() => {
+        if (movieId) {
+          setSelectedMovieId(movieId);
+          applyFilter(fetchedMovies, filter, movieId);
+          onMovieSelect(movieId);
+          console.log('들어감?')
+        }
+    }, [movieId]);
+    console.log('허강현: ', selectedMovieId)
+      
     const handlePrevDate = () => {
         setStartIndex(prev => Math.max(prev - visibleDatesCount, 0));
     };
@@ -52,7 +67,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
     const fetchMovieDetailsById = async (movieId) => {
         try {
-            const response = await axios.get(`http://localhost:8085/sallybox/movies/${movieId}`);
+            const response = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movieId}`);
             const movieDetails = response.data;
             return {
                 voteAverage: movieDetails.voteAverage,
@@ -67,7 +82,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     //1110 지영 첫 추가
     const fetchCinemaAndSchedules = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/sallybox/cinemajy/${cinemaId}`, {
+            const response = await axios.get(`http://192.168.16.4:8085/sallybox/cinemajy/${cinemaId}`, {
                 params: { selected_date: selectedDate }
             });
             const fetchedMovies = response.data.schedules[selectedDate] || [];
@@ -261,6 +276,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                     </div>
                     <div className="jymovieSelect_list" style={{ width: '351px', height: '755px' }}>
                         {movies.map((movie) => (
+                            
                             <div
                                 key={movie.movie_id}
                                 className={`jymovie_item ${selectedMovieId === movie.movie_id ? 'selected' : ''}`}
@@ -364,7 +380,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                         <div className="jytheater_type_info">
                                             <span>{schedules[0].theater_type}</span>
                                         </div>
-                                        
                                         
                                         
                                         <div className="jytime_scroll_select_buttons">

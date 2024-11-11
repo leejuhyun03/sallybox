@@ -38,7 +38,7 @@ const MyPage = () => {
     //편집 모달
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
-    const [hoveredMenu, setHoveredMenu] = useState(null);
+    const [hoveredMenu, setHoveredMenu] = useState('payment');
 
     const handleCloseProfileModal = () => {
         setIsProfileModalOpen(false);
@@ -50,7 +50,7 @@ const MyPage = () => {
     //
 
     const [showMyInfo, setShowMyInfo] = useState(false);
-    const [showShowmovie, setShowShowmovie] = useState(false); // Showmovie 상태 추가
+    const [showShowmovie, setShowShowmovie] = useState(true); // Showmovie 상태 추가
     const [showGogakboon, setShowGogakboon] = useState(false);
 
     const handleShowShowmovie = () => {
