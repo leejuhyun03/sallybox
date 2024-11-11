@@ -147,7 +147,6 @@ button {
 }
 
 
-
 .tb_acc_wrap tbody tr.acc_head td:last-child:after {
     content: '';
     float: right;
@@ -294,7 +293,6 @@ ol {
     display: block;
     padding: 5px;
 }
-
 
 
 .quick_wrap .quick_menu .qick_top {

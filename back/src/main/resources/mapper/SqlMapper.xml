@@ -1,3 +1,87 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.SqlMapper">
+
+    <select id="getCinemaInfo" parameterType="int" resultType="com.example.demo.DTO.JH.CinemaDTO">
+
+        SELECT c.*,m.title,m.poster_path 
+        FROM cinema c, movies m
+        WHERE c.cinema_id = #{cinema_id}
+        and m.movie_id = 1075676
+        
+    </select>
+
+    <!-- <select id="getSchedules" parameterType="int" resultType="com.example.demo.DTO.ScheduleDTO">
+        select * FROM schedule WHERE cinemaId = #{cinemaId}
+    </select> -->
+
+    <select id="getSchedulesTheater" parameterType="int" resultType="com.example.demo.DTO.JH.SchedulesTheaterDTO">
+        select  s.schedule_id,s.cinema_id, s.movie_id, s.theater_id, s.start_time, s.end_time, s.created,
+           m.title AS title, m.certification AS certification, m.poster_path AS poster_path,
+           t.theater_type AS theater_type, t.screen_no AS screen_no,
+           c.name AS name
+        FROM schedule s
+        JOIN movies m ON s.movie_id = m.movie_id
+        JOIN theater t ON s.theater_id = t.theater_id
+        JOIN cinema c ON s.cinema_id = c.cinema_id
+        WHERE s.cinema_id = #{cinema_id}
+        ORDER BY s.start_time 
+    </select>
+
+    <select id="getSeatsbyTheaterId" parameterType="map" resultType="com.example.demo.DTO.JH.SeatsDTO">
+        select s.*, 
+            case when b.seat_id is not null then 'yes' else 'no' end as status
+            FROM seats s
+            left JOIN booking b ON s.seat_id = b.seat_id and b.schedule_id = #{schedule_id}
+            JOIN theater t ON s.link_id = t.link_id
+            WHERE t.theater_id = #{theater_id}
+            ORDER BY s.seat_id
+    </select>
+
+    <!-- 강현 -->
+    <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 -->
+      SELECT user_id AS userid, email, password, name, nickname FROM users WHERE email = #{email}
+    </select>
+
+    <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
+      SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name}
+    </select>
+
+     <update id="updatePassword" parameterType="map">
+        UPDATE users
+        SET password = #{password}
+        WHERE email = #{email}
+    </update>
+
+
+    <!-- 주용 xml -->
+
+        <insert id="insertInquiry" parameterType="com.example.demo.DTO.JY.InquiryRequest">
+        INSERT INTO CustomerInquiries (inquiry_id, name, phone_Number, email, title, content, created_at)
+        VALUES (CustomerInquiries_seq.NEXTVAL, #{name}, #{phone_Number}, #{email}, #{title}, #{content}, SYSDATE)
+    </insert>
+
+    <select id="selectAllInquiries" resultType="com.example.demo.DTO.JY.InquiryRequest">
+        SELECT * FROM CustomerInquiries
+    </select>
+
+    <delete id="deleteInquiryByTitle" parameterType="String">
+        DELETE FROM CustomerInquiries WHERE title = #{title}
+    </delete>
+    
+    <update id="updateInquiry" parameterType="com.example.demo.DTO.JY.InquiryRequest">
+        UPDATE CUSTOMERINQUIRIES
+            SET title = #{title},
+                content = #{content}
+            WHERE email = #{email}
+    </update>
+
+
+=======
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -422,4 +506,5 @@
         WHERE user_id = #{userId}
     </update>
 
+>>>>>>> 994e26a085e7990e950add20e7965335133f8c85
 </mapper>

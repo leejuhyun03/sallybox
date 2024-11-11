@@ -42,7 +42,10 @@ dependencies {
 
 	implementation 'net.nurigo:sdk:4.3.0'
 	
+<<<<<<< HEAD
+=======
 	implementation 'org.springframework.boot:spring-boot-starter-security' 
+>>>>>>> 433ff93caaacebf8bc3f009fa776a07f3af4a7b8
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
