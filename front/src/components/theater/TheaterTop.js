@@ -12,6 +12,7 @@ const TheaterTop = ({cinemaDTO}) => {
 
     const {cinema_id,name,location,theater,seats,parking,title,poster_path} = cinemaDTO;
 
+
     const ParkingStatus = (parking) => {
         const status = parking === 'Y' ? '가능':'불가능'
         return status
