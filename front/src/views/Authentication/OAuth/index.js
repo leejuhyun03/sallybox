@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import { useUser } from '../../../context/UserContext';
 
 function OAuth() {
     const { token } = useParams();
     const navigate = useNavigate();
+
+    const {setUserId, setUserName, setUserNickName, setUserPoint, setIsAuthenticated} = useUser();
 
     useEffect(() => {
         if (token) {
@@ -26,6 +29,11 @@ function OAuth() {
                 localStorage.setItem('nickname', decodedToken.nickname);
                 localStorage.setItem('points', decodedToken.points);
 
+                setUserId(decodedToken.userId);
+                setUserName(decodedToken.name);
+                setUserNickName(decodedToken.nickname);
+                setUserPoint(decodedToken.points);
+                setIsAuthenticated(true);
                 console.log("Token decoded and information stored in localStorage");
 
                 // 홈 페이지나 대시보드로 리다이렉트
