@@ -4,7 +4,7 @@ import { SNS_SIGN_IN_URL } from '../../apis';
 import { useCookies } from 'react-cookie';
 import '../../css/SignIn/style.css';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; //useLocation지영
 import EmailFindForm from './madal/EmailFindForm';
 import EmailFindResult from './madal/EmailFindResult';
 import EmailFindAllForm from './madal/EmailFindAllForm';
@@ -17,7 +17,7 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    const location = useLocation();//지영
     const [error, setError] = useState('');
     const [isEmailFindModalOpen, setIsEmailFindModalOpen] = useState(false);
     const [isResultModalOpen, setIsResultModalOpen] = useState(false);
@@ -59,7 +59,11 @@ export default function SignIn() {
               localStorage.setItem('token', response.data); // 토큰 저장
               setIsAuthenticated(true);
               // 메인 페이지로 이동
-              navigate('/');
+              //navigate('/');
+
+              //지영 이전페이지 경로가 없다면 기본 경로로 이동
+              const redirectTo = location.state?.from || '/';
+              navigate(redirectTo);
             }
           })
           .catch(error => {

@@ -64,24 +64,33 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             return null;
         }
     };
-
+    //1110 지영 첫 추가
     const fetchCinemaAndSchedules = async () => {
         try {
             const response = await axios.get(`http://localhost:8085/sallybox/cinemajy/${cinemaId}`, {
                 params: { selected_date: selectedDate }
             });
             const fetchedMovies = response.data.schedules[selectedDate] || [];
-            const moviesWithDetails = await Promise.all(
+            const moviesWithDetails = await Promise.all(//영화세부정보
                 fetchedMovies.map(async (movie) => {
                     const details = await fetchMovieDetailsById(movie.movie_id);
                     return details ? { ...movie, ...details } : movie;
                 })
             );
+             // 중복된 영화 제거: `movie_id`로 고유한 영화만 남김 --1110 추가된 코드(fetchedMovies,moviewithDetails둘다 상관없음 기본정보/상세정보임)
+            const uniqueMovies = Array.from(new Map(fetchedMovies.map(movie => [movie.movie_id, movie])).values());
 
-            setFetchedMovies(moviesWithDetails);
-            setMovies(moviesWithDetails);
-            sortMovies(sortMethod, moviesWithDetails);
-            applyFilter(moviesWithDetails, '전체');
+            //1101 -주석이 원래코드
+            //setFetchedMovies(moviesWithDetails);
+            //setMovies(moviesWithDetails);
+            // sortMovies(sortMethod, moviesWithDetails); 
+            //applyFilter(moviesWithDetails, '전체');
+
+            // 중복이 제거된 `uniqueMovies`를 모든 관련 함수에 적용 --추가된 코드
+            setFetchedMovies(uniqueMovies);
+            setMovies(uniqueMovies);
+            sortMovies(sortMethod, uniqueMovies);
+            applyFilter(uniqueMovies, '전체');
 
             // console.log("moviesWithDetails:", JSON.stringify(moviesWithDetails, null, 2));
             // console.log("fetchedMovies:", JSON.stringify(fetchedMovies, null, 2));
@@ -90,6 +99,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         }
     };
 
+   
     useEffect(() => {
         if (cinemaId && selectedDate) {
             setFilter('전체');
@@ -216,6 +226,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
     };
 
+    //theaater_tyype별로 그룹화 하고, 현재 시간 이후의 상영 스케줄만 필터링하여 theaterTypeData라는 객체로 저장하는 로직
     const theaterTypeData = useMemo(() => {
         const data = {};
         if (fetchedMovies) { // fetchedMovies 배열이 존재하는 경우에만 실행

@@ -509,3 +509,15 @@
     margin: 0px 0px;
 }
 
+.jy-writeReviewButtonStyle  {
+    padding: 1px 124px;
+    background-color: #333;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 80px 0;
+}
+
