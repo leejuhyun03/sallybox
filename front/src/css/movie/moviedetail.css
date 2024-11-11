@@ -23,8 +23,8 @@
 }
 
 .jytab_tit.active {
-    border-color: red;
-}
+    border-color: none;
+} 
 
 .jyslider {
     position: absolute;
