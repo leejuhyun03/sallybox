@@ -58,7 +58,9 @@ export default function FindPassword() {
 
         try {
             const response = await axios.post(`/api/send-sms`, {
-                phoneNumber: phoneNumber
+                phoneNumber: phoneNumber,
+                email: email,
+                name: name
             });
 
             if (response.data.message) {
@@ -68,7 +70,7 @@ export default function FindPassword() {
                 setError('인증번호 전송에 실패했습니다.');
             }
         } catch (err) {
-            setError('서버 오류가 발생했습니다.');
+            setError('입력하신 정보가 일치하지 않습니다.');
             console.error(err);
         }
     };
@@ -94,7 +96,7 @@ export default function FindPassword() {
 
             if (response.data) {
                 alert('인증이 완료 되었습니다.');
-                navigate('/resetPassword', {state: email});
+                navigate('/sallybox/resetPassword', {state: email});
             } else if (error.response && error.response.data) {
                 setError2(error.response.data);
             }

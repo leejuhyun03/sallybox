@@ -484,15 +484,16 @@ public class AllController {
     @PostMapping("/sallybox/movies/{movie_id}/wishlist/toggle")
     public ResponseEntity<Map<String, Boolean>> toggleWishlist(
             @PathVariable("movie_id") int movieId,   // URL에서 movie_id 가져옴
-            @RequestParam("user_id") int userId) {   // 요청의 본문에서 user_id 등 받아옴
+            @RequestParam("user_id") int userId,   // URL에서 movie_id 가져옴
+            @RequestBody WishlistDTO wishlistDTO) {   // 요청의 본문에서 user_id 등 받아옴
      System.out.println(userId);
         // DTO의 movie_id를 URL에서 가져온 movie_id로 설정
-        // wishlistDTO.setMovieId(movieId);  
-        // wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
+        wishlistDTO.setMovieId(movieId);  
+        wishlistDTO.setUserId(userId); // 로그인 미구현, 임시 user_id 설정
         MovieDTO dto = movieService.findMovieById(movieId);
         String genreIds=dto.getGenreIdsString();
         // 위시리스트에 있는지 확인 후 토글
-        boolean isLiked = movieService.toggleWishlist(userId, movieId, genreIds);
+        boolean isLiked = movieService.toggleWishlist(wishlistDTO.getUserId(), wishlistDTO.getMovieId(), genreIds);
 
         // 응답 생성
         Map<String, Boolean> response = new HashMap<>();
@@ -612,6 +613,7 @@ public class AllController {
             movieService.updateReview(reviewsDTO); // 리뷰 수정
             return new ResponseEntity<>("리뷰 수정이 완료되었습니다.", HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace(); // 예외 상세 정보 출력
             return new ResponseEntity<>("리뷰 수정 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

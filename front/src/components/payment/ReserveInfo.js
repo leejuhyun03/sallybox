@@ -50,7 +50,7 @@ const ReserveInfo = () => {
 
     return (
         <div className='article_wrap'>
-            <div className='group_top'>
+            <div className='jh_group_top'>
                 <h4>예매 정보</h4>
             </div>
             <div className='inner'>

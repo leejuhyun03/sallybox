@@ -38,16 +38,7 @@ const MovieDetail = ({ movie_id }) => {
     const [visibleImageCount, setVisibleImageCount] = useState(initialImageCount);
     const { userId, userNickName, isAuthenticated } = useUser();
     const isUserLoggedIn = !!userId;
-    const writeReviewButtonStyle = {
-        padding: '10px 20px',
-        backgroundColor: '#333',
-        color: '#fff',
-        fontSize: '16px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginBottom: '10px',
-    };
+    
     const navigate = useNavigate();
     const reviewInputRef = useRef(null);
 
@@ -183,25 +174,28 @@ const MovieDetail = ({ movie_id }) => {
         });
     };
 
-    const handleCommentChange = (e) => {
-        const { value } = e.target;
-        if (value.length <= 220) {
-            setComment(value);
-        }
-    };
+    // const handleCommentChange = (e) => {
+    //     const { value } = e.target;
+    //     if (value.length <= 220) {
+    //         setComment(value);
+    //     }
+    // };
 
     const handleRatingChange = (star) => setRating(star);
 
+    //지영
+    // 로그인 버튼 클릭 시 현재 movie_id를 전달하며 navigate
     const handleWriteReviewClick = () => {
         if (!isUserLoggedIn) {
-            navigate('/sallybox/sign-in');
+            navigate('/sallybox/sign-in', { state: { from: `/sallybox/movies/${movie_id}` } });
         }
     };
-
+    /* */
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
+             
             const payload = {
                 movie_id: movie_id,
                 reviewText: reviewContent,
@@ -209,15 +203,14 @@ const MovieDetail = ({ movie_id }) => {
                 rating: rating,
                 nickname: userNickName,
             };
-
             // payload의 각 값을 출력
-            /* 
+            
             console.log("movie_id:", payload.movie_id);
             console.log("reviewText:", payload.reviewText);
             console.log("user_id:", payload.user_id);
             console.log("rating:", payload.rating);
             console.log("nickname:", payload.nickname);
-            */
+            
 
             // // 예약 기록 확인
             // const bookingCheckResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/checkBooking`, {
@@ -229,9 +222,18 @@ const MovieDetail = ({ movie_id }) => {
         
 
             if (isEditing) {
-                await axios.put(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/${editingReviewId}`, payload);
+                await axios.put(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/${editingReviewId}`, {
+                    movieId: movie_id,
+                    reviewId: editingReviewId, // reviewId를 본문에 추가
+                    reviewText: reviewContent,
+                    userId: userId,
+                    rating: rating,
+                    nickname: userNickName,
+                });
+                //최신 목록 리스트
                 const reviewsRes = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/reviews`);
                 setReviews(reviewsRes.data);
+                //수정된 리뷰 위치로 스크롤
                 setTimeout(() => {
                     const editedReviewElement = document.getElementById(`review-${editingReviewId}`);
                     if (editedReviewElement) {
@@ -263,7 +265,9 @@ const MovieDetail = ({ movie_id }) => {
             setIsSubmitting(false);
         }
     };
-
+    
+    
+    
     const handleShowMoreReviews = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -271,16 +275,20 @@ const MovieDetail = ({ movie_id }) => {
     };
 
     const handleEditReview = (review) => {
-        setReviewContent(review.reviewText);
-        setRating(review.rating);
-        setIsEditing(true);
-        setEditingReviewId(review.reviewId);
-        setShowExistingReview(false);
-        setTimeout(() => {
-            reviewInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 0);
+        if (review.userId === userId) {
+            setReviewContent(review.reviewText);
+            setRating(review.rating);
+            setIsEditing(true);
+            setEditingReviewId(review.reviewId);
+            //console.log("Editing review ID:", review.reviewId); // 설정된 review ID를 콘솔에 출력
+            setShowExistingReview(false);
+            setTimeout(() => {
+                reviewInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 0);
+        } else {
+            alert("본인의 리뷰만 수정할 수 있습니다.");
+        }
     };
-
     const handleDeleteReview = async (reviewId) => {
         try {
             await axios.delete(`http://localhost:8085/sallybox/movies/${movie_id}/reviews/${reviewId}`, {
@@ -291,10 +299,13 @@ const MovieDetail = ({ movie_id }) => {
             console.error("리뷰 삭제 중 오류 발생:", error);
         }
     };
+    //DELETE 요청은 본문에 데이터를 포함할 수 없기 때문에, params를 사용하여 쿼리 문자열로 데이터를 전달
 
     const handleLoadMoreImages = () => {
         setVisibleImageCount((prevCount) => prevCount + initialImageCount);
     };
+
+    //console.log("리뷰리뷰리뷰 payload:",payload);
 
     return (
         <div>
@@ -447,12 +458,13 @@ const MovieDetail = ({ movie_id }) => {
 
                 {activeTab === 'reviews' && (
                     <div>
+                        <div style={{display:'flex', justifyContent:'center',alignContent:'center', background:'#f8f8f8'}}>
                         {!isUserLoggedIn && (
                             <button
                                 onClick={handleWriteReviewClick}
-                                style={writeReviewButtonStyle}
+                                className='jy-writeReviewButtonStyle'
                             >
-                                관람평 작성하기
+                                <p>관람평 작성하기</p>
                             </button>
                         )}
 
@@ -477,7 +489,7 @@ const MovieDetail = ({ movie_id }) => {
                                         ))}
                                     </div>
                                     <div className="jyreview_write_row">
-                                        <div className="jyreview_write_box" style={{ width: '130px', height: '130px' }}>
+                                        <div className="jyreview_write_box" style={{ width: '827px', height: '130px' }}>
                                             <textarea
                                                 ref={reviewInputRef}
                                                 id="jyreviewContent"
@@ -507,21 +519,31 @@ const MovieDetail = ({ movie_id }) => {
                                 </div>
                             </form>
                         )}
-
+                        </div>
+                        {/* 리스트 보여주는 곳 */}
                         <div className="jyreview-list">
-                            {sortedReviews.slice(0, visibleReviews).map((review) => (
-                                <div key={review.reviewId} className="jyreview-item">
-                                    <p><strong>{review.nickname}</strong> - {formatDate(review.createdAt)}</p>
-                                    <p>별점: {review.rating} / 5</p>
-                                    <p>{review.reviewText}</p>
-                                    {review.user_id === userId && (
-                                        <>
-                                            <button onClick={() => handleEditReview(review)}>수정</button>
-                                            <button onClick={() => handleDeleteReview(review.reviewId)}>삭제</button>
-                                        </>
-                                    )}
-                                </div>
-                            ))}
+                                {sortedReviews.length === 0 ? (
+                                    <p style={{ fontSize: '14pt', color: 'gray' }}>작성된 리뷰가 없습니다</p>
+                                ) : (
+                                    sortedReviews.slice(0, visibleReviews).map((review) => (
+                                            <div
+                                            key={review.reviewId}
+                                            id={`review-${review.reviewId}`}
+                                            className={`jyreview-item ${isEditing && editingReviewId === review.reviewId ? 'hidden' : ''}`}
+                                            >
+                                            <p style={{ fontSize: '13pt', fontWeight: 'bold' }}>{review.nickname}</p>
+                                            <p style={{ fontSize: '13pt', margin: '-8px 0' }}>{formatDate(review.createdAt)}</p>
+                                            <p style={{ fontSize: '13pt' }}>{review.reviewText}</p>
+
+                                            {String(review.userId) === String(userId) && (
+                                                <>
+                                                    <button onClick={() => handleEditReview(review)}>수정</button>
+                                                    <button onClick={() => handleDeleteReview(review.reviewId)}>삭제</button>
+                                                </>
+                                            )}
+                                        </div>
+                                    ))
+                                )}
                             {visibleReviews < sortedReviews.length && (
                                 <button onClick={handleShowMoreReviews} className="jyshow-more-button">
                                     더보기

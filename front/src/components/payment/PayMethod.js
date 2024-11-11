@@ -12,7 +12,7 @@ const PayMethod = ({setUsePoint}) => {
 
     const fetchId = async() => {
         try {
-            const response = await axios.post('http://localhost:8085/sallybox/payment', {
+            const response = await axios.post('http://192.168.16.4:8085/sallybox/payment', {
                 user_id: userId
             });
             setUserPoint(response.data)
@@ -60,7 +60,7 @@ const PayMethod = ({setUsePoint}) => {
 
     return (
         <div className='article_wrap'>
-            <div className='group_top'>
+            <div className='jh_group_top'>
                 <h4>결제 수단</h4>
             </div>
             <div className='inner'>

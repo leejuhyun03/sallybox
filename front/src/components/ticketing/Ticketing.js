@@ -11,8 +11,8 @@ import TicketingMovie from './TicketingMovie';
 import BookingContext from '../BookingContext';
 
 const Ticketing = () => {
-    const {bookingData,setBookingData} = useContext(BookingContext)
-    const [selectedCinema, setSelectedCinema] = useState(null); // 선택된 영화관
+    const {setBookingData} = useContext(BookingContext)
+    const [selectedCinema, setSelectedCinema] = useState('가산디지털'); // 선택된 영화관
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // 오늘 날짜 설정
     const { cinema_id } = useParams(); // URL에서 cinema_id를 가져와 변수로 설정
     const [cinemaDTO, setCinemaDTO] = useState(null);
@@ -24,32 +24,29 @@ const Ticketing = () => {
         setSelectedMovie(movie); // 선택된 영화를 업데이트
     };
 
-    const onScheduleSelect = (schedule) => {
-
+    const onScheduleSelect = (schedule) => { //예매 페이지에서 schedule 선택하면 bookingData에 set
         // console.log(schedule) 넘어옴
         setBookingData({
             schedule:schedule
         })
-
-
         navigate('/sallybox/reserv/seats');
-
     }
 
-    // useEffect(() => {
-    //     console.log('Updated bookingData:', bookingData);
-    // }, [bookingData]);
+    // 영화 ID를 localStorage에서 가져와서 상태에 설정
+    useEffect(() => {
+        const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
+        if (storedMovieId) {
+            setSelectedMovie(storedMovieId)
+        }
+    }, []);  // 컴포넌트가 처음 렌더링될 때 실행
 
-    // useEffect(() => {
-    //     console.log("선택된 영화관:", selectedCinema);
-    // }, [selectedCinema]);
 
     // cinema_id를 URL로 가져와서 해당 영화관의 정보를 API로 요청하고, 그 결과로 cinemaDTO와 schedules 데이터를 받아옴
     // setCinemaDTO와 setScheduleMap을 통해 상태로 저장
     useEffect(() => {
         if (cinema_id) {
             axios
-                .get(`http://localhost:8085/sallybox/cinemajy/${cinema_id}`)
+                .get(`http://192.168.16.4:8085/sallybox/cinemajy/${cinema_id}`)
                 .then((response) => {
                     // response가 DTO 형태 (cinemaDTO, Map<Integer, List<ScheduleDTO>>)
                     setCinemaDTO(response.data.cinemaDTO);
@@ -57,7 +54,7 @@ const Ticketing = () => {
                     // object 형태로 넘어온 걸 map 형태로 변환 (map이 Object(배열) 형태로 넘어옴)
                     if (response.data.schedules) {
                         const scheduleMap = new Map(Object.entries(response.data.schedules));
-                        console.log(scheduleMap)
+                        // console.log(scheduleMap)
                         setScheduleMap(scheduleMap);
                     } else {
                         console.warn('schedules is undefined or null');
@@ -104,6 +101,7 @@ const Ticketing = () => {
                             scheduleMap={scheduleMap}
                             setSelectedCinema={setSelectedCinema}
                             onScheduleSelect={onScheduleSelect}
+                            selectedMovie={selectedMovie}
                         />
                     </div>
                 </div>

@@ -32,7 +32,7 @@ const ReservSeats = () => {
         const getSeats = async () => {
             if (bookingData.schedule && bookingData.schedule.theater_id) {
                 try {
-                    const response = await axios.get('http://localhost:8085/sallybox/reserv/seats', {
+                    const response = await axios.get('http://192.168.16.4:8085/sallybox/reserv/seats', {
                         params: { theater_id: bookingData.schedule.theater_id, schedule_id:bookingData.schedule.schedule_id },
                         headers: { 'Content-Type': 'application/json' }
                     });

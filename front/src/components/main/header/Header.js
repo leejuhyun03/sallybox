@@ -38,22 +38,12 @@ const Header = () => {
     setIsAuthenticated(false); // 인증 상태 업데이트
   };
 
-  useEffect(() => {
-    const modalStatus = localStorage.getItem('modalStatus');
-    if (modalStatus === 'open') {
-      setIsShow(true); // 로컬 스토리지에 'open'이 저장되어 있으면 모달을 연다
-    }
-  }, []);
-
   const onOpen = () => {
-    // 페이지 새로고침 후 모달을 열기 위해 로컬 스토리지에 저장
-    localStorage.setItem('modalStatus', 'open');
-    window.location.reload(); // 페이지 새로고침
+    setIsShow(true)
   };
 
   const onClose = () => {
     setIsShow(false);
-    localStorage.removeItem('modalStatus'); // 모달 닫을 때 로컬 스토리지에서 값 제거
   };
 
   let onTrue1 = () => {
@@ -76,6 +66,13 @@ const Header = () => {
     setVisible2(false)
   }
 
+  useEffect(() => {
+    // 페이지를 새로 고침하기 전에 이전 상태를 확인하여 리로드가 한 번만 일어나도록 함
+    if (!sessionStorage.getItem('hasReloaded')) {
+      sessionStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
+    }
+  }, [userId]);
 
   return (
   <>
