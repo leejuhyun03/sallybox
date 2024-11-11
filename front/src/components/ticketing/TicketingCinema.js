@@ -6,15 +6,25 @@ const TicketingCinema = ({ setSelectedCinema }) => {
     const [activeTab, setActiveTab] = useState('전체'); // '전체' 또는 '스페셜관'을 위한 탭 상태
     const [selectedCinema, setSelectedCinemaState] = useState(null); // 선택된 영화관
     const [cinemaList, setCinemaList] = useState([]); // 영화관 목록
-    const [activeRegion, setActiveRegion] = useState(''); // 현재 활성 지역 상태
+    const [activeRegion, setActiveRegion] = useState('서울'); // 현재 활성 지역 상태
     
+    useEffect(()=>{
+        fetchCinemasByRegion(activeRegion)
+    },[])
+
     // 동적으로 "region" 값을 받아 영화관 목록을 서버에서 가져오는 함수
-    const fetchCinemasByRegion = async (region) => {
+    const fetchCinemasByRegion = async (region) => { //region = cinema
         setActiveRegion(region); // 지역 상태 업데이트
         try {
             const response = await axios.get(`/sallybox/reserv/cinemas/${region}`);
-            console.log("Fetched cinema list:", response.data); // 응답 데이터 확인
             setCinemaList(response.data); // 영화관 목록을 상태로 저장
+
+            const defaultCinema = response.data.find(cinema => cinema.name === '가산디지털')
+            if(defaultCinema){
+                handleCinemaClick(defaultCinema)
+            }else if(response.data.length>0){
+                handleCinemaClick(response.data[0]);
+            }
         } catch (error) {
             console.error("영화관 목록을 불러오는데 실패했습니다:", error);
         }

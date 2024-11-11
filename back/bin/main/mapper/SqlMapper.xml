@@ -220,12 +220,14 @@
     <!-- 리뷰 수정 -->
     <update id="updateReview" parameterType="com.example.demo.DTO.ZERO.ReviewsDTO">
         UPDATE MOVIEREVIEWS
-        SET REVIEW_TEXT = #{reviewText}, RATING = #{rating}, NICKNAME = #{nickname}
-        WHERE REVIEW_ID = #{reviewId} AND USER_ID = #{userId}
+        SET REVIEW_TEXT = #{reviewText}, RATING = #{rating}
+        WHERE REVIEW_ID = #{reviewId}
+        <!-- where review_id = #{reviewId} -->
     </update>
 
     <!-- 리뷰 삭제 -->
     <delete id="deleteReview" parameterType="map">
+        <!-- DELETE FROM MOVIEREVIEWS WHERE REVIEW_ID = #{review_id} AND USER_ID = #{user_id} -->
         DELETE FROM MOVIEREVIEWS WHERE REVIEW_ID = #{review_id} AND USER_ID = #{user_id}
     </delete>
 
