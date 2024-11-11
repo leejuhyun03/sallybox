@@ -40,7 +40,7 @@ const LookGogak = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://http://192.168.16.4:8085/api/inquiries");
+                const response = await axios.get("http://192.168.16.4:8085/api/inquiries");
                 console.log(response.data); // 응답 데이터 확인
                 setPosts(response.data);
                 setFilteredPosts(response.data);
