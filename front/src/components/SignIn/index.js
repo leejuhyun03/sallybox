@@ -149,7 +149,7 @@ export default function SignIn() {
                 <div className='text-link-container'>
                 <div className='text-link-lg full-width' onClick={onSignUpButtonClickHandler}>{'회원가입'}</div><div className='text-link-lg2'></div>
                 <div className='text-link-lg full-width' onClick={() => setIsEmailFindModalOpen(true)}> {'아이디 찾기'}</div><div className='text-link-lg2'></div>
-                <div className='text-link-lg full-width'><Link to={'/sallybox/verification'} style={{textDecoration: 'none', color: 'rgba(113, 113, 113, 1)'}}>{'비밀번호 찾기'}</Link></div>
+                <div className='text-link-lg full-width'><Link to={'/verification'} style={{textDecoration: 'none', color: 'rgba(113, 113, 113, 1)'}}>{'비밀번호 찾기'}</Link></div>
                 </div>
                 
                 <div className='sign-in-content-divider'></div>
