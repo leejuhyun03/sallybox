@@ -67,9 +67,9 @@ const ClassicMoviesPage = () => {
                                     <ul className="wrap__tage"></ul>
                                 </div>
                                 <span className="poster_infoe">
-                                    <img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/>
+                                <Link to={`/sallybox/movies/${movie.movieId}`}><img src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`} alt={movie.title}/></Link>
                                 </span>
-                                {
+                                {/* {
                                 hoveredMovieId === movie.movieId &&
                                 <div className="over_boxe">
                                     <div className="innere" style={{marginTop: '-33px'}}>
@@ -77,16 +77,16 @@ const ClassicMoviesPage = () => {
                                         <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3e ty3">상세정보</Link>
                                     </div>
                                 </div>
-                                }
+                                } */}
                             </div>
-                            <div className="btm_infoe">
-                                <span className="ic_grade gr_12">
+                            <div className="btm_infoe" style={{marginTop: 0}}>
+                                <span className="ic_gradee gr_12">
                                     <img src={getAgeRatingImg(movie.certification)} alt={movie.certification}/>
                                 </span>
-                                <strong className="tit_info" style={{marginLeft: '7px'}}>{movie.title}</strong>
-                                <span className="sub_info1">
+                                <strong className="tit_infoe" style={{marginLeft: '7px', display: 'inline-block'}}>{movie.title}</strong>
+                                <span className="sub_info1e">
                                     <span className="timee blacktypef"><span className="robotof">{moment(movie.releaseDate).format('YYYY.MM.DD')}&nbsp;개봉</span></span>
-                                    <span className="star_info">{parseFloat(movie.voteAverage).toFixed(1)}</span>
+                                    <span className="star_infof">{parseFloat(movie.voteAverage).toFixed(1)}</span>
                                 </span>
                             </div>
                         </li>

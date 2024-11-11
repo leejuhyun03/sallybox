@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import "../../css/jy/Gogaksenter.css";
 import "../../css/jy/Gogakregistration.css";
 import "../../css/jy/tab.css";
-import "../../css/jy/nav.css";
 
 import qowndyd from "../../image/temp_1728880786084.1233137906.jpeg";
 

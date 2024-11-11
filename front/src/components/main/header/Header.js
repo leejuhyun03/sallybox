@@ -38,22 +38,12 @@ const Header = () => {
     setIsAuthenticated(false); // 인증 상태 업데이트
   };
 
-  useEffect(() => {
-    const modalStatus = localStorage.getItem('modalStatus');
-    if (modalStatus === 'open') {
-      setIsShow(true); // 로컬 스토리지에 'open'이 저장되어 있으면 모달을 연다
-    }
-  }, []);
-
   const onOpen = () => {
-    // 페이지 새로고침 후 모달을 열기 위해 로컬 스토리지에 저장
-    localStorage.setItem('modalStatus', 'open');
-    window.location.reload(); // 페이지 새로고침
+    setIsShow(true)
   };
 
   const onClose = () => {
     setIsShow(false);
-    localStorage.removeItem('modalStatus'); // 모달 닫을 때 로컬 스토리지에서 값 제거
   };
 
   let onTrue1 = () => {
@@ -76,6 +66,13 @@ const Header = () => {
     setVisible2(false)
   }
 
+  useEffect(() => {
+    // 페이지를 새로 고침하기 전에 이전 상태를 확인하여 리로드가 한 번만 일어나도록 함
+    if (!sessionStorage.getItem('hasReloaded')) {
+      sessionStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
+    }
+  }, [userId]);
 
   return (
   <>
@@ -85,7 +82,7 @@ const Header = () => {
         <div className='gnb'>
         <ul className="g_menu2">
           <li><a href='#'>멤버십</a></li>
-          <li><a href='http://localhost:3000/sallybox/gogaksenter'>고객센터</a></li>
+          <li><a href='http://192.168.16.4:3000/sallybox/gogaksenter'>고객센터</a></li>
           <li><a href='#'>단체관람/대관문의</a></li>
           {
             isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
@@ -96,10 +93,10 @@ const Header = () => {
         </ul>
         <ul className="g_menu3">
         {
-          isAuthenticated ? <li><Link className='btn_my' to={'/sallybox'}>마이</Link></li>
+          isAuthenticated ? <li><Link className='btn_my' to={`/sallybox/mypage/${userId}`}>마이</Link></li>
                           : <li><Link className='btn_my' to={'/sallybox/sign-up'}>회원가입</Link></li>
         }
-          <li><a href="http://localhost:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
+          <li><a href="http://192.168.16.4:3000/sallybox/reserv/ticketing" className="btn_reserve">바로 예매</a></li>
           <li><button className="btn_menu_all" onClick={() => onOpen(true)}>전체 메뉴 레이어 열기</button></li>
           {
               isShow && <HeaderModal onClose = {onClose} userName = {userName} userPoint = {userPoint}/>
@@ -107,10 +104,10 @@ const Header = () => {
         </ul>
       </div>
 
-      <div id='nav' className='area__gnbmovingbar'>
+      <div id='navs' className='area__gnbmovingbar'>
         <ul>
           <li className='your-elements'>
-            <a href='http://localhost:3000/sallybox/reserv/ticketing' className='hover'>예매</a>
+            <a href='http://192.168.16.4:3000/sallybox/reserv/ticketing' className='hover'>예매</a>
           </li>
           <li className='your-elements'>
             <a href='#' className='hover' onMouseOver={onTrue1} onMouseLeave={onFalse1}>영화</a>
@@ -141,46 +138,46 @@ const Header = () => {
                   <a href="#" title="스페셜관">스페셜관</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/1" title="영화관_서울_가산디지털">가산디지털</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/2" title="영화관_서울_가양">가양</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/3" title="영화관_서울_강동">강동</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/4" title="영화관_서울_건대입구">건대입구</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/5" title="김포공항">김포공항</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/5" title="김포공항">김포공항</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/6" title="노원">노원</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/6" title="노원">노원</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/7" title="도곡">도곡</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/7" title="도곡">도곡</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/8" title="독산">독산</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/8" title="독산">독산</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/9" title="서울대입구">서울대입구</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/10" title="수락산">수락산</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/10" title="수락산">수락산</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/11" title="수유">수유</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/11" title="수유">수유</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/12" title="신대방(구로디지털역)">신대방(구로디지털역)</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/13" title="신도림">신도림</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/13" title="신도림">신도림</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/14" title="신림">신림</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/14" title="신림">신림</a>
                 </li>
                 <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                 <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
@@ -188,28 +185,28 @@ const Header = () => {
                 <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                 <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/15" title="에비뉴엘(명동)">에비뉴엘(명동)</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/16" title="영등포">영등포</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/16" title="영등포">영등포</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/17" title="월드타워">월드타워</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/17" title="월드타워">월드타워</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/18" title="은평">은평</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/18" title="은평">은평</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/19" title="중랑">중랑</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/19" title="중랑">중랑</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/20" title="청량리">청량리</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/20" title="청량리">청량리</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/21" title="합정">합정</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/21" title="합정">합정</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
+                  <a href="http://192.168.16.4:3000/sallybox/cinema/22" title="홍대입구">홍대입구</a>
                 </li>
               </ul> 
             </div>

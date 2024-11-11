@@ -8,6 +8,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoIosPlay } from "react-icons/io";
 import MovieDetail from './MovieDetail';
+import { useUser } from '../../context/UserContext';
 
 const MoviePage = () => {
     const { movie_id } = useParams();
@@ -20,24 +21,27 @@ const MoviePage = () => {
     const [loadingWishlist, setLoadingWishlist] = useState(false); // 위시리스트 로딩 상태
     const [error, setError] = useState(null);
     const [isMovieNowPlaying, setIsMovieNowPlaying] = useState(false); // 영화 상영 여부 상태 추가
+
+    const { userId } = useUser();
+
     const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에 정의 --jwt
   
     useEffect(() => {
       const fetchMovieDetails = async () => {
           try {
-              const response = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}`);
+              const response = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}`);
               console.log(response.data);
               if (response.data) {
                   setMovieDetails(response.data);
                   setLoading(false); // 영화 정보 로딩 완료
               }
 
-               const existsResponse = await axios.get(`http://localhost:8085/sallybox/nowmovies/exists/${movie_id}`);
+               const existsResponse = await axios.get(`http://192.168.16.4:8085/sallybox/nowmovies/exists/${movie_id}`);
                setIsMovieNowPlaying(existsResponse.data); // 상영 여부 상태 설정
 
-              const statusResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/status`, {
+              const statusResponse = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/status`, {
                   params: {
-                      user_id: 1,
+                      user_id: userId,
                       movie_id: movie_id
                   }
               });
@@ -57,9 +61,8 @@ const MoviePage = () => {
         setLoadingWishlist(true);
         
         try {
-            const response = await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/toggle`, {
-                userId: 1,
-                movieId: movie_id
+            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
+                params: {user_id: userId}
             });
 
             const newIsLiked = response.data.isLiked;
@@ -74,33 +77,37 @@ const MoviePage = () => {
         }
     };
 
+    //예매 페이지로 영화 정보 보내는 함수
     const handleBookingClick = () => {
-        const today = new Date();
-        const date = today.toLocaleDateString();
-        const time = today.toLocaleTimeString();
+
+      navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+
+        // const today = new Date();
+        // const date = today.toLocaleDateString();
+        // const time = today.toLocaleTimeString();
     
-        const movieData = {
-            movieId: movieDetails.movieId,
-            title: movieDetails.title,
-            posterPath: movieDetails.posterPath,
-            runtime: movieDetails.runtime,
-            certification: movieDetails.certification,
-            date: date,
-            time: time
-        };
+        // const movieData = {
+        //     movieId: movieDetails.movieId,
+        //     title: movieDetails.title,
+        //     posterPath: movieDetails.posterPath,
+        //     runtime: movieDetails.runtime,
+        //     certification: movieDetails.certification,
+        //     date: date,
+        //     time: time
+        // };
     
-        console.log("영화 세부 정보:", movieDetails);
-        console.log("전송할 영화 정보:", movieData);
+        // console.log("영화 세부 정보:", movieDetails);
+        // console.log("전송할 영화 정보:", movieData);
     
-        axios.post(`http://localhost:8085/sallybox/reserv/ticketing`, movieData)
-            .then(response => {
-                console.log("예매 정보가 성공적으로 전달되었습니다.");
-                console.log("응답 데이터:", response.data);
-                navigate(`/sallybox/reserv/ticketing`, { state: response.data });
-            })
-            .catch(error => {
-                console.error("예매 정보를 전달하는 중 에러 발생:", error);
-            });
+        // axios.post(`http://192.168.16.4:8085/sallybox/reserv/ticketing`, movieData)
+        //     .then(response => {
+        //         console.log("예매 정보가 성공적으로 전달되었습니다.");
+        //         console.log("응답 데이터:", response.data);
+        //         navigate(`/sallybox/reserv/ticketing`, { state: response.data });
+        //     })
+        //     .catch(error => {
+        //         console.error("예매 정보를 전달하는 중 에러 발생:", error);
+        //     });
     };
 
     if (loading) {

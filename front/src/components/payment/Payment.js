@@ -26,7 +26,7 @@ const Payment = () => {
                     <ReserveInfo/>
                 </div>
                 <div className='pay_method_wrap'>
-                    <PayMethod etUsePoint={setUsePoint}/>
+                    <PayMethod setUsePoint={setUsePoint}/>
                 </div>
                 <div className='payment_info_wrap'>
                     <PaymentInfo usePoint={usePoint}/>

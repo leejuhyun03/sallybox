@@ -14,11 +14,11 @@ const Movies = () => {
     const loadMovieData = async () => {
       try {
         // 영화 상세 정보 가져오기
-        const movieDetailsResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}`);
+        const movieDetailsResponse = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}`);
         setMovieDetails(movieDetailsResponse.data);
 
-        // // 출연진 정보 가져오기  -> 26없어도 되는지 확인할려고 함
-        // const creditsResponse = await axios.get(`http://localhost:8085/sallybox/movies/${movie_id}/credits`);
+        // 출연진 정보 가져오기  -> 26없어도 되는지 확인할려고 함
+        // const creditsResponse = await axios.get(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/credits`);
         // setCredits(creditsResponse.data);
       } catch (error) {
         console.error("Error loading movie data:", error);

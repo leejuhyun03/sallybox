@@ -1,6 +1,6 @@
 // InputBox.js
 import React, { forwardRef } from 'react';
-import './style.css';
+import '../../css/SignUp/inputboxindex.css';
 
 const InputBox = forwardRef((props, ref) => {
     const {

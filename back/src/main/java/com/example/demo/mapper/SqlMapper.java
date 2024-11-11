@@ -11,6 +11,13 @@ import com.example.demo.DTO.JH.SeatsDTO;
 import com.example.demo.DTO.JY.InquiryRequest;
 import com.example.demo.DTO.KH.CustomDTO;
 import com.example.demo.DTO.KH.NowMoviesDTO;
+import com.example.demo.DTO.SH.CustomerDTO;
+import com.example.demo.DTO.SH.MyBookingDTO;
+import com.example.demo.DTO.SH.MyMovieDTO;
+import com.example.demo.DTO.SH.MyPayDTO;
+import com.example.demo.DTO.SH.ProfileDTO;
+import com.example.demo.DTO.SH.UserDeactivationDTO;
+import com.example.demo.DTO.SH.UserUpdateDTO;
 import com.example.demo.DTO.ZERO.MovieDTO;
 import com.example.demo.DTO.ZERO.NowMovieDTO;
 import com.example.demo.DTO.ZERO.ReviewsDTO;
@@ -37,8 +44,9 @@ public interface SqlMapper {
     public void insertPayment(PaymentDTO paymentDTO);
 
     // 강현 Mapper
+    int findPassword(@Param("email") String email, @Param("name") String name);
     CustomDTO findByEmail(String email);
-    CustomDTO findByName(String name);
+    CustomDTO findByName(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
     void updatePassword(@Param("email") String email, @Param("password") String password);
     List<NowMoviesDTO> getNowMovies();
     List<NowMoviesDTO> getReccommendMovies();
@@ -70,21 +78,22 @@ public interface SqlMapper {
     void insertWishlist(@Param("userId") int userId, @Param("movieId") int movieId, @Param("genreIds") String genreIds); 
     void deleteWishlist(@Param("userId") int userId, @Param("movieId") int movieId); 
 
-    
+    /*1108 
     // 리뷰 관련 메서드
     void insertReview(ReviewsDTO reviewsDTO); // 리뷰 저장
     void updateReview(ReviewsDTO reviewsDTO); // 리뷰 수정
     void deleteReview(@Param("review_id") int reviewId, @Param("user_id") int userId); // 리뷰 삭제
     void deleteLikesByReviewId(@Param("review_id") int reviewId); // 리뷰에 대한 추천 삭제
     List<ReviewsDTO> findReviewsByMovieId(@Param("movieId") int movieId); // 영화 ID로 리뷰 목록 가져오기
-
-   
-
-    // 추천 관련 메서드
-    int isReviewLiked(@Param("review_id") int reviewId, @Param("user_id") int userId); // 추천 여부 확인
-    void addLike(@Param("review_id") int reviewId, @Param("user_id") int userId); // 추천 추가
-    void removeLike(@Param("review_id") int reviewId, @Param("user_id") int userId); // 추천 삭제
-    int countReviewLikes(@Param("review_id") int reviewId); // 추천수 가져오기
+    */
+    // 리뷰 관련 메서드
+    void saveReview(ReviewsDTO reviewsDTO); // 리뷰 저장
+    void updateReview(ReviewsDTO reviewsDTO); // 리뷰 수정
+    void deleteReview(@Param("review_id") int reviewId, @Param("user_id") int userId); // 리뷰 삭제
+    List<ReviewsDTO> findReviewsByMovieId(@Param("movieId") int movieId); // 영화 ID로 리뷰 목록 가져오기
+    int checkBookingExists(@Param("userId") int userId, @Param("movieId") int movieId);
+    // 리뷰의 작성자(user_id)를 가져오는 메서드 추가 - 본인 리뷰인지 확인
+    Integer getReviewOwner(@Param("review_id") int reviewId); // 수정했음!!
 
 
     //예매 관련 메서드
@@ -99,4 +108,28 @@ public interface SqlMapper {
 
     // movie_id가 nowmovies 테이블에 존재하는지 확인하는 메서드
     Integer existsByMovieId(int movieId); // XML에 정의된 쿼리를 사용하므로 어노테이션 불필요
+
+    //선호 Mapper
+    public CustomerDTO getCustomerInfo(int userId) throws Exception;
+
+    public List<MyMovieDTO> getWishlistMovies(int userId) throws Exception;
+
+    public int deleteFromWishlist(int userId, int movieId);
+    
+    public int deactivateUser(UserDeactivationDTO dto);
+
+    public int updateNickname(ProfileDTO profileDTO);
+
+    //회원정보수정
+    public int updateCustomer(UserUpdateDTO userUpdateDTO);
+
+    //예매 내역 띄우기
+    public List<MyBookingDTO> getBookingsByUserId(@Param("userId") int userId);
+
+    public List<MyPayDTO> getPaymentsByUserId(int userId);
+
+    public void deleteBooking(Long bookingNum);
+    public void deletePayment(Long bookingNum);
+    public void updateCustomerPoint(int userId,int pointUsage);
+
 }

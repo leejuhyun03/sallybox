@@ -12,6 +12,9 @@
     flex-grow: 1;
     padding: 0px;
 }
+.jycinema_area{
+    width: 318px;
+}
 
 .jycinema_list {
     padding-left: 0;

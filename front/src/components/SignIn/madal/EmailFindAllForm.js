@@ -6,6 +6,7 @@ function EmailFindAllForm({ isOpen, onClose, onFindEmail }) {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [birthday, setBirthday] = useState('');
+    const [genderCode, setGenderCode] = useState('');
     const [error, setError] = useState('');
     const [resultEmail, setResultEmail] = useState('');
 
@@ -13,7 +14,7 @@ function EmailFindAllForm({ isOpen, onClose, onFindEmail }) {
         e.preventDefault();
         setError('');
         
-        axios.post('/api/allfindEmail', { name })
+        axios.post('/api/allfindEmail', { name, phoneNumber })
         .then(response => {
             if (response.data) {
                 setResultEmail(response.data); // 결과 이메일 설정
@@ -34,14 +35,14 @@ function EmailFindAllForm({ isOpen, onClose, onFindEmail }) {
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="modal-contents">
                 <button className="close-button" onClick={onClose}>✖</button>
                 <h2>이메일 전체 찾기</h2>
                 <form onSubmit={handleSubmit}>
                     <h4>이름: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></h4>
                     <h4>휴대폰 번호: <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /></h4>
                     <h4>생년월일: <input type="text" value={birthday} onChange={(e) => setBirthday(e.target.value)} /></h4>
-                    <button type='submit'>이메일 찾기</button>
+                    <button className='buttond' type='submit'>이메일 찾기</button>
                 </form>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>

@@ -1,0 +1,64 @@
+.section > .row {
+    padding: 20px 0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.warning {
+    margin: 20px 0;
+    font-size: 16.5px;
+    line-height: 1.4;
+}
+
+/* GogakExit.css */
+
+.gogak-exit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 모달이 다른 요소들 위에 보이도록 */
+}
+
+.gogak-exit-modal {
+    background-color: white; /* 모달 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px; /* 모달 너비 */
+    max-width: 90%; /* 최대 너비 */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.confirm-button,
+.cancel-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm-button {
+    background-color: #ff4d4d; /* 탈퇴 진행 버튼 색 */
+    color: white;
+}
+
+.cancel-button {
+    background-color: #007bff; /* 탈퇴 취소 버튼 색 */
+    color: white;
+}

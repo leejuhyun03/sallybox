@@ -148,7 +148,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     //리뷰리뷰
-
+    /*1108 
     // 트랜잭션 처리 추가: 리뷰 저장
     // 리뷰 저장
     @Override
@@ -180,30 +180,58 @@ public class MovieServiceImpl implements MovieService {
     public void deleteReview(int reviewId, int userId) {
         sqlMapper.deleteReview(reviewId, userId);  // 리뷰 삭제
     }
+    */
+
+    // 리뷰 저장
+    // 리뷰 저장
+    @Override
+    @Transactional
+    public void saveReview(ReviewsDTO reviewsDTO) {
+        // 리뷰 텍스트가 null이거나 10글자 미만이면 저장하지 않음
+        // if (reviewsDTO.getReviewText() == null || reviewsDTO.getReviewText().length() < 10) {
+        //     throw new RuntimeException("리뷰는 최소 10글자 이상이어야 합니다.");
+        // }
+        System.out.println("사용자 ID: " + reviewsDTO.getUserId());
+        System.out.println("영화 ID: " + reviewsDTO.getMovieId());
+
+        // // 예약 기록 확인
+        // int bookingCount = sqlMapper.checkBookingExists(reviewsDTO.getUserId(), reviewsDTO.getMovieId());
+        // System.out.println("예약 개수: " + bookingCount);
+        // if (bookingCount <= 0) {
+        //     throw new RuntimeException("해당 영화에 대한 예약이 있어야 리뷰를 작성할 수 있습니다.");
+        // }
+
+        // createdAt 필드에 현재 시간을 설정
+        reviewsDTO.setCreatedAt(ZonedDateTime.now(ZoneId.of("Asia/Seoul")));
+        sqlMapper.saveReview(reviewsDTO); // 리뷰 저장
+    }
+
+    @Override
+    public boolean checkBookingExists(int userId, int movieId) {
+        int count = sqlMapper.checkBookingExists(userId, movieId);
+        return count > 0; // 예약이 있으면 true, 없으면 false 반환
+    }
+
+    // 리뷰 수정
+    @Override
+    @Transactional
+    public void updateReview(ReviewsDTO reviewsDTO) {
+        sqlMapper.updateReview(reviewsDTO); // 리뷰 수정
+    }
+
+    // 리뷰 삭제
+    @Override
+    @Transactional
+    public void deleteReview(int reviewId, int userId) {
+        sqlMapper.deleteReview(reviewId, userId); // 리뷰 삭제
+    }
+    
 
     // 특정 영화의 리뷰 목록 가져오기
     @Override
     @Transactional(readOnly = true)
     public List<ReviewsDTO> getReviewsByMovieId(int movieId) {
         return sqlMapper.findReviewsByMovieId(movieId); // 리뷰 목록 가져오기
-    }
-
-    // 추천 토글 방식: 추천 추가 또는 삭제
-    @Override
-    @Transactional
-    public void toggleLikeReview(int reviewId, int userId) {
-        if (sqlMapper.isReviewLiked(reviewId, userId) == 0) {
-            sqlMapper.addLike(reviewId, userId); // 추천 추가
-        } else {
-            sqlMapper.removeLike(reviewId, userId); // 추천 취소
-        }
-    }
-
-    // 리뷰 추천수 계산
-    @Override
-    @Transactional(readOnly = true)
-    public int getLikesCount(int reviewId) {
-        return sqlMapper.countReviewLikes(reviewId); // REVIEW_LIKES 테이블에서 추천 수 계산
     }
 
     //예매페이지!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -246,6 +274,8 @@ public class MovieServiceImpl implements MovieService {
     public boolean checkIfMovieExists(int movieId) {
         return sqlMapper.existsByMovieId(movieId) != null;
     }
+
+    
 
 
 }

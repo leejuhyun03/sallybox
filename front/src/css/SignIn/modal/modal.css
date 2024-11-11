@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.modal-content {
+.modal-contents {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -41,4 +41,10 @@
 /* 마우스 호버 시 스타일 */
 .link:hover {
     color: red; /* 마우스 호버 시 빨간색 */
+}
+
+.buttond {
+    border: 1px solid #DDD !important;
+    cursor: pointer !important;
+    background-color: #fff !important;
 }

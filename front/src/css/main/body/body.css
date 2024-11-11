@@ -18,7 +18,7 @@
 
 .contents_main .movi_current_list {
     position: static;
-    margin-top: -100px;
+    margin-top: -75px;
     margin-bottom: 50px;
 }
 
@@ -167,6 +167,50 @@
     padding: 0 14px;
 }
 
+.testf {
+    overflow: inherit;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.testf::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 260px;
+    background: #000;
+    opacity: 0.7;
+    border-radius: 4px;
+}
+
+.testf .in {
+    position: absolute;
+    z-index: 1;
+    top: 30%;
+    left: 0;
+    right: 0;
+    padding: 0 18px;
+    color: #FFF;
+    text-align: center;
+}
+
+.testf .in .btn_col3s {
+    display: block;
+    line-height: 26px;
+    margin-top: 10px;
+    background: transparent;
+    color: #fff !important;
+    border-color: #fff;
+    height: 28px;
+    padding: 0 14px;
+}
+
 .btn_col3s {
     box-sizing: border-box;
     border-radius: 4px;
@@ -190,7 +234,7 @@
 }
 
 li {
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-bottom: 50px;
     margin: 0 0;
 }
@@ -228,7 +272,7 @@ li {
     text-align: center;
 }
 
-.ic_grade {
+.ic_gradeb {
     display: inline-block;
     width: 22px;
     height: 22px;
@@ -239,18 +283,18 @@ li {
     vertical-align: middle;
 }
 
-.ic_grade.gr_15:before {
+.ic_gradeb.gr_15:before {
     background-size: 100%;
 }
 
-.ic_grade.gr_all:before, .ic_grade.gr_12:before, .ic_grade.gr_15:before, .ic_grade.gr_18:before, .ic_grade.gr_19:before, .ic_grade.gr_non:before, .ic_grade:before {
+.ic_gradeb.gr_all:before, .ic_gradeb.gr_12b:before, .ic_gradeb.gr_15:before, .ic_gradeb.gr_18:before, .ic_gradeb.gr_19:before, .ic_gradeb.gr_non:before, .ic_gradeb:before {
     content: "";
     display: block;
     width: 22px;
     border-radius: 3px;
 }
 
-.ic_grade:before {
+.ic_gradeb:before {
     margin-left: -5px;
     font-size: 13px;
     font-weight: bold;
@@ -259,47 +303,47 @@ li {
     padding-right: 6px;
 }
 
-.sub_info1 {
+.sub_info1b {
     display: block;
     margin-top: 5px;
     margin-bottom: 10px;
     font-size: 11px;
 }
 
-.sub_info1 > span:first-child {
+.sub_info1b > span:first-child {
     margin-left: 0  ;
 }
 
-.sub_info1 > span {
+.sub_info1b > span {
     position: relative;
     margin-left: 8px;
     font-family: 'Roboto', "Noto Sans KR";
 }
 
-.sub_info1 > span:first-child {
+.sub_info1b > span:first-child {
     margin-left: 0px;
 }
 
-.sub_info1 > span {
+.sub_info1b > span {
     position: relative;
     margin-left: 8px;
     font-family: 'Roboto', "Noto Sans KR";
 }
 
-.sub_info1 .star_info {
+.sub_info1b .star_infob {
     padding-left: 22px;
     font-weight: bold;
     background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/movie/ic_star.png) no-repeat 9px 20%;
     border-right: 1px;
 }
 
-.sub_info1 > span {
+.sub_info1b > span {
     position: relative;
     margin-left: 8px;
     font-family: 'Roboto', "Noto Sans KR";
 }
 
-.sub_info1 .time.blacktype:before {
+.sub_info1b .timeb.blacktypeb:before {
     content: '';
     position: absolute;
     top: 0;
@@ -311,11 +355,11 @@ li {
     background-size: 100%;
 }
 
-.sub_info1 > span:first-child:before {
+.sub_info1b > span:first-child:before {
     display: none;
 }
 
-.sub_info1 > span:before {
+.sub_info1b > span:before {
     border-left: #B2B2B2;
     content: '';
     display: inline-block;
@@ -327,7 +371,7 @@ li {
     background: #B2B2B2;
 }
 
-.sub_info1 .time.blacktype {
+.sub_info1b .timeb.blacktypeb {
     position: relative;
     padding-left: 15px;
     font-weight: 600;
@@ -475,7 +519,7 @@ li {
     line-height: 15px;
 }
 
-.btm_info {
+.btm_infob {
     display: block;
     overflow: hidden;
     white-space: nowrap;

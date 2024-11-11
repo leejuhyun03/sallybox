@@ -27,10 +27,8 @@ public interface MovieService {
     void updateReview(ReviewsDTO reviewsDTO); // 리뷰 수정
     void deleteReview(int reviewId, int userId); // 리뷰 삭제 (추천 삭제 포함)
     List<ReviewsDTO> getReviewsByMovieId(int movieId); // 영화 ID로 리뷰 목록 가져오기
+    boolean checkBookingExists(int userId, int movieId); // 예약 체크 메서드 추가
 
-    // 리뷰 추천 기능 메소드
-    void toggleLikeReview(int reviewId, int userId); // 추천 토글 (추가/삭제)
-    int getLikesCount(int reviewId); // 리뷰의 추천 수 계산
 
     // 예매 페이지 관련 메소드 추가
     CinemaDTO getCinemaInfojy(int cinema_id); // 영화관 정보 조회

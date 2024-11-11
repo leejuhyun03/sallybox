@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../css/jy/tab.css';
-import '../../css/jy/nav.css';
 import '../../css/jy/Gogaksenter.css';
 import '../../css/jy/Gogakregistration.css';
 import { Link } from 'react-router-dom';
@@ -41,7 +40,7 @@ const LookGogak = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8085/api/inquiries");
+                const response = await axios.get("http://http://192.168.16.4:8085/api/inquiries");
                 console.log(response.data); // 응답 데이터 확인
                 setPosts(response.data);
                 setFilteredPosts(response.data);
@@ -91,7 +90,7 @@ const LookGogak = () => {
         }
         console.log("Sending update request with data:", JSON.stringify(currentPost));
         try {
-            const response = await axios.put(`http://localhost:8085/api/inquiries`, currentPost, {
+            const response = await axios.put(`http://192.168.16.4:8085/api/inquiries`, currentPost, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -117,7 +116,7 @@ const LookGogak = () => {
         }
 
         try {
-            const response = await axios.delete(`http://localhost:8085/api/inquiries`, { data: { title: post.title } });
+            const response = await axios.delete(`http://192.168.16.4:8085/api/inquiries`, { data: { title: post.title } });
             console.log("게시물이 성공적으로 삭제되었습니다:", response.data);
 
             const updatedPosts = posts.filter(p => p.title !== post.title || p.email !== post.email);

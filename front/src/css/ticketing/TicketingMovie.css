@@ -23,6 +23,7 @@
     height: 100%; /* 상위 요소의 높이에 맞추기 */
     background-color: #ddd;
     overflow-y: auto;
+    cursor: pointer;
     
 }
 
@@ -187,6 +188,7 @@
     align-items: center;
     min-width: 100px;
     margin-top: 0; /* 상단 공백 제거 */
+    cursor: pointer;
 
 }
 

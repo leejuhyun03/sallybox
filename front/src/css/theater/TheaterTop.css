@@ -57,7 +57,8 @@
 }
 
 .theater_info dt{
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: normal;
     margin-right: 10px;
     display: inline-block;
 }

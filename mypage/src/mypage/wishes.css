@@ -1,0 +1,238 @@
+
+
+.mypage_wrap {
+    margin-top: 30px;
+    padding-top: 35px;
+}
+
+.title_sub_area {
+    position: relative;
+    min-height: 40px;
+}
+
+.title_sub_area .left_area {
+    float: left;
+    padding-top: 12px;
+    font-size: 10px;
+}
+
+.title_sub_area .left_area .title {
+    display: inline-block;
+}
+
+.title_sub_area .left_area .sub {
+    margin-left: 22px;
+    font-size: 22px;
+}
+
+.title_sub_area:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.my_movie_list {
+    margin-left: -40px;
+}
+
+.my_movie_list::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+/* ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+} */
+
+element.style {
+    display: block;
+}
+
+.my_movie_list li:first-child, .my_movie_list li:first-child + li {
+    margin-top: 0;
+}
+
+.my_movie_list li {
+    position: relative;
+    float: left;
+    margin-left: 40px;
+    margin-top: 40px;
+    padding-left: 204px;
+    width: 246px;
+    min-height: 262px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.my_movie_list .poster {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 184px;
+    height: 262px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.mypage_wrap .my_movie_list .tit {
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.my_movie_list .tit {
+    display: block;
+    padding-top: 3px;
+    font-size: 21px;
+}
+strong {
+    font-weight: bold;
+}
+
+.my_movie_list .tit .ic_grade {
+    margin-top: -4px;
+    margin-right: 8px;
+}
+
+.ic_grade {
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    line-height: 23px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ic_grade.gr_15:before {
+    background: url(../assets/grade_15.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+    background:  url(../assets/grade_all.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.ic_grade.gr_19:before {
+    background:  url(../assets/pc_grade_19.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.ic_grade.gr_12:before {
+    background:  url(../assets/grade_12.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.ic_grade.gr_all:before, .ic_grade.gr_12:before, .ic_grade.gr_15:before, .ic_grade.gr_18:before, .ic_grade.gr_19:before, .ic_grade.gr_non:before, .ic_grade:before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 32px;
+    border-radius: 3px;
+}
+.ic_grade.gr_15:before {
+    content: "15";
+    font-family: "Roboto";
+}
+
+.my_movie_list .detail_info.ty1 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    height: 17px;
+   
+}
+.my_movie_list .detail_info {
+    padding-top: 3px;
+    min-height: 75px;
+}
+
+.my_movie_list .btn_box {
+    position: absolute;
+    left: 204px;
+    bottom: 0;
+    font-size: 0;
+    margin-top: 10px;
+}
+
+.btn_col1.rnd, .btn_col2.rnd, .btn_col3.rnd, .btn_col4.rnd, .btn_col5.rnd, .btn_col6.rnd, .btn_col7.rnd, .btn_col8.rnd, .btn_col9.rnd, .btn_col10.rnd {
+    border-radius: 52px;
+    color: black;
+}
+.btn_col1.ty2, .btn_col2.ty2, .btn_col3.ty2, .btn_col4.ty2, .btn_col5.ty2, .btn_col6.ty2, .btn_col7.ty2, .btn_col8.ty2, .btn_col9.ty2, .btn_col10.ty2 {
+    height: 25px;
+    line-height: 23px;
+    padding: 0 12px;
+}
+
+.btn_col3 {
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    color: #000000 !important;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.txt_ic_booking {
+    padding-left: 21px;
+    font-size: 11px;
+    background: url(../assets/booking_16.png) no-repeat 0 center;
+}
+
+
+/* 리뷰 내용 폰트 크기 및 왼쪽으로 살짝 이동 */
+.my_movie_list .review_box dd {
+    font-size: 12px; /* 리뷰 내용의 폰트 크기를 11px로 줄임 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    margin-left: 5px; /* 리뷰 내용을 왼쪽으로 5px 이동 */
+}
+
+.mypage_wrap .my_movie_list .review_box dd {
+    margin-left: 10px;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    letter-spacing: -.8px;
+    height: 75px;
+    overflow-y: auto;
+}
+
+/* 리뷰 박스를 버튼 위로 이동시키고, 왼쪽으로 더 이동 */
+.my_movie_list .review_box {
+    margin-bottom: 10px; /* 아래쪽에 10px 간격 추가 */
+    
+    position: relative;
+    margin-left: -20px; /* 전체 리뷰 박스를 왼쪽으로 20px 이동 */
+}
+
+.my_movie_list .review_box dt {
+    color: #FF7787;
+    font-size: 12px;
+    font-family: "Roboto";
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
