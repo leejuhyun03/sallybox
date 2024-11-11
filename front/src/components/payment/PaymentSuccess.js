@@ -90,7 +90,7 @@ const PaymentSuccess = () => {
                         <div className='payment_fin_wrap'>
                             <div className='payment_top_notice'>
                                 <img src={topNotice} alt='카드'/>
-                                <strong>"{userName}" 회원님, 결제가 성공적으로 완료되었습니다.</strong>
+                                <strong style={{fontSize:'20px'}}>"{userName}" 회원님, 결제가 성공적으로 완료되었습니다.</strong>
                             </div>
                             <div className='reserve_result_wrap'>
                                 <div className='infor_result_wrap'>

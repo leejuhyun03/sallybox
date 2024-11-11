@@ -1,6 +1,9 @@
 package com.example.demo.DTO.JH;
 
+import java.sql.Timestamp;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +16,6 @@ public class PaymentDTO {
     private long bookingNum;
     private String paymentMethod;
     private int price;
-    private Date paymentDate; 
+    private String paymentDate; 
     private int pointUsage;
 }
