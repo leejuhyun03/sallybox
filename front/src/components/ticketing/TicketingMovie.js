@@ -371,7 +371,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                         </div>
                                         
                                         
-                                        
                                         <div className="jytime_scroll_select_buttons">
                                             {schedules.map(schedule => (
                                                 <button

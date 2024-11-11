@@ -67,7 +67,9 @@ const NowMovies = ({hoveredMovieId, onOpen, onClose}) => {
                             hoveredMovieId === movie.movieId &&
                             <div className="over_boxe">
                                 <div className="innere" style={{marginTop: '-33px'}}>
-                                <Link to={'/sallybox/reserv/ticketing'} className="btn_col3e ty3" style={{marginTop: '0'}}>예매하기</Link>
+                                <Link to={'/sallybox/reserv/ticketing'} className="btn_col3e ty3" style={{marginTop: '0'}}
+                                    onClick={() => localStorage.setItem('selectedMovieId', movie.movieId)}
+                                >예매하기</Link>
                                     <Link to={`/sallybox/movies/${movie.movieId}`} className="btn_col3e ty3">상세정보</Link>
                                 </div>
                             </div>

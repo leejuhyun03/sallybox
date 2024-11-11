@@ -25,19 +25,21 @@ const Ticketing = () => {
     };
 
     const onScheduleSelect = (schedule) => { //예매 페이지에서 schedule 선택하면 bookingData에 set
-
         // console.log(schedule) 넘어옴
         setBookingData({
             schedule:schedule
         })
-
         navigate('/sallybox/reserv/seats');
-
     }
 
+    // 영화 ID를 localStorage에서 가져와서 상태에 설정
     useEffect(() => {
-        console.log("선택된 영화관:", selectedCinema);
-    }, [selectedCinema]);
+        const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
+        if (storedMovieId) {
+            setSelectedMovie(storedMovieId)
+        }
+    }, []);  // 컴포넌트가 처음 렌더링될 때 실행
+
 
     // cinema_id를 URL로 가져와서 해당 영화관의 정보를 API로 요청하고, 그 결과로 cinemaDTO와 schedules 데이터를 받아옴
     // setCinemaDTO와 setScheduleMap을 통해 상태로 저장
@@ -99,6 +101,7 @@ const Ticketing = () => {
                             scheduleMap={scheduleMap}
                             setSelectedCinema={setSelectedCinema}
                             onScheduleSelect={onScheduleSelect}
+                            selectedMovie={selectedMovie}
                         />
                     </div>
                 </div>
