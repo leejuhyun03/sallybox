@@ -70,7 +70,7 @@ const ResetPassword = () => {
             <div className='sign-in-container'></div>
             <div className='sign-in-box'></div>
             <div className='sign-in-title' style={{marginLeft: '-5px'}}>
-                <Link to={'/'}><div className='SALLYBOX-logo-button'></div></Link>
+                <Link to={'/'}><div className='SALLYBOX-logo-button'>Sallybox</div></Link>
             </div>
             <div className='sign-in-content-box'>
                 <div style={{fontSize: '25px', opacity: '0.65', marginBottom: '10px'}}><strong>새 비밀번호 설정</strong></div>

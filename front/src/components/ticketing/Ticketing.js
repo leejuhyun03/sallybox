@@ -44,7 +44,7 @@ const Ticketing = () => {
     useEffect(() => {
         if (cinema_id) {
             axios
-                .get(`http://localhost:8085/sallybox/cinemajy/${cinema_id}`)
+                .get(`http://192.168.16.4:8085/sallybox/cinemajy/${cinema_id}`)
                 .then((response) => {
                     // response가 DTO 형태 (cinemaDTO, Map<Integer, List<ScheduleDTO>>)
                     setCinemaDTO(response.data.cinemaDTO);

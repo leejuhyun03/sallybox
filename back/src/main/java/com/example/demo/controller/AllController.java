@@ -371,8 +371,6 @@ public class AllController {
         return movieList; // 영화 리스트 반환
     }
    
-   
-    
 
     private MovieDTO createMovieFromJson(JsonNode movieJson) throws Exception {
         MovieDTO movie = new MovieDTO();

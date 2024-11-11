@@ -14,7 +14,7 @@ const LeftHeader = () => {
         <div  className='reserv_header'>
                 <ul>                    
                     <li>    
-                        <a href='http://localhost:3000/sallybox/reserv/ticketing' style={getLinkStyle('/sallybox/reserv/ticketing')}>                        
+                        <a href='http://192.168.16.4:3000/sallybox/reserv/ticketing' style={getLinkStyle('/sallybox/reserv/ticketing')}>                        
                             <strong style={getLinkStyle('/sallybox/reserv/ticketing')}>
                                 <span>01</span><br/>
                                 상영 시간
@@ -22,7 +22,7 @@ const LeftHeader = () => {
                         </a>                         
                     </li>                 
                     <li>        
-                        <a href='http://localhost:3000/sallybox/reserv/seats' style={getLinkStyle('/sallybox/reserv/seats')}>                    
+                        <a href='http://192.168.16.4:3000/sallybox/reserv/seats' style={getLinkStyle('/sallybox/reserv/seats')}>                    
                             <strong style={getLinkStyle('/sallybox/reserv/seats')}>
                                 <span>02</span><br/>
                                 인원/좌석
