@@ -54,7 +54,7 @@ const Ticketing = () => {
                     // object 형태로 넘어온 걸 map 형태로 변환 (map이 Object(배열) 형태로 넘어옴)
                     if (response.data.schedules) {
                         const scheduleMap = new Map(Object.entries(response.data.schedules));
-                        console.log(scheduleMap)
+                        // console.log(scheduleMap)
                         setScheduleMap(scheduleMap);
                     } else {
                         console.warn('schedules is undefined or null');
