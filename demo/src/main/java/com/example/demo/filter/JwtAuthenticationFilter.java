@@ -24,7 +24,7 @@ import com.example.demo.entity.UserEntity;
 import com.example.demo.provider.JwtProvider;
 import com.example.demo.repository.UserRepository;
 
-
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -38,41 +38,44 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         
-            try {
-                
-                String token = parseBearerToken(request);
-                if(token ==null){
-                    filterChain.doFilter(request, response);
-                    return;
-                }
-
-                String email = jwtProvider.validate(token);
-                if(email ==null){
-                    filterChain.doFilter(request, response);
-                    return;
-                }
-
-                UserEntity userEntity = userRepository.findByEmail(email);
-                String role = userEntity.getRole(); //role :ROLE_USER, ROLE_ADMIN
-
-                // ROLE_DEVELOPER , ROLE_BOSS
-                List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority(role));
-
-                //빈 context생성 filter와 servlet연결 과정
-                SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-                AbstractAuthenticationToken authenticationToken = 
-                    new UsernamePasswordAuthenticationToken(email, null,authorities);
-
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                securityContext.setAuthentication(authenticationToken);
-                SecurityContextHolder.setContext(securityContext);
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            String token = parseBearerToken(request);
+            if (token == null) {
+                filterChain.doFilter(request, response);
+                return;
             }
-            filterChain.doFilter(request, response);
+
+            Claims claims = jwtProvider.validate(token);
+            if (claims == null) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            String email = claims.get("email", String.class);
+            UserEntity userEntity = userRepository.findByEmail(email);
+            if (userEntity == null) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            String role = userEntity.getRole();
+
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority(role));
+
+            SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+            AbstractAuthenticationToken authenticationToken = 
+                new UsernamePasswordAuthenticationToken(email, null, authorities);
+
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+            securityContext.setAuthentication(authenticationToken);
+            SecurityContextHolder.setContext(securityContext);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        filterChain.doFilter(request, response);
     }
 
    private String parseBearerToken(HttpServletRequest request){//토큰값가져오기

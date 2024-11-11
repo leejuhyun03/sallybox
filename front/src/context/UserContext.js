@@ -11,6 +11,7 @@ export function UserProvider({ children }) {
   const [userNickName, setUserNickName] = useState('');
   const [userPoint, setUserPoint] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  console.log('OAuth: ', userId, userName,userNickName, userPoint, isAuthenticated)
 
   return (
     <UserContext.Provider value={{ userId, setUserId, userName, setUserName, 

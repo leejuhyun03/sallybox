@@ -1,24 +1,54 @@
 import React, { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import { useUser } from '../../../context/UserContext';
 
-export default function OAuth() {
-    const { token, expirationTime } = useParams();
-    const [cookie, setCookie] = useCookies();
+function OAuth() {
+    const { token } = useParams();
     const navigate = useNavigate();
 
+    const {setUserId, setUserName, setUserNickName, setUserPoint, setIsAuthenticated} = useUser();
+
     useEffect(() => {
-        if (!token || !expirationTime) return;
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(decodeURIComponent(token));
+                console.log('accessToken:'+decodeURIComponent(token));
+                console.log('userId:'+decodedToken.userId);
+                console.log('email:'+decodedToken.email);
+                console.log('name:'+decodedToken.name);
+                console.log('nickname:'+decodedToken.nickname);
+                console.log('accepointsssToken:'+decodedToken.points);
+                
+                
+                // localStorage에 토큰 정보 저장
+                localStorage.setItem('accessToken', decodeURIComponent(token));
+                localStorage.setItem('userId', decodedToken.userId);
+                localStorage.setItem('email', decodedToken.email);
+                localStorage.setItem('name', decodedToken.name);
+                localStorage.setItem('nickname', decodedToken.nickname);
+                localStorage.setItem('points', decodedToken.points);
 
-        const now = (new Date().getTime()) * 1000;
-        const expires = new Date(now + Number(expirationTime));
+                setUserId(decodedToken.userId);
+                setUserName(decodedToken.name);
+                setUserNickName(decodedToken.nickname);
+                setUserPoint(decodedToken.points);
+                setIsAuthenticated(true);
+                console.log("Token decoded and information stored in localStorage");
 
-        setCookie('accessToken', token, { expires, path: '/' });
+                // 홈 페이지나 대시보드로 리다이렉트
+                navigate('/');
+            } catch (error) {
+                console.error("Error decoding token:", error);
+                navigate('/login');
+            }
+        } else {
+            console.error("No token received");
+            navigate('/login');
+        }
+    }, [token, navigate]);
 
-        navigate('/');
-    }, [token, expirationTime, navigate, setCookie]);
-
-    return (
-        <div>OAuth</div>
-    );
+    return <div>Processing OAuth response...</div>;
 }
+
+export default OAuth;
