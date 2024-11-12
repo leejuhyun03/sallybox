@@ -1,6 +1,7 @@
 .article_wrap{
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 .jh_group_top{
     height: 55px;
@@ -10,17 +11,19 @@
     text-align: center;
     width: 100%;
     background-color: black;
+    color: white;
 }
-.group_top h4 {
+.jh_group_top h4 {
     margin: 0; /* 좌우 마진 초기화 */
     padding: 0; /* 패딩 초기화 */
+    font-size: 20px;
 }
 .inner{
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     /* align-items: center; */
+    height: 100%;
 }
 .reserve_movie_info{
     display: flex;
@@ -32,8 +35,8 @@
 }
 .reserve_movie_info img{
     margin: 15px;
-    width: 150px;
-    height: 180px;
+    width: 170px;
+    height: 200px;
 }
 .reserve_movie_title_info{
     width: 100%;
@@ -46,34 +49,52 @@
     box-sizing: border-box;
 }
 .reserve_movie_title_info img{
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
 }
-dl{
+.reserve_movie_info dl{
     display: table;
     margin: 0 auto;
     text-align: left;
 }
-dt, dd {
+.reserve_movie_info dt, dd {
     display: table-row; /* dt와 dd를 행처럼 표시 */
     margin: 0;
     padding: 0;
 }
-dt{
+.reserve_movie_info dt{
     font-weight: bold; 
+    font-size: 18px;
 }
-dd{
+.reserve_movie_info dd{
     padding-left: 10px;
+    font-size: 15px;
+    margin: 10px 0;
 }
 .reserve_seat_info{
     width: 100%;
-    margin: 20px 0;
-    text-align: left !important;
+    text-align: left;
     border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.reserve_seat_info dt{
+    font-size: 18px;
+    font-weight: bold;
+}
+.reserve_seat_info dd{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.reserve_seat_info span{
+    display: block;
+    margin-bottom: 10px;
 }
 .group_discount{
     margin-left: 20px;
     text-align: left;
+    font-size: 20px;
 }
 .group_discount button{
     background-color: white;
@@ -95,6 +116,7 @@ dd{
 .jh_Point_info_alert{
     margin: 20px 0;
     text-align: center;
+    font-size: 15px;
 }
 .jh_Point_info_Point{
     margin: 0 10px;
@@ -124,27 +146,31 @@ dd{
 .gourp_payment{
     display: flex;
     margin-left: 20px;
+    font-size: 20px;
 }
 .select_point{
     height: 330px;
     background-color: transparent;
 }
 .payment_sum{
-    flex: 1;
+    margin-top: auto;
 }
 .jh_for_pay{
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
-    background-color: #414141;
+    background-color: #C3C3C3;
     color: white;
 }
 .jh_calc_price {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #C3C3C3;
+}
+.jh_calc_price span{
+    font-size: 15px;
 }
 .jh_calc_price span:first-child {
     margin-left: 30px;

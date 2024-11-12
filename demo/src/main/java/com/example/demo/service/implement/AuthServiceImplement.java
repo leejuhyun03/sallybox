@@ -2,6 +2,7 @@ package com.example.demo.service.implement;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.response.auth.CheckCertificationResponseDto;
 import com.example.demo.dto.response.auth.EmailCertificationResponseDto;
@@ -139,7 +140,9 @@ public class AuthServiceImplement implements AuthService{
         return CheckCertificationResponseDto.success();
     }
 
+    
     @Override
+    @Transactional
     public ResponseEntity<? super SignUpResponseDto> signUp(SignUpRequestDto dto) {
         
         try {
@@ -158,16 +161,20 @@ public class AuthServiceImplement implements AuthService{
                 certificationEntity.getCertificationNumber().equals(certificationNumber);
             if (!isMatched) 
                 return SignUpResponseDto.certificationFail();
-                
+             
+            
             String password  = dto.getPassword();
             String encodedPassword = passwordEncoder.encode(password);
             dto.setPassword(encodedPassword);
+
 
             //String phoneNumber = dto.getPhoneNumber();
             //String name = dto.getName();
             //String nickname = dto.getNickname();
 
+            int userId = userRepository.getNextUserId();
             UserEntity userEntity= new UserEntity(dto);
+            userEntity.setUserId(userId);
             userRepository.save(userEntity);
 
             //certificationRepository.delete(certificationEntity);

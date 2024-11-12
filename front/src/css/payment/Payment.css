@@ -1,6 +1,6 @@
 .reserve_info_wrap{
     background-color: antiquewhite;
-    width: 300px;
+    width: 350px;
 }
 .pay_method_wrap{
     background-color: #F6F6F6;
@@ -11,5 +11,5 @@
     background-color: #F6F6F6;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    width: 400px;
+    flex: 1;
 }

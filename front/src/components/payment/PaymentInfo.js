@@ -52,12 +52,15 @@ const PaymentInfo = ({usePoint}) => {
                 await axios.post('http://192.168.16.4:8085/sallybox/payment/booking', bookingDataToSend);
             }
 
-            await axios.post('http://192.168.16.4:8085/sallybox/payment/final',{
+            const now = new Date()
+            const formattedDate = now.toISOString()
+            console.log(formattedDate)
+            await axios.post('http://localhost:8085/sallybox/payment/final',{
                 userId:userId, //jwt에서 받음
                 bookingNum:bookingNum,
                 paymentMethod:'card',
                 price:totalPrice,
-                paymentDate:new Date().toISOString(),
+                paymentDate:formattedDate,
                 pointUsage:usePoint,                
                 // totalPayment:totalPrice-usePoint
             })
@@ -101,7 +104,7 @@ const PaymentInfo = ({usePoint}) => {
 
     return (
         <div className='article_wrap'>
-            <div className='group_top'>
+            <div className='jh_group_top'>
                 <h4>결제하기</h4>
             </div>
             <div className='inner'>

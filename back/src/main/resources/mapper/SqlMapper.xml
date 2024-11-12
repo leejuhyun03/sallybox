@@ -61,7 +61,7 @@
 
     <insert id="insertPayment" parameterType="com.example.demo.DTO.JH.PaymentDTO">
         INSERT INTO payment (payment_id,user_id, booking_num, payment_method, price, payment_date, point_usage)
-        VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_DATE(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS'), #{pointUsage})
+        VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_TIMESTAMP_TZ(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS.FF3TZR'), #{pointUsage})
     </insert>
 
     <!-- 강현 -->
