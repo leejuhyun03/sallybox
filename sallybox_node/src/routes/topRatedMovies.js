@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
             WHERE ROWNUM <= 10
         `);
         res.json(result.rows);
-        console.log('topRatedMovies')
     } catch (err) {
         console.error('Error fetching top-rated movies:', err);
         res.status(500).send('Internal Server Error');

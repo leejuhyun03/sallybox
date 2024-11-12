@@ -256,7 +256,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         }
         return data; // 그룹화된 데이터 반환
     }, [fetchedMovies, currentTime]);
-   // console.log("theaterTypeDatatheaterTypeData:", JSON.stringify(theaterTypeData, null, 2));
+   // console.log("theaterTypeDatatheaterTypeData:", JSON.stringify(theaterTyphandleChangeeData, null, 2));
 
     return (
         <div className="jycinema_movie_schedule" style={{ display: 'flex', width: '851px', height: '870px' }}>
@@ -302,7 +302,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                 <div className="jyschedule_inner">
                     <div className="jyticketing_schedule_bottom_wrap">
                         <div className={`jytime_table_wrap ${activeButton === 'jybtn_screen_time' ? 'jyactive' : ''}`}>
-                            <div className="jydate_select" style={{ backgroundColor: '#f5f5f5', width: '496px', height: '100%', margin: '0px' }}>
+                            <div className="jydate_select" style={{ backgroundColor: '#f5f5f5', width: '498px', height: '100%', margin: '0px' }}>
                                 <div className="jydate_slide">
                                 <button onClick={handlePrevDate} disabled={startIndex === 0} className="jydate_arrow_button"> 
                                     <IoIosArrowBack size={24} /> 
@@ -333,8 +333,8 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                         </div>
                     </div>
 
-                    <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '676px' }}>
-                        <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '50px', display: 'flex', justifyContent: 'space-around', alignItems: 'center', borderBottom: '1px solid #e5e5e5' }}>
+                    <div style={{ backgroundColor: '#f5f5f5', width: '498px', height: '676px' }}>
+                        <div style={{ backgroundColor: '#f5f5f5', width: '498px', height: '50px', display: 'flex', justifyContent: 'space-around', alignItems: 'center', borderBottom: '1px solid #e5e5e5' }}>
                             {['전체', '스페셜관'].map((filterOption) => (
                                 <button
                                     key={filterOption}
@@ -357,7 +357,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                             ))}
                         </div>
 
-                        <div className="jyTicketingTime" style={{ backgroundColor: '#f5f5f5', width: '496px', height: '676px', display: 'flex', flexDirection: 'column' }}>
+                        <div className="jyTicketingTime" style={{ backgroundColor: '#f5f5f5', width: '498px', height: '676px', display: 'flex', flexDirection: 'column' }}>
                             {filteredSchedules.length > 0 ? (
                                 Object.entries(
                                     filteredSchedules.reduce((acc, schedule) => {
@@ -368,7 +368,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                     }, {})
                                 ).map(([movie_id, schedules]) => (
                                     <div key={movie_id} className="jytime_scroll_select_wrap" style={{ marginBottom: '10px', borderBottom: '1px solid #ddd', paddingBottom: '30px' }}>
-                                        {/* 지영 */}
+                                    
                                         <div className="jytime_scroll_title" style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                                             <img
                                                 src={certification(schedules[0].certification)}
@@ -404,7 +404,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                     </div>
                                 ))
                             ) : (
-                                <div style={{ textAlign: 'center', padding: '20px', fontSize: '14px' }}>
+                                <div style={{ textAlign: 'center', padding: '20px', fontSize: '18px' }}>
                                     <TicketingNothing />
                                 </div>
                             )}
