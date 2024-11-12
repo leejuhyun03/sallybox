@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import LeftHeader from '../seats/LeftHeader';
 import BookingContext from '../BookingContext';
 import '../../css/seats/Reservation.css'
@@ -11,6 +11,11 @@ const Payment = () => {
 
     const {bookingData} = useContext(BookingContext)
     const [usePoint,setUsePoint] = useState(0);
+
+    useEffect(()=>{
+        localStorage.removeItem('cinemaId')
+        localStorage.removeItem('selectedMovieId')
+    })
 
     if (!bookingData || !bookingData.selectedSeats || bookingData.selectedSeats.length === 0) {
         return <p>선택된 좌석이 없습니다.</p>;

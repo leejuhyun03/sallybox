@@ -15,7 +15,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [sortMethod, setSortMethod] = useState('A');
     const [movies, setMovies] = useState([]);
     const [selectedDate, setSelectedDate] = useState('');
-    const [selectedMovie, setSelectedMovie] = useState(null);
     const [activeButton, setActiveButton] = useState('jybtn_screen_time');
     const { fullDates, dates, months, weekdays } = DateList();
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
@@ -24,12 +23,20 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [currentTime, setCurrentTime] = useState(new Date());
     const [fetchedMovies, setFetchedMovies] = useState([]);
     const [filteredSchedules, setFilteredSchedules] = useState([]);
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
+    
     const [startIndex, setStartIndex] = useState(0); 
     const visibleDatesCount = 8; // 추가!!!!!! 화면에 표시할 날짜 수
 
-    const location = useLocation();
+    const [selectedMovieId, setSelectedMovieId] = useState(null);
+
       
+    useEffect(() => {
+        const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
+        if(storedMovieId){
+            setSelectedMovieId(storedMovieId)
+        }
+    }, []); 
+
     const handlePrevDate = () => {
         setStartIndex(prev => Math.max(prev - visibleDatesCount, 0));
     };
@@ -92,10 +99,8 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             setFetchedMovies(uniqueMovies);
             setMovies(uniqueMovies);
             sortMovies(sortMethod, uniqueMovies);
-            applyFilter(uniqueMovies, '전체');
-
-            // console.log("moviesWithDetails:", JSON.stringify(moviesWithDetails, null, 2));
-            // console.log("fetchedMovies:", JSON.stringify(fetchedMovies, null, 2));
+            //applyFilter(uniqueMovies, '전체');
+            applyFilter(uniqueMovies,'전체');
         } catch (error) {
             console.error("영화 목록을 불러오는데 실패했습니다:", error);
         }
@@ -213,10 +218,9 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             filtered = schedules.filter(schedule => [7, 10, 28].includes(schedule.theater_id));
         }
 
-        if (movieId) {
-            filtered = filtered.filter(schedule => schedule.movie_id === movieId);
+        if (movieId || selectedMovieId) {
+            filtered = filtered.filter(schedule => schedule.movie_id === (movieId || selectedMovieId));
         }
-
         setFilteredSchedules(filtered);
     };
 

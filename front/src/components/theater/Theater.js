@@ -9,6 +9,7 @@ import axios from 'axios';
 const Theater = () => {
 
     const {cinema_id} = useParams();
+    localStorage.setItem('cinemaId', cinema_id);
     const [cinemaDTO,setCinemaDTO] = useState(null);
     const [scheduleMap,setScheduleMap] = useState(new Map());
 
