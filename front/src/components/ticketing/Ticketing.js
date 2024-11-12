@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import LeftHeader from '../seats/LeftHeader';
 import '../../css/seats/LeftHeader.css';
 import '../../css/seats/Reservation.css';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import TicketingCinema from './TicketingCinema';
 import TicketingMovie from './TicketingMovie';
 import BookingContext from '../BookingContext';
+import { useUser } from '../../context/UserContext';
 
 const Ticketing = () => {
     const {setBookingData} = useContext(BookingContext)
@@ -19,6 +20,8 @@ const Ticketing = () => {
     const [scheduleMap, setScheduleMap] = useState(new Map());
     const [selectedMovie, setSelectedMovie] = useState(null); // 선택된 영화 저장 상태
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const alertShown = useRef(false);
 
     const handleMovieSelect = (movie) => {
         setSelectedMovie(movie); // 선택된 영화를 업데이트
@@ -31,6 +34,14 @@ const Ticketing = () => {
         })
         navigate('/sallybox/reserv/seats');
     }
+
+    useEffect(()=>{
+        if(!token && !alertShown.current){
+            alert('로그인하세요.')
+            alertShown.current = true;
+            navigate('/sallybox/sign-in')
+        }
+    },[token,navigate])
 
     // 영화 ID를 localStorage에서 가져와서 상태에 설정
     useEffect(() => {
@@ -80,9 +91,9 @@ const Ticketing = () => {
                 <div className="jycinema_all">
                     <div className="jycinema_area" style={{ width: '351px', height: '870px' }}>
                         <div className="group_tops">
-                            <h4 className="cinema_title" style={{ textAlign: 'center' }}>
+                            <div className="jycinema_title" >
                                 {selectedCinema ? selectedCinema.name : '영화관 선택'}
-                            </h4>
+                            </div>
                             {/* 선택한 영화관의 이름을 띄워야함 */}
                         </div>
 
