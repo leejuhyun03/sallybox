@@ -14,7 +14,7 @@ const errorHandler = (error) => {
     return responseBody; 
 };
 
-const DOMAIN = "http://localhost:8067";
+const DOMAIN = "http://192.168.16.4:8067";
 const API_DOMAIN = `${DOMAIN}/api/v1`;
 
 export const SNS_SIGN_IN_URL = (type) => `${API_DOMAIN}/auth/oauth2/${type}`;
