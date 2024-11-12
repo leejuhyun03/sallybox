@@ -22,18 +22,19 @@ const PaymentInfo = ({usePoint}) => {
 
         try{
 
-            const {schedule,selectedSeats} = bookingData;
+            const {schedule,selectedSeats,counts} = bookingData;
             
             const bookingNum = Math.floor(Math.random() * 1000000) + Date.now();
             let peopleType;
-            
+            let disabledCount = counts.disabled || 0
 
             for(let i = 0; i < selectedSeats.length; i++){ 
                 const seat = selectedSeats[i] 
                 // const peopleType = determinePeopleType(i);
 
-                if(seat.seat_type === '휠체어'){
+                if(seat.seat_type === '휠체어' || (disabledCount>0)){
                     peopleType = '장애인'
+                    if(disabledCount>0) disabledCount--;
                 }else{
                     peopleType = determinePeopleType(i)
                 }
@@ -91,7 +92,7 @@ const PaymentInfo = ({usePoint}) => {
 
     const determinePeopleType = (index) => {
         const { counts } = bookingData;
-    
+        
         if (index < counts.adult + counts.disabled) return '성인'; //counts.adult = 2
         if (index < counts.adult + counts.teenager + counts.disabled) return '청소년';
         if (index < counts.adult + counts.teenager + counts.senior + counts.disabled) return '경로';
