@@ -163,6 +163,10 @@ p {
     transform: scaleX(1);
 }
 
+.mypage_top_menu{
+    margin-top: 10px;
+}
+
 .submenus {
     display: block; /* block에서 none으로 변경 */
     position: absolute;
@@ -175,6 +179,7 @@ p {
     z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 추가 */
 }
 .menu-itemss .submenus {
+    font-size: 13px;
     display: none;
 }
 

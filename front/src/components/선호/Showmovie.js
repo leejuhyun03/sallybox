@@ -111,13 +111,13 @@ const Showmovie = ({ onCancel, userId }) => {
   ) : (
     bookings.map((booking, index) => (
       <div key={booking.bookingNum} className="ticket_list">
-        <div className="date">
+        <div className="date" style={{ fontSize: '13px'}}>
           {new Date(booking.bookingDate).toLocaleDateString()}{" "}
-          <span className="week">
+          <span className="week" style={{ fontSize: '13px'}}>
             ({new Date(booking.bookingDate).toLocaleString("ko-KR", { weekday: "short" })})
           </span>
         </div>
-        <ul className="ticket_info new2020">
+        <ul className="ticket_info new2020" >
           <li className="new_day open cancel_check" id={`key${index}`}>
             <button type="button" id={`title${index}`} aria-expanded="false">
               <strong className="tit">{booking.movieTitle}</strong>
