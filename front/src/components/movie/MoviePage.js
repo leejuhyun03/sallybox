@@ -10,6 +10,7 @@ import { IoIosPlay } from "react-icons/io";
 import MovieDetail from './MovieDetail';
 import { useUser } from '../../context/UserContext';
 
+
 const MoviePage = () => {
     const { movie_id } = useParams();
     const [movieDetails, setMovieDetails] = useState({});
@@ -23,6 +24,7 @@ const MoviePage = () => {
     const [isMovieNowPlaying, setIsMovieNowPlaying] = useState(false); // 영화 상영 여부 상태 추가
 
     const { userId } = useUser();
+    const isUserLoggedIn = !!userId;
 
     const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에 정의 --jwt
   

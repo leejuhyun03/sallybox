@@ -352,3 +352,13 @@ body {
     color: #fff;
     background-color: #ee1c25;
 }
+
+.row {
+    display: table;
+    
+    table-layout: fixed;
+}
+.rows{
+    
+    width: 36% !important;
+}

@@ -107,7 +107,7 @@ const InfoUpdate = ({ onClose ,userId}) => {
               </div>
 
               {/* 비밀번호 입력 필드 */}
-              <div className="row" id="div-pswd-change">
+              <div className="row rows"  id="div-pswd-change"  style={{borderBottom: 'none'}}>
             <div className="col-md">
               <label>비밀번호</label>
             </div>
@@ -149,7 +149,7 @@ const InfoUpdate = ({ onClose ,userId}) => {
           </div>
 
               {/* 휴대폰 번호 입력 필드 */}
-              <div className="row" id="div-mblNo">
+              <div className="row" id="div-mblNo" style={{borderTop: '1px solid #d0d0d0'}}>
                 <div className="col-md">
                   <label>
                     <em className="__point-color">*</em>휴대폰 번호

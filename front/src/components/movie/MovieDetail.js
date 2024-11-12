@@ -523,7 +523,15 @@ const MovieDetail = ({ movie_id }) => {
                         {/* 리스트 보여주는 곳 */}
                         <div className="jyreview-list">
                                 {sortedReviews.length === 0 ? (
-                                    <p style={{ fontSize: '14pt', color: 'gray' }}>작성된 리뷰가 없습니다</p>
+                                    <p style={{ fontSize: '14pt', 
+                                        color: 'gray', 
+                                        backgroundColor: '#f8f8f8', 
+                                        padding: '34px', 
+                                        margin: '0', 
+                                        display: 'flex', 
+                                        alignItems: 'center', 
+                                        paddingLeft: '400px',
+                                        paddingBottom:'30px'  }}>작성된 리뷰가 없습니다</p>
                                 ) : (
                                     sortedReviews.slice(0, visibleReviews).map((review) => (
                                             <div
