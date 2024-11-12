@@ -502,6 +502,7 @@ public class AllController {
         response.put("isLiked", isLiked);
         return ResponseEntity.ok(response);
     }
+
         /*1108 첫날 jwt로 하면 되는거 시작임     
         //리뷰 저장 api
         @PostMapping("sallybox/movies/{movie_id}/reviews")
