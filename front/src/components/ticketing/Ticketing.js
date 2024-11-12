@@ -80,9 +80,9 @@ const Ticketing = () => {
                 <div className="jycinema_all">
                     <div className="jycinema_area" style={{ width: '351px', height: '870px' }}>
                         <div className="group_tops">
-                            <h4 className="cinema_title" style={{ textAlign: 'center' }}>
+                            <div className="jycinema_title" >
                                 {selectedCinema ? selectedCinema.name : '영화관 선택'}
-                            </h4>
+                            </div>
                             {/* 선택한 영화관의 이름을 띄워야함 */}
                         </div>
 

@@ -93,7 +93,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                 })
             );
              // 중복된 영화 제거: `movie_id`로 고유한 영화만 남김 --1110 추가된 코드(fetchedMovies,moviewithDetails둘다 상관없음 기본정보/상세정보임)
-            const uniqueMovies = Array.from(new Map(fetchedMovies.map(movie => [movie.movie_id, movie])).values());
+            const uniqueMovies = Array.from(new Map(moviesWithDetails.map(movie => [movie.movie_id, movie])).values());
 
             //1101 -주석이 원래코드
             //setFetchedMovies(moviesWithDetails);
@@ -139,6 +139,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         setIsGraySelected(!hasSchedules);
         setDate(selectedDate);
         setSelectedDate(selectedDate);
+
     };
 
     const handleMovieClick = (movie) => {
@@ -214,14 +215,9 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const applyFilter = (schedules, selectedFilter, movieId) => {
         let filtered = schedules;
 
+        // '스페셜관' 필터만 남김
         if (selectedFilter === '스페셜관') {
             filtered = schedules.filter(schedule => [7, 10, 28].includes(schedule.theater_id));
-        } else if (selectedFilter === '13시 이후') {
-            filtered = schedules.filter(schedule => new Date(`1970-01-01T${schedule.start_time}`).getHours() >= 13);
-        } else if (selectedFilter === '19시 이후') {
-            filtered = schedules.filter(schedule => new Date(`1970-01-01T${schedule.start_time}`).getHours() >= 19);
-        } else if (selectedFilter === '심야') {
-            filtered = schedules.filter(schedule => new Date(`1970-01-01T${schedule.start_time}`).getHours() >= 23);
         }
 
         if (movieId) {
@@ -240,6 +236,11 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         const date = new Date(isoString);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
     };
+
+    const handleDateWithWeekday = (fullDate, index) => {
+        setSelectedDate(`${fullDate} (${weekdays[startIndex + index]})`); // ㅜ정!!! 요일 포함해서 selectedDate 설정
+    };
+    
 
     //theaater_tyype별로 그룹화 하고, 현재 시간 이후의 상영 스케줄만 필터링하여 theaterTypeData라는 객체로 저장하는 로직
     const theaterTypeData = useMemo(() => {
@@ -266,7 +267,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                 <div className="jygroup_top">
                     <h4 className="jycinema_title" style={{textAlign:'center'}}>영화 선택</h4>
                 </div>
-                <div className="jyMovie_inner" style={{backgroundColor: '#dddddd',width: '351px', height: '805px'}}>
+                <div className="jyMovie_inner" style={{backgroundColor: '#f5f5f5',width: '351px', height: '805px'}}>
                     <div className="jylist_filter">
                         <select id="jysortSelect" value={sortMethod} onChange={handleChange}>
                             <option value="A">예매순</option>
@@ -274,7 +275,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                             <option value="C">평점순</option>
                         </select>
                     </div>
-                    <div className="jymovieSelect_list" style={{ width: '351px', height: '755px' }}>
+                    <div className="jymovieSelect_list" style={{ width: '351px', height: '734px' }}>
                         {movies.map((movie) => (
                             
                             <div
@@ -298,7 +299,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             </div>
 
             <div className="jycinema_day" style={{ width: '500px', height: '870px', backgroundColor: 'black' }}>
-                <div className="jygroup_top">
+                <div className="jygroup_top"  style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                     <h4 className="jycinema_title">{selectedDate}</h4>
                 </div>
                 <div className="jyschedule_inner">
@@ -336,18 +337,22 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                     </div>
 
                     <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '676px' }}>
-                        <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '50px', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                            {['전체', '스페셜관', '13시 이후', '19시 이후', '심야'].map((filterOption) => (
+                        <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '50px', display: 'flex', justifyContent: 'space-around', alignItems: 'center', borderBottom: '1px solid #e5e5e5' }}>
+                            {['전체', '스페셜관'].map((filterOption) => (
                                 <button
                                     key={filterOption}
                                     onClick={() => handleFilterChange(filterOption)}
                                     style={{
-                                        backgroundColor: filter === filterOption ? 'black' : 'transparent',
-                                        color: filter === filterOption ? 'white' : 'black',
-                                        border: '1px solid black',
-                                        borderRadius: '4px',
+                                        color: 'black',  
+                                        fontWeight: filter === filterOption ? 'bold' : 'normal', 
                                         padding: '5px 10px',
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        width: '50%',
+                                        height: '100%',
+                                        borderBottom: filter === filterOption ? '3px solid black' : '1px solid #e5e5e5', 
+                                        backgroundColor: 'transparent', 
+                                        border: 'none', 
+                                        outline: 'none' 
                                     }}
                                 >
                                     {filterOption}
