@@ -25,6 +25,7 @@ const MoviePage = () => {
 
     const { userId } = useUser();
     const isUserLoggedIn = !!userId;
+    
 
     const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에 정의 --jwt
   
@@ -59,11 +60,14 @@ const MoviePage = () => {
     }, [movie_id]);
 
     const handleLikeClick = async () => {
-        if (loadingWishlist) return;
+        if (!userId){
+          alert('로그인 해주세요.')
+          return;
+        }
         setLoadingWishlist(true);
         
         try {
-            const response = await axios.post(`http://localhost:8085/sallybox/movies/${movie_id}/wishlist/toggle`, {}, {
+            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
                 params: {user_id: userId}
             });
 
@@ -72,6 +76,7 @@ const MoviePage = () => {
             setLikeCount(newIsLiked ? likeCount + 1 : likeCount - 1);
             setError(null);
         } catch (error) {
+
             console.error("Error updating wishlist:", error);
             setError("위시리스트를 업데이트하는데 실패했습니다. 다시 시도해 주세요.");
         } finally {
@@ -82,7 +87,11 @@ const MoviePage = () => {
     //예매 페이지로 영화 정보 보내는 함수
     const handleBookingClick = () => {
 
-      navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+          if (!isUserLoggedIn) {
+            navigate('/sallybox/sign-in', { state: { from: `/sallybox/movies/${movie_id}` } });
+        } else {
+            navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+        }
 
         // const today = new Date();
         // const date = today.toLocaleDateString();

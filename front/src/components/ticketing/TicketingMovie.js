@@ -27,16 +27,32 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [startIndex, setStartIndex] = useState(0); 
     const visibleDatesCount = 8; // 추가!!!!!! 화면에 표시할 날짜 수
 
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
+    const [selectedMovieId, setSelectedMovieId] = useState(null);//주현 selectedMovieId에 localStorage에 movie_id가 올라가
 
-      
+    // 주현  
+    /*
     useEffect(() => {
         const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
         if(storedMovieId){
             setSelectedMovieId(storedMovieId)
         }
+        console.log("storedMovieId:"+storedMovieId);
     }, []); 
+     */
 
+    useEffect(() => {
+        const storedMovieId = localStorage.getItem('selectedMovieId');
+        if (storedMovieId) {
+            setSelectedMovieId(storedMovieId);
+    
+            // storedMovieId와 동일한 영화가 선택된 상태로 설정하고 필터 적용
+            const matchedMovie = movies.find(movie => movie.movie_id === parseInt(storedMovieId));
+            if (matchedMovie) {
+                handleMovieClick(matchedMovie);
+            }
+        }
+        console.log("storedMovieId:", storedMovieId);
+    }, [movies]); // movies가 변경될 때마다 실행
     const handlePrevDate = () => {
         setStartIndex(prev => Math.max(prev - visibleDatesCount, 0));
     };
@@ -136,6 +152,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
     const handleMovieClick = (movie) => {
         setSelectedMovieId(movie.movie_id);
+        localStorage.setItem('selectedMovieId', movie.movie_id); // 선택된 영화 ID를 localStorage에 저장
         applyFilter(fetchedMovies, filter, movie.movie_id);
         onMovieSelect(movie);
     };
@@ -226,7 +243,8 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
     const handleFilterChange = (selectedFilter) => {
         setFilter(selectedFilter);
-        applyFilter(movies, selectedFilter);
+        // applyFilter(movies, selectedFilter); --1112
+        applyFilter(fetchedMovies, selectedFilter);
     };
 
     const formatTime = (isoString) => {
@@ -258,6 +276,10 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     }, [fetchedMovies, currentTime]);
    // console.log("theaterTypeDatatheaterTypeData:", JSON.stringify(theaterTyphandleChangeeData, null, 2));
 
+   useEffect(() => {
+    console.log("Movies array:", movies.map(movie => movie.movie_id));
+  }, [movies]);
+
     return (
         <div className="jycinema_movie_schedule" style={{ display: 'flex', width: '851px', height: '870px' }}>
             <div className="jycinema_movies" style={{ width: '351px', height: '870px', margin: '0px',backgroundColor:'#dddddd' }}>
@@ -274,6 +296,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                     </div>
                     <div className="jymovieSelect_list" style={{ width: '351px', height: '734px' }}>
                         {movies.map((movie) => (
+
                             
                             <div
                                 key={movie.movie_id}
