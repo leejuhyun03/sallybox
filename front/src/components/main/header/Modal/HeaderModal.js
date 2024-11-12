@@ -38,11 +38,7 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu1">
-                                        <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a href='http://192.168.16.4:3000/sallybox/reserv/ticketing' title="예매하기" tabIndex="0">예매하기</a></li>
-                                            <li><a title="상영시간표" tabIndex="0">상영시간표</a></li>
-                                            <li><a title="할인안내" tabIndex="0">할인안내</a></li>
-                                        </ul>
+                                        
                                     </td>
                                     <td headers="gmenu gmenu2">
                                         <ul style={{paddingInlineStart: '0px'}}>
@@ -85,7 +81,6 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                 <tr>
                                     <th scope="col" id="gmenu7"><span>마이</span></th>
                                     <th scope="col" id="gmenu8"><span>고객센터</span></th>
-                                    <th scope="col" id="gmenu8"><span>회원 서비스</span></th>
                                 </tr>
                                 <tr>
                                     <td headers="gmenu gmenu7">

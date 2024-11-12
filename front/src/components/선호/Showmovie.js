@@ -16,8 +16,8 @@ const Showmovie = ({ onCancel, userId }) => {
       const bookingsResponse = await axios.get(`/sallybox/mypage/booking/${userId}`);
       const paymentsResponse = await axios.get(`/sallybox/mypage/payment/${userId}`);
 
-      console.log('Bookings:', bookingsResponse.data);
-      console.log('Payments:', paymentsResponse.data);
+      //console.log('Bookings:', bookingsResponse.data);
+      //console.log('Payments:', paymentsResponse.data);
 
       const bookingsData = bookingsResponse.data;
       const paymentsData = paymentsResponse.data;
@@ -27,7 +27,7 @@ const Showmovie = ({ onCancel, userId }) => {
         return { ...booking, payment };
       });
 
-      console.log('Combined Data:', combinedData);
+      //console.log('Combined Data:', combinedData);
       
       const sortedBookings = combinedData
         .sort((a, b) => new Date(b.bookingDate) - new Date(a.bookingDate))
@@ -36,7 +36,7 @@ const Showmovie = ({ onCancel, userId }) => {
             index === self.findIndex((b) => b.bookingNum === booking.bookingNum)
         );
 
-      console.log('sortedBookings :', sortedBookings);
+      //console.log('sortedBookings :', sortedBookings);
 
       setBookings(sortedBookings);
       setLoading(false);

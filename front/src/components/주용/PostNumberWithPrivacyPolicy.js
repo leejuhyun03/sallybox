@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom"; // 추가
 import "../../css/jy/Gogakregistration.css";
 import "../../css/jy/Gogaksenter.css";
 import "../../css/jy/tab.css";
+import { useUser } from "../../context/UserContext";
 
 const PostNumberWithPrivacyPolicy = () => {
-  const [name, setName] = useState('');
+
+  const { userName, userEmail} = useUser();
+
+  const [name, setName] = useState(userName);
   const [phone_Number, setPhone_Number] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(userEmail);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate(); // 추가
@@ -55,22 +59,22 @@ const PostNumberWithPrivacyPolicy = () => {
         />
       </div>
       <div className="form-group">
-        <label>전화번호: </label>
-        <input
-          type="text"
-          placeholder="01012345678"
-          value={phone_Number}
-          onChange={(e) => setPhone_Number(e.target.value)} // 전체 전화번호를 직접 입력
-          required
-        />
-      </div>
-      <div className="form-group">
         <label>이메일: </label>
         <input
           type="text"
           placeholder="example@domain.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)} // 전체 이메일을 직접 입력
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label>전화번호: </label>
+        <input
+          type="text"
+          placeholder="01012345678"
+          value={phone_Number}
+          onChange={(e) => setPhone_Number(e.target.value)} // 전체 전화번호를 직접 입력
           required
         />
         <div className="con_tit ty2">

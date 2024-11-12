@@ -27,7 +27,7 @@ import OAuth from './views/Authentication/OAuth';
 
 function AppRoutes() {
   const location = useLocation();
-  const { setUserId, setUserName, setUserNickName, setIsAuthenticated, setUserPoint } = useUser();
+  const { setUserId, setUserEmail, setUserName, setUserNickName, setIsAuthenticated, setUserPoint } = useUser();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -37,6 +37,7 @@ function AppRoutes() {
       try {
         const decodedToken = jwtDecode(token);
         setUserId(decodedToken.user_id);
+        setUserEmail(decodedToken.user_email);
         setUserName(decodedToken.user_name);
         setUserNickName(decodedToken.user_nickname);
         setUserPoint(decodedToken.user_point);
