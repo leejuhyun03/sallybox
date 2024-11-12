@@ -756,6 +756,7 @@ public class AllController {
 
     @DeleteMapping("/sallybox/mypage/{userId}/{movieId}")
     public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int movieId) throws Exception {
+        System.out.println("위시리스트: " + userId + " : " + movieId);
         boolean removed = sqlService.removeFromWishlist(userId, movieId);
         if (removed) {
             return ResponseEntity.ok().body("영화가 위시리스트에서 삭제되었습니다.");
@@ -829,13 +830,19 @@ public class AllController {
     }
     
      
-    @PostMapping("/sallybox/mypage/cancel")
+    @GetMapping("/sallybox/mypage/cancel")
     public ResponseEntity<String> cancelBooking(
         @RequestParam int userId,
         @RequestParam Long bookingNum,
         @RequestParam int pointUsage
     ) {
+        System.out.println("오냐?");
         try {
+
+            System.out.println("userId:==================="+userId);
+            System.out.println("bookingNum:"+bookingNum);
+            System.out.println("pointUsage:"+pointUsage);
+
             sqlService.cancelBooking(userId, bookingNum, pointUsage);
             return ResponseEntity.ok("예매가 성공적으로 취소되었습니다.");
         } catch (Exception e) {
