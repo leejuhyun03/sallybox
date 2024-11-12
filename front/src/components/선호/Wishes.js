@@ -52,7 +52,7 @@ const Wishes = ({wishlistMovies,userId,updateWishlist}) => {
                     {wishlistMovies.map((movie) => (
                             <li key={movie.movie_id} style={{display: 'block'}}>
                                 <div className='poster' style={{cursor: 'pointer'}}>
-                                    <a href="#none">
+                                    <a href={`http://localhost:3000/sallybox/movies/${movie.movie_id}`}>
                                         <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} style={{ width: '100%', height: 'auto' }} />
                                     </a>
                                 </div>
@@ -72,11 +72,7 @@ const Wishes = ({wishlistMovies,userId,updateWishlist}) => {
                                     <dt>Overview</dt>
                                     <dd>{movie.overview}</dd>
                                 </dl>
-                                <div className='btn_box'>
-                                    <a href="#none" className="btn_col3 ty2 rnd">
-                                        <span className="txt_ic_booking">예매하기</span>
-                                    </a>
-                                </div>
+                                
                             </li>
                         ))}
                     </ul>

@@ -405,7 +405,7 @@
         WHERE 
             user_id = #{userId}
         ORDER BY 
-            payment_date DESC
+            payment_date asc
     </select>
     
     <delete id="deleteBooking" parameterType="Long">

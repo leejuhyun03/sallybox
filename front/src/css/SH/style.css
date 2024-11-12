@@ -170,8 +170,8 @@ p {
     top: 100%;
     padding: 10px;
     width: max-content;
-    background-color: red;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    
     z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 추가 */
 }
 .menu-itemss .submenus {
