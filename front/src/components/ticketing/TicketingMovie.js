@@ -29,18 +29,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const visibleDatesCount = 8; // 추가!!!!!! 화면에 표시할 날짜 수
 
     const location = useLocation();
-    const movieId = location.state; // Access the movie_id from the state
-    console.log('TicketingMovie: ', movieId)
-  
-    useEffect(() => {
-        if (movieId) {
-          setSelectedMovieId(movieId);
-          applyFilter(fetchedMovies, filter, movieId);
-          onMovieSelect(movieId);
-          console.log('들어감?')
-        }
-    }, [movieId]);
-    console.log('허강현: ', selectedMovieId)
       
     const handlePrevDate = () => {
         setStartIndex(prev => Math.max(prev - visibleDatesCount, 0));
@@ -49,7 +37,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const handleNextDate = () => { 
         setStartIndex(prev => Math.min(prev + visibleDatesCount, fullDates.length - visibleDatesCount));
     };
-
     
     const certification = (certification) => {
         switch (certification) {

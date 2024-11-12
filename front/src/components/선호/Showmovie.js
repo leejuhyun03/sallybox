@@ -54,7 +54,14 @@ const Showmovie = ({ onCancel, userId }) => {
       console.log('pointUsage:'+pointUsage);
       try {
 
-        await axios.post(`/sallybox/mypage/cancel?userId=${userId}&bookingNum=${bookingNum}&pointUsage=${pointUsage}`);
+        await axios.get('/sallybox/mypage/cancel', {
+            params: {
+              userId: userId,
+              bookingNum: bookingNum,
+              pointUsage: pointUsage
+            }
+        });
+
         console.log("pointUsage"+pointUsage);
         setCancellationCompleted(true);
         // 취소 후 예매 목록을 다시 불러옵니다.
