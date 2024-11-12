@@ -208,7 +208,10 @@ public class SqlServiceImpl implements SqlService{
 
 	@Override
 	public void updatePassword(String email, String password) {
-		sqlMapper.updatePassword(email, password);
+
+        String encodedPassword = passwordEncoder.encode(password);
+
+		sqlMapper.updatePassword(email, encodedPassword);
 	}
 
     @Override

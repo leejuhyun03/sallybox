@@ -55,7 +55,7 @@ const PaymentInfo = ({usePoint}) => {
             const now = new Date()
             const formattedDate = now.toISOString()
             console.log(formattedDate)
-            await axios.post('http://localhost:8085/sallybox/payment/final',{
+            await axios.post('http://192.168.16.4:8085/sallybox/payment/final',{
                 userId:userId, //jwt에서 받음
                 bookingNum:bookingNum,
                 paymentMethod:'card',

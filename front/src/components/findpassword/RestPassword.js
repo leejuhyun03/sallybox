@@ -55,7 +55,7 @@ const ResetPassword = () => {
 
             if (response.data) {
                 alert('비밀번호가 성공적으로 변경되었습니다.');
-                navigate('/sign-in')
+                navigate('/sallybox/sign-in')
             } else {
                 setError('비밀번호 변경에 실패했습니다.');
             }

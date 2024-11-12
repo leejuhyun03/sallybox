@@ -37,6 +37,7 @@ function AppRoutes() {
       try {
         const decodedToken = jwtDecode(token);
         setUserId(decodedToken.user_id);
+        console.log('routes 선호 token: ', decodedToken.user_id)
         setUserName(decodedToken.user_name);
         setUserNickName(decodedToken.user_nickname);
         setUserPoint(decodedToken.user_point);
