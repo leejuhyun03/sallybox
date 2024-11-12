@@ -191,6 +191,12 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             weekdays: result.map(item => item.weekday),
         };
     }
+
+    function getTodayWeekday() {
+        const date = new Date();
+        const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+        return weekdays[date.getDay()];
+    }    
     
 
     const groupedData = {};
@@ -300,7 +306,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
 
             <div className="jycinema_day" style={{ width: '500px', height: '870px', backgroundColor: 'black' }}>
                 <div className="jygroup_top"  style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                    <h4 className="jycinema_title">{selectedDate}</h4>
+                    <h4 className="jycinema_title">{selectedDate} ({getTodayWeekday()})</h4>
                 </div>
                 <div className="jyschedule_inner">
                     <div className="jyticketing_schedule_bottom_wrap">
