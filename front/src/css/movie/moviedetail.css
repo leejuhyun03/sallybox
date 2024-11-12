@@ -22,9 +22,6 @@
     transition: border-color 0.3s;
 }
 
-.jytab_tit.active {
-    border-color: none;
-} 
 
 .jyslider {
     position: absolute;

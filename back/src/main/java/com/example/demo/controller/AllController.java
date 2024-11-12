@@ -123,12 +123,14 @@ public class AllController {
     
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sallybox/payment/final")
-    public void processFinalPaymen(@RequestBody PaymentDTO paymentDTO) throws Exception{
+    public void processFinalPayment(@RequestBody PaymentDTO paymentDTO) throws Exception{
         try{
             sqlService.updatePoints(paymentDTO.getUserId(), paymentDTO.getPointUsage(),paymentDTO.getPrice()-paymentDTO.getPointUsage());
             sqlService.insertPayment(paymentDTO);
+            System.out.println(paymentDTO);
         } catch (Exception e){
             e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 

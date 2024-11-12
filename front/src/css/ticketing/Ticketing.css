@@ -55,3 +55,15 @@
 .jydepth2 li.jyactive a {
     color: #ff0000;
 }
+
+.jycinema_title {
+  text-align: center;
+  width: 351px;
+  height: 63px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;     /* 세로 중앙 정렬 */
+  font-size: 20px;
+}
