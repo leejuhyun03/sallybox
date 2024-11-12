@@ -327,10 +327,6 @@ public class SqlServiceImpl implements SqlService{
     @Override
     @Transactional
     public void cancelBooking(int userId, Long bookingNum, int pointUsage) throws Exception {
-
-        System.out.println("userId--------------------"+userId);
-        System.out.println("bookingNum--------------------"+bookingNum);
-        System.out.println("pointUsage--------------------"+pointUsage);
         
         sqlMapper.deleteBooking(bookingNum);
         sqlMapper.deletePayment(bookingNum);
