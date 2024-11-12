@@ -67,7 +67,7 @@ const MoviePage = () => {
         setLoadingWishlist(true);
         
         try {
-            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
+            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, {}, {
                 params: {user_id: userId}
             });
 
@@ -90,7 +90,9 @@ const MoviePage = () => {
           if (!isUserLoggedIn) {
             navigate('/sallybox/sign-in', { state: { from: `/sallybox/movies/${movie_id}` } });
         } else {
-            navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+            //navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+            localStorage.setItem('selectedMovieId', movie_id); // movie_id를 localStorage에 저장
+            navigate(`/sallybox/reserv/ticketing`);
         }
 
         // const today = new Date();

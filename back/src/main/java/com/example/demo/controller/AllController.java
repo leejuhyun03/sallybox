@@ -746,7 +746,7 @@ public class AllController {
         CustomerDTO customerInfo = sqlService.getCustomerInfo(userId);
         List<MyMovieDTO> wishlistMovies = sqlService.getWishlistMovies(userId);
 
-        System.out.println("wishlistMovies--------------------"+wishlistMovies);
+        //System.out.println("wishlistMovies--------------------"+wishlistMovies);
         
         Map<String, Object> response = new HashMap<>();
         response.put("customerInfo", customerInfo);
@@ -757,7 +757,7 @@ public class AllController {
 
     @DeleteMapping("/sallybox/mypage/{userId}/{movieId}")
     public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int movieId) throws Exception {
-        System.out.println("위시리스트: " + userId + " : " + movieId);
+       // System.out.println("위시리스트: " + userId + " : " + movieId);
         boolean removed = sqlService.removeFromWishlist(userId, movieId);
         if (removed) {
             return ResponseEntity.ok().body("영화가 위시리스트에서 삭제되었습니다.");

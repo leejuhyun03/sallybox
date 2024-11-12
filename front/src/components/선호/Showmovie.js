@@ -16,8 +16,8 @@ const Showmovie = ({ onCancel, userId }) => {
       const bookingsResponse = await axios.get(`/sallybox/mypage/booking/${userId}`);
       const paymentsResponse = await axios.get(`/sallybox/mypage/payment/${userId}`);
 
-      console.log('Bookings:', bookingsResponse.data);
-      console.log('Payments:', paymentsResponse.data);
+      //console.log('Bookings:', bookingsResponse.data);
+      //console.log('Payments:', paymentsResponse.data);
 
       const bookingsData = bookingsResponse.data;
       const paymentsData = paymentsResponse.data;
@@ -27,7 +27,7 @@ const Showmovie = ({ onCancel, userId }) => {
         return { ...booking, payment };
       });
 
-      console.log('Combined Data:', combinedData);
+      //console.log('Combined Data:', combinedData);
       
       const sortedBookings = combinedData
         .sort((a, b) => new Date(b.bookingDate) - new Date(a.bookingDate))
@@ -36,7 +36,7 @@ const Showmovie = ({ onCancel, userId }) => {
             index === self.findIndex((b) => b.bookingNum === booking.bookingNum)
         );
 
-      console.log('sortedBookings :', sortedBookings);
+      //console.log('sortedBookings :', sortedBookings);
 
       setBookings(sortedBookings);
       setLoading(false);
@@ -111,13 +111,13 @@ const Showmovie = ({ onCancel, userId }) => {
   ) : (
     bookings.map((booking, index) => (
       <div key={booking.bookingNum} className="ticket_list">
-        <div className="date">
+        <div className="date" style={{ fontSize: '13px'}}>
           {new Date(booking.bookingDate).toLocaleDateString()}{" "}
-          <span className="week">
+          <span className="week" style={{ fontSize: '13px'}}>
             ({new Date(booking.bookingDate).toLocaleString("ko-KR", { weekday: "short" })})
           </span>
         </div>
-        <ul className="ticket_info new2020">
+        <ul className="ticket_info new2020" >
           <li className="new_day open cancel_check" id={`key${index}`}>
             <button type="button" id={`title${index}`} aria-expanded="false">
               <strong className="tit">{booking.movieTitle}</strong>

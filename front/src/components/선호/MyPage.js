@@ -171,13 +171,13 @@ const MyPage = () => {
                             <span className='txt_img'>
                                 <span style={{fontWeight:'bold'}} >S.POINT</span>
                             </span>
-                            <em>{customerInfo?.points}P</em>
+                            <em style={{ fontSize: '13px'}}>{customerInfo?.points}P</em>
                         </p>
                     </div>
                 </div>
             </div>
-            <div id="mypage_top_menu">
-                <ul className='tab_wrap_lnk ' >
+            <div className="mypage_top_menu" style={{ fontSize: '13px'}}>
+                <ul className='tab_wrap_lnk ' style={{marginTop:'-50px'}} >
                     <li className='menu-itemss' 
                         onMouseEnter={() => handleMenuHover('payment')} 
                         >

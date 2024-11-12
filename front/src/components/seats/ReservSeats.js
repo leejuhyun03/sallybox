@@ -13,6 +13,7 @@ import type2 from '../../image/seat_type2.png'
 import type3 from '../../image/seat_type3.png'
 import type4 from '../../image/seat_type4.png'
 import SeatModal from './SeatModal';
+import numeral from 'numeral';
 
 const ReservSeats = () => {
 
@@ -24,7 +25,9 @@ const ReservSeats = () => {
     const [showModal,setShowModal] = useState(false)
     const navigate = useNavigate()
 
-    
+    const formatPrice = (price) => {
+        return numeral(price).format('0,0'); // 1000 단위로 콤마 찍기
+      };
 
     //스프링 부트에 theater_id 보내서 seats 정보 받아옴 
     useEffect(() => {
@@ -152,14 +155,16 @@ const ReservSeats = () => {
     // ***************************************************
 
     const handlePaymentClick = () => {
+
         if (bookingData.selectedSeats && bookingData.selectedSeats.length > 0) {
             setBookingData((prevData) => ({
                 ...prevData,
                 totalPrice:price
             }));
+            
             navigate('/sallybox/payment');
         } else {
-            alert('인원수를 선택하세요.');
+            alert('인원수 혹은 좌석을 선택하세요.');
         }
     };
 
@@ -263,7 +268,7 @@ const ReservSeats = () => {
                     <div className='group_left'>
                         <div className='select_seat_result'>
                             <span>총 합계</span>
-                            <span>{price}</span>
+                            <span>{formatPrice(price)}</span>
                             <span>원</span>
                         </div>
                     </div>

@@ -1,7 +1,8 @@
 .ticket_list {
-    margin-bottom: 10px;
+    
+    margin-bottom: -30px;
     position: relative;
-    padding: 73px 50px 1px 104px;
+    padding: 15px 50px 1px 104px;
     min-height: 523px;
     /* background: #f8f8f8; */
     box-sizing: border-box;
@@ -9,12 +10,13 @@
 }
 
 .ticket_list .ticket_info .date .week {
-    padding: 10px;
+    padding: 20px;
     font-size: 11px;
     font-family: 'Noto';
 }
 
 .ticket_list .ticket_info .date {
+    padding: 10px;
     position: absolute;
     left: -155px;
     top: 0;
@@ -286,6 +288,10 @@ img {
     background: url(../../image/ic_rnd_21_02.png) no-repeat;
 }
 
+.date {
+    margin-left: 40px;
+}
+
 .payment_area .pay_area .discont {
     margin-top: 12px;
 }
@@ -316,6 +322,7 @@ img {
 }
 
 .txt_card1.ty1 {
+    border-radius: 30px;
     background-color: #AFAFAF;
 }
 

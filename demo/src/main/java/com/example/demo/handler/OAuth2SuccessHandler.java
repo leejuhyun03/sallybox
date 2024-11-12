@@ -39,7 +39,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
         String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8.toString());
 
-        response.sendRedirect("http://localhost:3000/sallybox/oauth-response/"+encodedToken);
+        response.sendRedirect("http://192.168.16.4:3000/sallybox/oauth-response/"+encodedToken);
         
     }
 

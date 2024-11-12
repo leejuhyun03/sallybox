@@ -29,11 +29,11 @@ public class JwtProvider {
 
         String jwt = Jwts.builder()
             .signWith(key, SignatureAlgorithm.HS256)
-            .claim("userId", userId)
+            .claim("user_id", userId)
             .claim("email", email)
-            .claim("name", name)
-            .claim("nickname", nickname)
-            .claim("points", points)
+            .claim("user_name", name)
+            .claim("user_nickname", nickname)
+            .claim("user_point", points)
             .setIssuedAt(new Date())
             .setExpiration(expiredDate)
             .compact();
