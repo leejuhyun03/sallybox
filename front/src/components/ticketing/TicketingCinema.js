@@ -65,25 +65,6 @@ const TicketingCinema = ({ setSelectedCinema }) => {
                     </div>
                 </div>
             
-
-            {/* 스페셜관 탭 콘텐츠 */}
-            
-                <div className='jycontent_row'>
-
-                    {/* 지역 리스트 */}
-                    <div className='jyregion_list'>
-                        {cinemaList.map(cinema => (
-                            <li 
-                                key={cinema.cinema_id}
-                                className={`jycinema_item ${selectedCinema === cinema ? 'jyselected' : ''}`}
-                                onClick={() => handleCinemaClick(cinema)}
-                            >
-                                {cinema.name}
-                            </li>
-                        ))}
-                    </div>
-                </div>
-          
         </div>
     );
 };
