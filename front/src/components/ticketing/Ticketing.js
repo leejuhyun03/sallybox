@@ -9,7 +9,6 @@ import axios from 'axios';
 import TicketingCinema from './TicketingCinema';
 import TicketingMovie from './TicketingMovie';
 import BookingContext from '../BookingContext';
-import { useUser } from '../../context/UserContext';
 
 const Ticketing = () => {
     const {setBookingData} = useContext(BookingContext)
@@ -37,19 +36,11 @@ const Ticketing = () => {
 
     useEffect(()=>{
         if(!token && !alertShown.current){
-            alert('로그인하세요.')
+            alert('로그인이 필요한 서비스입니다.')
             alertShown.current = true;
             navigate('/sallybox/sign-in')
         }
     },[token,navigate])
-
-    // 영화 ID를 localStorage에서 가져와서 상태에 설정
-    useEffect(() => {
-        const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
-        if (storedMovieId) {
-            setSelectedMovie(storedMovieId)
-        }
-    }, []);  // 컴포넌트가 처음 렌더링될 때 실행
 
 
     // cinema_id를 URL로 가져와서 해당 영화관의 정보를 API로 요청하고, 그 결과로 cinemaDTO와 schedules 데이터를 받아옴
