@@ -127,10 +127,10 @@ public class SqlServiceImpl implements SqlService{
 	private JwtUtil jwtUtil; // JwtUtil 임포트
 
     @Override
-    public boolean findPassword(String email, String name) {
+    public CustomDTO findPassword(String email, String name) {
         // 이메일이 존재하면 1을, 없으면 0을 반환하므로
         // 1이면 존재, 0이면 존재하지 않는 것으로 처리
-        return sqlMapper.findPassword(email, name) > 0;
+        return sqlMapper.findPassword(email, name);
     }
 
     @Override
@@ -172,7 +172,7 @@ public class SqlServiceImpl implements SqlService{
 			// 비밀번호가 일치하는 경우 JWT 토큰 생성
 			return jwtUtil.generateToken(dto.getEmail(), dto.getUserid(), 
                                          dto.getNickname(), dto.getName(),
-                                         dto.getPoints()); // 이메일과 userId를 사용하여 JWT 토큰 생성
+                                         dto.getPoints(), dto.getStatus()); // 이메일과 userId를 사용하여 JWT 토큰 생성
 		}
 		return null; // 로그인 실패
 	}
@@ -208,7 +208,10 @@ public class SqlServiceImpl implements SqlService{
 
 	@Override
 	public void updatePassword(String email, String password) {
-		sqlMapper.updatePassword(email, password);
+
+        String encodedPassword = passwordEncoder.encode(password);
+
+		sqlMapper.updatePassword(email, encodedPassword);
 	}
 
     @Override
@@ -324,7 +327,7 @@ public class SqlServiceImpl implements SqlService{
     @Override
     @Transactional
     public void cancelBooking(int userId, Long bookingNum, int pointUsage) throws Exception {
-
+        
         sqlMapper.deleteBooking(bookingNum);
         sqlMapper.deletePayment(bookingNum);
         sqlMapper.updateCustomerPoint(userId, pointUsage);

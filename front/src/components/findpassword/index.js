@@ -51,8 +51,8 @@ export default function FindPassword() {
         setError('');
         setSuccessMessage('');
 
-        if (!name || !phoneNumber) {
-            alert('이름과 휴대폰 번호를 모두 입력하세요');
+        if (!email || !name || !phoneNumber) {
+            alert('이메일, 이름과 휴대폰 번호를 모두 입력하세요');
             return;
         }
 
@@ -87,6 +87,12 @@ export default function FindPassword() {
     const checkVerificationCode  = async (e) => {
         e.preventDefault();
         setError('');
+        setSuccessMessage('');
+        
+        if(!verificationCode) { 
+            alert('인증번호를 입력해주세요.');
+            return;
+        }
 
         try {
             const response = await axios.post('/api/verificationCode', {

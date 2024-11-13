@@ -109,7 +109,7 @@ export default function SignUp() {
         if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
         if (code !== ResponseCode.SUCCESS) return;
 
-        navigate('/auth/sign-in');
+        navigate('/sallybox/sign-in');
     };
 
     const onEmailChangeHandler = (event) => {
@@ -239,7 +239,7 @@ export default function SignUp() {
     };
 
     const onSignInButtonClickHandler = () => {
-        navigate('/auth/sign-in');
+        navigate('/sallybox/sign-in');
     };
 
     const onSnsSignInButtonClickHandler = (type) => {

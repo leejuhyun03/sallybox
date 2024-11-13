@@ -7,15 +7,17 @@ const UserContext = createContext();
 // UserProvider 컴포넌트 정의
 export function UserProvider({ children }) {
   const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [userNickName, setUserNickName] = useState('');
   const [userPoint, setUserPoint] = useState('');
+  const [userStatus, setUserStatus] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <UserContext.Provider value={{ userId, setUserId, userName, setUserName, 
+    <UserContext.Provider value={{ userId, setUserId, userEmail, setUserEmail, userName, setUserName, 
                                    userNickName, setUserNickName, isAuthenticated, setIsAuthenticated,
-                                   userPoint, setUserPoint }}>
+                                   userPoint, setUserPoint, userStatus, setUserStatus }}>
       {children}
     </UserContext.Provider>
   );

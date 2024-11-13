@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from './context/UserContext';
 import { useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
@@ -24,10 +24,19 @@ import PaymentSuccess from './components/payment/PaymentSuccess';
 import MyPage from './components/선호/MyPage';
 import SignUp from './views/Authentication/SignUp';
 import OAuth from './views/Authentication/OAuth';
+import NavbarTest3 from './components/main/header/Navbar/NavbarTest3';
 
 function AppRoutes() {
   const location = useLocation();
-  const { setUserId, setUserName, setUserNickName, setIsAuthenticated, setUserPoint } = useUser();
+  const { setUserId, setUserEmail, setUserName, setUserNickName, setIsAuthenticated, setUserPoint, setUserStatus } = useUser();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    alert("로그아웃 하시겠습니까?")
+    localStorage.removeItem('token'); // 토큰 제거
+    setIsAuthenticated(false); // 인증 상태 업데이트
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -37,9 +46,17 @@ function AppRoutes() {
       try {
         const decodedToken = jwtDecode(token);
         setUserId(decodedToken.user_id);
+        setUserEmail(decodedToken.user_email);
         setUserName(decodedToken.user_name);
         setUserNickName(decodedToken.user_nickname);
         setUserPoint(decodedToken.user_point);
+        setUserStatus(decodedToken.user_status);
+        if(decodedToken.user_status === 'N') {
+          alert("탈퇴한 회원입니다.");
+          localStorage.removeItem('token'); // 토큰 제거
+          setIsAuthenticated(false)
+        }
+      console.log("로그인 userStatus: ", decodedToken.user_status)
       } catch (error) {
         console.error('Invalid token:', error);
       }
@@ -49,7 +66,7 @@ function AppRoutes() {
   return (
     <div>
       {/* 헤더 */}
-      {location.pathname !== '/' 
+      {location.pathname !== '/'  
         && location.pathname !== '/sallybox/sign-in' 
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
@@ -57,6 +74,7 @@ function AppRoutes() {
         && <MainHeader/>}
 
 
+<NavbarTest3 handleLogout={handleLogout}/>
     <Routes>
         <Route path="/" element={<MainSallybox />} />
         <Route path='/sallybox'>
@@ -75,12 +93,13 @@ function AppRoutes() {
           <Route path="registration" element={<Gogakregistration />} />
           <Route path="mypage/:userId" element={<MyPage/>}/>
           <Route path='sign-up' element={<SignUp />} />
-          <Route path='oauth-response/:token/:expirationTime' element={<OAuth />} />
+          <Route path='oauth-response/:token' element={<OAuth />} />
         </Route>
      </Routes>
 
       {/* 푸터 */}
       {location.pathname !== '/sallybox/sign-in' 
+        && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/sign-up' 
         && location.pathname !== '/sallybox/verification'
         && location.pathname !== '/sallybox/resetPassword'

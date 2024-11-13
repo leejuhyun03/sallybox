@@ -19,12 +19,14 @@ public class JwtUtil {
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1시간
     
     // JWT 생성 (user_id 추가)
-    public String generateToken(String email, int userId, String nickName, String name, String points) {
+    public String generateToken(String email, int userId, String nickName, String name, String points, String status) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("user_id", userId); // user_id 추가
+        claims.put("user_email", email); // user_email 추가
         claims.put("user_nickname", nickName); // user_nickname 추가
         claims.put("user_name", name); // user_nickname 추가
         claims.put("user_point", points); // user_nickname 추가
+        claims.put("user_status", status); // user_nickname 추가
         return createToken(claims, email);
     }
 

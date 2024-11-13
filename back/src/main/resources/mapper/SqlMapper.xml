@@ -61,16 +61,20 @@
 
     <insert id="insertPayment" parameterType="com.example.demo.DTO.JH.PaymentDTO">
         INSERT INTO payment (payment_id,user_id, booking_num, payment_method, price, payment_date, point_usage)
-        VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_DATE(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS'), #{pointUsage})
+        VALUES (payment_seq.NEXTVAL,#{userId}, #{bookingNum}, #{paymentMethod}, #{price}, TO_TIMESTAMP_TZ(#{paymentDate}, 'YYYY-MM-DD"T"HH24:MI:SS.FF3TZR'), #{pointUsage})
     </insert>
 
     <!-- 강현 -->
     <select id="findByEmail" resultType="com.example.demo.DTO.KH.CustomDTO"><!-- 돌려주는 곳이 com.exe.springmybatis.CustomDTO 임 로그인 할 때 사용 -->
-      SELECT user_id AS userid, email, password, name, nickname, points FROM users WHERE email = #{email}
+      SELECT user_id AS userid, email, password, name, nickname, points, status FROM users WHERE email = #{email}
     </select>
 
     <select id="findByName" resultType="com.example.demo.DTO.KH.CustomDTO">
       SELECT user_id AS userid, email, password, name FROM users WHERE name = #{name} AND phone_number = #{phoneNumber}
+    </select>
+
+    <select id="findPassword" parameterType="map" resultType="com.example.demo.DTO.KH.CustomDTO">
+      SELECT email, name FROM users WHERE name = #{name} AND email = #{email}
     </select>
 
     <update id="updatePassword" parameterType="map">
@@ -405,7 +409,7 @@
         WHERE 
             user_id = #{userId}
         ORDER BY 
-            payment_date DESC
+            payment_date asc
     </select>
     
     <delete id="deleteBooking" parameterType="Long">

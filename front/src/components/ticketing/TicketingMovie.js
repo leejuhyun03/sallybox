@@ -15,7 +15,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [sortMethod, setSortMethod] = useState('A');
     const [movies, setMovies] = useState([]);
     const [selectedDate, setSelectedDate] = useState('');
-    const [selectedMovie, setSelectedMovie] = useState(null);
     const [activeButton, setActiveButton] = useState('jybtn_screen_time');
     const { fullDates, dates, months, weekdays } = DateList();
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
@@ -24,24 +23,36 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const [currentTime, setCurrentTime] = useState(new Date());
     const [fetchedMovies, setFetchedMovies] = useState([]);
     const [filteredSchedules, setFilteredSchedules] = useState([]);
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
+    
     const [startIndex, setStartIndex] = useState(0); 
     const visibleDatesCount = 8; // 추가!!!!!! 화면에 표시할 날짜 수
 
-    const location = useLocation();
-    const movieId = location.state; // Access the movie_id from the state
-    console.log('TicketingMovie: ', movieId)
-  
+    const [selectedMovieId, setSelectedMovieId] = useState(null);//주현 selectedMovieId에 localStorage에 movie_id가 올라가
+
+    // 주현  
+    /*
     useEffect(() => {
-        if (movieId) {
-          setSelectedMovieId(movieId);
-          applyFilter(fetchedMovies, filter, movieId);
-          onMovieSelect(movieId);
-          console.log('들어감?')
+        const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
+        if(storedMovieId){
+            setSelectedMovieId(storedMovieId)
         }
-    }, [movieId]);
-    console.log('허강현: ', selectedMovieId)
-      
+        console.log("storedMovieId:"+storedMovieId);
+    }, []); 
+     */
+
+    useEffect(() => {
+        const storedMovieId = localStorage.getItem('selectedMovieId');
+        if (storedMovieId) {
+            setSelectedMovieId(storedMovieId);
+    
+            // storedMovieId와 동일한 영화가 선택된 상태로 설정하고 필터 적용
+            const matchedMovie = movies.find(movie => movie.movie_id === parseInt(storedMovieId));
+            if (matchedMovie) {
+                handleMovieClick(matchedMovie);
+            }
+        }
+        console.log("storedMovieId:", storedMovieId);
+    }, [movies]); // movies가 변경될 때마다 실행
     const handlePrevDate = () => {
         setStartIndex(prev => Math.max(prev - visibleDatesCount, 0));
     };
@@ -49,7 +60,6 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const handleNextDate = () => { 
         setStartIndex(prev => Math.min(prev + visibleDatesCount, fullDates.length - visibleDatesCount));
     };
-
     
     const certification = (certification) => {
         switch (certification) {
@@ -93,7 +103,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                 })
             );
              // 중복된 영화 제거: `movie_id`로 고유한 영화만 남김 --1110 추가된 코드(fetchedMovies,moviewithDetails둘다 상관없음 기본정보/상세정보임)
-            const uniqueMovies = Array.from(new Map(fetchedMovies.map(movie => [movie.movie_id, movie])).values());
+            const uniqueMovies = Array.from(new Map(moviesWithDetails.map(movie => [movie.movie_id, movie])).values());
 
             //1101 -주석이 원래코드
             //setFetchedMovies(moviesWithDetails);
@@ -105,10 +115,8 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             setFetchedMovies(uniqueMovies);
             setMovies(uniqueMovies);
             sortMovies(sortMethod, uniqueMovies);
-            applyFilter(uniqueMovies, '전체');
-
-            // console.log("moviesWithDetails:", JSON.stringify(moviesWithDetails, null, 2));
-            // console.log("fetchedMovies:", JSON.stringify(fetchedMovies, null, 2));
+            //applyFilter(uniqueMovies, '전체');
+            applyFilter(uniqueMovies,'전체');
         } catch (error) {
             console.error("영화 목록을 불러오는데 실패했습니다:", error);
         }
@@ -139,10 +147,12 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         setIsGraySelected(!hasSchedules);
         setDate(selectedDate);
         setSelectedDate(selectedDate);
+
     };
 
     const handleMovieClick = (movie) => {
         setSelectedMovieId(movie.movie_id);
+        localStorage.setItem('selectedMovieId', movie.movie_id); // 선택된 영화 ID를 localStorage에 저장
         applyFilter(fetchedMovies, filter, movie.movie_id);
         onMovieSelect(movie);
     };
@@ -190,6 +200,12 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             weekdays: result.map(item => item.weekday),
         };
     }
+
+    function getTodayWeekday() {
+        const date = new Date();
+        const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+        return weekdays[date.getDay()];
+    }    
     
 
     const groupedData = {};
@@ -214,32 +230,32 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
     const applyFilter = (schedules, selectedFilter, movieId) => {
         let filtered = schedules;
 
+        // '스페셜관' 필터만 남김
         if (selectedFilter === '스페셜관') {
             filtered = schedules.filter(schedule => [7, 10, 28].includes(schedule.theater_id));
-        } else if (selectedFilter === '13시 이후') {
-            filtered = schedules.filter(schedule => new Date(`1970-01-01T${schedule.start_time}`).getHours() >= 13);
-        } else if (selectedFilter === '19시 이후') {
-            filtered = schedules.filter(schedule => new Date(`1970-01-01T${schedule.start_time}`).getHours() >= 19);
-        } else if (selectedFilter === '심야') {
-            filtered = schedules.filter(schedule => new Date(`1970-01-01T${schedule.start_time}`).getHours() >= 23);
         }
 
-        if (movieId) {
-            filtered = filtered.filter(schedule => schedule.movie_id === movieId);
+        if (movieId || selectedMovieId) {
+            filtered = filtered.filter(schedule => schedule.movie_id === (movieId || selectedMovieId));
         }
-
         setFilteredSchedules(filtered);
     };
 
     const handleFilterChange = (selectedFilter) => {
         setFilter(selectedFilter);
-        applyFilter(movies, selectedFilter);
+        // applyFilter(movies, selectedFilter); --1112
+        applyFilter(fetchedMovies, selectedFilter);
     };
 
     const formatTime = (isoString) => {
         const date = new Date(isoString);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
     };
+
+    const handleDateWithWeekday = (fullDate, index) => {
+        setSelectedDate(`${fullDate} (${weekdays[startIndex + index]})`); // ㅜ정!!! 요일 포함해서 selectedDate 설정
+    };
+    
 
     //theaater_tyype별로 그룹화 하고, 현재 시간 이후의 상영 스케줄만 필터링하여 theaterTypeData라는 객체로 저장하는 로직
     const theaterTypeData = useMemo(() => {
@@ -258,7 +274,11 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
         }
         return data; // 그룹화된 데이터 반환
     }, [fetchedMovies, currentTime]);
-   // console.log("theaterTypeDatatheaterTypeData:", JSON.stringify(theaterTypeData, null, 2));
+   // console.log("theaterTypeDatatheaterTypeData:", JSON.stringify(theaterTyphandleChangeeData, null, 2));
+
+   useEffect(() => {
+    console.log("Movies array:", movies.map(movie => movie.movie_id));
+  }, [movies]);
 
     return (
         <div className="jycinema_movie_schedule" style={{ display: 'flex', width: '851px', height: '870px' }}>
@@ -266,7 +286,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                 <div className="jygroup_top">
                     <h4 className="jycinema_title" style={{textAlign:'center'}}>영화 선택</h4>
                 </div>
-                <div className="jyMovie_inner" style={{backgroundColor: '#dddddd',width: '351px', height: '805px'}}>
+                <div className="jyMovie_inner" style={{backgroundColor: '#f5f5f5',width: '351px', height: '805px'}}>
                     <div className="jylist_filter">
                         <select id="jysortSelect" value={sortMethod} onChange={handleChange}>
                             <option value="A">예매순</option>
@@ -274,8 +294,9 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                             <option value="C">평점순</option>
                         </select>
                     </div>
-                    <div className="jymovieSelect_list" style={{ width: '351px', height: '755px' }}>
+                    <div className="jymovieSelect_list" style={{ width: '351px', height: '734px' }}>
                         {movies.map((movie) => (
+
                             
                             <div
                                 key={movie.movie_id}
@@ -298,13 +319,13 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
             </div>
 
             <div className="jycinema_day" style={{ width: '500px', height: '870px', backgroundColor: 'black' }}>
-                <div className="jygroup_top">
-                    <h4 className="jycinema_title">{selectedDate}</h4>
+                <div className="jygroup_top"  style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                    <h4 className="jycinema_title">{selectedDate} ({getTodayWeekday()})</h4>
                 </div>
                 <div className="jyschedule_inner">
                     <div className="jyticketing_schedule_bottom_wrap">
                         <div className={`jytime_table_wrap ${activeButton === 'jybtn_screen_time' ? 'jyactive' : ''}`}>
-                            <div className="jydate_select" style={{ backgroundColor: '#f5f5f5', width: '496px', height: '100%', margin: '0px' }}>
+                            <div className="jydate_select" style={{ backgroundColor: '#f5f5f5', width: '498px', height: '100%', margin: '0px' }}>
                                 <div className="jydate_slide">
                                 <button onClick={handlePrevDate} disabled={startIndex === 0} className="jydate_arrow_button"> 
                                     <IoIosArrowBack size={24} /> 
@@ -335,19 +356,23 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                         </div>
                     </div>
 
-                    <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '676px' }}>
-                        <div style={{ backgroundColor: '#f5f5f5', width: '496px', height: '50px', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                            {['전체', '스페셜관', '13시 이후', '19시 이후', '심야'].map((filterOption) => (
+                    <div style={{ backgroundColor: '#f5f5f5', width: '498px', height: '676px' }}>
+                        <div style={{ backgroundColor: '#f5f5f5', width: '498px', height: '50px', display: 'flex', justifyContent: 'space-around', alignItems: 'center', borderBottom: '1px solid #e5e5e5' }}>
+                            {['전체', '스페셜관'].map((filterOption) => (
                                 <button
                                     key={filterOption}
                                     onClick={() => handleFilterChange(filterOption)}
                                     style={{
-                                        backgroundColor: filter === filterOption ? 'black' : 'transparent',
-                                        color: filter === filterOption ? 'white' : 'black',
-                                        border: '1px solid black',
-                                        borderRadius: '4px',
+                                        color: 'black',  
+                                        fontWeight: filter === filterOption ? 'bold' : 'normal', 
                                         padding: '5px 10px',
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        width: '50%',
+                                        height: '100%',
+                                        borderBottom: filter === filterOption ? '3px solid black' : '1px solid #e5e5e5', 
+                                        backgroundColor: 'transparent', 
+                                        border: 'none', 
+                                        outline: 'none' 
                                     }}
                                 >
                                     {filterOption}
@@ -355,7 +380,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                             ))}
                         </div>
 
-                        <div className="jyTicketingTime" style={{ backgroundColor: '#f5f5f5', width: '496px', height: '676px', display: 'flex', flexDirection: 'column' }}>
+                        <div className="jyTicketingTime" style={{ backgroundColor: '#f5f5f5', width: '498px', height: '676px', display: 'flex', flexDirection: 'column' }}>
                             {filteredSchedules.length > 0 ? (
                                 Object.entries(
                                     filteredSchedules.reduce((acc, schedule) => {
@@ -366,7 +391,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                     }, {})
                                 ).map(([movie_id, schedules]) => (
                                     <div key={movie_id} className="jytime_scroll_select_wrap" style={{ marginBottom: '10px', borderBottom: '1px solid #ddd', paddingBottom: '30px' }}>
-                                        {/* 지영 */}
+                                    
                                         <div className="jytime_scroll_title" style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                                             <img
                                                 src={certification(schedules[0].certification)}
@@ -402,7 +427,7 @@ const TicketingMovie = ({ cinemaId, onMovieSelect, onScheduleSelect, scheduleMap
                                     </div>
                                 ))
                             ) : (
-                                <div style={{ textAlign: 'center', padding: '20px', fontSize: '14px' }}>
+                                <div style={{ textAlign: 'center', padding: '20px', fontSize: '18px' }}>
                                     <TicketingNothing />
                                 </div>
                             )}

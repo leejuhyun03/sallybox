@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import LeftHeader from '../seats/LeftHeader';
 import '../../css/seats/LeftHeader.css';
 import '../../css/seats/Reservation.css';
@@ -19,6 +19,8 @@ const Ticketing = () => {
     const [scheduleMap, setScheduleMap] = useState(new Map());
     const [selectedMovie, setSelectedMovie] = useState(null); // 선택된 영화 저장 상태
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const alertShown = useRef(false);
 
     const handleMovieSelect = (movie) => {
         setSelectedMovie(movie); // 선택된 영화를 업데이트
@@ -32,13 +34,13 @@ const Ticketing = () => {
         navigate('/sallybox/reserv/seats');
     }
 
-    // 영화 ID를 localStorage에서 가져와서 상태에 설정
-    useEffect(() => {
-        const storedMovieId = localStorage.getItem('selectedMovieId');  // localStorage에서 selectedMovieId 가져오기
-        if (storedMovieId) {
-            setSelectedMovie(storedMovieId)
+    useEffect(()=>{
+        if(!token && !alertShown.current){
+            alert('로그인이 필요한 서비스입니다.')
+            alertShown.current = true;
+            navigate('/sallybox/sign-in')
         }
-    }, []);  // 컴포넌트가 처음 렌더링될 때 실행
+    },[token,navigate])
 
 
     // cinema_id를 URL로 가져와서 해당 영화관의 정보를 API로 요청하고, 그 결과로 cinemaDTO와 schedules 데이터를 받아옴
@@ -80,9 +82,9 @@ const Ticketing = () => {
                 <div className="jycinema_all">
                     <div className="jycinema_area" style={{ width: '351px', height: '870px' }}>
                         <div className="group_tops">
-                            <h4 className="cinema_title" style={{ textAlign: 'center' }}>
+                            <div className="jycinema_title" >
                                 {selectedCinema ? selectedCinema.name : '영화관 선택'}
-                            </h4>
+                            </div>
                             {/* 선택한 영화관의 이름을 띄워야함 */}
                         </div>
 

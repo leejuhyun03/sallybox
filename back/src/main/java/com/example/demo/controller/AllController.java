@@ -123,12 +123,14 @@ public class AllController {
     
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sallybox/payment/final")
-    public void processFinalPaymen(@RequestBody PaymentDTO paymentDTO) throws Exception{
+    public void processFinalPayment(@RequestBody PaymentDTO paymentDTO) throws Exception{
         try{
             sqlService.updatePoints(paymentDTO.getUserId(), paymentDTO.getPointUsage(),paymentDTO.getPrice()-paymentDTO.getPointUsage());
             sqlService.insertPayment(paymentDTO);
+            System.out.println(paymentDTO);
         } catch (Exception e){
             e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 
@@ -199,22 +201,32 @@ public class AllController {
     @PostMapping("/api/send-sms")
     public ResponseEntity<?> sendSms (@RequestBody Map<String, String> body) { 
    
+        String name = body.get("name");
+        String email = body.get("email");
+        System.out.println("오류 수정: " + name + " : " + email);
         String to = body.get("phoneNumber");
 
-        Random rnd  = new Random();
-        StringBuffer buffer = new StringBuffer();
-        for (int i=0; i<6; i++) {
-            buffer.append(rnd.nextInt(10));
-        }
-        String cerNum = buffer.toString();
-        System.out.println("수신자 번호 : " + to);
-        System.out.println("인증번호 : " + cerNum);
+        CustomDTO dto = sqlService.findPassword(email, name);
 
-        sqlService.sendSms(to, cerNum);
-         Map<String, String> response = new HashMap<>();
-        response.put("message", "인증번호가 발송되었습니다.");
-        response.put("code", cerNum);
-        return ResponseEntity.ok(response);
+        if(!dto.getEmail().equals(email) || !dto.getName().equals(name)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("회원 정보가 일치하지 않습니다.");
+        }
+
+            Random rnd  = new Random();
+            StringBuffer buffer = new StringBuffer();
+            for (int i=0; i<6; i++) {
+                buffer.append(rnd.nextInt(10));
+            }
+            String cerNum = buffer.toString();
+            System.out.println("수신자 번호 : " + to);
+            System.out.println("인증번호 : " + cerNum);
+
+            sqlService.sendSms(to, cerNum);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "인증번호가 발송되었습니다.");
+            response.put("code", cerNum);
+            return ResponseEntity.ok(response);
+    
     }
 
     @PostMapping("/api/verificationCode")
@@ -500,6 +512,7 @@ public class AllController {
         response.put("isLiked", isLiked);
         return ResponseEntity.ok(response);
     }
+
         /*1108 첫날 jwt로 하면 되는거 시작임     
         //리뷰 저장 api
         @PostMapping("sallybox/movies/{movie_id}/reviews")
@@ -743,7 +756,7 @@ public class AllController {
         CustomerDTO customerInfo = sqlService.getCustomerInfo(userId);
         List<MyMovieDTO> wishlistMovies = sqlService.getWishlistMovies(userId);
 
-        System.out.println("wishlistMovies--------------------"+wishlistMovies);
+        //System.out.println("wishlistMovies--------------------"+wishlistMovies);
         
         Map<String, Object> response = new HashMap<>();
         response.put("customerInfo", customerInfo);
@@ -754,6 +767,7 @@ public class AllController {
 
     @DeleteMapping("/sallybox/mypage/{userId}/{movieId}")
     public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int movieId) throws Exception {
+       // System.out.println("위시리스트: " + userId + " : " + movieId);
         boolean removed = sqlService.removeFromWishlist(userId, movieId);
         if (removed) {
             return ResponseEntity.ok().body("영화가 위시리스트에서 삭제되었습니다.");
@@ -827,13 +841,19 @@ public class AllController {
     }
     
      
-    @PostMapping("/sallybox/mypage/cancel")
+    @GetMapping("/sallybox/mypage/cancel")
     public ResponseEntity<String> cancelBooking(
         @RequestParam int userId,
         @RequestParam Long bookingNum,
         @RequestParam int pointUsage
     ) {
+        System.out.println("오냐?");
         try {
+
+            System.out.println("userId:==================="+userId);
+            System.out.println("bookingNum:"+bookingNum);
+            System.out.println("pointUsage:"+pointUsage);
+
             sqlService.cancelBooking(userId, bookingNum, pointUsage);
             return ResponseEntity.ok("예매가 성공적으로 취소되었습니다.");
         } catch (Exception e) {

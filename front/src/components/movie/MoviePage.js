@@ -10,6 +10,7 @@ import { IoIosPlay } from "react-icons/io";
 import MovieDetail from './MovieDetail';
 import { useUser } from '../../context/UserContext';
 
+
 const MoviePage = () => {
     const { movie_id } = useParams();
     const [movieDetails, setMovieDetails] = useState({});
@@ -23,6 +24,8 @@ const MoviePage = () => {
     const [isMovieNowPlaying, setIsMovieNowPlaying] = useState(false); // 영화 상영 여부 상태 추가
 
     const { userId } = useUser();
+    const isUserLoggedIn = !!userId;
+    
 
     const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에 정의 --jwt
   
@@ -57,11 +60,15 @@ const MoviePage = () => {
     }, [movie_id]);
 
     const handleLikeClick = async () => {
-        if (loadingWishlist) return;
+        if (!userId){
+          alert('로그인 해주세요.');
+          navigate('/sallybox/sign-in', { state: { from: `/sallybox/movies/${movie_id}` } });
+          return;
+        }
         setLoadingWishlist(true);
         
         try {
-            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, null, {
+            const response = await axios.post(`http://192.168.16.4:8085/sallybox/movies/${movie_id}/wishlist/toggle`, {}, {
                 params: {user_id: userId}
             });
 
@@ -70,6 +77,7 @@ const MoviePage = () => {
             setLikeCount(newIsLiked ? likeCount + 1 : likeCount - 1);
             setError(null);
         } catch (error) {
+
             console.error("Error updating wishlist:", error);
             setError("위시리스트를 업데이트하는데 실패했습니다. 다시 시도해 주세요.");
         } finally {
@@ -80,7 +88,13 @@ const MoviePage = () => {
     //예매 페이지로 영화 정보 보내는 함수
     const handleBookingClick = () => {
 
-      navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+          if (!isUserLoggedIn) {
+            navigate('/sallybox/sign-in', { state: { from: `/sallybox/movies/${movie_id}` } });
+        } else {
+            //navigate(`/sallybox/reserv/ticketing`, { state: movie_id });
+            localStorage.setItem('selectedMovieId', movie_id); // movie_id를 localStorage에 저장
+            navigate(`/sallybox/reserv/ticketing`);
+        }
 
         // const today = new Date();
         // const date = today.toLocaleDateString();

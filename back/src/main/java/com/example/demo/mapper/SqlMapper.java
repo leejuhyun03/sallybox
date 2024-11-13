@@ -44,7 +44,7 @@ public interface SqlMapper {
     public void insertPayment(PaymentDTO paymentDTO);
 
     // 강현 Mapper
-    int findPassword(@Param("email") String email, @Param("name") String name);
+    CustomDTO findPassword(@Param("email") String email, @Param("name") String name);
     CustomDTO findByEmail(String email);
     CustomDTO findByName(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
     void updatePassword(@Param("email") String email, @Param("password") String password);
@@ -114,7 +114,7 @@ public interface SqlMapper {
 
     public List<MyMovieDTO> getWishlistMovies(int userId) throws Exception;
 
-    public int deleteFromWishlist(int userId, int movieId);
+    public int deleteFromWishlist(@Param("userId") int userId, @Param("movieId") int movieId);
     
     public int deactivateUser(UserDeactivationDTO dto);
 
@@ -130,6 +130,6 @@ public interface SqlMapper {
 
     public void deleteBooking(Long bookingNum);
     public void deletePayment(Long bookingNum);
-    public void updateCustomerPoint(int userId,int pointUsage);
+    public void updateCustomerPoint(@Param("userId") int userId,@Param("pointUsage") int pointUsage);
 
 }

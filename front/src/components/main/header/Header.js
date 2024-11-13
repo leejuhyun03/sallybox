@@ -17,7 +17,7 @@ import data2 from '../../../image/swimage/GrandMa_1920774_2.jpg'
 import data3 from '../../../image/swimage/MyPet_1920774.jpg'
 import data4 from '../../../image/swimage/TwilightOfTheWarriors_1920774.jpg'
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import HeaderModal from './Modal/HeaderModal';
 import NavbarTest3 from './Navbar/NavbarTest3';
 import { useUser } from '../../../context/UserContext';
@@ -76,20 +76,23 @@ const Header = () => {
 
   return (
   <>
-  <NavbarTest3 handleLogout={handleLogout}/>
+  {/* <NavbarTest3 handleLogout={handleLogout}/> */}
   <div id='header_section' className='header ty3'>
       <Link to={'/'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
         <ul className="g_menu2">
+<<<<<<< HEAD
           <li><a href='#'>멤버십</a></li>
           <li><a href='http://localhost:3000/sallybox/gogaksenter'>고객센터</a></li>
           <li><a href='#'>단체관람/대관문의</a></li>
+=======
+          <li><a href='http://192.168.16.4:3000/sallybox/gogaksenter'>고객센터</a></li>
+>>>>>>> 1fd449805ef0211a883d0294a639bd32b9a2faa6
           {
             isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
                             : <li><Link to={'/sallybox/sign-in'}>로그인</Link></li>
           }
           
-          {/* <li><Link to={'/sign-in'}>로그아웃</Link></li> */}
         </ul>
         <ul className="g_menu3">
         {

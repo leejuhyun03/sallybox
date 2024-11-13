@@ -1,6 +1,8 @@
 import React, { useState } from "react"; // React와 useState 훅을 가져옵니다.
 import axios from "axios"; // axios를 사용하여 API 요청을 보낼 것입니다.
 import "../../css/SH/InfoUpdate.css"; // 스타일 파일을 가져옵니다.
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const InfoUpdate = ({ onClose ,userId}) => {
   const [nickname, setNickname] = useState(""); // 닉네임 상태
@@ -13,6 +15,9 @@ const InfoUpdate = ({ onClose ,userId}) => {
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,13}$/;
     return regex.test(pwd);
   };
+  
+  const {setIsAuthenticated} = useUser();
+  const navigate = useNavigate();
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
@@ -45,6 +50,9 @@ const InfoUpdate = ({ onClose ,userId}) => {
       
       console.log('서버 응답:', response.data);
       alert('회원 정보가 성공적으로 업데이트되었습니다.');
+      localStorage.removeItem('token'); // 토큰 제거
+      setIsAuthenticated(false);
+      navigate('/sallybox/sign-in')
       onClose(); // 모달 창 닫기
 
     } catch (error) {
@@ -99,7 +107,7 @@ const InfoUpdate = ({ onClose ,userId}) => {
               </div>
 
               {/* 비밀번호 입력 필드 */}
-              <div className="row" id="div-pswd-change">
+              <div className="row rows"  id="div-pswd-change"  style={{borderBottom: 'none'}}>
             <div className="col-md">
               <label>비밀번호</label>
             </div>
@@ -141,7 +149,7 @@ const InfoUpdate = ({ onClose ,userId}) => {
           </div>
 
               {/* 휴대폰 번호 입력 필드 */}
-              <div className="row" id="div-mblNo">
+              <div className="row" id="div-mblNo" style={{borderTop: '1px solid #d0d0d0'}}>
                 <div className="col-md">
                   <label>
                     <em className="__point-color">*</em>휴대폰 번호

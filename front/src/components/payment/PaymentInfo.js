@@ -22,18 +22,19 @@ const PaymentInfo = ({usePoint}) => {
 
         try{
 
-            const {schedule,selectedSeats} = bookingData;
+            const {schedule,selectedSeats,counts} = bookingData;
             
             const bookingNum = Math.floor(Math.random() * 1000000) + Date.now();
             let peopleType;
-            
+            let disabledCount = counts.disabled || 0
 
             for(let i = 0; i < selectedSeats.length; i++){ 
                 const seat = selectedSeats[i] 
                 // const peopleType = determinePeopleType(i);
 
-                if(seat.seat_type === '휠체어'){
+                if(seat.seat_type === '휠체어' || (disabledCount>0)){
                     peopleType = '장애인'
+                    if(disabledCount>0) disabledCount--;
                 }else{
                     peopleType = determinePeopleType(i)
                 }
@@ -52,12 +53,15 @@ const PaymentInfo = ({usePoint}) => {
                 await axios.post('http://192.168.16.4:8085/sallybox/payment/booking', bookingDataToSend);
             }
 
+            const now = new Date()
+            const formattedDate = now.toISOString()
+            console.log(formattedDate)
             await axios.post('http://192.168.16.4:8085/sallybox/payment/final',{
                 userId:userId, //jwt에서 받음
                 bookingNum:bookingNum,
                 paymentMethod:'card',
                 price:totalPrice,
-                paymentDate:new Date().toISOString(),
+                paymentDate:formattedDate,
                 pointUsage:usePoint,                
                 // totalPayment:totalPrice-usePoint
             })
@@ -88,7 +92,7 @@ const PaymentInfo = ({usePoint}) => {
 
     const determinePeopleType = (index) => {
         const { counts } = bookingData;
-    
+        
         if (index < counts.adult + counts.disabled) return '성인'; //counts.adult = 2
         if (index < counts.adult + counts.teenager + counts.disabled) return '청소년';
         if (index < counts.adult + counts.teenager + counts.senior + counts.disabled) return '경로';
@@ -101,7 +105,7 @@ const PaymentInfo = ({usePoint}) => {
 
     return (
         <div className='article_wrap'>
-            <div className='group_top'>
+            <div className='jh_group_top'>
                 <h4>결제하기</h4>
             </div>
             <div className='inner'>

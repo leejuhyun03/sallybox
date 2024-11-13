@@ -1,5 +1,6 @@
 package com.example.demo.service.implement;
 
+import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,6 +26,8 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService{
 
     private final UserRepository userRepository;
 
+    
+
     @Override
     public OAuth2User loadUser(OAuth2UserRequest request) throws OAuth2AuthenticationException {
         
@@ -41,43 +44,52 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService{
         UserEntity userEntity = null;
         int userId = 0;
         String email = null;
+        String name= null;
+        String nickname= null;
+        BigDecimal points = new BigDecimal("100.00"); // 기본 포인트 설정
 
-        if(oauthClientName.equals("kakao")){
-             //String id = (String) oAuth2User.getAttributes().get("id");
-            // try{
-            //     userId = Integer.parseInt(id);
-            //     System.out.println("변환된 숫자: " + userId);
-            // } catch (NumberFormatException e) {
-            //     System.out.println("유효하지 않은 입력: " + id);
-            // }
-            Long id = (Long)oAuth2User.getAttributes().get("id");
+
+        if (oauthClientName.equals("kakao")) {
+            Long id = (Long) oAuth2User.getAttributes().get("id");
             userId = id.intValue();
-            email = "kakao@"+ oAuth2User.getAttributes().get("id")+".com";
+            email = "kakao@" + id + ".com";
+            Map<String, Object> properties = (Map<String, Object>) oAuth2User.getAttributes().get("properties");
+            name = (String) properties.get("nickname");
+            nickname = name; // 카카오의 경우 닉네임을 이름으로 사용
 
-            
-            //email = (String)oAuth2User.getAttributes().get("id");
-
-            userEntity = new UserEntity(userId,email,"kakao");
-        }
-
-        if(oauthClientName.equals("naver")){
-            Map<String,String> responseMap = (Map<String,String>) oAuth2User.getAttributes().get("response");
+            userEntity = userRepository.findByEmail(email);
+            if (userEntity == null) {
+                userEntity = new UserEntity(userId, email, name,nickname,"kakao");
+                userRepository.save(userEntity);
+            }
+        } else if (oauthClientName.equals("naver")) {
+            Map<String, String> responseMap = (Map<String, String>) oAuth2User.getAttributes().get("response");
             String id = responseMap.get("id");
-            int hashedId = hashString(id);
-
-            System.out.println("Hashed ID: " + hashedId);
-
+            userId = hashString(id);
             email = responseMap.get("email");
-            String nickname = responseMap.get("nickname");
+            name = responseMap.get("name");
+            nickname = responseMap.get("nickname");
             String phoneNumber = responseMap.get("mobile");
-            String name = responseMap.get("name");
-            userEntity = new UserEntity(hashedId,email,nickname,phoneNumber,name,"naver");
 
+            userEntity = userRepository.findByEmail(email);
+            if (userEntity == null) {
+                userEntity = new UserEntity(userId, email, name, nickname, phoneNumber, "naver");
+                userRepository.save(userEntity);
+            }
         }
 
-        userRepository.save(userEntity);
+        // userEntity가 null이 아닌 경우에만 값을 가져옵니다.
+        if (userEntity != null) {
+            
+            userId = userEntity.getUserId();
+            System.out.println("userId:"+userId);
+            email = userEntity.getEmail();
+            name = userEntity.getName();
+            nickname = userEntity.getNickname();
+            points = userEntity.getPoints();
+        }
 
-        return new CustomOAuth2User(email);
+        return new CustomOAuth2User(userId, email, name, nickname, points);
     }
 
     public static int hashString(String input) {
