@@ -44,7 +44,7 @@ const Gogakregistration = () => {
         <ul className="tab_wrap outer actionmovingbar">
           <li className="active">
             <div className="tab_con ty2">
-              <button className="button1" style={{width: '980px'}}>1:1 나문의~</button>
+              <button className="button1" style={{width: '980px'}}>1:1 문의</button>
 
               <div className="tab_con">
                 <div className="con_top">
