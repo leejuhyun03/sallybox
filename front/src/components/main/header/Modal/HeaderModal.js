@@ -96,8 +96,6 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                                 : (`http://192.168.16.4:3000/sallybox/sign-in`)
                                                 }  title="MY 정보 관리" tabIndex="0">MY 정보 관리</a>
                                             </li>
-                                            <li><a href={`http://192.168.16.4:3000/sallybox/mypage/${userId}`} title="MY 정보 관리" tabIndex="0">계정 복구</a>
-                                            </li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">
