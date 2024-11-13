@@ -88,13 +88,8 @@ export default function FindPassword() {
         e.preventDefault();
         setError('');
         setSuccessMessage('');
-
-        if (!email || !name || !phoneNumber) {
-            alert('이메일, 이름과 휴대폰 번호를 모두 입력하세요');
-            return;
-        }
         
-        if(!code) { 
+        if(!verificationCode) { 
             alert('인증번호를 입력해주세요.');
             return;
         }

@@ -201,22 +201,32 @@ public class AllController {
     @PostMapping("/api/send-sms")
     public ResponseEntity<?> sendSms (@RequestBody Map<String, String> body) { 
    
+        String name = body.get("name");
+        String email = body.get("email");
+        System.out.println("오류 수정: " + name + " : " + email);
         String to = body.get("phoneNumber");
 
-        Random rnd  = new Random();
-        StringBuffer buffer = new StringBuffer();
-        for (int i=0; i<6; i++) {
-            buffer.append(rnd.nextInt(10));
-        }
-        String cerNum = buffer.toString();
-        System.out.println("수신자 번호 : " + to);
-        System.out.println("인증번호 : " + cerNum);
+        CustomDTO dto = sqlService.findPassword(email, name);
 
-        sqlService.sendSms(to, cerNum);
-         Map<String, String> response = new HashMap<>();
-        response.put("message", "인증번호가 발송되었습니다.");
-        response.put("code", cerNum);
-        return ResponseEntity.ok(response);
+        if(!dto.getEmail().equals(email) || !dto.getName().equals(name)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("회원 정보가 일치하지 않습니다.");
+        }
+
+            Random rnd  = new Random();
+            StringBuffer buffer = new StringBuffer();
+            for (int i=0; i<6; i++) {
+                buffer.append(rnd.nextInt(10));
+            }
+            String cerNum = buffer.toString();
+            System.out.println("수신자 번호 : " + to);
+            System.out.println("인증번호 : " + cerNum);
+
+            sqlService.sendSms(to, cerNum);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "인증번호가 발송되었습니다.");
+            response.put("code", cerNum);
+            return ResponseEntity.ok(response);
+    
     }
 
     @PostMapping("/api/verificationCode")

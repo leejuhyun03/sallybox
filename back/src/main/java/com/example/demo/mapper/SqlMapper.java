@@ -44,7 +44,7 @@ public interface SqlMapper {
     public void insertPayment(PaymentDTO paymentDTO);
 
     // 강현 Mapper
-    int findPassword(@Param("email") String email, @Param("name") String name);
+    CustomDTO findPassword(@Param("email") String email, @Param("name") String name);
     CustomDTO findByEmail(String email);
     CustomDTO findByName(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
     void updatePassword(@Param("email") String email, @Param("password") String password);

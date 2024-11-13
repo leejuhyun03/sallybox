@@ -41,7 +41,7 @@ public interface SqlService {
     public void insertPayment(PaymentDTO paymentDTO);
 
     // 강현 service
-    boolean findPassword(String email, String name);
+    CustomDTO findPassword(String email, String name);
     CustomDTO findByEmail(String email);
     CustomDTO findByName(String name, String phoneNumber);
     String maskEmail(String email);
