@@ -13,7 +13,6 @@ import { useUser } from '../../context/UserContext';
 export default function SignIn() {
     const passwordRef = useRef(null);
     const emailRef = useRef(null);
-    const [cookie, setCookie] = useCookies();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -25,7 +24,7 @@ export default function SignIn() {
     const [maskedEmail, setMaskedEmail] = useState(''); // 가공된 이메일 상태 추가
     const [allEmail, setAllEmail] = useState(''); // 가공된 이메일 상태 추가
 
-    const { setIsAuthenticated } = useUser();
+    const { setIsAuthenticated, userStatus } = useUser();
 
 
     const onEmailChangeHandler = (event) => {
@@ -59,7 +58,6 @@ export default function SignIn() {
               localStorage.setItem('token', response.data); // 토큰 저장
               setIsAuthenticated(true);
               // 메인 페이지로 이동
-              //navigate('/');
 
               //지영 이전페이지 경로가 없다면 기본 경로로 이동
               const redirectTo = location.state?.from || '/';

@@ -13,6 +13,7 @@ public class CustomDTO {
     private String name;
     private String nickname;
     private String points;
+    private String status;
 
 
 }

@@ -81,15 +81,12 @@ const Header = () => {
       <Link to={'/'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
         <ul className="g_menu2">
-          <li><a href='#'>멤버십</a></li>
           <li><a href='http://192.168.16.4:3000/sallybox/gogaksenter'>고객센터</a></li>
-          <li><a href='#'>단체관람/대관문의</a></li>
           {
             isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
                             : <li><Link to={'/sallybox/sign-in'}>로그인</Link></li>
           }
           
-          {/* <li><Link to={'/sign-in'}>로그아웃</Link></li> */}
         </ul>
         <ul className="g_menu3">
         {

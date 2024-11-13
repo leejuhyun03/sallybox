@@ -44,7 +44,7 @@ const Gogakregistration = () => {
         <ul className="tab_wrap outer actionmovingbar">
           <li className="active">
             <div className="tab_con ty2">
-              <button className="button1" style={{width: '980px'}}>1:1 나문의~</button>
+              <button className="button1" style={{width: '980px'}}>1:1 문의</button>
 
               <div className="tab_con">
                 <div className="con_top">
@@ -72,7 +72,7 @@ const Gogakregistration = () => {
                     </div>
                     <ul className="list_txt mt10">
                       <li>
-                        1:1 나문의 답변 운영시간: 평일 09:00~18:20
+                        1:1 문의 답변 운영시간: 평일 09:00~18:20
                       </li>
                       <li>
                         주말/공휴일 미운영하며, 영업시간 내 순차적 답변

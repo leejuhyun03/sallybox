@@ -85,8 +85,19 @@ const HeaderModal = ({onClose, userName, userPoint}) => {
                                 <tr>
                                     <td headers="gmenu gmenu7">
                                         <ul style={{paddingInlineStart: '0px'}}>
-                                            <li><a href={`http://192.168.16.4:3000/sallybox/mypage/${userId}`} title="결제내역" tabIndex="0">결제내역</a></li>
-                                            <li><a href={`http://192.168.16.4:3000/sallybox/mypage/${userId}`} title="MY 정보 관리" tabIndex="0">MY 정보 관리</a></li>
+                                            <li><a href={ userId ?
+                                                (`http://192.168.16.4:3000/sallybox/mypage/${userId}`)
+                                                : (`http://192.168.16.4:3000/sallybox/sign-in`)
+                                                } 
+                                                title="결제내역" tabIndex="0">결제내역</a>
+                                            </li>
+                                            <li><a href={ userId ?
+                                                (`http://192.168.16.4:3000/sallybox/mypage/${userId}`)
+                                                : (`http://192.168.16.4:3000/sallybox/sign-in`)
+                                                }  title="MY 정보 관리" tabIndex="0">MY 정보 관리</a>
+                                            </li>
+                                            <li><a href={`http://192.168.16.4:3000/sallybox/mypage/${userId}`} title="MY 정보 관리" tabIndex="0">계정 복구</a>
+                                            </li>
                                         </ul>
                                     </td>
                                     <td headers="gmenu gmenu8">

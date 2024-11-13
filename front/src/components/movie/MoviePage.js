@@ -61,7 +61,8 @@ const MoviePage = () => {
 
     const handleLikeClick = async () => {
         if (!userId){
-          alert('로그인 해주세요.')
+          alert('로그인 해주세요.');
+          navigate('/sallybox/sign-in', { state: { from: `/sallybox/movies/${movie_id}` } });
           return;
         }
         setLoadingWishlist(true);
