@@ -24,12 +24,19 @@ import PaymentSuccess from './components/payment/PaymentSuccess';
 import MyPage from './components/선호/MyPage';
 import SignUp from './views/Authentication/SignUp';
 import OAuth from './views/Authentication/OAuth';
+import NavbarTest3 from './components/main/header/Navbar/NavbarTest3';
 
 function AppRoutes() {
   const location = useLocation();
   const { setUserId, setUserEmail, setUserName, setUserNickName, setIsAuthenticated, setUserPoint, setUserStatus } = useUser();
 
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    alert("로그아웃 하시겠습니까?")
+    localStorage.removeItem('token'); // 토큰 제거
+    setIsAuthenticated(false); // 인증 상태 업데이트
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -67,6 +74,7 @@ function AppRoutes() {
         && <MainHeader/>}
 
 
+<NavbarTest3 handleLogout={handleLogout}/>
     <Routes>
         <Route path="/" element={<MainSallybox />} />
         <Route path='/sallybox'>

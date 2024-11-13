@@ -52,7 +52,7 @@ const InfoUpdate = ({ onClose ,userId}) => {
       alert('회원 정보가 성공적으로 업데이트되었습니다.');
       localStorage.removeItem('token'); // 토큰 제거
       setIsAuthenticated(false);
-      navigate('/')
+      navigate('/sallybox/sign-in')
       onClose(); // 모달 창 닫기
 
     } catch (error) {

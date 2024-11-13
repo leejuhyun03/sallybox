@@ -76,7 +76,7 @@ const Header = () => {
 
   return (
   <>
-  <NavbarTest3 handleLogout={handleLogout}/>
+  {/* <NavbarTest3 handleLogout={handleLogout}/> */}
   <div id='header_section' className='header ty3'>
       <Link to={'/'}><h1 className="logo growing" style={{height: '37px', width: '219px'}}>Sallybox</h1></Link>
         <div className='gnb'>
