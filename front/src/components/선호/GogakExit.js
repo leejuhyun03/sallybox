@@ -25,6 +25,8 @@ const GogakExit = ({ onClose, userId }) => {
                 // 홈페이지로 리다이렉트
                 navigate('/');
                 
+              window.location.reload();
+                
                 alert("탈퇴 처리되었습니다.");
             }
         } catch (error) {

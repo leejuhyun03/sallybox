@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from './context/UserContext';
 import { useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
@@ -27,7 +27,9 @@ import OAuth from './views/Authentication/OAuth';
 
 function AppRoutes() {
   const location = useLocation();
-  const { setUserId, setUserEmail, setUserName, setUserNickName, setIsAuthenticated, setUserPoint } = useUser();
+  const { setUserId, setUserEmail, setUserName, setUserNickName, setIsAuthenticated, setUserPoint, setUserStatus } = useUser();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -41,6 +43,13 @@ function AppRoutes() {
         setUserName(decodedToken.user_name);
         setUserNickName(decodedToken.user_nickname);
         setUserPoint(decodedToken.user_point);
+        setUserStatus(decodedToken.user_status);
+        if(decodedToken.user_status === 'N') {
+          alert("탈퇴한 회원입니다.");
+          localStorage.removeItem('token'); // 토큰 제거
+          setIsAuthenticated(false)
+        }
+      console.log("로그인 userStatus: ", decodedToken.user_status)
       } catch (error) {
         console.error('Invalid token:', error);
       }

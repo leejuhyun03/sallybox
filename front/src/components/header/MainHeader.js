@@ -95,9 +95,7 @@ let [visible1, setVisible1] = useState(false)
             <Link to={'/'}><h1 className="logos" style={{backgroundSize: '130px 36px'}}>Sallybox</h1></Link>
                 <div className='gnbs'>
                 <ul className="g_menu2">
-                <li><a href='#'>멤버십</a></li>
                 <li><a href='http://192.168.16.4:3000/sallybox/gogaksenter'>고객센터</a></li>
-                <li><a href='#'>단체관람/대관문의</a></li>
                 {
                     isAuthenticated ? <li><a href='/' onClick={handleLogout}>로그아웃</a></li>
                                     : <li><Link to={'/sallybox/sign-in'}>로그인</Link></li>
