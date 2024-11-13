@@ -6,6 +6,7 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import { BiSort } from 'react-icons/bi';
 
 const API_KEY = 'c1fe680d16ac165e297b9bf72e80e897';
 
@@ -522,6 +523,10 @@ const MovieDetail = ({ movie_id }) => {
                         </div>
                         {/* 리스트 보여주는 곳 */}
                         <div className="jyreview-list">
+
+                        <button type="button" onClick={toggleSortOrder} className="jy-sort-button">
+                                <BiSort />{sortOrder ? '최신순' : '오래된순'}
+                            </button>
                                 {sortedReviews.length === 0 ? (
                                     <p style={{ fontSize: '14pt', 
                                         color: 'gray', 
