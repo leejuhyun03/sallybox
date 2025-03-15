@@ -45,8 +45,9 @@ Spring Boot + react 프로젝트
 - HTML
 - CSS
 - JavaScript
-- AJAX
-- Thymeleaf
+- Redux
+- Axios
+- BootStrap
 
 
  **Back End**
@@ -54,9 +55,11 @@ Spring Boot + react 프로젝트
  - Spring Boot 2.7.7
  - Oracle Database 11g Express Edition
  - MyBatis
+ - Spring Security
+ - JWT
 
 
 **추가 기술**
-- JWT
-- 
+- Thymeleaf
+- AJAX
 
