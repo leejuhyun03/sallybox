@@ -41,7 +41,6 @@ Spring Boot + react 프로젝트
 
 **Front End**
 - React
-- Node.js
 - HTML
 - CSS
 - JavaScript
@@ -51,6 +50,7 @@ Spring Boot + react 프로젝트
 
 
  **Back End**
+ - Node.js
  - Java 8
  - Spring Boot 2.7.7
  - Oracle Database 11g Express Edition
